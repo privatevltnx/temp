@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed - VoltNexis Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Base styles for light mode */
+    :root {
+      --bg-body: #f5f7fa; /* Light grey body background */
+      --text-body: #333333; /* Dark grey for general text */
+      --bg-card: #ffffff; /* White for main container */
+      --bg-summary: #f9fbfd; /* Off-white for order summary */
+      --border-color: #e0e0e0; /* Light grey border */
+      --color-primary: #0e6c5f; /* Greenish blue for main heading/accents */
+      --color-primary-rgb: 14, 108, 95; /* RGB for primary color, used in shadows */
+      --color-success: #28a745; /* Green for success messages */
+      --color-success-dark: #218838; /* Darker green for hover/active */
+      --button-bg: #facc15; /* Yellow for "Continue Shopping" */
+      --button-hover-bg: #eab308;
+      --button-text: #000000; /* Black text for button */
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      --bg-body: #0D1117; /* Very dark blue-grey for overall background */
+      --text-body: #C9D1D9; /* Light grey for general text */
+      --bg-card: #161B22; /* Slightly lighter than body, for containers */
+      --bg-summary: #1C2128; /* Even lighter for nested elements, subtle contrast */
+      --border-color: #30363D; /* Subtle, darker grey for borders */
+      --color-primary: #58A6FF; /* Vibrant blue for accents, links */
+      --color-primary-rgb: 88, 166, 255;
+      --color-success: #2DA44E; /* Adjusted green for dark mode */
+      --color-success-dark: #2C8C46;
+      --button-bg: #ca8a04; /* Darker yellow for button */
+      --button-hover-bg: #a16207;
+      --button-text: #ffffff; /* White text for button */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-body);
+      color: var(--text-body);
+      font-family: 'Poppins', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Center vertically on page */
+      min-height: 100vh;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .confirmation-container {
+      background-color: var(--bg-card);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px; /* Slightly wider for better content display */
+      padding: 30px; /* Increased padding */
+      border: 1px solid var(--border-color);
+      transition: background-color 0.5s ease, border-color 0.5s ease;
+      text-align: center;
+      animation: fadeInScale 0.8s ease-out forwards; /* Fade in animation */
+      opacity: 0; /* Hidden by default for animation */
+      transform: scale(0.95); /* Slightly scaled down by default */
+    }
+    body.dark-mode .confirmation-container {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+        color: var(--color-success);
+        font-size: 32px; /* Larger success heading */
+        margin-bottom: 15px;
+        transition: color 0.5s ease;
+        display: flex; /* For icon alignment */
+        align-items: center;
+        justify-content: center;
+    }
+    h1 i {
+        margin-right: 15px; /* Spacing for icon */
+        font-size: 38px; /* Larger icon */
+    }
+
+    p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .info-box {
+        background-color: var(--bg-summary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: left; /* Align text left within info boxes */
+        transition: background-color 0.5s ease, border-color 0.5s ease;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+    }
+    body.dark-mode .info-box {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .order-summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        font-size: 15px;
+    }
+    .order-summary-item.total {
+        font-weight: 700;
+        border-top: 1px solid var(--border-color);
+        padding-top: 10px;
+        margin-top: 10px;
+        font-size: 18px; /* Larger total font size */
+    }
+
+    .btn-continue {
+        display: inline-block;
+        background-color: var(--button-bg);
+        color: var(--button-text);
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 20px;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .btn-continue:hover {
+        background-color: var(--button-hover-bg);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    body.dark-mode .btn-continue {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    /* Animations */
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    /* Custom Alert/Modal Styles */
+    .custom-alert-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999; /* Ensure it's on top */
+    }
+    .custom-alert-box {
+        background-color: var(--bg-card);
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        max-width: 90%;
+        width: 320px;
+        color: var(--text-body);
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    .custom-alert-box button {
+        background-color: var(--color-primary);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        margin-top: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="confirmation-container">
+    <h1 id="confirmationHeading"><i class="fas fa-check-circle"></i>Order Confirmed!</h1>
+    <p>Your order has been successfully placed.</p>
+
+    <div class="info-box">
+      <p class="font-semibold mb-2">Order Summary:</p>
+      <div class="order-summary-item">
+        <span>Order REF:</span>
+        <span id="orderref"></span>
+      </div>
+      <div class="order-summary-item">
+        <span>Estimated Delivery:</span>
+        <span id="deliveryDate"></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p class="font-semibold mb-2">Product Details:</p>
+      <div class="order-summary-item">
+        <span>Product Name:</span>
+        <span id="productName"></span>
+      </div>
+      <div class="order-summary-item">
+        <span>Size:</span>
+        <span id="productSize"></span>
+      </div>
+      <div class="order-summary-item">
+        <span>Persistence:</span>
+        <span id="productPersistence"></span>
+      </div>
+      <div id="firstOSDisplay" class="order-summary-item hidden">
+        <span>First OS:</span>
+        <span id="firstOSValue"></span>
+      </div>
+      <div id="secondOSDisplay" class="order-summary-item hidden">
+        <span>Second OS:</span>
+        <span id="secondOSValue"></span>
+      </div>
+       <div id="selectedVersionDisplay" class="order-summary-item hidden">
+        <span>Selected Version:</span>
+        <span id="selectedVersionValue"></span>
+      </div>
+    </div>
+    <div class="info-box">
+      <p class="font-semibold mb-2">Shipping Address:</p>
+      <div id="displayAddress" class="text-sm"></div>
+    </div>
+    <div class="info-box">
+      <p class="font-semibold mb-2">Payment Details:</p>
+      <div class="order-summary-item">
+        <span>Items Price:</span>
+        <span id="itemPrice">₹0.00</span>
+      </div>
+      <div class="order-summary-item">
+        <span>Delivery Fee:</span>
+        <span id="deliveryFeeDisplay">₹0.00</span>
+      </div>
+      <!-- Removed COD Fee display from here -->
+      <div class="order-summary-item total">
+        <span>Payable Amount:</span>
+        <span id="totalPrice">₹0.00</span>
+      </div>
+       <div class="order-summary-item">
+        <span>Payment Method:</span>
+        <span id="paymentMethodDisplay"></span>
+      </div>
+      <!-- Invoice Download Link (Initially hidden) -->
+      <div id="invoiceDownloadSection" class="order-summary-item hidden" style="margin-top: 10px;">
+        <span></span> <!-- Empty span for alignment -->
+        <a href="#" id="downloadInvoiceLink" class="text-blue-500 hover:underline cursor-pointer" style="color: var(--color-primary);">Invoice</a>
+      </div>
+    </div>
+
+    <a href="index.html" class="btn-continue">Continue Shopping</a>
+  </div>
+  <!-- Supabase CDN import - Added 'defer' attribute to ensure it loads before our script tries to use it -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script>
+    // Declare supabase client variable globally or within a scope accessible by initializeSupabase
+    let supabaseClient;
+
+    // Use window.onload to ensure all external scripts, including Supabase, are fully loaded.
+    window.onload = function() {
+      const maxRetries = 5;
+      let retryCount = 0;
+      const retryDelayMs = 500; // Initial delay in milliseconds
+
+      // Function to initialize Supabase client with a retry mechanism
+      function initializeSupabase() {
+        try {
+          // IMPORTANT: Replace 'YOUR_SUPABASE_URL' and 'YOUR_SUPABASE_KEY' with your actual Supabase Project URL and Public Anonymous Key.
+          // You can find these in your Supabase project settings under API.
+          // Using the values from your previous code as requested, to avoid changes.
+          const supabaseUrl = 'https://tovqkhgkhpbswloktbwe.supabase.co'; 
+          const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvdnFraGdraHBic3dsb2t0YndlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0MDY2NDMsImV4cCI6MjA3MDk4MjY0M30.fSrMvEXTaxoWF_1o77jHYG8ccVg-nuQxsKOqEP_1_MY'; 
+          
+          // Check if Supabase object is available
+          if (typeof supabase !== 'undefined' && typeof supabase.createClient === 'function') {
+            supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+            console.log("Supabase client initialized successfully.");
+            mainAppLogic(); // Proceed with the main application logic
+          } else {
+            // Supabase object not yet available, throw error to trigger retry
+            throw new Error("Supabase object not available yet.");
+          }
+        } catch (e) {
+          console.warn(`Supabase initialization attempt ${retryCount + 1} failed:`, e.message);
+          if (retryCount < maxRetries) {
+            retryCount++;
+            // Exponential backoff strategy for retries
+            setTimeout(initializeSupabase, retryDelayMs * Math.pow(2, retryCount)); 
+          } else {
+            console.error("Failed to initialize Supabase after multiple retries. Please check the Supabase CDN link and network connection.");
+            showCustomAlert("Order confirmed, but there was an issue connecting to Supabase. Please contact support if needed.");
+            // Still proceed with main logic even if Supabase failed, to not break other functionality
+            mainAppLogic();
+          }
+        }
+      }
+
+      // --- Main Application Logic (originally in DOMContentLoaded) ---
+      function mainAppLogic() {
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+          body.classList.add(currentTheme);
+        } else {
+          // Default to dark mode if no theme is saved
+          body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // Generate Order ID and Reference
+        const orderId = "ORD" + Date.now();
+        const lastOrderRef = parseInt(localStorage.getItem("lastOrderref") || "654355", 10) + 1;
+        localStorage.setItem("lastOrderref", lastOrderRef);
+
+        // Retrieve data from Session Storage (from place_your_order.html)
+        const productName = sessionStorage.getItem("productName") || "N/A";
+        const productSize = sessionStorage.getItem("productSize") || "N/A"; // Size label (e.g., "32GB")
+        const productPersistence = sessionStorage.getItem("persistence") || "No";
+        const selectedVersion = sessionStorage.getItem("selectedVersion") || "N/A"; // For Mint/Windows editions
+        const firstOS = sessionStorage.getItem("firstOS") || "N/A"; // For Dual OS kits
+        const secondOS = sessionStorage.getItem("secondOS") || "N/A"; // For Dual OS kits
+        const finalProductPrice = parseFloat(sessionStorage.getItem("finalProductPrice") || "0");
+        const paymentMethod = sessionStorage.getItem("paymentMethod") || "N/A";
+
+        // Retrieve shipping address
+        let shippingAddressDetails = null;
+        try {
+          shippingAddressDetails = JSON.parse(sessionStorage.getItem("shippingAddressDetails"));
+        } catch (e) {
+          console.error("Error parsing shipping address from sessionStorage:", e);
+        }
+
+        const addressData = shippingAddressDetails || {
+          fullname: "N/A", street: "N/A", city: "N/A", state: "N/A",
+          district: "N/A", pincode: "N/A", phone: "N/A", email: "N/A"
+        };
+
+        // Prices
+        const deliveryFee = 50;
+        const itemsPrice = finalProductPrice - deliveryFee;
+        const totalPayable = finalProductPrice;
+
+        // Populate HTML
+        document.getElementById("orderref").textContent = lastOrderRef;
+        document.getElementById("productName").textContent = productName;
+        document.getElementById("productSize").textContent = productSize;
+        document.getElementById("productPersistence").textContent = productPersistence;
+        document.getElementById("itemPrice").textContent = `₹${itemsPrice.toFixed(2)}`;
+        document.getElementById("deliveryFeeDisplay").textContent = `₹${deliveryFee.toFixed(2)}`;
+        document.getElementById("totalPrice").textContent = `₹${totalPayable.toFixed(2)}`;
+        document.getElementById("paymentMethodDisplay").textContent = paymentMethod.toUpperCase();
+
+        // Confirmation heading
+        const confirmationHeading = document.getElementById("confirmationHeading");
+        if (paymentMethod === "cod") {
+          confirmationHeading.innerHTML = '<i class="fas fa-check-circle"></i>Order Confirmed (COD)!';
+          document.querySelector('.confirmation-container p').textContent = "Your order has been successfully placed and will be delivered via Cash on Delivery.";
+        } else if (paymentMethod === "upi") {
+          confirmationHeading.innerHTML = '<i class="fas fa-check-circle"></i>Order Confirmed (UPI)!';
+          document.querySelector('.confirmation-container p').textContent = "Your payment via UPI has been confirmed and your order has been successfully placed.";
+        } else {
+          confirmationHeading.innerHTML = '<i class="fas fa-check-circle"></i>Order Confirmed!';
+        }
+
+        // Estimated Delivery Date
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + 5);
+        document.getElementById("deliveryDate").textContent = deliveryDate.toDateString();
+
+        // Shipping Address
+        // This check ensures 'N/A' isn't displayed as an address line if data is truly missing
+        if (addressData.fullname !== "N/A" && addressData.fullname !== null) {
+          document.getElementById("displayAddress").innerHTML = `
+            <div><strong>${addressData.fullname}</strong></div>
+            <div>${addressData.street}, ${addressData.city}</div>
+            <div>${addressData.district}, ${addressData.state} - ${addressData.pincode}</div>
+            <div>${addressData.phone} | ${addressData.email}</div>
+          `;
+        } else {
+          document.getElementById("displayAddress").textContent = "Shipping address details not available.";
+        }
+
+
+        // OS details
+        if (selectedVersion !== "N/A") {
+          document.getElementById("selectedVersionDisplay").classList.remove("hidden");
+          document.getElementById("selectedVersionValue").textContent = selectedVersion;
+        }
+        if (firstOS !== "N/A" || secondOS !== "N/A") {
+          if (firstOS !== "N/A") {
+            document.getElementById("firstOSDisplay").classList.remove("hidden");
+            document.getElementById("firstOSValue").textContent = firstOS;
+          }
+          if (secondOS !== "N/A") {
+            document.getElementById("secondOSDisplay").classList.remove("hidden");
+            document.getElementById("secondOSValue").textContent = secondOS;
+          }
+        }
+
+        // Order data structured to match both Google Sheet and Supabase table headers
+        const orderData = {
+          timestamp: new Date().toISOString(), // Matches 'Timestamp'
+          order_id: orderId, // Matches 'order_id'
+          order_ref: lastOrderRef, // Matches 'order_ref'
+          product_name: productName, // Matches 'product_name'
+          product_size: productSize, // Matches 'product_size'
+          persistence: productPersistence, // Matches 'persistence'
+          selected_version: selectedVersion, // Matches 'selected_version'
+          first_os: firstOS, // Matches 'first_os'
+          second_os: secondOS, // Matches 'second_os'
+          items_price: itemsPrice.toFixed(2), // Matches 'items_price'
+          delivery_fee: deliveryFee.toFixed(2), // Matches 'delivery_fee'
+          total_price: totalPayable.toFixed(2), // Matches 'total_price'
+          payment_method: paymentMethod.toUpperCase(), // Matches 'payment_method'
+          customer_name: addressData.fullname, // Matches 'customer_name'
+          customer_address: `${addressData.street}, ${addressData.city}, ${addressData.district}, ${addressData.state} - ${addressData.pincode}`, // Matches 'customer_address'
+          customer_phone: addressData.phone, // Matches 'customer_phone'
+          customer_email: addressData.email, // Matches 'customer_email'
+          status: "Processing", // Matches 'status' - Default status for a new order
+          product_image: "", // Matches 'product_image' - Placeholder, you might get this from session storage if applicable
+          cancel: false, // Matches 'cancel' - Default value
+          return: false, // Matches 'return' - Default value
+        };
+
+        // --- Function to send data to Supabase ---
+        async function sendOrderToSupabase(dataToSend) {
+          if (!supabaseClient) {
+            console.error("Supabase client not initialized. Cannot send data.");
+            return;
+          }
+          try {
+            // 'orders' should be the exact name of your table in Supabase
+            const { data, error } = await supabaseClient
+              .from('orders') 
+              .insert([dataToSend]); // Insert the orderData object as a new row
+
+            if (error) {
+              console.error("Supabase Insert Error:", error);
+              showCustomAlert("Order confirmed, but there was an issue saving to Supabase. Please contact support if needed.");
+            } else {
+              console.log("Supabase Success:", data);
+            }
+          } catch (e) {
+            console.error("Supabase API Call Exception:", e);
+            showCustomAlert("Order confirmed, but there was a network issue with Supabase. Please contact support if needed.");
+          }
+        }
+
+        // Send data to Google Sheet
+        const sheetUrl = "https://script.google.com/macros/s/AKfycbzaP-b_2k8jRyCsQuuFY4wxmM3SmlxC1hDoVB-a1rhwrlj2cf3hmy2Vgl7IvqPF744/exec";
+
+        fetch(sheetUrl, {
+          method: "POST",
+          body: JSON.stringify(orderData),
+          headers: {
+            "Content-Type": "text/plain"
+          }
+        })
+        .then(response => response.text())
+        .then(data => {
+          console.log("Google Sheet Success:", data);
+          sendOrderToSupabase(orderData); // Call Supabase function after successful Google Sheet logging
+        })
+        .catch(error => {
+          console.error("Google Sheet Error:", error);
+          showCustomAlert("Order confirmed, but there was an issue logging to Google Sheet. Please contact support if needed.");
+          sendOrderToSupabase(orderData); // Still try to log to Supabase even if sheet fails
+        });
+
+        // DO NOT CLEAR SESSION STORAGE HERE! 
+        // Clearing sessionStorage here will prevent the current page from displaying retrieved data.
+        // It should be cleared on the previous page after successful submission, or selectively cleared.
+        // sessionStorage.clear(); // This line has been removed
+      }
+
+      // Initiate the Supabase initialization process when the window fully loads
+      initializeSupabase();
+
+      // --- Custom Alert (defined outside mainAppLogic for broader accessibility) ---
+      function showCustomAlert(message) {
+        const overlay = document.createElement('div');
+        overlay.classList.add('custom-alert-overlay');
+
+        const alertBox = document.createElement('div');
+        alertBox.classList.add('custom-alert-box');
+        alertBox.innerHTML = `<p>${message}</p><button onclick="closeCustomAlert()">OK</button>`;
+
+        overlay.appendChild(alertBox);
+        document.body.appendChild(overlay);
+
+        if (document.body.classList.contains('dark-mode')) {
+          alertBox.classList.add('dark-mode');
+        }
+      }
+
+      window.closeCustomAlert = function() {
+        const overlay = document.querySelector('.custom-alert-overlay');
+        if (overlay) {
+          overlay.remove();
+        }
+      }
+
+      // --- Invoice Download (defined outside mainAppLogic as it's an independent function) ---
+      function generateAndDownloadInvoice() {
+        const orderRef = document.getElementById("orderref").textContent;
+        const deliveryDate = document.getElementById("deliveryDate").textContent;
+        const productName = document.getElementById("productName").textContent;
+        const productSize = document.getElementById("productSize").textContent;
+        const productPersistence = document.getElementById("productPersistence").textContent;
+        const firstOSValue = document.getElementById("firstOSValue")?.textContent || "N/A";
+        const secondOSValue = document.getElementById("secondOSValue")?.textContent || "N/A";
+        const selectedVersionValue = document.getElementById("selectedVersionValue")?.textContent || "N/A";
+        const displayAddressHtml = document.getElementById("displayAddress").innerHTML;
+        const itemPrice = document.getElementById("itemPrice").textContent;
+        const deliveryFeeDisplay = document.getElementById("deliveryFeeDisplay").textContent;
+        const totalPrice = document.getElementById("totalPrice").textContent;
+        const paymentMethodDisplay = document.getElementById("paymentMethodDisplay").textContent;
+
+        let invoiceHtml = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Invoice - Order #${orderRef}</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+              .container { max-width: 800px; margin: auto; border: 1px solid #eee; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+              h1, h2 { text-align: center; color: #0e6c5f; }
+              .header, .footer { text-align: center; margin-bottom: 20px; }
+              .details-section { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+              .details-section h3 { color: #0e6c5f; margin-bottom: 10px; }
+              .item-row { display: flex; justify-content: space-between; padding: 5px 0; }
+              .total-row { border-top: 1px solid #eee; font-weight: bold; padding-top: 10px; margin-top: 10px; font-size: 1.1em; }
+              .address p { margin: 2px 0; }
+              .note { font-size: 0.9em; color: #666; margin-top: 20px; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h2>VoltNexis Shop</h2>
+                <p>Your trusted tech partner</p>
+              </div>
+              <h1>INVOICE</h1>
+              <div class="details-section">
+                <h3>Order Information</h3>
+                <div class="item-row"><span>Order Reference:</span><span>#${orderRef}</span></div>
+                <div class="item-row"><span>Order Date:</span><span>${new Date().toLocaleDateString()}</span></div>
+                <div class="item-row"><span>Estimated Delivery:</span><span>${deliveryDate}</span></div>
+              </div>
+              <div class="details-section">
+                <h3>Product Details</h3>
+                <div class="item-row"><span>Product Name:</span><span>${productName}</span></div>
+                <div class="item-row"><span>Size:</span><span>${productSize}</span></div>
+                <div class="item-row"><span>Persistence:</span><span>${productPersistence}</span></div>
+        `;
+
+        if (selectedVersionValue !== "N/A") {
+          invoiceHtml += `<div class="item-row"><span>Selected Version:</span><span>${selectedVersionValue}</span></div>`;
+        }
+        if (firstOSValue !== "N/A" && firstOSValue !== "") {
+          invoiceHtml += `<div class="item-row"><span>First OS:</span><span>${firstOSValue}</span></div>`;
+        }
+        if (secondOSValue !== "N/A" && secondOSValue !== "") {
+          invoiceHtml += `<div class="item-row"><span>Second OS:</span><span>${secondOSValue}</span></div>`;
+        }
+
+        invoiceHtml += `
+              </div>
+              <div class="details-section">
+                <h3>Shipping Address</h3>
+                <div class="address">${displayAddressHtml}</div>
+              </div>
+              <div class="details-section">
+                <h3>Payment Summary</h3>
+                <div class="item-row"><span>Items Price:</span><span>${itemPrice}</span></div>
+                <div class="item-row"><span>Delivery Fee:</span><span>${deliveryFeeDisplay}</span></div>
+                <div class="item-row total"><span>Payable Amount:</span><span>${totalPrice}</span></div>
+                <div class="item-row"><span>Payment Method:</span><span>${paymentMethodDisplay}</span></div>
+              </div>
+              <p class="note">This is a system-generated invoice and does not require a signature.</p>
+              <div class="footer"><p>Thank you for your order!</p></div>
+            </div>
+          </body>
+          </html>
+        `;
+
+        const blob = new Blob([invoiceHtml], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `VoltNexis_Invoice_Order_${orderRef}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      // Event listeners for Invoice Download. These do not depend on Supabase initialization.
+      document.getElementById('downloadInvoiceLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        generateAndDownloadInvoice();
+      });
+
+      const invoiceDownloadSection = document.getElementById('invoiceDownloadSection');
+      invoiceDownloadSection.classList.remove('hidden');
+
+    }; // Closing bracket for window.onload
+</script>
+
+  </body>
+</html>

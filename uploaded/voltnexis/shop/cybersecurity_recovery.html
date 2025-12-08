@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cybersecurity & Recovery - VoltNexis Shop</title>
+    <meta name="description" content="Advanced tools and kits for cybersecurity, ethical hacking, data recovery, and system rescue from VoltNexis.">
+    <meta name="keywords" content="Cybersecurity Tools, Data Recovery, Ethical Hacking Kit, System Rescue, Encrypted USB, Kali Pro Kit, VoltNexis Security">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <meta property="og:title" content="Cybersecurity & Recovery Solutions - VoltNexis Shop" />
+    <meta property="og:description" content="Get professional tools for digital defense, data retrieval, and system troubleshooting. Fast delivery across India." />
+    <meta property="og:image" content="img/cyberecurity.webp" />
+    <meta property="og:url" content="https://voltnexis.github.io/shop.voltnexis.github.io/cybersecurity_recovery.html" />
+    <meta property="og:type" content="product" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cybersecurity & Recovery Solutions - VoltNexis Shop" />
+    <meta name="twitter:description" content="Explore advanced tools for digital defense, data recovery, and system troubleshooting.">
+    <meta name="twitter:image" content="img/cyberecurity.webp" />
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation --- */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title, .page-header p {
+            animation: slideUp 0.8s ease-in-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+        
+        .section-title { animation-delay: 0.1s; }
+        .page-header p { animation-delay: 0.3s; }
+
+        .product-card {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.4s; }
+        .product-card:nth-child(2) { animation-delay: 0.5s; }
+        .product-card:nth-child(3) { animation-delay: 0.6s; }
+        .product-card:nth-child(4) { animation-delay: 0.7s; }
+        .product-card:nth-child(5) { animation-delay: 0.8s; }
+        .product-card:nth-child(6) { animation-delay: 0.9s; }
+
+
+        /* --- Page Layout --- */
+        .page-header {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #777;
+        }
+
+        body.dark-mode .page-header p {
+            color: #ccc;
+        }
+
+        .product-cards-list {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; /* Added gap for better spacing */
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px; /* Increased padding */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Increased hover lift */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%; /* Make image take full width of card */
+            max-height: 200px; /* Limit image height */
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 10px; /* Rounded image corners */
+            background: none; /* Removed background from image itself */
+            padding: 0; /* Removed padding from image itself */
+        }
+
+        .product-info {
+            flex-grow: 1; /* Retained from previous, but less relevant with new layout */
+        }
+
+        .product-card h3 { /* Changed from .product-info h3 */
+            font-size: 1.5rem; /* Consistent with kit_usb.html */
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .product-card h3 { /* Changed from .product-info h3 */
+            color: var(--light-text);
+        }
+
+        .product-card p { /* Changed from .product-info p */
+            margin: 0;
+            color: #777;
+            font-size: 1rem; /* Consistent with kit_usb.html */
+        }
+        
+        body.dark-mode .product-card p { /* Changed from .product-info p */
+            color: #ccc;
+        }
+
+        .product-card p strong { /* Changed from .product-info p strong */
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .info-section {
+            border-color: #3c546b;
+        }
+
+        .info-section h2, .info-section h3 {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .info-section h2, body.dark-mode .info-section h3 {
+            color: var(--light-text);
+        }
+
+        .info-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .info-section li::before {
+            content: '✔️';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -20px;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 2; /* Ensures it's on the right */
+            }
+            
+            .product-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">Cybersecurity & Recovery Solutions</h1>
+                <p>Equip yourself with advanced tools for digital defense, data retrieval, and system troubleshooting.</p>
+            </div>
+        </section>
+       
+        <section class="product-cards-list container">
+            <!-- Kali Pro Kit -->
+            <div class="product-card" data-product-id="kali-pro-kit">
+                <img src="img/cybersecurity/kali_pro_kit.webp" alt="Kali Pro Kit">
+                <h3>Kali Pro Kit</h3>
+                <p>
+                    <strong>🛡️ Comprehensive Hacking Tools</strong><br>
+                    <strong>📚 Advanced Guides Included</strong><br>
+                    <strong>💻 Virtualization Ready USB</strong><br>
+                    <strong>📈 For Professionals & Enthusiasts</strong>
+                </p>
+            </div>
+
+            <!-- DIY Cybersecurity Toolkit -->
+            <div class="product-card" data-product-id="diy-cybersecurity-toolkit">
+                <img src="img/cybersecurity/diy_toolkit.webp" alt="DIY Cybersecurity Toolkit">
+                <h3>DIY Cybersecurity Toolkit (Ethical Hacking + Guides)</h3>
+                <p>
+                    <strong>📖 Beginner-Friendly Tutorials</strong><br>
+                    <strong>⚙️ Essential Ethical Hacking Tools</strong><br>
+                    <strong>🔒 Learn Digital Self-Defense</strong><br>
+                    <strong>💡 Step-by-Step Practical Labs</strong>
+                </p>
+            </div>
+
+            <!-- VE Portable SD with Wi-Fi Hack Tools -->
+            <div class="product-card" data-product-id="ve-portable-sd-wifi">
+                <img src="img/cybersecurity/potable_sd.webp" alt="VE Portable SD with Wi-Fi Hack Tools">
+                <h3>VE Portable SD with Wi-Fi Hack Tools</h3>
+                <p>
+                    <strong>📡 Wireless Network Analysis</strong><br>
+                    <strong>📱 Compact & Portable SD Card</strong><br>
+                    <strong>🌐 Advanced Wi-Fi Security Testing</strong><br>
+                    <strong>🔋 Low Power Consumption</strong>
+                </p>
+            </div>
+
+            <!-- Data Recovery & Cybersecurity Rescue Kit -->
+            <div class="product-card" data-product-id="data-recovery-cyber-kit">
+                <img src="img/cybersecurity/CSandrecovery.webp" alt="Data Recovery & Cybersecurity Rescue Kit">
+                <h3>Data Recovery & Cybersecurity Rescue Kit</h3>
+                <p>
+                    <strong>💾 Lost File Retrieval</strong><br>
+                    <strong>🆘 System Crash Recovery</strong><br>
+                    <strong>🔐 Malware & Virus Removal Tools</strong><br>
+                    <strong>🔄 Comprehensive Bootable Solution</strong>
+                </p>
+            </div>
+
+            <!-- Encrypted Personal Data Vault USB -->
+            <div class="product-card" data-product-id="encrypted-vault-usb">
+                <img src="img/cybersecurity/encvault.webp" alt="Encrypted Personal Data Vault USB">
+                <h3>Encrypted Personal Data Vault USB (Password-Protected)</h3>
+                <p>
+                    <strong>🔒 Military-Grade Encryption</strong><br>
+                    <strong>🔑 Secure Password Protection</strong><br>
+                    <strong>☁️ Offline Data Storage</strong><br>
+                    <strong>✨ Peace of Mind for Sensitive Files</strong>
+                </p>
+            </div>
+
+            <!-- VoltEdge Recovery Kit -->
+            <div class="product-card" data-product-id="voltnexis-recovery-kit">
+                <img src="img/cybersecurity/recovery_kit.webp" alt="VoltNexis Recovery Kit">
+                <h3>VoltEdge Recovery Kit (USB + Printed Manual + Guides)</h3>
+                <p>
+                    <strong>📖 Step-by-Step Printed Manual</strong><br>
+                    <strong>💻 Bootable Recovery USB</strong><br>
+                    <strong>📚 Essential Troubleshooting Guides</strong><br>
+                    <strong>🛠️ All-in-One Emergency Solution</strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h2 class="section-title">Fortify Your Digital World with VoltNexis</h2>
+                <p>In today's interconnected world, **cybersecurity and data recovery** are more critical than ever. VoltNexis provides a robust collection of tools designed to protect your digital assets, analyze network vulnerabilities, and recover lost data efficiently. Whether you're an aspiring ethical hacker, an IT professional, or simply a user concerned about data security, our kits offer powerful solutions.</p>
+                <p>From the **Kali Pro Kit** for advanced penetration testing to the **Data Recovery & Cybersecurity Rescue Kit** for emergency situations, each product is meticulously assembled to provide maximum utility. We also offer **Encrypted Personal Data Vault USBs** for secure offline storage and **DIY Cybersecurity Toolkits** with guides for learning practical skills.</p>
+                <p>All our cybersecurity and recovery solutions are developed with reliability and ease of use in mind, ensuring you have the necessary defenses and recovery capabilities at your fingertips. Delivered securely across India, these tools are your first line of defense.</p>
+                
+                <h3 style="margin-top: 40px;">Key Features of VoltNexis Cybersecurity & Recovery Products:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;<strong>Advanced Threat Defense:</strong> Tools for penetration testing, vulnerability analysis, and malware removal.</li>
+                    <li>&nbsp;&nbsp;<strong>Comprehensive Data Recovery:</strong> Solutions to retrieve lost, deleted, or corrupted files from various storage media.</li>
+                    <li>&nbsp;&nbsp;<strong>Secure Data Storage:</strong> Encrypted USB drives to protect your sensitive information from unauthorized access.</li>
+                    <li>&nbsp;&nbsp;<strong>Educational Resources:</strong> Kits include guides and manuals to help you learn and apply cybersecurity concepts.</li>
+                    <li>&nbsp;&nbsp;<strong>Portable & Ready-to-Use:</strong> Bootable USBs and SD cards for on-the-go security and recovery operations.</li>
+                </ul>
+                <h3 style="margin-top: 40px;">What’s Included:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;Specialized USB/SD card with preloaded tools and operating systems</li>
+                    <li>&nbsp;&nbsp;Printed manuals and digital guides for self-paced learning</li>
+                    <li>&nbsp;&nbsp;Support for common system architectures</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="faq-section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What is the Kali Pro Kit used for?</div>
+                <div class="faq-answer">
+                    <p>The Kali Pro Kit is a comprehensive collection of ethical hacking and penetration testing tools, designed for security professionals and enthusiasts to identify and fix vulnerabilities in networks and systems.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I recover data from a corrupted hard drive with these kits?</div>
+                <div class="faq-answer">
+                    <p>Yes, our Data Recovery & Cybersecurity Rescue Kit includes specialized tools designed to help you retrieve data from corrupted, formatted, or inaccessible hard drives and other storage devices.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How secure is the Encrypted Personal Data Vault USB?</div>
+                <div class="faq-answer">
+                    <p>The Encrypted Personal Data Vault USB uses robust encryption standards and password protection to ensure your data remains secure. It's an excellent solution for storing highly sensitive files offline, protected from online threats.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Are the Wi-Fi Hack Tools legal to use?</div>
+                <div class="faq-answer">
+                    <p>Tools included are for educational and ethical purposes only, such as testing the security of your own network. Using these tools for unauthorized access to other networks is illegal and strictly prohibited.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // Default to dark mode if no theme is saved
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- FAQ accordion functionality ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- Product Data Definitions for Cybersecurity & Recovery ---
+        const allKitProducts = {
+            "kali-pro-kit": {
+                name: "Kali Pro Kit",
+                shortDesc: "Advanced Kali USB with full toolset and pro-grade performance.",
+                description: "Built for professionals, this USB includes Kali Linux with advanced tools, persistence, and stealth boot options. Ideal for penetration testers and cybersecurity experts.",
+                image: "img/cybersecurity/1/kali_pro-1.webp",
+                image2: "img/cybersecurity/2/kali_pro-2.webp",
+                image3: "img/cybersecurity/kali_pro_kit.webp",
+                sizes: [
+                    { label: "32GB", price: 699 },
+                    { label: "64GB", price: 899 },
+                    { label: "128GB", price: 1299 }
+                ],
+                included: ["Kali ISO", "Advanced Toolset", "Persistence Enabled", "Encrypted Partition"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI + Stealth"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Persistence", "Enabled"],
+                    ["Warranty", "5 Years"]
+                ]
+            },
+            "diy-cybersecurity-toolkit": {
+                name: "DIY Cybersecurity Toolkit",
+                shortDesc: "Ethical hacking USB with tools, guides, and learning modules.",
+                description: "Perfect for beginners and enthusiasts, this toolkit includes ethical hacking tools, step-by-step guides, and offline resources to learn penetration testing safely.",
+                image: "img/cybersecurity/1/diy_toolkit-1.webp",
+                image2: "img/cybersecurity/2/diy_toolkit-2.webp",
+                image3: "img/cybersecurity/diy_toolkit.webp",
+                sizes: [
+                    { label: "16GB", price: 399 },
+                    { label: "32GB", price: 599 }
+                ],
+                included: ["Hacking Tools", "PDF Guides", "Offline Modules", "Practice Labs"],
+                specs: [
+                    ["Boot Mode", "Live Only"],
+                    ["USB Type", "USB 3.0"],
+                    ["Read Speed", "120MB/s"],
+                    ["Learning Level", "Beginner to Intermediate"],
+                    ["Warranty", "2 Years"]
+                ]
+            },
+            "ve-portable-sd-wifi": {
+                name: "VE Portable SD with Wi-Fi Hack Tools",
+                shortDesc: "MicroSD card preloaded with Wi-Fi penetration tools.",
+                description: "Compact and stealthy, this SD card includes Wi-Fi hacking scripts, drivers, and tools for compatible Linux systems. Ideal for field testing and portable setups.",
+                image: "img/cybersecurity/1/portable_sd-1.webp",
+                image2: "img/cybersecurity/2/poratble_sd-2.webp",
+                image3: "img/cybersecurity/portable_sd.webp",
+                sizes: [
+                    { label: "16GB", price: 299 },
+                    { label: "32GB", price: 499 }
+                ],
+                included: ["Wi-Fi Tools", "Drivers", "Setup Scripts", "Usage Guide"],
+                specs: [
+                    ["Card Type", "MicroSDHC"],
+                    ["Compatibility", "Linux Systems"],
+                    ["Read Speed", "Up to 100MB/s"],
+                    ["Stealth Mode", "Supported"],
+                    ["Warranty", "1 Year"]
+                ]
+            },
+            "data-recovery-cyber-kit": {
+                name: "Data Recovery & Cybersecurity Rescue Kit",
+                shortDesc: "Dual-purpose USB for system recovery and security rescue.",
+                description: "This kit combines data recovery tools with cybersecurity utilities. Recover lost files, fix boot issues, and scan for vulnerabilities—all from one USB.",
+                image: "img/cybersecurity/1/CSandrecovery-1.webp",
+                image2: "img/cybersecurity/2/CSandrecovery-2.webp",
+                image3: "img/cybersecurity/CSandrecovery.webp",
+                sizes: [
+                    { label: "32GB", price: 699 },
+                    { label: "64GB", price: 999 }
+                ],
+                included: ["Recovery Tools", "Cybersecurity Utilities", "Boot Repair", "Malware Scanner"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "140MB/s"],
+                    ["OS Support", "Windows & Linux"],
+                    ["Warranty", "3 Years"]
+                ]
+            },
+            "encrypted-vault-usb": {
+                name: "Encrypted Personal Data Vault USB",
+                shortDesc: "Password-protected USB for secure personal storage.",
+                description: "Protect your sensitive files with this encrypted USB vault. Includes password protection, auto-lock, and optional hidden partition setup.",
+                image: "img/cybersecurity/1/encvault-1.webp",
+                image2: "img/cybersecurity/2/encvault-2.webp",
+                image3: "img/cybersecurity/encvault.webp",
+                sizes: [
+                    { label: "32GB", price: 499 },
+                    { label: "64GB", price: 799 },
+                    { label: "128GB", price: 1199 }
+                ],
+                included: ["Encrypted USB", "Vault Software", "Setup Guide"],
+                specs: [
+                    ["Encryption", "AES-256"],
+                    ["Access", "Password Protected"],
+                    ["USB Type", "USB 3.1"],
+                    ["Auto-Lock", "Enabled"],
+                    ["Warranty", "5 Years"]
+                ]
+            },
+            "voltnexis-recovery-kit": {
+                name: "VoltNexis Recovery Kit",
+                shortDesc: "Complete recovery solution with USB, printed manual, and guides.",
+                description: "A full recovery package including a bootable USB, printed troubleshooting manual, and digital guides. Designed for offline repair and data recovery.",
+                image: "img/cybersecurity/1/recovery_kit-1.webp",
+                image2: "img/cybersecurity/2/recovery_kit-2.webp",
+                image3: "img/cybersecurity/recovery_kit.webp",
+                sizes: [
+                    { label: "Standard Kit (32GB)", price: 799 },
+                    { label: "Pro Kit (64GB)", price: 1099 }
+                ],
+                included: ["Recovery USB", "Printed Manual", "PDF Guides", "Boot Repair Tools"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "140MB/s"],
+                    ["Offline Access", "Fully Supported"],
+                    ["Warranty", "3 Years"]
+                ]
+            }
+        };
+
+        // --- Function to handle product clicks and pass data ---
+        function selectProduct(productInfo) {
+            sessionStorage.setItem("liveProduct", JSON.stringify(productInfo));
+            // IMPORTANT: Ensure this redirects to your universal product detail page
+            window.location.href = "product.html"; 
+        }
+
+        // --- Attach Click Listeners to Product Cards (after DOM content is loaded) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.dataset.productId; // Get the unique ID from data-product-id
+                    const productInfo = allKitProducts[productId]; // Look up the product data
+
+                    if (productInfo) {
+                        selectProduct(productInfo); // Call selectProduct with the retrieved data
+                    } else {
+                        console.error("Error: Product data not found for ID:", productId);
+                        // Optional: show a user-friendly error message
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

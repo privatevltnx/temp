@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Smart Gadgets & Accessories - VoltNexis Shop</title>
+    <meta name="description" content="Discover smart gadgets and essential tech accessories from VoltNexis. Enhance your productivity and connectivity with our innovative solutions.">
+    <meta name="keywords" content="USB-C Hub, NFC Business Card, Mini Wi-Fi Router, Smart Tech Accessories, Portable Gadgets, VoltNexis Gadgets">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <meta property="og:title" content="Smart Gadgets & Accessories - VoltNexis Shop" />
+    <meta property="og:description" content="Enhance your tech setup with our innovative USB-C hubs, NFC cards, and portable Wi-Fi routers. Fast delivery across India." />
+    <meta property="og:image" content="https://placehold.co/1200x630/3498db/ffffff?text=Smart+Gadgets" />
+    <meta property="og:url" content="https://voltnexis.github.io/shop.voltnexis.github.io/smart_gadget.html" />
+    <meta property="og:type" content="product" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Smart Gadgets & Accessories - VoltNexis Shop" />
+    <meta name="twitter:description" content="Explore essential tech accessories like USB-C hubs, NFC cards, and mini Wi-Fi routers.">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/3498db/ffffff?text=Smart+Gadgets" />
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation --- */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title, .page-header p {
+            animation: slideUp 0.8s ease-in-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+        
+        .section-title { animation-delay: 0.1s; }
+        .page-header p { animation-delay: 0.3s; }
+
+        .product-card {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.4s; }
+        .product-card:nth-child(2) { animation-delay: 0.5s; }
+        .product-card:nth-child(3) { animation-delay: 0.6s; }
+
+
+        /* --- Page Layout --- */
+        .page-header {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #777;
+        }
+
+        body.dark-mode .page-header p {
+            color: #ccc;
+        }
+
+        .product-cards-list {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; /* Added gap for better spacing */
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px; /* Increased padding */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Increased hover lift */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%; /* Make image take full width of card */
+            max-height: 200px; /* Limit image height */
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 10px; /* Rounded image corners */
+            background: none; /* Removed background from image itself */
+            padding: 0; /* Removed padding from image itself */
+        }
+
+        .product-info {
+            flex-grow: 1; /* Retained from previous, but less relevant with new layout */
+        }
+
+        .product-card h3 { /* Changed from .product-info h3 */
+            font-size: 1.5rem; /* Consistent with kit_usb.html */
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .product-card h3 { /* Changed from .product-info h3 */
+            color: var(--light-text);
+        }
+
+        .product-card p { /* Changed from .product-info p */
+            margin: 0;
+            color: #777;
+            font-size: 1rem; /* Consistent with kit_usb.html */
+        }
+        
+        body.dark-mode .product-card p { /* Changed from .product-info p */
+            color: #ccc;
+        }
+
+        .product-card p strong { /* Changed from .product-info p strong */
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .info-section {
+            border-color: #3c546b;
+        }
+
+        .info-section h2, .info-section h3 {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .info-section h2, body.dark-mode .info-section h3 {
+            color: var(--light-text);
+        }
+
+        .info-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .info-section li::before {
+            content: '✔️';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -20px;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 2; /* Ensures it's on the right */
+            }
+            
+            .product-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">Smart Gadgets & Accessories</h1>
+                <p>Explore innovative tech accessories designed to boost your productivity, connectivity, and digital lifestyle.</p>
+            </div>
+        </section>
+       
+        <section class="product-cards-list container">
+            <!-- USB-C Multi Hub Adapter -->
+            <div class="product-card" data-product-id="usb-c-multi-hub">
+                <img src="img/gadgets/usbc_multi_hub.webp" alt="USB-C Multi Hub Adapter">
+                <h3>USB-C Multi Hub Adapter</h3>
+                <p>
+                    <strong>🔌 Expand Your Connectivity</strong><br>
+                    <strong>⚡ High-Speed Data Transfer</strong><br>
+                    <strong>🖥️ HDMI, USB, Card Slots</strong><br>
+                    <strong>💡 Universal Compatibility</strong>
+                </p>
+            </div>
+
+            <!-- VoltNexis NFC Business Card -->
+            <div class="product-card" data-product-id="nfc-business-card">
+                <img src="img/gadgets/nfc_custom.webp" alt="VoltNexis NFC Business Card">
+                <h3>VoltNexis NFC Business Card (Custom)</h3>
+                <p>
+                    <strong>✨ Instant Contact Sharing</strong><br>
+                    <strong>🔗 Link to Portfolio/Socials</strong><br>
+                    <strong>🛡️ Durable & Professional Design</strong><br>
+                    <strong>💼 Modern Networking Solution</strong>
+                </p>
+            </div>
+
+            <!-- Pocket Mini Wi-Fi Router -->
+            <div class="product-card" data-product-id="pocket-wifi-router">
+                <img src="img/gadgets/pocket_mini_wifi.webp" alt="Pocket Mini Wi-Fi Router">
+                <h3>Pocket Mini Wi-Fi Router</h3>
+                <p>
+                    <strong>🌐 Portable & Powerful Wi-Fi</strong><br>
+                    <strong>✈️ Travel-Friendly Design</strong><br>
+                    <strong>🔒 Secure Personal Network</strong><br>
+                    <strong>🔋 USB Powered Convenience</strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h2 class="section-title">Elevate Your Tech Experience with Smart Gadgets</h2>
+                <p>At VoltNexis, we believe in smart solutions that simplify your digital life. Our selection of **Smart Gadgets & Accessories** is curated to enhance your productivity, connectivity, and overall tech experience, whether you're working, traveling, or just staying organized.</p>
+                <p>From versatile **USB-C Multi Hub Adapters** that expand your device's capabilities, to sleek **VoltNexis NFC Business Cards** for modern networking, and compact **Pocket Mini Wi-Fi Routers** for on-the-go connectivity, each product is chosen for its innovation, reliability, and practical utility.</p>
+                <p>We focus on bringing you high-quality accessories that seamlessly integrate into your workflow, making your devices more powerful and your daily interactions more efficient. All products are rigorously tested and delivered safely across India.</p>
+                
+                <h3 style="margin-top: 40px;">Key Features of VoltNexis Smart Gadgets:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;<strong>Enhanced Connectivity:</strong> Extend ports, share contacts instantly, and create portable Wi-Fi hotspots.</li>
+                    <li>&nbsp;&nbsp;<strong>Portable & Compact:</strong> Designed for convenience, these gadgets are easy to carry wherever you go.</li>
+                    <li>&nbsp;&nbsp;<strong>High Quality & Durable:</strong> Built to last with premium materials and reliable performance.</li>
+                    <li>&nbsp;&nbsp;<strong>Versatile Solutions:</strong> Cater to a range of needs, from professional networking to travel and daily use.</li>
+                    <li>&nbsp;&nbsp;<strong>Seamless Integration:</strong> Designed to work effortlessly with your existing devices.</li>
+                </ul>
+                <h3 style="margin-top: 40px;">What’s Included:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;Selected Smart Gadget or Accessory</li>
+                    <li>&nbsp;&nbsp;Necessary cables or adapters (if applicable)</li>
+                    <li>&nbsp;&nbsp;User guide for easy setup</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="faq-section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What are the benefits of a USB-C Multi Hub Adapter?</div>
+                <div class="faq-answer">
+                    <p>A USB-C Multi Hub Adapter expands the single USB-C port on your laptop or tablet into multiple ports, such as HDMI for external displays, additional USB-A ports for peripherals, and SD card readers, greatly increasing your device's versatility.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does the VoltNexis NFC Business Card work?</div>
+                <div class="faq-answer">
+                    <p>Our NFC Business Card allows you to share your contact information, social media links, portfolio, or any custom URL by simply tapping the card on a compatible smartphone. It's a modern, eco-friendly, and highly efficient way to network.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can the Pocket Mini Wi-Fi Router create a secure network?</div>
+                <div class="faq-answer">
+                    <p>Yes, the Pocket Mini Wi-Fi Router allows you to create your own secure, private Wi-Fi network from a wired internet connection (like in a hotel room) or extend an existing Wi-Fi signal, protecting your devices when using public Wi-Fi hotspots.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/voltnexis"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // Default to dark mode if no theme is saved
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- FAQ accordion functionality ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- Product Data Definitions for Smart Gadgets ---
+        const allGadgetProducts = {
+            "usb-c-multi-hub": {
+                name: "USB-C Multi Hub Adapter",
+                shortDesc: "Premium VoltNexis-branded multi-port USB-C hub.",
+                description: "Expand your device’s connectivity with this sleek USB-C hub. Includes HDMI, USB-A, SD card reader, and PD charging—all in a compact, branded design.",
+                image: "https://placehold.co/400x200/2c3e50/ffffff?text=USB-C+Hub", // Placeholder, replace with actual
+                image2: "https://placehold.co/400x300/3498db/ffffff?text=USB-C+Hub+2",
+                image3: "https://placehold.co/400x300/e74c3c/ffffff?text=USB-C+Hub+3",
+                sizes: [
+                    { label: "Standard (4-in-1)", price: 799 },
+                    { label: "Pro (7-in-1)", price: 1199 }
+                ],
+                included: ["VoltNexis Hub", "USB-C Cable", "User Guide"],
+                specs: [
+                    ["Ports", "USB-A x2, HDMI, SD/MicroSD, USB-C PD"],
+                    ["4-in-1", "USB-A, PD, HDMI, VGA"],
+                    ["8-in-1", "USB-A(3.0 & 2.0), USB-C(2 Ports), PD, HDMI, SD(Micro & Normal), ETHERNET"],
+                    ["Material", "Aluminum Alloy"],
+                    ["Compatibility", "Windows, macOS, Linux"],
+                    ["Power Delivery", "Up to 100W"],
+                    ["Warranty", "2 Years"]
+                ]
+            },
+            "nfc-business-card": {
+                name: "VoltNexis NFC Business Card (Custom)",
+                shortDesc: "Smart NFC card with programmable actions and branding.",
+                description: "Make a lasting impression with a custom NFC business card. Tap to share contact info, portfolio, or trigger smart actions. Fully programmable and brandable.<br> We will contact you after your order confimed for customisation <br> If you have any queries <a href='contactus.html'> Contact US </a>",
+                image: "img/gadgets/1/nfc-1.webp", // Placeholder, replace with actual
+                image2: "img/gadgets/2/nfc-2.webp",
+                image3: "img/gadgets/nfc_custom.webp",
+                sizes: [
+                    { label: "Single Card", price: 299 },
+                    { label: "Pack of 5", price: 1299 },
+                    { label: "Pack of 10", price: 2399 }
+                ],
+                included: ["Custom NFC Card", "Online Setup Portal", "Branding Options"],
+                specs: [
+                    ["Chip Type", "NTAG213"],
+                    ["Material", "PVC or Metal Finish"],
+                    ["Range", "Up to 5cm"],
+                    ["Programmable", "Yes (via app/portal)"],
+                    ["Warranty", "1 Year"]
+                ]
+            },
+            "pocket-wifi-router": {
+                name: "Pocket Mini Wi-Fi Router",
+                shortDesc: "Compact travel router for secure offline or mesh networking.",
+                description: "Stay connected anywhere with this mini Wi-Fi router. Supports hotspot mode, mesh networking, and offline file sharing. Ideal for travel, labs, or field use.",
+                image: "https://placehold.co/400x200/e74c3c/ffffff?text=Mini+Router", // Placeholder, replace with actual
+                image2: "https://placehold.co/400x300/2c3e50/ffffff?text=Mini+Router+2",
+                image3: "https://placehold.co/400x300/3498db/ffffff?text=Mini+Router+3",
+                sizes: [
+                    { label: "Standard (2.4GHz)", price: 899 },
+                    { label: "Dual Band (2.4GHz + 5GHz)", price: 1299 }
+                ],
+                included: ["Router", "USB Cable", "Setup Guide"],
+                specs: [
+                    ["Wi-Fi Bands", "2.4GHz / 5GHz"],
+                    ["Modes", "AP, Repeater, Mesh"],
+                    ["Power", "USB-Powered"],
+                    ["Range", "Up to 30m"],
+                    ["Warranty", "2 Years"]
+                ]
+            }
+        };
+
+        // --- Function to handle product clicks and pass data ---
+        function selectProduct(productInfo) {
+            sessionStorage.setItem("liveProduct", JSON.stringify(productInfo));
+            // IMPORTANT: Ensure this redirects to your universal product detail page
+            window.location.href = "product.html"; 
+        }
+
+        // --- Attach Click Listeners to Product Cards (after DOM content is loaded) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.dataset.productId; // Get the unique ID from data-product-id
+                    const productInfo = allGadgetProducts[productId]; // Look up the product data
+
+                    if (productInfo) {
+                        selectProduct(productInfo); // Call selectProduct with the retrieved data
+                    } else {
+                        console.error("Error: Product data not found for ID:", productId);
+                        // Optional: show a user-friendly error message
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

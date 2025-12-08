@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Product Details - VoltNexis</title>
+
+    <meta name="description" content="Detailed information and purchase options for VoltNexis USB products.">
+    <meta name="keywords" content="product details, bootable USB, live USB, VoltNexis">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- Root Variables for Theme --- */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        /* --- Global Base Styles --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation (Hamburger) --- */
+        .hamburger {
+            display: none; /* Hidden by default, shown in media query */
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px; /* Below the header */
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger on small screens */
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-section, .info-tabs {
+            animation: fadeIn 1s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures elements are hidden before animation */
+        }
+        .product-section { animation-delay: 0.1s; }
+        .info-tabs { animation-delay: 0.3s; }
+
+        /* --- Main Product Section --- */
+        .product-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns for desktop */
+            gap: 50px;
+            padding: 80px 0;
+            min-height: 80vh; /* Ensure content pushes footer down */
+        }
+
+        .product-images {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 500px; /* Limit image size */
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: zoom-in; /* Indicate zoomable */
+        }
+        body.dark-mode .main-image {
+            background-color: rgba(255,255,255,0.05); /* Lighter bg for dark mode */
+        }
+
+
+        .thumbnails {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Allow thumbnails to wrap on smaller screens */
+            justify-content: center;
+        }
+
+        .thumbnail-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: border-color 0.3s ease, transform 0.2s ease;
+            background-color: var(--background-color); /* Match overall background */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail-image:hover {
+            transform: translateY(-3px);
+        }
+
+        .thumbnail-image.active {
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+        }
+        body.dark-mode .thumbnail-image {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .product-details {
+            background-color: var(--card-background);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.5s ease;
+            border: 1px solid #e0e0e0;
+        }
+        body.dark-mode .product-details {
+            border-color: #3c546b;
+        }
+
+        .product-details h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .product-details h1 {
+            color: var(--light-text);
+        }
+
+        .product-details .price {
+            font-size: 2.2rem; /* Slightly larger price */
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 20px 0;
+            display: block; /* Ensure price is on its own line */
+        }
+
+        .product-details p {
+            color: #555;
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .product-details p {
+            color: #ccc;
+        }
+
+        .configuration-options {
+            margin: 30px 0;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-group label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        body.dark-mode .option-group label {
+            color: var(--light-text);
+        }
+        
+        .option-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--background-color); /* Use themed background */
+            color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+        }
+        body.dark-mode .option-group select {
+            background-color: #1a1a2e;
+            border-color: #3c546b;
+            color: var(--light-text);
+        }
+        .option-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+        }
+        
+        .action-buttons button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-grow: 1; /* Make buttons take up available space */
+            min-width: 150px; /* Ensure minimum width */
+        }
+
+        .add-to-cart {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.5);
+        }
+
+        /* --- Guarantee Box --- */
+        .guarantee {
+            background-color: var(--background-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 1px dashed var(--secondary-color);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: inset 0 0 5px rgba(52, 152, 219, 0.1);
+        }
+        body.dark-mode .guarantee {
+            background-color: rgba(255,255,255,0.05);
+            border-color: var(--secondary-color);
+            color: var(--light-text);
+        }
+
+        /* --- Info Tabs Section --- */
+        .info-tabs {
+            margin: 50px 0;
+            background-color: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+        body.dark-mode .info-tabs {
+            border-color: #3c546b;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            overflow-x: auto; /* Allow horizontal scrolling on small screens */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+        body.dark-mode .tab-buttons {
+            border-color: #3c546b;
+        }
+
+        .tab-button {
+            flex-shrink: 0; /* Prevent shrinking */
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #777;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        body.dark-mode .tab-button {
+            color: #bbb;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-color);
+        }
+        body.dark-mode .tab-button:hover {
+            color: var(--secondary-color);
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color); /* Use secondary for active highlight */
+        }
+        body.dark-mode .tab-button.active {
+            color: var(--light-text);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .tab-content {
+            padding: 20px 0;
+            color: #555;
+        }
+        body.dark-mode .tab-content {
+            color: #ccc;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .specs-table tr:nth-child(odd) {
+            background-color: var(--background-color); /* Zebra striping */
+        }
+        body.dark-mode .specs-table tr:nth-child(odd) {
+            background-color: rgba(255,255,255,0.03);
+        }
+
+        .specs-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        body.dark-mode .specs-table td {
+            border-color: #3c546b;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 600;
+            width: 35%; /* Adjust width for key column */
+            color: var(--text-color);
+        }
+        body.dark-mode .specs-table td:first-child {
+            color: var(--light-text);
+        }
+
+        .specs-table ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .specs-table li {
+            margin-bottom: 5px;
+        }
+        .specs-table li::before {
+            content: '• ';
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+        
+        .included-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .included-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        body.dark-mode .included-list li {
+            color: var(--light-text);
+        }
+        .included-list li::before {
+            content: '✓'; /* Checkmark icon */
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- Image Zoom Overlay --- */
+        .zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9); /* Darker overlay */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .zoom-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .zoom-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        .zoom-overlay.active img {
+            transform: scale(1);
+        }
+
+        /* --- Mobile-Specific Overrides --- */
+        @media (max-width: 768px) {
+            .product-section {
+                grid-template-columns: 1fr; /* Single column layout for mobile */
+                gap: 30px;
+                padding: 40px 0;
+            }
+            .product-images {
+                flex-direction: column; /* Stack main image and thumbnails */
+            }
+            .product-details {
+                padding: 25px;
+            }
+            .product-details h1 {
+                font-size: 2rem;
+            }
+            .product-details .price {
+                font-size: 1.8rem;
+            }
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .tab-button {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-section container">
+            <div class="product-images">
+                <img id="main-product-image" src="" alt="Product Image" class="main-image zoomable">
+                <div id="thumbnail-container" class="thumbnails">
+                    <!-- Thumbnails will be injected here by JavaScript -->
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 id="product-name"></h1>
+                <p id="product-short-description"></p>
+                
+                <div class="configuration-options">
+                    <div id="size-options" class="option-group">
+                        <label for="size-select">Choose Size</label>
+                        <select id="size-select" name="size"></select>
+                    </div>
+
+                    <div id="persistenceWrapper" class="option-group hidden">
+                        <label for="persistence">Persistence:</label>
+                        <select id="persistence" name="persistence">
+                            <option value="Yes">Yes (+₹20)</option>
+                            <option value="No" selected>No</option>
+                        </select>
+                    </div>
+
+                    <div id="versionWrapper" class="option-group hidden">
+                        <label for="version">Mint Edition:</label>
+                        <select id="version" name="version">
+                            <option value="Cinnamon">Cinnamon</option>
+                            <option value="MATE">MATE</option>
+                            <option value="XFCE">XFCE</option>
+                        </select>
+                    </div>
+
+                    <div id="winVersionWrapper" class="option-group hidden">
+                        <label for="winVersion">Windows Version:</label>
+                        <select id="winVersion" name="winVersion">
+                            <option value="Windows 8">Windows 8</option>
+                            <option value="Windows 10">Windows 10</option>
+                            <option value="Windows 11">Windows 11</option>
+                        </select>
+                    </div>
+
+                    <div id="dualOSWrapper" class="option-group hidden">
+                        <label for="firstOS">First OS:</label>
+                        <select id="firstOS" name="firstOS"></select>
+                        <label for="secondOS" class="mt-3 block">Second OS:</label>
+                        <select id="secondOS" name="secondOS"></select>
+                    </div>
+                </div>
+
+                <div class="guarantee">
+                    📦 10-Day Replacement Guarantee<br>
+                    🛡️ 5-Year Warranty on USB<br>
+                    ⚡ Fast shipping across India
+                </div>
+
+                <div class="action-buttons">
+                    <span id="product-price" class="price"></span>
+                    <button class="add-to-cart" onclick="buyNow()">Buy Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-tabs container">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showTab('description-tab')">Description</button>
+                <button class="tab-button" onclick="showTab('specs-tab')">Specifications</button>
+                <button class="tab-button" onclick="showTab('included-tab')">What's Included</button>
+            </div>
+
+            <div id="description-tab" class="tab-content active">
+                <p id="product-description"></p>
+            </div>
+
+            <div id="specs-tab" class="tab-content" style="display:none;">
+                <table class="specs-table" id="product-specs">
+                    <!-- Specs will be injected here by JavaScript -->
+                </table>
+            </div>
+
+            <div id="included-tab" class="tab-content" style="display:none;">
+                <ul class="included-list" id="product-included">
+                    <!-- Included items will be injected here by JavaScript -->
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <div id="zoomModal" class="zoom-overlay hidden" onclick="this.classList.remove('active', 'hidden')">
+        <img id="zoomedImage" src="" alt="Zoomed View" />
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: 9947557025</p>
+                <p>📱 Telegram: 9946042794</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // If no theme is saved (e.g., first visit or cleared cache),
+            // default to dark mode and save this preference for future visits
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- Tabbed Content Logic ---
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            // Deactivate all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the selected tab content
+            document.getElementById(tabId).style.display = 'block';
+            // Activate the clicked button
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- Product Data Retrieval & UI Population ---
+        const productData = JSON.parse(sessionStorage.getItem("liveProduct"));
+
+        // Get references to key elements on the page
+        const mainProductImage = document.getElementById("main-product-image");
+        const thumbnailContainer = document.getElementById("thumbnail-container");
+        const productNameEl = document.getElementById("product-name");
+        const productShortDescEl = document.getElementById("product-short-description");
+        const sizeSelect = document.getElementById("size-select");
+        const persistenceWrapper = document.getElementById("persistenceWrapper");
+        const persistenceSelect = document.getElementById("persistence");
+        const versionWrapper = document.getElementById("versionWrapper");
+        const mintVersionSelect = document.getElementById("version");
+        const winVersionWrapper = document.getElementById("winVersionWrapper");
+        const winVersionSelect = document.getElementById("winVersion");
+        const dualOSWrapper = document.getElementById("dualOSWrapper");
+        const firstOSSelect = document.getElementById("firstOS");
+        const secondOSSelect = document.getElementById("secondOS");
+        const productPriceEl = document.getElementById("product-price");
+        const productDescriptionEl = document.getElementById("product-description");
+        const productIncludedList = document.getElementById("product-included");
+        const productSpecsTable = document.getElementById("product-specs");
+
+        // --- Dual OS Options (populate if Dual OS Kit is selected) ---
+        const commonOSOptions = [
+            { name: "Ubuntu", value: "Ubuntu" },
+            { name: "Kali Linux", value: "Kali Linux" },
+            { name: "Parrot OS", value: "Parrot OS" },
+            { name: "Linux Mint", value: "Linux Mint" },
+            { name: "Debian", value: "Debian" },
+            { name: "Fedora", value: "Fedora" },
+            { name: "Manjaro", value: "Manjaro" },
+            { name: "Zorin OS", value: "Zorin OS" },
+            { name: "Elementary OS", value: "Elementary OS" },
+            { name: "MX Linux", value: "MX Linux" },
+            { name: "Garuda Linux", value: "Garuda Linux" },
+            { name: "Pop!_OS", value: "Pop!_OS" },
+            { name: "Arch Linux", value: "Arch Linux" },
+            { name: "BlackArch", value: "BlackArch" },
+            { name: "Slax", value: "Slax" },
+            { name: "Tails OS", value: "Tails OS" }
+        ];
+
+        function populateDualOSSelects() {
+            firstOSSelect.innerHTML = '<option value="">Select First OS</option>';
+            secondOSSelect.innerHTML = '<option value="">Select Second OS</option>';
+            commonOSOptions.forEach(os => {
+                const opt1 = document.createElement("option");
+                opt1.value = os.value;
+                opt1.textContent = os.name;
+                firstOSSelect.appendChild(opt1);
+
+                const opt2 = document.createElement("option");
+                opt2.value = os.value;
+                opt2.textContent = os.name;
+                secondOSSelect.appendChild(opt2);
+            });
+        }
+
+
+        if (productData) {
+            // Set initial main image and populate thumbnails
+            mainProductImage.src = productData.image;
+            const images = [productData.image, productData.image2, productData.image3].filter(img => img);
+            images.forEach((imgSrc, index) => {
+                const thumb = document.createElement("img");
+                thumb.src = imgSrc;
+                thumb.alt = `Thumbnail ${index + 1}`;
+                thumb.classList.add("thumbnail-image", "zoomable");
+                if (index === 0) {
+                    thumb.classList.add("active"); // Set first thumbnail as active
+                }
+                thumb.addEventListener("click", () => {
+                    mainProductImage.src = imgSrc; // Change main image on thumbnail click
+                    // Update active class for thumbnails
+                    document.querySelectorAll('.thumbnail-image').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                thumbnailContainer.appendChild(thumb);
+            });
+
+            // Populate product details
+            productNameEl.textContent = productData.name;
+            productShortDescEl.textContent = productData.shortDesc;
+            productDescriptionEl.textContent = productData.description;
+
+            // Populate size options
+            sizeSelect.innerHTML = ''; 
+            productData.sizes.forEach((size, index) => {
+                const option = document.createElement("option");
+                option.value = size.price;
+                option.textContent = `${size.label} - ₹${size.price}`;
+                if (index === 0) option.selected = true; // Select the first size by default
+                sizeSelect.appendChild(option);
+            });
+
+            // Populate included items list
+            productIncludedList.innerHTML = '';
+            if (productData.included) {
+                productData.included.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = item;
+                    productIncludedList.appendChild(li);
+                });
+            }
+
+            // Populate specifications table
+            productSpecsTable.innerHTML = '';
+            if (productData.specs) {
+                productData.specs.forEach(([key, val]) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${key}</td><td>${val}</td>`;
+                    productSpecsTable.appendChild(row);
+                });
+            }
+
+            // --- Dynamic UI Logic based on Product Name ---
+            const nameLower = productData.name.toLowerCase().trim(); // Trim for robust comparison
+
+            // Hide all optional wrappers initially
+            persistenceWrapper.style.display = 'none';
+            versionWrapper.style.display = 'none';
+            winVersionWrapper.style.display = 'none';
+            dualOSWrapper.style.display = 'none';
+
+            // Logic for specific OS Version/Edition selection dropdowns (higher priority/more specific)
+            if (nameLower.includes("dual os kit") || nameLower.includes("voltedge max kit")) {
+                dualOSWrapper.style.display = 'block';
+                populateDualOSSelects();
+            } else if (nameLower.includes("windows")) {
+                winVersionWrapper.style.display = 'block';
+            } else if (nameLower.includes("mint")) {
+                versionWrapper.style.display = 'block';
+            }
+
+            // List of product IDs where persistence should *not* be shown as a selectable option,
+            // or where it's implicitly included/not applicable.
+            const productsWithFixedOrNoPersistence = [
+                "installer only", // General installer USBs
+                "kali-basic-kit", // Kali Basic Kit
+                "voltnexis-max-kit", // VoltNexis Max Kit (persistence included)
+                "kali-pro-kit", // Kali Pro Kit (persistence included)
+                "dual-os-kit", // Dual OS Kit (persistence handled by dual boot)
+                "tails-os-live-only", // Tails OS (designed for no persistence)
+                "exam-boot-usb", // Explicitly no persistence option for exam environment
+                "school-lab-os", // Explicitly no persistence option for clean lab environment
+                "hack-in-a-box", // Specialized kit, no separate persistence option
+                "offline-survival-box", // Data/resource pack, not a persistent OS
+                "mini-cyber-kit" // Training kit, persistence likely managed differently
+                // "os-in-a-drive-pro" // This product ID is not in the HTML, so it's commented out
+            ];
+
+            // Show persistence option only if it's a general 'Live' product AND not in the exclusion list
+            if (nameLower.includes("live") && !productsWithFixedOrNoPersistence.some(id => productData.name.toLowerCase().includes(id))) {
+                // Check if the product name contains "live" AND is not one of the explicitly excluded kit IDs.
+                // Note: using productData.name directly with .includes(id) because product IDs are keywords.
+                persistenceWrapper.style.display = 'block';
+            }
+            
+            // Initial price update
+            updatePrice();
+        } else {
+            // Handle case where no product data is found (e.g., direct navigation)
+            productNameEl.textContent = "Product Not Found";
+            productShortDescEl.textContent = "Please return to the main shop page.";
+            productPriceEl.textContent = "₹0";
+            // Also hide all option groups if product data is missing
+            persistenceWrapper.style.display = 'none';
+            versionWrapper.style.display = 'none';
+            winVersionWrapper.style.display = 'none';
+            dualOSWrapper.style.display = 'none';
+        }
+
+        // --- Event Listeners for Dynamic Price Update ---
+        sizeSelect.addEventListener("change", updatePrice);
+        if (persistenceSelect) persistenceSelect.addEventListener("change", updatePrice); 
+        if (mintVersionSelect) mintVersionSelect.addEventListener("change", updatePrice);
+        if (winVersionSelect) winVersionSelect.addEventListener("change", updatePrice);
+        if (firstOSSelect) firstOSSelect.addEventListener("change", updatePrice);
+        if (secondOSSelect) secondOSSelect.addEventListener("change", updatePrice);
+
+        // --- Price Calculation Function ---
+        function updatePrice() {
+            let currentPrice = parseInt(sizeSelect.value || 0);
+            const nameLower = productData.name.toLowerCase().trim(); // Use trimmed name
+
+            // List of product IDs where persistence is either inherently included (and priced)
+            // or is not applicable/selectable and thus has no price adjustment.
+            // This array must match the one used for UI visibility.
+            const productsWithFixedOrNoPersistencePrice = [
+                "installer only", "kali-basic-kit", "voltedge-max-kit", "kali-pro-kit", "dual-os-kit", 
+                "tails-os-live-only", "exam-boot-usb", "school-lab-os", "hack-in-a-box", 
+                "offline-survival-box", "mini-cyber-kit"
+                // "os-in-a-drive-pro" // This product ID is not in the HTML, so it's commented out
+            ];
+
+            // Add persistence price if applicable (only for general 'Live' products where it's selectable)
+            if (nameLower.includes("live") && !productsWithFixedOrNoPersistencePrice.some(id => productData.name.toLowerCase().includes(id))) {
+                if (persistenceSelect && persistenceSelect.value === "Yes") {
+                    currentPrice += 20;
+                }
+            } 
+            // Automatically add persistence price for specific kits where it's always included
+            else if (["voltNexis max kit", "dual os kit", "kali pro kit"].some(keyword => nameLower.includes(keyword))) {
+                currentPrice += 20; // This handles the kits where persistence is built-in
+            }
+            // For other products in productsWithFixedOrNoPersistencePrice, no price is added.
+            
+            productPriceEl.textContent = `₹${currentPrice}`;
+        }
+
+        // --- Buy Now Function ---
+        function buyNow() {
+            const price = productPriceEl.textContent;
+            const selectedSizeLabel = sizeSelect.options[sizeSelect.selectedIndex].text.split(' - ')[0]; // Get "8GB", "16GB" etc.
+            const nameLower = productData.name.toLowerCase().trim(); // Use trimmed name
+
+            if (!price || price === "₹0") {
+                console.warn("Please select a size for the product."); 
+                return;
+            }
+
+            // Store product information in sessionStorage for the next page
+            sessionStorage.setItem("productName", productData.name);
+            sessionStorage.setItem("productPrice", price);
+            sessionStorage.setItem("productSize", selectedSizeLabel);
+
+            // Determine and store persistence status
+            const productsWithFixedOrNoPersistence = [
+                "installer only", "kali-basic-kit", "voltnexis-max-kit", "kali-pro-kit", "dual-os-kit", 
+                "tails-os-live-only", "exam-boot-usb", "school-lab-os", "hack-in-a-box", 
+                "offline-survival-box", "mini-cyber-kit"
+            ];
+
+            if (productsWithFixedOrNoPersistence.some(id => productData.name.toLowerCase().includes(id))) {
+                // For products in this list, decide if persistence is 'Included' or 'Not Applicable'
+                if (["voltnexis max kit", "dual os kit", "kali pro kit"].some(keyword => nameLower.includes(keyword))) {
+                    sessionStorage.setItem("persistence", "Included");
+                } else {
+                    sessionStorage.setItem("persistence", "Not Applicable");
+                }
+            } else { // For general Live USBs where persistence is selectable via dropdown
+                sessionStorage.setItem("persistence", persistenceSelect ? persistenceSelect.value : "No");
+            }
+
+            // Store specific version/OS if applicable
+            if (dualOSWrapper.style.display !== 'none') {
+                sessionStorage.setItem("firstOS", firstOSSelect.value);
+                sessionStorage.setItem("secondOS", secondOSSelect.value);
+            } else if (winVersionWrapper.style.display !== 'none') {
+                sessionStorage.setItem("selectedVersion", winVersionSelect.value);
+            } else if (versionWrapper.style.display !== 'none') {
+                sessionStorage.setItem("selectedVersion", mintVersionSelect.value);
+            } else {
+                sessionStorage.setItem("selectedVersion", "N/A"); // Default if no specific version
+            }
+
+            // Redirect to the order page
+            window.location.href = "place_your_order.html";
+        }
+
+        // --- Image Zoom Functionality ---
+        const zoomModal = document.getElementById("zoomModal");
+        const zoomedImage = document.getElementById("zoomedImage");
+
+        document.querySelectorAll(".zoomable").forEach(img => {
+            img.addEventListener("click", () => {
+                zoomedImage.src = img.src;
+                zoomModal.classList.add("active");
+            });
+        });
+
+        // Close zoom modal by clicking outside the image
+        zoomModal.addEventListener("click", (event) => {
+            if (event.target === zoomModal) {
+                zoomModal.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,1 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Title & SEO -->
+  <title>VoltNexis Shop: Bootable USBs, Live Linux, & Custom PCs</title>
+  <meta name="description" content="Premium bootable USBs and custom-built PCs from VoltNexis Shop. Plug-and-play OS installers, recovery tools, and fast delivery across India.">
+  <meta name="keywords" content="bootable usb, live linux usb, custom pc build, windows installer, ubuntu live, kali linux usb, data recovery, tech kits, computer accessories, VoltNexis Shop, India">
+  <meta name="author" content="VoltNexis Shop">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://voltnexis.github.io/shop/">
+
+  <!-- Site Verification -->
+  <meta name="msvalidate.01" content="BAC1C9986E1749BCDECCE97AA7B61D41">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voltnexis.github.io/shop/">
+  <meta property="og:title" content="VoltNexis Shop: Your Tech Partner for Custom Builds & Bootable USBs">
+  <meta property="og:description" content="Discover premium Live Linux USBs, OS installers, and custom-built PCs. We make technology accessible, reliable, and exciting.">
+  <meta property="og:image" content="https://voltnexis.github.io/shop/assets/logo.webp">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VoltNexis Shop: Get Custom PCs and Bootable USBs">
+  <meta name="twitter:description" content="Unlock your tech's full potential with VoltNexis's premium bootable USBs and expert custom PC builds. Fast delivery in India.">
+  <meta name="twitter:image" content="https://voltnexis.github.io/shop/assets/logo.webp">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://voltnexis.github.io/shop/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://voltnexis.github.io/shop/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://voltnexis.github.io/shop/assets/favicon-16x16.png">
+  <link rel="shortcut icon" href="https://voltnexis.github.io/shop/assets/favicon.ico">
+  <link rel="manifest" href="https://voltnexis.github.io/shop/assets/site.webmanifest">
+
+  <!-- Organization Schema for Logo Indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VoltNexis Shop",
+    "url": "https://voltnexis.github.io/shop/",
+    "logo": "https://voltnexis.github.io/shop/assets/logo.webp",
+    "sameAs": [
+      "https://www.instagram.com/voltnexis",
+      "https://www.youtube.com/@voltnexis",
+      "https://www.x.com/voltnexis"
+    ]
+  }
+  </script>
+
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+       .logo-small {
+          height: 30px;
+          width: auto;
+          margin-right: 10px;
+       }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            background-color: #4a6572;
+            padding: 5px 10px;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        body.dark-mode .search-container {
+            background-color: #2c3e50;
+        }
+
+        .search-container input {
+            border: none;
+            background: transparent;
+            color: var(--light-text);
+            padding: 5px;
+            width: 100%;
+        }
+
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-container i {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .theme-toggle {
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero, .section-title {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .product-card, .testimonial-card, .faq-item {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.4s; }
+        .product-card:nth-child(4) { animation-delay: 0.6s; } /* New card 1 */
+        .product-card:nth-child(5) { animation-delay: 0.8s; } /* New card 2 */
+        .product-card:nth-child(6) { animation-delay: 1.0s; } /* New card 3 */
+
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.4s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1547481231-50e50d18228f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background-color: #2980b9;
+        }
+
+        /* --- Product Grid --- */
+        .product-grid {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        body.dark-mode .product-card p {
+            color: #ccc;
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials-section {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 80px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: #2c3e50;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border: 1px solid #3c546b;
+        }
+
+        body.dark-mode .testimonials-section {
+            background-color: var(--card-background);
+        }
+
+        body.dark-mode .testimonial-card {
+            background-color: #1a1a2e;
+            border-color: #2c3e50;
+        }
+
+        .testimonial-card .stars {
+            color: gold;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        /* --- FAQ Section --- */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--background-color);
+        }
+
+        .faq-list {
+            opacity: 0;
+            animation: slideUp 0.8s ease-in-out 0.6s forwards;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background-color: #2c3e50;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile-Specific Styles --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .search-container {
+                order: 3;
+                width: 100%;
+                margin: 15px 0 0;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                order: 4;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .product-cards, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="brand" onclick="location.reload()">
+                <img src="assets/logo-zoom-bg.webp" alt="logo-bolt" class="logo-small"></i> VoltNexis
+            </a>
+            <!-- <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for USBs...">
+            </div> -->
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+                <li>
+                    <i class="fas fa-moon theme-toggle" id="theme-toggle"></i>
+                </li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Unlock Your Tech's Full Potential</h1>
+                <p>Premium-quality bootable USBs and custom tech solutions for every project. Get started with VoltNexis.</p>
+                <a href="#products" class="cta-button">Explore Products</a>
+            </div>
+        </section>
+
+        <section id="products" class="product-grid">
+            <div class="container">
+                <h2 class="section-title">Our Products</h2>
+                <div class="product-cards">
+                    <div class="product-card" onclick="window.location.href='live_usb.html';">
+                        <img src="img/live_usb.webp" alt="Live USB">
+                        <h3>Live Linux USB</h3>
+                        <p>Boot and explore Linux without installing. Secure, fast, and easy.</p>
+                    </div>
+                    <div class="product-card" onclick="window.location.href='boot_usb.html';">
+                        <img src="img/boot_usb.webp" alt="Bootable USB">
+                        <h3>Bootable USB</h3>
+                        <p>Preloaded OS installers for Windows, Linux, and more.</p>
+                    </div>
+                    <div class="product-card" onclick="window.location.href='kit_usb.html';">
+                        <img src="img/kit_usb.webp" alt="Recovery Kit">
+                        <h3>VoltNexis Special USB Kit</h3>
+                        <p>A full Linux USB toolkit with multiple distros and recovery tools.</p>
+                    </div>
+                    <!-- New Card: DVD & Offline Media -->
+                    <div class="product-card" onclick="window.location.href='dvd_media.html';">
+                        <img src="img/dvd.webp" alt="DVD & Offline Media">
+                        <h3>DVD & Offline Media</h3>
+                        <p>Reliable installers and classic media for systems without USB boot. Essential for legacy setups.</p>
+                    </div>
+                    <!-- New Card: Smart Gadgets & Accessories -->
+                    <div class="product-card" onclick="window.location.href='smart_gadgets.html';">
+                        <img src="img/gadgets.webp" alt="Smart Gadgets & Accessories">
+                        <h3>Smart Gadgets & Accessories</h3>
+                        <p>Enhance your tech experience with innovative tools and practical accessories.</p>
+                    </div>
+                    <!-- New Card: Cybersecurity & Recovery -->
+                    <div class="product-card" onclick="window.location.href='cybersecurity_recovery.html';">
+                        <img src="img/cybersecurity.webp" alt="Cybersecurity & Recovery">
+                        <h3>Cybersecurity & Recovery</h3>
+                        <p>Advanced tools for digital defense, data recovery, and system troubleshooting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="description-section">
+            <div class="container">
+                <h2 class="section-title">Welcome to VoltNexis Builds ⚡</h2>
+                <p class="intro-text">
+                    At <strong>VoltNexis</strong>, we're passionate about technology and innovation — bringing you premium-quality tools and hardware for every tech journey. From OS rescue tools to power-packed custom PCs, we’ve got your back. 💻🛠️
+                </p>
+
+                <div class="feature-list">
+                    <h3>🔌 Bootable USB Drives — Your OS, Anywhere</h3>
+                    <p>
+                        Our <strong>plug-and-play bootable USBs</strong> come preloaded with clean, virus-free, and verified installers or live operating systems like <strong>Windows, Ubuntu, Kali Linux, Parrot OS, and more</strong>. Whether you need to reinstall your OS, recover lost systems, or explore new Linux environments — you're always one boot away from a solution. 🚀
+                    </p>
+                    <ul>
+                        <li>💾 Available in 8GB, 16GB, 32GB, 64GB, and 128GB storage sizes</li>
+                        <li>⚙️ Supports both <strong>Live Mode</strong> & <strong>Full Installation</strong> modes</li>
+                        <li>⚡ USB 3.0 Speed — up to <strong>150MB/s</strong> for faster boot & install times</li>
+                        <li>🔐 Built with official tools and latest ISO files — no corrupted media!</li>
+                        <li>📦 Carefully tested, sealed, and delivered across India</li>
+                    </ul>
+
+                    <h3>🖥️ Custom PC Building — Power Meets Precision</h3>
+                    <p>
+                        Step into the world of high-performance with <strong>VoltNexis Custom PCs</strong>. Whether you're a gamer, developer, video editor, or enthusiast, we craft tailor-made rigs to suit your exact needs. Featuring blazing-fast NVMe SSDs, cutting-edge GPUs, and expert cable management — your dream PC starts here. 🔧🔥
+                    </p>
+                    <ul>
+                        <li>🎮 Gaming | 🎥 Editing | 👨‍💻 Productivity | 🧪 Research</li>
+                        <li>🧠 Built with future-proof parts and thermal efficiency</li>
+                        <li>📞 Full support and upgrade consultations</li>
+                        <li>🚚 Delivered right to your doorstep — ready to plug and play</li>
+                    </ul>
+
+                    <p class="final-note">
+                        ⚡ <strong>VoltNexis Builds</strong> isn't just a store — it's your personal tech partner. From fixing boot issues to building your ultimate machine, we make tech simple, reliable, and exciting.
+                    </p>
+                </div>
+
+                <div class="features-bar">
+                    <p>📦 Delivery all over India | 💰 Easy returns | 🔄 Refresh regularly with the latest OS versions!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"The Live USB was exactly what I needed. It was fast, reliable, and worked perfectly right out of the box. Highly recommend!"</p>
+                        <div class="author">Arun V.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p>"Fantastic service and a high-quality product. The bootable Windows USB saved my old laptop. Great team!"</p>
+                        <div class="author">Priya S.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                        <p>"Quick delivery and the product was exactly as described. The USB 3.0 speed is a game-changer for installations."</p>
+                        <div class="author">Karthik R.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is a Live Linux USB?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A Live Linux USB allows you to boot and run a full operating system directly from the USB drive without installing it on your computer's hard drive. This is great for trying out new OSes, troubleshooting, or for privacy reasons.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How is a Bootable USB different from a Live USB?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A Bootable USB typically contains the installer for an operating system (like Windows or Ubuntu) which is used to install the OS on your computer's hard drive. A Live USB runs the OS directly from the USB without installation. Some of our drives can be used for both purposes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you ship to my location?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we currently deliver our products all over India. We partner with reliable courier services to ensure your order arrives safely and on time.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I get a custom OS on my USB?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a variety of popular operating systems. For custom requests, please contact us directly via WhatsApp or email, and we'll do our best to accommodate your needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Theme toggle and persistence
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Apply saved theme on page load
+        if (currentTheme) {
+            // If a theme is saved, apply it
+            body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                themeToggle.classList.remove('fa-moon');
+                themeToggle.classList.add('fa-sun');
+            } else { // If saved theme is light-mode
+                themeToggle.classList.remove('fa-sun');
+                themeToggle.classList.add('fa-moon');
+            }
+        } else {
+            // If no theme is saved (first visit or cleared cache),
+            // default to dark mode and SAVE this preference for future visits
+            body.classList.add('dark-mode'); // Applies dark mode
+            themeToggle.classList.remove('fa-moon'); // Ensure moon icon (for light toggle)
+            themeToggle.classList.add('fa-sun');    // Change to sun icon (for dark toggle)
+            localStorage.setItem('theme', 'dark-mode'); // ***THIS LINE IS NEW AND CRUCIAL***
+        }
+
+        // Event listener for theme toggle
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.classList.remove('fa-moon');
+                themeToggle.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                themeToggle.classList.remove('fa-sun');
+                themeToggle.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

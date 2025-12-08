@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Live Linux USB - VoltNexis Shop</title>
+    <meta name="description" content="Boot any system using our ready-to-use Live USBs. Pre-installed with Kali Linux, Ubuntu, Parrot OS, and more. With or without persistence.">
+    <meta name="keywords" content="Live Linux USB, Kali USB India, Ubuntu USB boot, Parrot OS USB, Persistent USB, Linux bootable pen drive">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <meta property="og:title" content="Buy Live Linux USB Drives - VoltNexis Shop" />
+    <meta property="og:description" content="Boot any system using Kali, Ubuntu or Parrot OS. Fast delivery & COD available!" />
+    <meta property="og:image" content="https://voltnexis.github.io/shop.voltnexis.github.io/img/live-usb.png" />
+    <meta property="og:url" content="https://voltnexis.github.io/shop.voltnexis.github.io/live_usb.html" />
+    <meta property="og:type" content="product" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Buy Live Linux USB Drives - VoltNexis Shop" />
+    <meta name="twitter:description" content="Get Kali Linux, Ubuntu or Parrot OS bootable USBs with persistence.">
+    <meta name="twitter:image" content="https://voltnexis.github.io/shop.voltnexis.github.io/img/live-usb.png" />
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation --- */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title, .page-header p {
+            animation: slideUp 0.8s ease-in-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+        
+        .section-title { animation-delay: 0.1s; }
+        .page-header p { animation-delay: 0.3s; }
+
+        /* Changed from .product-item to .product-card for animations */
+        .product-card {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.4s; }
+        .product-card:nth-child(2) { animation-delay: 0.5s; }
+        .product-card:nth-child(3) { animation-delay: 0.6s; }
+        .product-card:nth-child(4) { animation-delay: 0.7s; }
+        .product-card:nth-child(5) { animation-delay: 0.8s; }
+        .product-card:nth-child(6) { animation-delay: 0.9s; }
+        .product-card:nth-child(7) { animation-delay: 1.0s; }
+        .product-card:nth-child(8) { animation-delay: 1.1s; }
+        .product-card:nth-child(9) { animation-delay: 1.2s; }
+        .product-card:nth-child(10) { animation-delay: 1.3s; }
+        .product-card:nth-child(11) { animation-delay: 1.4s; }
+        .product-card:nth-child(12) { animation-delay: 1.5s; }
+        .product-card:nth-child(13) { animation-delay: 1.6s; }
+        .product-card:nth-child(14) { animation-delay: 1.7s; }
+        .product-card:nth-child(15) { animation-delay: 1.8s; }
+
+        /* --- Page Layout --- */
+        .page-header {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #777;
+        }
+
+        body.dark-mode .page-header p {
+            color: #ccc;
+        }
+
+        /* Changed from .product-list to .product-cards-list to match kit_usb.html */
+        .product-cards-list {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; /* Added gap for better spacing */
+        }
+
+        /* New .product-card styles from kit_usb.html */
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px; /* Increased padding */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Increased hover lift */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%; /* Make image take full width of card */
+            max-height: 200px; /* Limit image height */
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 10px; /* Rounded image corners */
+            background: none; /* Removed background from image itself */
+            padding: 0; /* Removed padding from image itself */
+        }
+
+        .product-info {
+            flex-grow: 1; /* Retained from previous, but less relevant with new layout */
+        }
+
+        .product-card h3 { /* Changed from .product-info h3 */
+            font-size: 1.5rem; /* Consistent with kit_usb.html */
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .product-card h3 { /* Changed from .product-info h3 */
+            color: var(--light-text);
+        }
+
+        .product-card p { /* Changed from .product-info p */
+            margin: 0;
+            color: #777;
+            font-size: 1rem; /* Consistent with kit_usb.html */
+        }
+        
+        body.dark-mode .product-card p { /* Changed from .product-info p */
+            color: #ccc;
+        }
+
+        .product-card p strong { /* Changed from .product-info p strong */
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .info-section {
+            border-color: #3c546b;
+        }
+
+        .info-section h2, .info-section h3 {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .info-section h2, body.dark-mode .info-section h3 {
+            color: var(--light-text);
+        }
+
+        .info-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .info-section li::before {
+            content: '✔️';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -20px;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+			}
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 2; /* Ensures it's on the right */
+            }
+            
+            .product-card { /* Changed from .product-item */
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">Live Linux USB Drives</h1>
+                <p>Plug, boot, and explore the power of Linux without installation. Your portable OS is ready.</p>
+            </div>
+        </section>
+       
+        <section class="product-cards-list container">
+            <!-- Kali Linux USB (Live + Installer) -->
+            <div class="product-card" data-product-id="kali-linux-live-installer">
+                <img src="img/live/kali.webp" alt="Kali Linux USB">
+                <h3>Kali Linux USB (Live + Installer)</h3>
+                <p>
+                    <strong>⚡ Advanced Penetration Testing</strong><br>
+                    <strong>🐧 Live & Installer Modes</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔒 Secure & Persistent Option Available</strong>
+                </p>
+            </div>
+
+            <!-- Parrot OS USB (Live + Install) -->
+            <div class="product-card" data-product-id="parrot-os-live-install">
+                <img src="img/live/parrot.webp" alt="Parrot OS USB">
+                <h3>Parrot OS USB (Live + Install)</h3>
+                <p>
+                    <strong>👨‍💻 for hackers and cyber security learners</strong><br>
+                    <strong>🐧 Includes Live & Installer Modes</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔒 Secure & Persistent Option Available</strong>
+                </p>
+            </div>
+
+            <!-- Ubuntu USB (Live + Install) -->
+            <div class="product-card" data-product-id="ubuntu-live-install">
+                <img src="img/live/ubuntu-live.webp" alt="Ubuntu USB">
+                <h3>Ubuntu USB (Live + Install)</h3>
+                <p>
+                    <strong>🌍 Ideal for Beginners & Devs</strong><br>
+                    <strong>🐧 Stable Live Environment</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Install or Try Without Changes</strong>
+                </p>
+            </div>
+
+            <!-- Linux Mint USB (Live + Install) -->
+            <div class="product-card" data-product-id="linux-mint-live-install">
+                <img src="img/live/mint-live.webp" alt="Linux Mint USB">
+                <h3>Linux Mint USB (Live + Install)</h3>
+                <p>
+                    <strong>🍀 User-Friendly & Smooth</strong><br>
+                    <strong>🐧 Includes Live & Installer Modes</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Great Windows Alternative</strong>
+                </p>
+            </div>
+
+            <!-- Zorin OS USB (Live + Install) -->
+            <div class="product-card" data-product-id="zorin-os-live-install">
+                <img src="img/live/zorin-live.webp" alt="Zorin OS USB">
+                <h3>Zorin OS USB (Live + Install)</h3>
+                <p>
+                    <strong>🖥️ Windows-like UI</strong><br>
+                    <strong>🐧 Includes Live & Installer Modes</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>💡 Ideal for Switchers & Students</strong>
+                </p>
+            </div>
+
+            <!-- Pop!_OS USB (Live + Install) -->
+            <div class="product-card" data-product-id="pop-os-live-install">
+                <img src="img/live/popos-live.webp" alt="Pop!_OS USB">
+                <h3>Pop!_OS USB (Live + Install)</h3>
+                <p>
+                    <strong>🚀 Optimized for Developers</strong><br>
+                    <strong>🐧 Live + Install Ready</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>💡 Built by System76</strong>
+                </p>
+            </div>
+
+            <!-- elementary OS USB (Live + Install) -->
+            <div class="product-card" data-product-id="elementary-os-live-install">
+                <img src="img/live/elementary-live.webp" alt="elementary OS USB">
+                <h3>Elementary OS USB (Live + Install)</h3>
+                <p>
+                    <strong>🎨 Mac-like Elegant UI</strong><br>
+                    <strong>🐧 Live Tryout Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Easy for Beginners</strong>
+                </p>
+            </div>
+
+            <!-- Manjaro USB (Live + Install) -->
+            <div class="product-card" data-product-id="manjaro-live-install">
+                <img src="img/live/manjaro-live.webp" alt="Manjaro USB">
+                <h3>Manjaro USB (Live + Install)</h3>
+                <p>
+                    <strong>🧠 Arch Made Easy</strong><br>
+                    <strong>🐧 Live + Full Installer</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🧩 Power + Simplicity</strong>
+                </p>
+            </div>
+
+            <!-- Debian USB (Live + Install) -->
+            <div class="product-card" data-product-id="debian-live-install">
+                <img src="img/live/debian-live.webp" alt="Debian USB">
+                <h3>Debian USB (Live + Install)</h3>
+                <p>
+                    <strong>🏛️ Stable & Trusted</strong><br>
+                    <strong>🐧 Includes Live Boot</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔧 Ideal for Servers or Desktop</strong>
+                </p>
+            </div>
+
+            <!-- Arch Linux USB (Live + Install) -->
+            <div class="product-card" data-product-id="arch-linux-live-install">
+                <img src="img/live/arch-live.webp" alt="Arch Linux USB">
+                <h3>Arch Linux USB (Live + Install)</h3>
+                <p>
+                    <strong>⚙️ Minimalist DIY Distro</strong><br>
+                    <strong>🐧 Live Boot + Install Scripts</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔒 Custom Setup Friendly</strong>
+                </p>
+            </div>
+
+            <!-- MX Linux USB (Live + Install) -->
+            <div class="product-card" data-product-id="mx-linux-live-install">
+                <img src="img/live/mxlinux-live.webp" alt="MX Linux USB">
+                <h3>MX Linux USB (Live + Install)</h3>
+                <p>
+                    <strong>⚡ XFCE Light + Fast</strong><br>
+                    <strong>🐧 Full Live Boot Support</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Great on Older Hardware</strong>
+                </p>
+            </div>
+
+            <!-- Garuda Linux USB (Live + Install) -->
+            <div class="product-card" data-product-id="garuda-linux-live-install">
+                <img src="img/live/garuda-live.webp" alt="Garuda Linux USB">
+                <h3>Garuda Linux USB (Live + Install)</h3>
+                <p>
+                    <strong>🔥 Arch-Based Gaming Distro</strong><br>
+                    <strong>🐧 Live Boot + Installer GUI</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🎮 Optimized for Performance</strong>
+                </p>
+            </div>
+
+            <!-- BlackArch USB (Live + Install) -->
+            <div class="product-card" data-product-id="blackarch-live-install">
+                <img src="img/live/blackarch-live.webp" alt="BlackArch USB">
+                <h3>BlackArch USB (Live + Install)</h3>
+                <p>
+                    <strong>🎯 2800+ Security Tools</strong><br>
+                    <strong>🐧 Live Boot + CLI Installer</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔐 Best for Red Team Ops</strong>
+                </p>
+            </div>
+
+            <!-- Slax USB (Live + Install) -->
+            <div class="product-card" data-product-id="slax-live-install">
+                <img src="img/live/slax-live.webp" alt="Slax Linux USB">
+                <h3>Slax USB (Live + Install)</h3>
+                <p>
+                    <strong>🧪 Lightweight & Modular</strong><br>
+                    <strong>🐧 Live + Minimal Installer</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>⚡ Boots Fast on Any System</strong>
+                </p>
+            </div>
+
+            <!-- Tails OS USB (Live Only) -->
+            <div class="product-card" data-product-id="tails-os-live-only">
+                <img src="img/live/tails-live.webp" alt="Tails OS USB">
+                <h3>Tails OS USB (Live Only)</h3>
+                <p>
+                    <strong>🕵️ Privacy-Focused Live OS</strong><br>
+                    <strong>🔐 Built for Anonymity & Security</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🌐 Internet Safe & No Trace Left</strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h2 class="section-title">About Our Live+Bootable USBs</h2>
+                <p>Welcome to VoltNexis's USB Shop — your one-stop solution for all operating system needs. We offer plug-and-play <strong>Bootable USBs</strong> preloaded with clean, verified installers and live operating systems. Whether you're reinstalling Windows, exploring Linux distros like Ubuntu or Parrot OS, or troubleshooting a dead system, our drives save you time and effort.</p>
+                <p>Our products are tested for reliability and speed, with installation and live versions available. Choose from storage sizes ranging from 8GB to 128GB — including 2-in-1 live + install boot setups.</p>
+                <p>Every USB is created on-demand using industry tools, ensuring latest versions and error-free media. Easy returns and fast delivery across India.</p>
+                
+                <h3 style="margin-top: 40px;">Top Features of VoltNexis Live USBs:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;<strong>Superfast Transfer Speeds:</strong> Our USB 3.0 technology achieves speeds up to 150MB/s, ensuring fast booting and smooth performance.</li>
+                    <li>&nbsp;&nbsp;<strong>Plug-and-Play OS:</strong> Instantly boot into operating systems like Ubuntu, Parrot OS, or Kali Linux from any PC—no installation needed.</li>
+                    <li>&nbsp;&nbsp;<strong>System Repair & Recovery:</strong> Use them to fix corrupted systems, reset passwords, and recover files from a dead OS.</li>
+                    <li>&nbsp;&nbsp;<strong>Safe and Isolated:</strong> Run a secure OS session without affecting the internal drive, perfect for privacy-conscious users and ethical hackers.</li>
+                    <li>&nbsp;&nbsp;<strong>Lightweight & Portable:</strong> Carry your favorite OS in your pocket, ideal for developers, tech enthusiasts, and students.</li>
+                </ul>
+                <h3 style="margin-top: 40px;">What’s Included:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp; Pre-configured Live OS with persistent storage (on supported models)</li>
+                    <li>&nbsp;&nbsp;️ Tested for hardware compatibility</li>
+                    <li>&nbsp;&nbsp;️ Fast bootloader setup for easy selection</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="faq-section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Will it work without installation?</div>
+                <div class="faq-answer">
+                    <p>Yes! Live USBs allow you to boot directly without installing anything on your hard drive. It's perfect for testing or temporary use.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is persistence included?</div>
+                <div class="faq-answer">
+                    <p>You can choose USBs with or without persistence, depending on your storage needs. Persistence allows you to save files and settings on the USB drive.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I use it?</div>
+                <div class="faq-answer">
+                    <p>Just plug it into your PC, go into the BIOS/UEFI settings, and select the USB as your boot device. You'll be ready to go!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // If no theme is saved (e.g., first visit or cleared cache),
+            // default to dark mode and save this preference for future visits
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- FAQ accordion functionality ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- Product Data Definitions for Live USBs ---
+        // Define all Live USB product data here, accessible by a unique ID
+        const allLiveProducts = {
+            "kali-linux-live-installer": {
+                name: "Kali Linux USB (Live + Installer)",
+                shortDesc: "Bootable Kali USB – live and install modes included.",
+                description: "This USB includes both Live and Installer modes for Kali Linux. Ideal for ethical hacking, penetration testing, or secure portable OS needs.",
+                image: "img/2/kali-2.png",
+                image2: "img/1/kali-1.png", // Ensure you have these images
+                image3: "img/kali.png", // Ensure you have these images
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Kali Linux ISO", "Live Boot & Installer", "Full Toolset Included"],
+                specs: [
+                   ["Boot Mode", "Legacy + UEFI"],
+                   ["USB Type", "USB 3.1"],
+                   ["Read Speed", "150MB/s"],
+                   ["Live Boot", "Included"],
+                   ["Warranty", "5 Years"]
+                ]
+            },
+            "parrot-os-live-install": {
+                name: "Parrot OS USB (Live + Install)",
+                shortDesc: "Secure OS for Ethical Hacking.",
+                description: "Parrot OS is a lightweight security and privacy-focused Linux distro for ethical hacking and forensic tasks.",
+                image: "img/2/parrot-2.png",
+                image2: "img/1/parrot-1.png",
+                image3: "img/parrot.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Parrot ISO", "Live + Installer", "Persistence Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "ubuntu-live-install": {
+                name: "Ubuntu USB (Live + Install)",
+                shortDesc: "Popular user-friendly Linux OS.",
+                description: "Ubuntu is one of the most popular Linux distributions designed for beginners and professionals alike.",
+                image: "img/2/ubuntu-2.png",
+                image2: "img/1/ubuntu-1.png",
+                image3: "img/ubuntu-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Ubuntu ISO", "Live + Installer", "Long-Term Support"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Enabled"], 
+                  ["Persistence Support", "Yes"], 
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "linux-mint-live-install": {
+                name: "Linux Mint USB (Live + Install)",
+                shortDesc: "User-friendly Linux OS with a clean interface.",
+                description: "Linux Mint is a modern, elegant and comfortable operating system which is both powerful and easy to use.",
+                image: "img/2/mint-2.png",
+                image2: "img/1/mint-1.png",
+                image3: "img/mint-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Linux Mint ISO (All Editions)", "Live + Installer Setup", "Persistence Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Enabled"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "zorin-os-live-install": {
+                name: "Zorin OS USB (Live + Install)",
+                shortDesc: "Windows-like interface, easy for new users.",
+                description: "Zorin OS is designed to make your computer faster, more powerful, and secure while keeping a familiar layout.",
+                image: "img/2/zorin-2.png",
+                image2: "img/1/zorin-1.png",
+                image3: "img/zorin-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Zorin ISO", "Live + Installer", "Persistence Supported"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "pop-os-live-install": {
+                name: "Pop!_OS USB (Live + Install)",
+                shortDesc: "Developer-focused Ubuntu-based OS.",
+                description: "Pop!_OS is a powerful Linux distribution by System76 built for STEM and creative professionals.",
+                image: "img/2/popos-2.png",
+                image2: "img/1/pop-1.png",
+                image3: "img/popos-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Pop!_OS ISO", "Live + Installer Setup", "Persistent Option"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "UEFI + Legacy"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "elementary-os-live-install": {
+                name: "Elementary OS USB (Live + Install)",
+                shortDesc: "Beautiful, fast and privacy-respecting.",
+                description: "elementary OS is a Linux distribution focused on a clean and consistent interface similar to macOS.",
+                image: "img/2/elementary-2.png",
+                image2: "img/1/elementary-1.png",
+                image3: "img/elementary-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["elementary ISO", "Live Boot + Installer", "Persistence Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Enabled"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "manjaro-live-install": {
+                name: "Manjaro USB (Live + Install)",
+                shortDesc: "Arch-based beginner-friendly OS.",
+                description: "Manjaro is a user-friendly Linux distribution based on the Arch operating system.",
+                image: "img/2/manjaro-2.png",
+                image2: "img/1/manjaro-1.png",
+                image3: "img/manjaro-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Manjaro ISO", "Live + Installer", "Graphical Boot Menu"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Both Supported"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "debian-live-install": {
+                name: "Debian USB (Live + Install)",
+                shortDesc: "Stable and universal Linux OS.",
+                description: "Debian is a community-driven Linux distro known for its reliability and extensive software repositories.",
+                image: "img/2/debian-2.png",
+                image2: "img/1/debian-1.png",
+                image3: "img/debian-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Debian ISO", "Live + Installer", "Persistence Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "UEFI & Legacy"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "arch-linux-live-install": {
+                name: "Arch Linux USB (Live + Install)",
+                shortDesc: "Minimal and customizable Linux distro.",
+                description: "Arch Linux is a lightweight and flexible Linux distribution that follows a rolling release model.",
+                image: "img/2/arch-2.png",
+                image2: "img/1/arch-1.png",
+                image3: "img/arch-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Arch ISO", "Installer + Boot Tools", "Documentation Included"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Manual Legacy/UEFI"],
+                  ["Live OS Mode", "Manual Setup"],
+                  ["Persistence Support", "Advanced Users"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "mx-linux-live-install": {
+                name: "MX Linux USB (Live + Install)",
+                shortDesc: "Efficient and stable midweight OS.",
+                description: "MX Linux is a cooperative venture between antiX and former MEPIS communities, a fast and responsive OS.",
+                image: "img/2/mx-linux-2.png",
+                image2: "img/1/mxlinux-1.png",
+                image3: "img/mxlinux-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["MX Linux ISO", "Live + Installer", "Persistence Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "garuda-linux-live-install": {
+                name: "Garuda Linux USB (Live + Install)",
+                shortDesc: "Arch-based gaming & performance OS.",
+                description: "Garuda Linux is a performance-oriented distro based on Arch Linux featuring Btrfs and zRAM.",
+                image: "img/2/garuda-2.png",
+                image2: "img/1/garuda-1.png",
+                image3: "img/garuda-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Garuda ISO", "Live + Installer", "Gaming Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "UEFI Preferred"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Yes"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "blackarch-live-install": {
+                name: "BlackArch USB (Live + Install)",
+                shortDesc: "Powerful Arch-based pentesting OS.",
+                description: "BlackArch is an Arch Linux-based penetration testing distribution for security researchers and professionals.",
+                image: "img/2/blackarch-2.png",
+                image2: "img/1/blackarch-1.png",
+                image3: "img/blackarch-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["BlackArch ISO", "Installer + Live Tools", "USB Boot Ready"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "UEFI"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Limited"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "slax-live-install": {
+                name: "Slax USB (Live + Install)",
+                shortDesc: "Lightweight Live Linux OS.",
+                description: "Slax is a minimalist, modular Linux distribution with a focus on portability and quick boot times.",
+                image: "img/2/slax-2.png",
+                image2: "img/1/slax-1.png",
+                image3: "img/slax-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Slax ISO", "Live Boot Enabled", "Fast Boot USB"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "Legacy + UEFI"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "Optional"],
+                  ["Warranty", "5 Years"]
+                ]
+            },
+            "tails-os-live-only": {
+                name: "Tails OS USB (Live Only)", // Note: This product explicitly states "Live Only" in its name for the product detail page logic.
+                shortDesc: "Privacy-focused Live OS.",
+                description: "Tails is a security-focused Debian-based Linux distribution aimed at preserving privacy and anonymity.",
+                image: "img/2/tails-2.png",
+                image2: "img/1/tails-1.png",
+                image3: "img/tails-live.png",
+                sizes: [
+                  { label: "8GB", price: 299 },
+                  { label: "16GB", price: 399 },
+                  { label: "32GB", price: 499 },
+                  { label: "64GB", price: 699 },
+                  { label: "128GB", price: 999 }
+                ],
+                included: ["Tails ISO", "Live Only", "Tor & Privacy Tools"],
+                specs: [
+                  ["USB Type", "USB 3.1"],
+                  ["Boot Mode", "UEFI Recommended"],
+                  ["Live OS Mode", "Yes"],
+                  ["Persistence Support", "No"],
+                  ["Warranty", "5 Years"]
+                ]
+            }
+        };
+
+        // --- Function to handle product clicks and pass data ---
+        function selectProduct(productInfo) {
+            sessionStorage.setItem("liveProduct", JSON.stringify(productInfo));
+            // IMPORTANT: Ensure this redirects to your universal product detail page
+            window.location.href = "product.html"; // Corrected path
+        }
+
+        // --- Attach Click Listeners to Product Cards (after DOM content is loaded) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.dataset.productId; // Get the unique ID from data-product-id
+                    const productInfo = allLiveProducts[productId]; // Look up the product data
+
+                    if (productInfo) {
+                        selectProduct(productInfo); // Call selectProduct with the retrieved data
+                    } else {
+                        console.error("Error: Product data not found for ID:", productId);
+                        // Optional: show a user-friendly error message
+                    }
+                });
+            });
+        });
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Live Linux USB Drives",
+      "image": "https://voltnexis.github.io/shop.voltnexis.github.io/img/live-usb.png",
+      "description": "Plug-and-play USBs preloaded with Live Linux distributions: Kali Linux, Ubuntu, Parrot OS, and more.",
+      "brand": {
+        "@type": "Brand",
+        "name": "VoltNexis"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "price": "299.00",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltNexis Special USB Kits</title>
+    <meta name="description" content="Explore VoltNexis's Special USB Kits: Kali, Parrot, Dual OS, and more. Advanced tools for every tech enthusiast.">
+    <meta name="keywords" content="USB kit, Kali Linux, Parrot OS, Dual OS, cybersecurity tools, VoltNexis">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* --- Root Variables for Theme --- */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        /* --- Global Base Styles --- */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation (Hamburger) --- */
+        .hamburger {
+            display: none; /* Hidden by default, shown in media query */
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px; /* Below the header */
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger on small screens */
+            }
+        }
+
+        /* --- Hero Section (Page Specific) --- */
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x400/2c3e50/ffffff?text=USB+Kits'); /* Placeholder for specific kit hero image */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+
+        /* --- Product Grid & Cards --- */
+        .product-grid-section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .section-title {
+            color: var(--light-text);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .product-cards-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 10px;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .product-card h3 {
+            color: var(--light-text);
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #777;
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .product-card p {
+            color: #ccc;
+        }
+
+        /* --- Info Section --- */
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .info-section {
+            border-color: #3c546b;
+        }
+
+        .info-section h2, .info-section h3 {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .info-section h2, body.dark-mode .info-section h3 {
+            color: var(--light-text);
+        }
+
+        .info-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .info-section li::before {
+            content: '✔️';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -20px;
+        }
+
+        /* --- FAQ Section --- */
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 2; /* Ensures it's on the right */
+            }
+            
+            .product-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">
+                <i class="fa-solid fa-bolt"></i> VoltNexis
+            </a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>VoltNexis Special USB Kits</h1>
+                <p>Advanced Live & Bootable USB Kits for Cybersecurity, IT Troubleshooting, and Dual OS Solutions. Unleash the full potential of your tech.</p>
+            </div>
+        </section>
+
+        <section class="product-grid-section">
+            <div class="container">
+                <h2 class="section-title">Our Premium Kits</h2>
+                <div class="product-cards-list">
+          
+                    <!-- Offline Survival Box -->
+                    <div class="product-card" data-product-id="offline-survival-box">
+                        <img src="img/kit/offline_survival _kit.webp" alt="Offline Survival Box">
+                        <h3>Offline Survival Box</h3>
+                        <p>
+                            <strong>📦 Emergency Offline Resources</strong><br>
+                            <strong>📚 Includes PDFs, Tools, Guides</strong><br>
+                            <strong>💽 USB 3.0 • 64GB Capacity</strong><br>
+                            <strong>🛠️ No Internet Required</strong>
+                        </p>
+                    </div>
+
+                    <!-- VoltNexis “Hack In A Box” USB Kit -->
+                    <div class="product-card" data-product-id="hack-in-a-box">
+                        <img src="img/kit/hackinabox.webp" alt="Hack In A Box USB Kit">
+                        <h3>VoltNexis “Hack In A Box” USB Kit</h3>
+                        <p>
+                            <strong>🧠 Ethical Hacking Tools & Scripts</strong><br>
+                            <strong>🎯 Preconfigured for Penetration Testing</strong><br>
+                            <strong>💽 USB 3.0 • 32GB</strong><br>
+                            <strong>🧩 Legacy + UEFI Boot Support</strong>
+                        </p>
+                    </div>
+
+                    <!-- Mini Cybersecurity Training Kit -->
+                    <div class="product-card" data-product-id="mini-cyber-kit">
+                        <img src="img/kit/CStrain_kit.webp" alt="Mini Cybersecurity Training Kit">
+                        <h3>Mini Cybersecurity Training Kit</h3>
+                        <p>
+                            <strong>🔐 USB Toolkit + Online Portal Access</strong><br>
+                            <strong>📘 Beginner-Friendly Modules</strong><br>
+                            <strong>💽 USB 3.0 • 16GB</strong><br>
+                            <strong>🌐 Includes Online Dashboard</strong>
+                        </p>
+                    </div>
+
+                    <!-- VoltNexis Creation Kit -->
+                    <div class="product-card" data-product-id="voltnexis-creation-kit">
+                        <img src="img/kit/creation_kit.webp" alt="VoltNexis Creation Kit">
+                        <h3>VoltNexis Creation Kit</h3>
+                        <p>
+                            <strong>💡 Live OS + Installer Combo</strong><br>
+                            <strong>🧰 Developer Tools Preloaded</strong><br>
+                            <strong>💽 USB 3.1 • 64GB</strong><br>
+                            <strong>🧩 Legacy + UEFI Compatible</strong>
+                        </p>
+                    </div>
+
+                    <!-- Exam Boot USB -->
+                    <div class="product-card" data-product-id="exam-boot-usb">
+                        <img src="img/kit/exam_boot.webp" alt="Exam Boot USB">
+                        <h3>Exam Boot USB</h3>
+                        <p>
+                            <strong>📚 Offline Study OS (JEE/NEET/UPSC)</strong><br>
+                            <strong>📝 Includes Notes, Practice Sets</strong><br>
+                            <strong>💽 USB 3.0 • 32GB</strong><br>
+                            <strong>🚫 No Internet Required</strong>
+                        </p>
+                    </div>
+
+                    <!-- School Lab OS USB -->
+                    <div class="product-card" data-product-id="school-lab-os">
+                        <img src="img/kit/school_lab.webp" alt="School Lab OS USB">
+                        <h3>School Lab OS USB</h3>
+                        <p>
+                            <strong>🔬 Coding & Science Lab Environment</strong><br>
+                            <strong>👨‍🏫 Ideal for School PCs & Labs</strong><br>
+                            <strong>💽 USB 3.0 • 32GB</strong><br>
+                            <strong>🧩 Legacy + UEFI Support</strong>
+                        </p>
+                    </div>
+
+
+                    <!-- Dual OS Kit -->
+                    <div class="product-card" data-product-id="dual-os-kit">
+                        <img src="img/kit/dualos_kit.webp" alt="Dual OS Kit">
+                        <h3>Dual OS Kit</h3>
+                        <p>
+                            <strong>✌️ Two OSes on One USB</strong><br>
+                            <strong>⚙️ Pre-configured Dual Boot</strong><br>
+                            <strong>💽 USB 3.2 • Read: 180MB/s</strong><br>
+                            <strong>🌐 Choose Your Distros</strong>
+                        </p>
+                    </div>
+                    
+                    <!-- VoltNexis Max Kit -->
+                    <div class="product-card" data-product-id="voltnexis-max-kit">
+                        <img src="img/kit/ve_maxkit.webp" alt="VoltNexis Max Kit">
+                        <h3>VoltNexis Max Kit</h3>
+                        <p>
+                            <strong>🚀 Kali + Parrot + Tools & Launcher</strong><br>
+                            <strong>📦 Includes Wallpapers + Sticker Image</strong><br>
+                            <strong>💽 USB 3.2 • Read: 200MB/s</strong><br>
+                            <strong>🧩 Legacy + UEFI Support</strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h2 class="section-title">Unlock Advanced Capabilities with VoltNexis Kits</h2>
+                <p>VoltNexis Special USB Kits are designed for those who demand more from their technology. Whether you're an IT professional, a student, a developer, or a cybersecurity enthusiast, our curated kits provide specialized tools and operating systems to meet your unique needs. These aren't just USB drives; they're complete solutions engineered for specific tasks.</p>
+                <p>From **Offline Survival Boxes** packed with essential resources for disconnected environments, to **"Hack In A Box"** kits for ethical penetration testing, and **Dual OS Kits** offering flexibility with multiple operating systems, each kit is meticulously prepared. We also offer **Exam Boot USBs** for secure offline testing, and **School Lab OS USBs** to create portable learning environments.</p>
+                <p>Each kit is built with high-speed USB 3.0/3.1/3.2 drives, ensuring rapid boot times and efficient data transfer. All contents are verified, up-to-date, and designed for ease of use across various systems supporting Legacy and UEFI boot modes. Equip yourself with VoltNexis and take control of your digital world.</p>
+                
+                <h3 style="margin-top: 40px;">Key Features of VoltNexis Special USB Kits:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;<strong>Specialized Functionality:</strong> Kits tailored for ethical hacking, system recovery, offline learning, development, and dual-booting.</li>
+                    <li>&nbsp;&nbsp;<strong>High-Speed Performance:</strong> Built with USB 3.0 or higher drives for optimal read/write speeds, reducing waiting times.</li>
+                    <li>&nbsp;&nbsp;<strong>Comprehensive Content:</strong> Includes pre-configured OS, essential tools, guides, and resources relevant to the kit's purpose.</li>
+                    <li>&nbsp;&nbsp;<strong>Universal Boot Compatibility:</strong> Designed to boot seamlessly on most modern and legacy systems supporting Legacy and UEFI.</li>
+                    <li>&nbsp;&nbsp;<strong>Reliable & Tested:</strong> Each kit undergoes rigorous testing to ensure stability, reliability, and error-free operation.</li>
+                </ul>
+                <h3 style="margin-top: 40px;">What’s Included:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;A high-quality USB drive (capacity varies by kit) preloaded with the specified operating systems and tools.</li>
+                    <li>&nbsp;&nbsp;Digital or printed guides/manuals to help you maximize the kit's potential.</li>
+                    <li>&nbsp;&nbsp;Support for both Live environment and full installation (where applicable).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="faq-section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What makes these "Special USB Kits" different from standard Live USBs?</div>
+                <div class="faq-answer">
+                    <p>Our Special USB Kits are highly curated solutions designed for specific advanced use cases like ethical hacking, comprehensive system recovery, secure offline environments, or running multiple OSes. They often include specialized software, detailed guides, and pre-configurations that go beyond a simple Live OS.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I use these kits on any computer?</div>
+                <div class="faq-answer">
+                    <p>These kits are designed for broad compatibility, supporting both Legacy BIOS and UEFI boot modes found in most modern and older PCs. As long as your computer can boot from a USB drive, our kits should work seamlessly.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Are the ethical hacking tools legal to use?</div>
+                <div class="faq-answer">
+                    <p>The ethical hacking tools in kits like "Hack In A Box" are intended strictly for educational purposes, personal learning, and testing your *own* networks and systems. Unauthorized use against any other network or system is illegal and unethical.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is an "Offline Survival Box" used for?</div>
+                <div class="faq-answer">
+                    <p>The Offline Survival Box provides critical information and tools in scenarios without internet access. It can include essential software, manuals, troubleshooting guides, and educational content that's accessible anytime, anywhere, ensuring you're prepared for unexpected outages or remote work.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can the "Dual OS Kit" install both operating systems on my computer?</div>
+                <div class="faq-answer">
+                    <p>The Dual OS Kit provides two operating systems on a single USB for portable use or installation. While it enables you to install both OSes to your computer's hard drive (creating a dual-boot setup), it's crucial to follow proper partitioning and installation procedures to avoid data loss.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/voltnexis"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // If no theme is saved (first visit or cleared cache),
+            // default to dark mode and save this preference for future visits
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- FAQ accordion functionality ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- Product Data Definitions ---
+        // Define all kit product data here, accessible by a unique ID
+        const allKitProducts = {
+            "offline-survival-box": {
+                name: "Offline Survival Box",
+                shortDesc: "Emergency Offline Resources",
+                description: "A crucial kit for situations without internet access. Includes essential PDFs, troubleshooting tools, and survival guides to keep you operational and informed.",
+                image: "https://placehold.co/400x300/e74c3c/ffffff?text=Offline+Survival+Box+3",
+                image2: "https://placehold.co/400x300/e74c3c/ffffff?text=Offline+Survival+Box+2",
+                image3: "img/kit/offline-survival_kit.webp",
+                sizes: [
+                    { label: "64GB", price: 799 },
+                    { label: "128GB", price: 1099 }
+                ],
+                included: ["64GB USB 3.0 Drive", "Offline Manuals & Guides (PDF)", "Basic Troubleshooting Tools", "Essential Software (Portable)"],
+                specs: [
+                    ["USB Type", "USB 3.0"],
+                    ["Capacity", "64GB"],
+                    ["No Internet Required", "Yes"],
+                    ["Warranty", "3 Years"]
+                ]
+            },
+            "hack-in-a-box": {
+                name: "VoltNexis “Hack In A Box” USB Kit",
+                shortDesc: "Ethical Hacking Tools + Guides",
+                description: "This kit is designed for ethical hacking and penetration testing. It includes a bootable USB pre-configured with essential tools and scripts for network analysis and security assessments.",
+                image: "https://placehold.co/400x300/3498db/ffffff?text=Hack+In+A+Box+3",
+                image2: "https://placehold.co/400x300/3498db/ffffff?text=Hack+In+A+Box+2",
+                image3: "img/kit/hackinabox.webp",
+                sizes: [
+                    { label: "32GB", price: 899 },
+                    { label: "64GB", price: 1099 }
+                ],
+                included: ["32GB USB 3.0 Drive", "Preconfigured Ethical Hacking OS (e.g., Kali or Parrot)", "Collection of Hacking Tools & Scripts", "Digital Guides for Ethical Hacking"],
+                specs: [
+                    ["Boot Support", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.0"],
+                    ["Capacity", "32GB"],
+                    ["Preconfigured", "Yes"],
+                    ["Warranty", "5 Years"]
+                ]
+            },
+            "mini-cyber-kit": {
+                name: "Mini Cybersecurity Training Kit",
+                shortDesc: "USB Toolkit + Online Portal Access",
+                description: "A perfect starter kit for aspiring cybersecurity professionals. This USB provides a toolkit for hands-on learning, complemented by access to an exclusive online portal with beginner-friendly modules.",
+                image: "https://placehold.co/400x300/2c3e50/ffffff?text=Mini+Cyber+Kit+3",
+                image2: "https://placehold.co/400x300/2c3e50/ffffff?text=Mini+Cyber+Kit+2",
+                image3: "img/kit/CStrain_kit.webp",
+                sizes: [
+                    { label: "16GB", price: 599 },
+                    { label: "32GB", price: 749 }
+                ],
+                included: ["16GB USB 3.0 Drive", "Basic Cybersecurity Tools", "Access to Online Training Portal", "Beginner-Friendly Modules"],
+                specs: [
+                    ["USB Type", "USB 3.0"],
+                    ["Capacity", "16GB"],
+                    ["Online Access", "Yes"],
+                    ["Target Audience", "Beginners"],
+                    ["Warranty", "2 Years"]
+                ]
+            },
+            "voltnexis-creation-kit": {
+                name: "VoltNexis Creation Kit",
+                shortDesc: "Live OS + Installer Combo & Developer Tools",
+                description: "Designed for developers and creators, this kit combines a live OS with installer capabilities and a suite of preloaded developer tools. Ideal for coding, design, and multimedia projects.",
+                image: "https://placehold.co/400x300/3498db/ffffff?text=Creation+Kit+3",
+                image2: "https://placehold.co/400x300/3498db/ffffff?text=Creation+Kit+2",
+                image3: "img/kit/creation.webp",
+                sizes: [
+                    { label: "64GB", price: 999 },
+                    { label: "128GB", price: 1299 }
+                ],
+                included: ["64GB USB 3.1 Drive", "Live OS + Installer Combo (e.g., Ubuntu Studio)", "Preloaded Developer Tools (IDEs, Frameworks)", "Multimedia Software"],
+                specs: [
+                    ["Boot Support", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Capacity", "64GB"],
+                    ["Target Audience", "Developers/Creators"],
+                    ["Warranty", "5 Years"]
+                ]
+            },
+            "exam-boot-usb": {
+                name: "Exam Boot USB",
+                shortDesc: "Offline Study OS (JEE/NEET/UPSC)",
+                description: "A secure, isolated offline operating system designed for students preparing for competitive exams like JEE, NEET, and UPSC. Comes preloaded with study materials, notes, and practice sets.",
+                image: "https://placehold.co/400x300/e74c3c/ffffff?text=Exam+Boot+3",
+                image2: "https://placehold.co/400x300/e74c3c/ffffff?text=Exam+Boot+2",
+                image3: "img/kit/exam_boot.png",
+                sizes: [
+                    { label: "32GB", price: 649 },
+                    { label: "64GB", price: 799 }
+                ],
+                included: ["32GB USB 3.0 Drive", "Offline Study OS", "Curated Notes & Practice Sets (PDFs)", "No Internet Required for Functionality"],
+                specs: [
+                    ["USB Type", "USB 3.0"],
+                    ["Capacity", "32GB"],
+                    ["Internet Requirement", "None"],
+                    ["Warranty", "3 Years"]
+                ]
+            },
+            "school-lab-os": {
+                name: "School Lab OS USB",
+                shortDesc: "Coding & Science Lab Environment",
+                description: "Transform any PC into a dedicated coding or science lab with this plug-and-play USB. Ideal for school computer labs or individual student use, providing a consistent learning environment.",
+                image: "https://placehold.co/400x300/2c3e50/ffffff?text=School+Lab+3",
+                image2: "https://placehold.co/400x300/2c3e50/ffffff?text=School+Lab+2",
+                image3: "img/kit/school_lab.webp",
+                sizes: [
+                    { label: "32GB", price: 599 },
+                    { label: "64GB", price: 749 }
+                ],
+                included: ["32GB USB 3.0 Drive", "Educational Linux OS (e.g., Edubuntu, Fedora Education)", "Preloaded Coding Environments & Science Software"],
+                specs: [
+                    ["Boot Support", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.0"],
+                    ["Capacity", "32GB"],
+                    ["Target Audience", "Students/Educators"],
+                    ["Warranty", "3 Years"]
+                ]
+            },
+            "dual-os-kit": {
+                name: "Dual OS Kit",
+                shortDesc: "Two Operating Systems on One USB",
+                description: "Get two powerful operating systems of your choice on a single, high-speed USB drive. Ideal for dual-booting or carrying multiple environments for different tasks.",
+                image: "https://placehold.co/400x300/5d9cec/ffffff?text=Dual+OS+Kit+3",
+                image2: "https://placehold.co/400x300/5d9cec/ffffff?text=Dual+OS+Kit+2",
+                image3: "img/kit/dualos_kit.webp",
+                sizes: [
+                    { label: "32GB", price: 799 },
+                    { label: "64GB", price: 949 },
+                    { label: "128GB", price: 1249 }
+                ],
+                included: ["USB 3.2 Drive", "Two OSes of your choice (pre-installed)", "Pre-configured Dual Boot Loader"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.2"],
+                    ["Read Speed", "180MB/s"],
+                    ["Write Speed", "120MB/s"],
+                    ["Warranty", "5 Years"]
+                ]
+            },
+            "voltnexis-max-kit": {
+                name: "VoltNexis Max Kit",
+                shortDesc: "Kali + Parrot + Tools & Launcher",
+                description: "The ultimate cybersecurity USB kit: Kali Linux, Parrot OS, essential payloads, full toolset, offline HTML launcher, custom wallpapers, and sticker image for a complete experience.",
+                image: "img/kit/max-kit-2.webp",
+                image2: "img/kit/max-kit-1.webp",
+                image3: "img/kit/ve_maxkit.webp",
+                sizes: [
+                    { label: "32GB", price: 849 },
+                    { label: "64GB", price: 999 },
+                    { label: "128GB", price: 1299 },
+                    { label: "256GB", price: 1799 }
+                ],
+                included: ["USB 3.2 Drive", "Kali Linux OS", "Parrot OS", "Full Toolsets (Hacking, Forensics)", "Offline HTML Launcher", "Custom Wallpapers", "Sticker Image", "PDF Guides"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.2"],
+                    ["Read Speed", "200MB/s"],
+                    ["Write Speed", "150MB/s"],
+                    ["Warranty", "5 Years"]
+                ]
+            }
+        };
+
+        // --- Function to handle product clicks and pass data ---
+        function selectProduct(productInfo) {
+            sessionStorage.setItem("liveProduct", JSON.stringify(productInfo));
+            // IMPORTANT: Ensure this redirects to your universal product detail page
+            window.location.href = "product.html"; 
+        }
+
+        // --- Attach Click Listeners to Product Cards (after DOM content is loaded) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.dataset.productId; // Get the unique ID from data-product-id
+                    const productInfo = allKitProducts[productId]; // Look up the product data
+
+                    if (productInfo) {
+                        selectProduct(productInfo); // Call selectProduct with the retrieved data
+                    } else {
+                        console.error("Error: Product data not found for ID:", productId);
+                        // Optional: show a user-friendly error message
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

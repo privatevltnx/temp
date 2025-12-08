@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UPI Payment - VoltNexis Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Base styles for light mode */
+    :root {
+      --bg-body: #f5f7fa; /* Light grey body background */
+      --text-body: #333333; /* Dark grey for general text */
+      --bg-card: #ffffff; /* White for main container */
+      --bg-info-box: #f9fbfd; /* Off-white for info boxes like order summary */
+      --border-color: #e0e0e0; /* Light grey border */
+      --color-primary: #0e6c5f; /* Greenish blue for main heading/accents */
+      --color-primary-rgb: 14, 108, 95; /* RGB for primary color, used in shadows */
+      --bg-button-green: #28a745; /* Standard green for pay button */
+      --hover-button-green: #218838;
+      --bg-button-blue: #007BFF; /* Standard blue for proceed button */
+      --hover-button-blue: #0056b3;
+      --input-bg: #ffffff; /* White input background */
+      --input-text: #333333; /* Dark input text */
+      --input-border: #ccc; /* Input border */
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      --bg-body: #0D1117; /* Very dark blue-grey for overall background */
+      --text-body: #C9D1D9; /* Light grey for general text */
+      --bg-card: #161B22; /* Slightly lighter than body, for containers */
+      --bg-info-box: #1C2128; /* Even lighter for info boxes, subtle contrast */
+      --border-color: #30363D; /* Subtle, darker grey for borders */
+      --color-primary: #58A6FF; /* Vibrant blue for accents, links */
+      --color-primary-rgb: 88, 166, 255;
+      --bg-button-green: #2DA44E; /* Adjusted green for dark mode */
+      --hover-button-green: #2C8C46;
+      --bg-button-blue: #3E8EFF; /* Adjusted blue for dark mode */
+      --hover-button-blue: #347AEF;
+      --input-bg: #242D38; /* Darker, distinct input background */
+      --input-text: #C9D1D9; /* Light input text */
+      --input-border: #4F5968; /* A bit more prominent for inputs */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-body);
+      color: var(--text-body);
+      font-family: 'Poppins', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Center vertically on page */
+      min-height: 100vh;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .payment-container {
+      background-color: var(--bg-card);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 460px;
+      padding: 28px; /* Slightly increased padding */
+      border: 1px solid var(--border-color); /* Added border */
+      transition: background-color 0.5s ease, border-color 0.5s ease;
+      animation: fadeInScale 0.8s ease-out forwards; /* Fade in animation */
+      opacity: 0; /* Hidden by default for animation */
+      transform: scale(0.95); /* Slightly scaled down by default */
+    }
+    body.dark-mode .payment-container {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* Stronger shadow in dark mode */
+    }
+
+    h2 {
+      color: var(--color-primary);
+      font-size: 28px; /* Slightly larger heading */
+      margin-bottom: 24px;
+      text-align: center;
+      transition: color 0.5s ease;
+    }
+
+    .info-box { /* Unified class for order summary and product details */
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 18px; /* Increased padding */
+        background-color: var(--bg-info-box);
+        margin-bottom: 16px; /* Spacing between info boxes */
+        transition: background-color 0.5s ease, border-color 0.5s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        text-align: left; /* Ensure text alignment is left within info boxes */
+    }
+    body.dark-mode .info-box {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* More visible shadow in dark mode */
+    }
+    .info-box p.font-semibold {
+        margin-bottom: 10px; /* Space below section title */
+    }
+
+    label {
+      display: block;
+      margin: 12px 0; /* Adjusted margin */
+      cursor: pointer;
+      font-weight: 500; /* Medium font weight */
+    }
+
+    input[type="radio"] {
+      margin-right: 10px; /* Increased margin */
+      transform: scale(1.2); /* Slightly larger radio buttons */
+      accent-color: var(--color-primary); /* Style radio button with primary color */
+    }
+
+    #upiInputField {
+      display: flex;
+      align-items: center;
+      margin-top: 15px; /* Adjusted margin */
+      background-color: var(--input-bg); /* Use input background variable */
+      border-radius: 6px; /* Rounded input field */
+      overflow: hidden; /* Ensures border-radius applies to children */
+      border: 1px solid var(--input-border); /* Use input border variable */
+    }
+
+    #upiId {
+      flex: 1;
+      padding: 10px 12px; /* Adjusted padding */
+      border: none; /* Removed individual border, uses parent's */
+      background-color: var(--input-bg); /* Use input background variable */
+      color: var(--input-text); /* Use input text variable */
+      outline: none;
+      font-size: 16px; /* Consistent font size */
+    }
+    #upiId:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.3);
+    }
+
+    #payBtn {
+      background-color: var(--bg-button-green);
+      color: white;
+      padding: 10px 18px; /* Adjusted padding */
+      border: none;
+      border-radius: 0 6px 6px 0; /* Rounded only on right side */
+      cursor: pointer;
+      font-weight: 600; /* Bolder text */
+      transition: background-color 0.3s ease;
+    }
+    #payBtn:hover {
+      background-color: var(--hover-button-green);
+    }
+
+    #payButton {
+      background-color: var(--bg-button-blue);
+      color: white;
+      padding: 12px 36px; /* Larger padding for main action button */
+      border: none;
+      border-radius: 8px; /* More rounded corners */
+      cursor: pointer;
+      font-weight: 700; /* Very bold */
+      font-size: 18px; /* Larger text */
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #payButton:hover {
+      background-color: var(--hover-button-blue);
+      transform: translateY(-2px); /* Slight lift on hover */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    body.dark-mode #payButton {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    #qrImage {
+      display: none;
+      width: 100%;
+      max-width: 280px; /* Slightly smaller QR code */
+      margin: 25px auto; /* More margin */
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Clearer shadow */
+      border: 1px solid var(--border-color); /* Added border to QR */
+      transition: border-color 0.5s ease;
+    }
+    body.dark-mode #qrImage {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .order-summary-item { /* Standardized item display for all info boxes */
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        font-size: 15px;
+    }
+    .order-summary-item.total {
+        font-weight: 700;
+        border-top: 1px solid var(--border-color);
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    /* Animations */
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Custom alert/modal styles */
+    .custom-alert-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    .custom-alert-box {
+        background-color: var(--bg-card); /* Use card background for alert box */
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        max-width: 90%;
+        width: 320px;
+        color: var(--text-body); /* Use body text color */
+        transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    .custom-alert-box button {
+        background-color: var(--color-primary);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        margin-top: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Complete Your UPI Payment</h2>
+
+    <div class="info-box">
+        <p class="font-semibold mb-2">Order Summary:</p>
+        <div class="order-summary-item">
+            <span>Items Total:</span>
+            <span id="itemsTotalPrice">₹0.00</span>
+        </div>
+        <div class="order-summary-item">
+            <span>Delivery Fee:</span>
+            <span id="deliveryFeeSummary">₹0.00</span>
+        </div>
+        <div class="order-summary-item total">
+            <span>Payable Amount:</span>
+            <span id="payableAmountSummary">₹0.00</span>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <p class="font-semibold mb-2">Product Details:</p>
+        <div class="order-summary-item">
+            <span>Product Name:</span>
+            <span id="productName"></span>
+        </div>
+        <div class="order-summary-item">
+            <span>Size:</span>
+            <span id="productSize"></span>
+        </div>
+        <div class="order-summary-item">
+            <span>Persistence:</span>
+            <span id="productPersistence"></span>
+        </div>
+        <div id="firstOSDisplay" class="order-summary-item hidden">
+            <span>First OS:</span>
+            <span id="firstOSValue"></span>
+        </div>
+        <div id="secondOSDisplay" class="order-summary-item hidden">
+            <span>Second OS:</span>
+            <span id="secondOSValue"></span>
+        </div>
+        <div id="selectedVersionDisplay" class="order-summary-item hidden">
+            <span>Selected Version:</span>
+            <span id="selectedVersionValue"></span>
+        </div>
+    </div>
+
+
+    <div class="info-box" style="margin-top: 25px;">
+      <p class="font-semibold mb-2">Choose a UPI Option</p>
+      <label>
+        <input type="radio" name="upiOption" value="upiId" />
+        Pay via UPI ID
+      </label>
+      <div id="upiInputField" class="hidden">
+        <input type="text" id="upiId" placeholder="Enter your UPI ID" />
+        <button id="payBtn">Pay</button>
+      </div>
+      <label>
+        <input type="radio" name="upiOption" value="gpay" />
+        Scan with Google Pay
+      </label>
+      <label>
+        <input type="radio" name="upiOption" value="paytm" />
+        Scan with Paytm
+      </label>
+      <img id="qrImage" src="" alt="QR Code" /><br>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">    
+      <button id="payButton" onclick="confirmPayment()">
+          <h3>I Have Paid - Proceed</h3>
+      </button>
+    </div>
+    
+  </div>
+  
+  <script>
+    const upiOptions = document.getElementsByName("upiOption");
+    const upiInputField = document.getElementById("upiInputField");
+    const qrImage = document.getElementById("qrImage");
+    const payBtn = document.getElementById("payBtn");
+
+    let payableAmount = 0; // This will store the total amount including delivery fee.
+
+    // --- Theme Persistence Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // Default to dark mode if no theme is saved
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // Retrieve the total payable amount from session storage
+        const storedFinalPrice = sessionStorage.getItem("finalProductPrice");
+        if (storedFinalPrice) {
+            payableAmount = parseFloat(storedFinalPrice);
+        } else {
+            console.warn("No payable amount found in session storage. Defaulting to 0.");
+            payableAmount = 0;
+        }
+
+        // Retrieve product details from session storage
+        const productName = sessionStorage.getItem("productName") || "N/A";
+        const productSize = sessionStorage.getItem("productSize") || "N/A";
+        const productPersistence = sessionStorage.getItem("persistence") || "No";
+        const selectedVersion = sessionStorage.getItem("selectedVersion") || "N/A";
+        const firstOS = sessionStorage.getItem("firstOS") || "N/A";
+        const secondOS = sessionStorage.getItem("secondOS") || "N/A";
+
+        // Update the order summary display
+        updateOrderSummaryDisplay();
+        
+        // Populate product details
+        document.getElementById("productName").textContent = productName;
+        document.getElementById("productSize").textContent = productSize;
+        document.getElementById("productPersistence").textContent = productPersistence;
+
+        if (selectedVersion !== "N/A") {
+            document.getElementById("selectedVersionDisplay").classList.remove("hidden");
+            document.getElementById("selectedVersionValue").textContent = selectedVersion;
+        }
+        if (firstOS !== "N/A" || secondOS !== "N/A") {
+            if (firstOS !== "N/A") {
+                 document.getElementById("firstOSDisplay").classList.remove("hidden");
+                 document.getElementById("firstOSValue").textContent = firstOS;
+            }
+            if (secondOS !== "N/A") {
+                 document.getElementById("secondOSDisplay").classList.remove("hidden");
+                 document.getElementById("secondOSValue").textContent = secondOS;
+            }
+        }
+    });
+
+    // Function to update the order summary section
+    function updateOrderSummaryDisplay() {
+        const deliveryFee = 50; 
+        const itemsPrice = payableAmount - deliveryFee;
+
+        document.getElementById("itemsTotalPrice").textContent = `₹${itemsPrice.toFixed(2)}`;
+        document.getElementById("deliveryFeeSummary").textContent = `₹${deliveryFee.toFixed(2)}`;
+        document.getElementById("payableAmountSummary").textContent = `₹${payableAmount.toFixed(2)}`;
+    }
+
+
+    upiOptions.forEach((opt) => {
+      opt.addEventListener("change", () => {
+        if (opt.checked && opt.value === "upiId") {
+          upiInputField.classList.remove("hidden");
+          qrImage.style.display = "none";
+        } else if (opt.checked) {
+          upiInputField.classList.add("hidden");
+          // Using placeholder images. Replace with your actual QR code URLs.
+          // These placeholders are set to look decent in dark mode
+          if (opt.value === "gpay") {
+            qrImage.src = "img/GooglePay_QR.png"; 
+          } else if (opt.value === "paytm") {
+            qrImage.src = "https://placehold.co/300x300/1a1a2e/ffffff?text=Paytm+QR";
+          }
+          qrImage.style.display = "block";
+        }
+      });
+    });
+
+    payBtn.addEventListener("click", () => {
+      const upiId = document.getElementById("upiId").value;
+      if (!upiId || !upiId.includes("@")) {
+        showCustomAlert("Please enter a valid UPI ID.");
+        return;
+      }
+      showCustomAlert(`Payment of ₹${payableAmount.toFixed(2)} initiated to UPI ID: ${upiId}. Please complete the payment using your UPI app.`);
+      // In a real scenario, you'd integrate with a payment gateway here.
+      // For now, we proceed to the order confirmed page after this alert.
+      sessionStorage.setItem("paymentMethod", "upi"); // Set payment method for confirmation page
+      window.location.href = "order_confirmed_cod.html"; // Universal confirmation page
+    });
+
+    function confirmPayment() {
+        // This function is for the "I Have Paid - Proceed" button
+        const selectedOption = document.querySelector('input[name="upiOption"]:checked');
+        if (!selectedOption) {
+            showCustomAlert("Please select a UPI payment option first (UPI ID, Google Pay, or Paytm).");
+            return;
+        }
+
+        // If a QR code was selected, we assume the user intends to scan it.
+        // If UPI ID was selected, the 'Pay' button for UPI ID handles its flow.
+        if (selectedOption.value !== "upiId" || document.getElementById("upiId").value) {
+             sessionStorage.setItem("paymentMethod", "upi"); // Set payment method for confirmation page
+             window.location.href = "order_confirmed.html"; // Redirect to universal confirmation page
+        } else {
+             showCustomAlert("Please enter your UPI ID or select a QR code option.");
+        }
+    }
+
+    // --- Custom Alert/Modal Function (replaces alert()) ---
+    function showCustomAlert(message) {
+        const overlay = document.createElement('div');
+        overlay.classList.add('custom-alert-overlay');
+
+        const alertBox = document.createElement('div');
+        alertBox.classList.add('custom-alert-box');
+        alertBox.innerHTML = `<p>${message}</p><button onclick="closeCustomAlert()">OK</button>`;
+
+        overlay.appendChild(alertBox);
+        document.body.appendChild(overlay);
+
+        // Add dark mode class if body has it
+        if (document.body.classList.contains('dark-mode')) {
+            alertBox.classList.add('dark-mode');
+        }
+    }
+
+    function closeCustomAlert() {
+        const overlay = document.querySelector('.custom-alert-overlay');
+        if (overlay) {
+            overlay.remove();
+        }
+    }
+  </script>
+</body>
+</html>
+
+
+

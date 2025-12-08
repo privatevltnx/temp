@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Place Your Order - VoltNexis Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles for light mode */
+        :root {
+            --bg-body: #f4f7f6; /* Light mode body background */
+            --text-body: #333333; /* Light mode body text */
+            --bg-card: #ffffff; /* Light mode card background */
+            --bg-summary: #f4f7f6; /* Light mode summary background */
+            --border-color: #e0e0e0; /* Light mode border color */
+            --color-primary: #3498db; /* Blue primary color */
+            --color-primary-rgb: 52, 152, 219; /* RGB for light mode blue, used in shadows */
+            --color-text-input: #333333; /* Input text color */
+            --bg-input: #ffffff; /* Input background */
+            --border-input: #ddd; /* Input border */
+            --info-box-bg: #fffbe6; /* Light mode info box */
+            --info-box-border: #ffe58f; /* Light mode info box border */
+            --info-box-text: #664d03; /* Light mode info box text */
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --bg-body: #1a1a2e; /* Deep dark blue for overall background */
+            --text-body: #ecf0f1; /* Light, almost white text */
+            --bg-card: #2d3748; /* Slightly lighter charcoal blue for main card */
+            --bg-summary: #1f2937; /* Darker grey-blue for inset summary, creating depth */
+            --border-color: #5a738a; /* More visible blue-grey border for dark mode */
+            --color-primary: #7dd3fc; /* Vibrant light blue for accents */
+            --color-primary-rgb: 125, 211, 252; /* RGB for dark mode blue, used in shadows */
+            --color-text-input: #ecf0f1;
+            --bg-input: #2a3a4c; /* Distinct, slightly lighter input background */
+            --border-input: #5a738a; /* Matches general border color */
+            --info-box-bg: #3d3000; /* Desaturated, dark yellow for info box */
+            --info-box-border: #a08d00;
+            --info-box-text: #fbe864;
+        }
+
+        /* Global body styles using CSS variables */
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* Default Tailwind font */
+            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+            line-height: 1.5; /* Default Tailwind line-height */
+            /* Tailwind utility classes for layout */
+            @apply flex items-center justify-center min-h-screen;
+        }
+
+        /* Styles for the main container (div with product details and form) */
+        .main-content-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color); /* Explicit border for the main card */
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05); /* Default shadow */
+        }
+        body.dark-mode .main-content-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.2); /* Deeper shadow for dark mode */
+        }
+
+
+        /* Styles for elements within the main card */
+        .order-summary-box {
+            background-color: var(--bg-summary);
+            transition: background-color 0.5s ease;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* Default inset shadow */
+        }
+        body.dark-mode .order-summary-box {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4); /* Deeper inset shadow for dark mode */
+        }
+        
+        /* New styles for payment methods section and individual method cards */
+        .payment-methods-section {
+            border: 1px solid var(--border-color); /* Outer border for the whole payment section */
+            transition: border-color 0.5s ease;
+        }
+
+        .payment-method-card {
+            border: 1px solid var(--border-color); /* Inner border for each payment method option */
+            transition: border-color 0.5s ease;
+        }
+
+        .text-primary-color { /* Custom class for primary colored text */
+            color: var(--color-primary);
+            transition: color 0.5s ease;
+        }
+
+        /* Input field specific styling */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            background-color: var(--bg-input);
+            color: var(--color-text-input);
+            border: 1px solid var(--border-input);
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--color-primary);
+            outline: none;
+            /* Use RGB variable for consistent focus ring color */
+            box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.3);
+        }
+        /* Hidden utility class to manage display */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Custom alert/modal styles */
+        .custom-alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .custom-alert-box {
+            background-color: var(--bg-card); /* Use card background for alert box */
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 90%;
+            width: 320px;
+            color: var(--text-body); /* Use body text color */
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .custom-alert-box button {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-top: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Info box for COD */
+        #infoBox {
+            background-color: var(--info-box-bg);
+            border: 1px solid var(--info-box-border);
+            color: var(--info-box-text);
+            transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Styling for HR dividers */
+        .hr-divider {
+            border-top: 1px solid var(--border-color); /* Use variable for HR color */
+            margin: 1rem 0; /* Default margin for HR */
+        }
+
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="main-content-card p-6 rounded-xl shadow-lg w-full max-w-md">
+        <button onclick="placeOrder()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded mb-4">Place your order</button>
+
+        <hr class="my-4 hr-divider"> <!-- Changed to use hr-divider class -->
+
+        <!-- Order Summary -->
+        <div class="text-sm space-y-2 order-summary-box p-4 rounded shadow-inner">
+            <div class="flex justify-between font-bold border-t hr-divider pt-5"> <!-- Changed to use hr-divider class -->
+                <span>AMOUNT :</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Items</span>
+                <span id="itemAmount">₹0.00</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Delivery Fee</span>
+                <span id="deliveryFee">₹50.00</span>
+            </div>
+            <div class="flex justify-between font-bold border-t hr-divider pt-2"> <!-- Changed to use hr-divider class -->
+                <span>Payable Amount:</span>
+                <span id="totalAmount">₹0.00</span>
+            </div>
+        </div>
+
+        <hr class="my-4 hr-divider"> <!-- Changed to use hr-divider class -->
+
+        <!-- Payment Options -->
+        <div class="payment-methods-section rounded-md p-5"> <!-- New class name -->
+            <h1 class="text-2xl font-bold mb-6 text-primary-color">Payment Option</h1>
+            <div class="payment-method-card rounded-md p-4 mb-4"> <!-- New class name -->
+                <label class="inline-flex items-center">
+                    <input type="radio" name="payment" value="upi" onclick="selectMethod('upi')" class="form-radio mr-2"> Pay with UPI
+                </label>
+            </div>
+            <div class="payment-method-card rounded-md p-4"> <!-- New class name -->
+                <p class="text-sm font-semibold mb-2">Other Methods</p>
+                <div class="flex flex-col space-y-2">
+                    <div class="flex items-center">
+                        <label id="codLabel" class="inline-flex items-center">
+                            <input type="radio" id="codOption" name="payment" value="cod" onclick="selectMethod('cod')" class="form-radio mr-2"> Cash on Delivery (COD)
+                        </label>
+                        <span id="infoIcon" class="ml-2 cursor-pointer text-primary-color hidden" onclick="toggleInfoBox(event)">ℹ️</span> <!-- Used text-primary-color -->
+                    </div>
+                    <div id="infoBox" class="text-xs p-2 rounded mt-1 hidden">
+                        COD Only available in 673645 and 673639
+                    </div>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="payment" value="netbanking" onclick="selectMethod('netbanking')" class="form-radio mr-2"> Net Banking
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pincode Field (Hidden by Default) -->
+        <div id="pincodeField" class="mt-4 hidden">
+            <label for="codPincode" class="block text-sm font-medium mb-1">Enter Pincode:</label>
+            <input type="text" id="codPincode" maxlength="6" class="w-full rounded px-3 py-2" placeholder="e.g. 673645" oninput="validatePincode(this.value)" />
+        </div>
+
+        <hr class="my-4 hr-divider"> <!-- Changed to use hr-divider class -->
+
+        <!-- Address Section -->
+        <form id="addressForm" class="space-y-4" onsubmit="saveAddress(event)">
+            <div>
+                <label for="fullname" class="block text-sm font-medium">Full Name</label>
+                <input type="text" id="fullname" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <div>
+                <label for="street" class="block text-sm font-medium">Street Address</label>
+                <textarea id="street" required class="w-full rounded px-3 py-2 mt-1"></textarea>
+            </div>
+            <div>
+                <label for="city" class="block text-sm font-medium">Town/City</label>
+                <input type="text" id="city" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <div>
+                <label for="state" class="block text-sm font-medium">State</label>
+                <input type="text" id="state" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <div>
+                <label for="district" class="block text-sm font-medium">District</label>
+                <input type="text" id="district" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <div>
+                <label for="pincode" class="block text-sm font-medium">Pincode</label>
+                <input type="text" id="pincode" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <div>
+                <label for="phone" class="block text-sm font-medium">Phone Number</label>
+                <input type="text" id="phone" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium">Email</label>
+                <input type="email" id="email" required class="w-full rounded px-3 py-2 mt-1">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Save Address</button>
+        </form>
+
+        <!-- Address Review Panel -->
+        <div id="addressReview" class="hidden mt-6 p-4 border rounded-lg main-content-card">
+            <h2 class="text-lg font-semibold mb-2">Saved Address</h2>
+            <div id="reviewContent" class="text-sm"></div>
+            <button onclick="editAddress()" class="mt-4 text-primary-color hover:underline">Edit Address</button>
+        </div>
+    </div>
+
+    <script>
+        const deliveryFee = 50;
+        let productPrice = 0; // Will be set from sessionStorage
+
+        const allowedPincodes = ["673645", "673639"];
+        let isAddressSaved = false; // Flag to track if address is saved
+
+        // --- Theme Persistence Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                body.classList.add(currentTheme);
+            } else {
+                // Default to dark mode if no theme is saved (matches other pages)
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            }
+
+            // Retrieve product price from session storage and update UI
+            productPrice = parseInt(sessionStorage.getItem("productPrice")?.replace('₹', '') || "0");
+            updateOrderSummary();
+
+            // Load saved address on page load
+            const savedAddress = localStorage.getItem("shippingAddress");
+            if (savedAddress) {
+                const data = JSON.parse(savedAddress);
+                fillAddressForm(data); // Fill form, but keep hidden
+                displayAddressReview(data);
+                isAddressSaved = true;
+            } else {
+                document.getElementById("addressForm").classList.remove("hidden");
+                document.getElementById("addressReview").classList.add("hidden");
+                isAddressSaved = false;
+            }
+        });
+
+        // --- Order Summary Update Function ---
+        function updateOrderSummary() {
+            const itemAmountEl = document.getElementById("itemAmount");
+            const totalAmountEl = document.getElementById("totalAmount");
+            const deliveryFeeEl = document.getElementById("deliveryFee");
+
+            itemAmountEl.textContent = `₹${productPrice}.00`;
+            deliveryFeeEl.textContent = `₹${deliveryFee}.00`;
+            totalAmountEl.textContent = `₹${productPrice + deliveryFee}.00`;
+        }
+
+        // --- Payment Method Selection ---
+        function selectMethod(method) {
+            const pincodeField = document.getElementById("pincodeField");
+            const codPincodeInput = document.getElementById("codPincode");
+            const infoIcon = document.getElementById("infoIcon");
+            const infoBox = document.getElementById("infoBox");
+
+            // Hide all COD related elements first
+            pincodeField.classList.add("hidden");
+            infoIcon.classList.add("hidden");
+            infoBox.classList.add("hidden");
+            codPincodeInput.value = ''; // Clear pincode input when switching methods
+
+            if (method === 'cod') {
+                pincodeField.classList.remove("hidden");
+                // The info icon and box remain hidden until an invalid pincode is typed
+            }
+        }
+
+        // --- Pincode Validation Logic ---
+        function validatePincode(pincode) {
+            const infoIcon = document.getElementById("infoIcon");
+            const infoBox = document.getElementById("infoBox");
+            const codPincodeInput = document.getElementById("codPincode");
+
+            // Hide info box and icon initially, will be shown if validation fails
+            infoIcon.classList.add("hidden");
+            infoBox.classList.add("hidden");
+
+            if (pincode.length === 6) {
+                if (allowedPincodes.includes(pincode)) {
+                    // Valid pincode: ensure info icon/box are hidden
+                    infoIcon.classList.add("hidden");
+                    infoBox.classList.add("hidden");
+                } else {
+                    // Invalid pincode: show info icon, show info box, clear field
+                    infoIcon.classList.remove("hidden");
+                    infoBox.classList.remove("hidden");
+                    codPincodeInput.value = ''; // Clear the field as per requirement
+                }
+            }
+            // If pincode.length is not 6, infoIcon and infoBox remain hidden (their default state).
+        }
+
+        // --- Toggle Info Box for COD ---
+        function toggleInfoBox(event) {
+            event.preventDefault(); // Prevent default link behavior if applicable
+            const infoBox = document.getElementById("infoBox");
+            infoBox.classList.toggle("hidden");
+        }
+
+        // --- Save Address Logic ---
+        function saveAddress(e) {
+            e.preventDefault();
+            const data = {
+                fullname: document.getElementById("fullname").value,
+                street: document.getElementById("street").value,
+                city: document.getElementById("city").value,
+                state: document.getElementById("state").value,
+                district: document.getElementById("district").value,
+                pincode: document.getElementById("pincode").value,
+                phone: document.getElementById("phone").value,
+                email: document.getElementById("email").value
+            };
+
+            // Basic validation for required fields
+            const requiredFields = ['fullname', 'street', 'city', 'state', 'district', 'pincode', 'phone', 'email'];
+            const allFieldsFilled = requiredFields.every(field => data[field].trim() !== '');
+
+            if (!allFieldsFilled) {
+                showCustomAlert("Please fill in all address fields before saving.");
+                return;
+            }
+
+            localStorage.setItem("shippingAddress", JSON.stringify(data));
+            isAddressSaved = true; // Set flag to true
+            displayAddressReview(data);
+        }
+
+        // --- Fill Address Form with Data ---
+        function fillAddressForm(data) {
+            document.getElementById("fullname").value = data.fullname;
+            document.getElementById("street").value = data.street;
+            document.getElementById("city").value = data.city;
+            document.getElementById("state").value = data.state;
+            document.getElementById("district").value = data.district;
+            document.getElementById("pincode").value = data.pincode;
+            document.getElementById("phone").value = data.phone;
+            document.getElementById("email").value = data.email;
+        }
+
+        // --- Display Address Review ---
+        function displayAddressReview(data) {
+            const content = document.getElementById("reviewContent");
+            content.innerHTML = `
+                <p><strong>${data.fullname}</strong></p>
+                <p>${data.street}, ${data.city}</p>
+                <p>${data.district}, ${data.state} - ${data.pincode}</p>
+                <p>${data.phone} | ${data.email}</p>
+            `;
+            document.getElementById("addressForm").classList.add("hidden");
+            document.getElementById("addressReview").classList.remove("hidden");
+        }
+
+        // --- Edit Address Logic ---
+        function editAddress() {
+            const saved = JSON.parse(localStorage.getItem("shippingAddress"));
+            if (saved) {
+                fillAddressForm(saved);
+                document.getElementById("addressForm").classList.remove("hidden");
+                document.getElementById("addressReview").classList.add("hidden");
+                isAddressSaved = false; // Reset flag when editing
+            }
+        }
+
+        // --- Place Order Logic ---
+        function placeOrder() {
+            if (!isAddressSaved) {
+                showCustomAlert("Please save your shipping address before placing the order.");
+                return;
+            }
+
+            const selectedPayment = document.querySelector('input[name="payment"]:checked');
+            if (!selectedPayment) {
+                showCustomAlert("Please select a payment method.");
+                return;
+            }
+
+            const method = selectedPayment.value;
+            const codPincodeInput = document.getElementById("codPincode");
+
+            if (method === "cod") {
+                // Ensure COD pincode is valid if COD is selected
+                if (!codPincodeInput.value || codPincodeInput.value.length !== 6 || !allowedPincodes.includes(codPincodeInput.value)) {
+                    showCustomAlert("Please enter a valid pincode for Cash on Delivery.");
+                    // Trigger pincode validation to show info if it's invalid
+                    validatePincode(codPincodeInput.value); 
+                    return;
+                }
+            }
+            
+            // Save payment method and address data to sessionStorage for next pages
+            sessionStorage.setItem("paymentMethod", method);
+            sessionStorage.setItem("finalProductPrice", (productPrice + deliveryFee).toString()); // Store final payable amount
+
+            const address = JSON.parse(localStorage.getItem("shippingAddress"));
+            if (address) { // This check should ideally not be needed if isAddressSaved works correctly
+                sessionStorage.setItem("shippingAddressDetails", JSON.stringify(address));
+            }
+
+            // Redirect based on payment method
+            if (method === "cod") {
+                window.location.href = "order_confirmed.html";
+            } else if (method === "upi") {
+                window.location.href = "upi_payment.html";
+            } else {
+                showCustomAlert("Selected payment method not supported yet. Please choose UPI or COD.");
+            }
+        }
+
+        // --- Custom Alert/Modal Function (replaces alert()) ---
+        function showCustomAlert(message) {
+            const overlay = document.createElement('div');
+            overlay.classList.add('custom-alert-overlay');
+
+            const alertBox = document.createElement('div');
+            alertBox.classList.add('custom-alert-box');
+            alertBox.innerHTML = `<p>${message}</p><button onclick="closeCustomAlert()">OK</button>`;
+
+            overlay.appendChild(alertBox);
+            document.body.appendChild(overlay);
+
+            // Add dark mode class if body has it
+            if (document.body.classList.contains('dark-mode')) {
+                alertBox.classList.add('dark-mode');
+            }
+        }
+
+        function closeCustomAlert() {
+            const overlay = document.querySelector('.custom-alert-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

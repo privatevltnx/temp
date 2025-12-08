@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootable USB Drives - VoltNexis Shop</title>
+    <meta name="description" content="Plug and install Windows, Ubuntu, Kali, or Parrot OS using our high-quality bootable USB drives.">
+    <meta name="keywords" content="Bootable USB, Windows installer USB, Linux installer USB, Ubuntu boot, Kali boot, VoltNexis, OS install">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <meta property="og:title" content="Bootable USB Drives - VoltNexis Shop" />
+    <meta property="og:description" content="Plug and install Windows, Ubuntu, Kali, or Parrot OS using our high-quality bootable USB drives." />
+    <meta property="og:image" content="https://voltnexis.github.io/shop.voltnexis.github.io/img/boot-usb-cover.png" />
+    <meta property="og:url" content="https://voltnexis.github.io/shop.voltnexis.github.io/boot_usb.html" />
+    <meta property="og:type" content="product" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bootable USB Drives - VoltNexis Shop" />
+    <meta name="twitter:description" content="Get ready-to-use installer USBs for Windows and Linux. Cash on Delivery & fast shipping.">
+    <meta name="twitter:image" content="https://voltnexis.github.io/shop.voltnexis.github.io/img/boot-usb-cover.png" />
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation --- */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Apply animations to new page-hero and product cards */
+        .page-hero, .section-title, .page-hero p {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+        
+        .page-hero { animation-delay: 0.1s; }
+        .section-title { animation-delay: 0.3s; } /* Adjusted for better flow */
+        .page-hero p { animation-delay: 0.5s; } /* Adjusted for better flow */
+
+        .product-card {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.7s; } /* Start later after page-hero */
+        .product-card:nth-child(2) { animation-delay: 0.8s; }
+        .product-card:nth-child(3) { animation-delay: 0.9s; }
+        .product-card:nth-child(4) { animation-delay: 1.0s; }
+        .product-card:nth-child(5) { animation-delay: 1.1s; }
+        .product-card:nth-child(6) { animation-delay: 1.2s; }
+        .product-card:nth-child(7) { animation-delay: 1.3s; }
+        .product-card:nth-child(8) { animation-delay: 1.4s; }
+        .product-card:nth-child(9) { animation-delay: 1.5s; }
+        .product-card:nth-child(10) { animation-delay: 1.6s; }
+        .product-card:nth-child(11) { animation-delay: 1.7s; }
+        .product-card:nth-child(12) { animation-delay: 1.8s; }
+        .product-card:nth-child(13) { animation-delay: 1.9s; }
+        .product-card:nth-child(14) { animation-delay: 2.0s; }
+        .product-card:nth-child(15) { animation-delay: 2.1s; }
+
+
+        /* --- Page Layout --- */
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x400/2c3e50/ffffff?text=Bootable+USBs'); /* Placeholder for specific boot hero image */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+
+        /* Replaced .product-list with .product-cards-list to match kit_usb.html */
+        .product-cards-list {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; /* Added gap for better spacing */
+        }
+
+        /* New .product-card styles from kit_usb.html */
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px; /* Increased padding */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Increased hover lift */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%; /* Make image take full width of card */
+            max-height: 200px; /* Limit image height */
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 10px; /* Rounded image corners */
+            background: none; /* Removed background from image itself */
+            padding: 0; /* Removed padding from image itself */
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem; /* Consistent with kit_usb.html */
+            margin: 0 0 10px;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .product-card h3 {
+            color: var(--light-text);
+        }
+
+        .product-card p {
+            font-size: 1rem; /* Consistent with kit_usb.html */
+            color: #777;
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .product-card p {
+            color: #ccc;
+        }
+
+        .product-card p strong {
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+        body.dark-mode .section-title {
+            color: var(--light-text);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .info-section {
+            border-color: #3c546b;
+        }
+
+        .info-section h2, .info-section h3 {
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+        
+        body.dark-mode .info-section h2, body.dark-mode .info-section h3 {
+            color: var(--light-text);
+        }
+
+        .info-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            position: relative;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        body.dark-mode .info-section li {
+            color: var(--light-text);
+        }
+
+        .info-section li::before {
+            content: '✔️';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -20px;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+            color: var(--text-color);
+        }
+        body.dark-mode .faq-question {
+            color: var(--light-text);
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 2; /* Ensures it's on the right */
+            }
+            
+            .product-card { /* Changed from .product-item */
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Bootable USB Drives</h1>
+                <p>Plug, install, and recover. Your go-to solution for operating system setup and repair.</p>
+            </div>
+        </section>
+        
+        <section class="product-cards-list container">
+            <!-- Windows 11 USB (Installer Only) -->
+            <div class="product-card" data-product-id="windows-installer-only">
+                <img src="img/boot/windows.webp" alt="Windows (8/10/11) USB">
+                <h3>Windows USB (Installer Only)</h3>
+                <p>
+                    <strong>💿 Original Windows (8/10/11) Installer</strong><br>
+                    <strong>⚡ Fast Installation Media</strong><br>
+                    <strong>🔒 Verified & Virus-Free ISO</strong><br>
+                    <strong>🖥️ Restore or Upgrade Your PC</strong>
+                </p>
+            </div>
+
+            <!-- Kali Linux USB (Installer Only) -->
+            <div class="product-card" data-product-id="kali-linux-installer-only">
+                <img src="img/boot/kali-boot.webp" alt="Kali Linux Installer USB">
+                <h3>Kali Linux USB (Installer Only)</h3>
+                <p>
+                    <strong>⚡ Advanced Penetration Testing</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔒 Secure & Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Parrot OS USB (Installer Only) -->
+            <div class="product-card" data-product-id="parrot-os-installer-only">
+                <img src="img/boot/parrot-boot.webp" alt="Parrot OS Installer USB">
+                <h3>Parrot OS USB (Installer Only)</h3>
+                <p>
+                    <strong>👨‍💻 for hackers and cyber security learners</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔒 Secure & Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Ubuntu USB (Installer Only) -->
+            <div class="product-card" data-product-id="ubuntu-installer-only">
+                <img src="img/boot/ubuntu.webp" alt="Ubuntu Installer USB">
+                <h3>Ubuntu USB (Installer Only)</h3>
+                <p>
+                    <strong>🌍 Ideal for Beginners & Devs</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Linux Mint USB (Installer Only) -->
+            <div class="product-card" data-product-id="linux-mint-installer-only">
+                <img src="img/boot/mint.webp" alt="Linux Mint Installer USB">
+                <h3>Linux Mint USB (Installer Only)</h3>
+                <p>
+                    <strong>🍀 User-Friendly & Smooth</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Zorin OS USB (Installer Only) -->
+            <div class="product-card" data-product-id="zorin-os-installer-only">
+                <img src="img/boot/zorin.webp" alt="Zorin OS Installer USB">
+                <h3>Zorin OS USB (Installer Only)</h3>
+                <p>
+                    <strong>🖥️ Windows-like UI</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>💡 Ideal for Switchers & Students</strong>
+                </p>
+            </div>
+
+            <!-- Pop!_OS USB (Installer Only) -->
+            <div class="product-card" data-product-id="pop-os-installer-only">
+                <img src="img/boot/popos.webp" alt="Pop!_OS USB">
+                <h3>Pop!_OS USB (Installer Only)</h3>
+                <p>
+                    <strong>🚀 Optimized for Developers</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>💡 Built by System76</strong>
+                </p>
+            </div>
+
+            <!-- elementary OS USB (Installer Only) -->
+            <div class="product-card" data-product-id="elementary-os-installer-only">
+                <img src="img/boot/elementary.webp" alt="elementary OS USB">
+                <h3>Elementary OS USB (Installer Only)</h3>
+                <p>
+                    <strong>🎨 Mac-like Elegant UI</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Manjaro USB (Installer Only) -->
+            <div class="product-card" data-product-id="manjaro-installer-only">
+                <img src="img/boot/manjora.webp" alt="Manjaro USB">
+                <h3>Manjaro USB (Installer Only)</h3>
+                <p>
+                    <strong>🧠 Arch Made Easy</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🧩 Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Debian USB (Installer Only) -->
+            <div class="product-card" data-product-id="debian-installer-only">
+                <img src="img/boot/debian.webp" alt="Debian USB">
+                <h3>Debian USB (Installer Only)</h3>
+                <p>
+                    <strong>🏛️ Stable & Trusted</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔧 Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- Arch Linux USB (Installer Only) -->
+            <div class="product-card" data-product-id="arch-linux-installer-only">
+                <img src="img/boot/arch.webp" alt="Arch Linux USB">
+                <h3>Arch Linux USB (Installer Only)</h3>
+                <p>
+                    <strong>⚙️ Minimalist DIY Distro</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🔒 Clean Install Ready</strong>
+                </p>
+            </div>
+
+            <!-- MX Linux USB (Installer Only) -->
+            <div class="product-card" data-product-id="mx-linux-installer-only">
+                <img src="img/boot/mx-linux.webp" alt="MX Linux USB">
+                <h3>MX Linux USB (Installer Only)</h3>
+                <p>
+                    <strong>⚡ XFCE Light + Fast</strong><br>
+                    <strong>🐧 Installer Only Mode</strong><br>
+                    <strong>💾 USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>✅ Clean Install Ready</strong>
+                </p>
+            </div>
+            
+            <!-- Garuda Linux (Installer Only) -->
+            <div class="product-card" data-product-id="garuda-linux-installer-only">
+                <img src="img/boot/garuda.webp" alt="Garuda Linux USB">
+                <h3>Garuda Linux USB (Installer Only)</h3>
+                <p>
+                    <strong>🐉 Eye-Candy Arch-Based Distro</strong><br>
+                    <strong>🎮 Performance Tuned (Gaming Ready)</strong><br>
+                    <strong>⚡ USB 3.1 • Read Speed: 150MB/s</strong><br>
+                    <strong>🧩 For Power Users and Streamers</strong>
+                </p>
+            </div>
+            
+            <!-- Black Arch (Installer Only) -->
+            <div class="product-card" data-product-id="blackarch-installer-only">
+                <img src="img/boot/blackarch.webp" alt="Black Arch USB">
+                <h3>Black Arch (Installer Only)</h3>
+                <p>
+                    <strong>🎯 Advanced Pentesting Distro</strong><br>
+                    <strong>💣 Over 2500+ Hacking Tools</strong><br>
+                    <strong>🔒 Verified & Virus-Free ISO</strong><br>
+                    <strong>🔥 Best for Advanced Security Experts</strong>
+                </p>
+            </div>
+            
+            <!-- Fedora WorkStation (Installer Only) -->
+            <div class="product-card" data-product-id="fedora-installer-only">
+                <img src="img/boot/fedora.webp" alt="Fedora WorkStation USB">
+                <h3>Fedora WorkStation (Installer Only)</h3>
+                <p>
+                    <strong>🧪 Fedora Workstation ISO</strong><br>
+                    <strong>⚡ Fast Installation Media</strong><br>
+                    <strong>💼 Great for Developers</strong><br>
+                    <strong>🌐 Red Hat Sponsored</strong>
+                </p>
+            </div>
+            
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h2 class="section-title">About Our Installer USBs</h2>
+                <p>Welcome to VoltNexis's USB Shop — your one-stop solution for all operating system needs. We offer plug-and-play <strong>Bootable USBs</strong> preloaded with clean, verified installers. Whether you're reinstalling Windows, or installing Linux distros like Ubuntu or Parrot OS, our drives save you time and effort.</p>
+                <p>Our products are tested for reliability and speed, with a focus on clean installation media. Choose from storage sizes ranging from 8GB to 128GB.</p>
+                <p>Every USB is created on-demand using industry tools, ensuring latest versions and error-free media. Easy returns and fast delivery across India.</p>
+                
+                <h3 style="margin-top: 40px;">Top Features of VoltNexis Installer USBs:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;<strong>Superfast Transfer Speeds:</strong> Our USB 3.0 technology achieves speeds up to 150MB/s, ensuring fast booting and smooth installation.</li>
+                    <li>&nbsp;&nbsp;<strong>Plug-and-Install:</strong> Simply plug the USB into your PC, select it as the boot device, and begin the OS installation—no technical knowledge required.</li>
+                    <li>&nbsp;&nbsp;<strong>System Repair & Recovery:</strong> Use these drives to repair corrupted systems or recover data from a dead OS.</li>
+                    <li>&nbsp;&nbsp;<strong>Clean & Verified ISOs:</strong> Every drive is preloaded with a genuine, official ISO image to ensure a secure and reliable installation.</li>
+                    <li>&nbsp;&nbsp;<strong>Lightweight & Portable:</strong> Carry a full OS installer in your pocket, perfect for technicians, students, and DIY PC builders.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="faq-section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Will this work on my PC?</div>
+                <div class="faq-answer">
+                    <p>Yes. Our bootable USBs are compatible with both **Legacy and UEFI** boot modes, ensuring they work on almost all modern and older PCs.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need to configure anything?</div>
+                <div class="faq-answer">
+                    <p>No. Our USBs are pre-configured and tested. Just plug them in, select them as the boot device, and follow the on-screen installation steps.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is a live boot option included?</div>
+                <div class="faq-answer">
+                    <p>This is an **Installer-Only** page. These products are designed for a clean installation and do not include a live boot environment. For live boot options, please check our <a href="live_usb.html" style="color: var(--secondary-color);">Live USB Drives</a> page.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis/profilecard/?igsh=MXJ2YnBvbzMzeXV6dA=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // If no theme is saved (e.g., first visit or cleared cache),
+            // default to dark mode and save this preference for future visits
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- FAQ accordion functionality ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- Product Data Definitions for Bootable USBs ---
+        const allBootProducts = {
+            "windows-installer-only": {
+                name: "Windows USB (Installer Only)",
+                shortDesc: "Official Windows 8/10/11 installation media.",
+                description: "Clean, verified installer for Windows 8/10/11. Perfect for fresh installations, system repairs, or upgrades.",
+                image: "img/live/1/windows-1.webp",
+                image2: "img/live/2/windows-2.webp",
+                image3: "img/boot/windows.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Windows 11 ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                   ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "kali-linux-installer-only": {
+                name: "Kali Linux USB (Installer Only)",
+                shortDesc: "Kali Linux dedicated installer.",
+                description: "Installer-only Kali Linux bootable USB. For clean installations of Kali on your system, optimized for performance.",
+                image: "img/live/1/kali-1.webp",
+                image2: "img/live/2/kali-2.webp",
+                image3: "img/boot/kali-boot.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Kali Linux ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "parrot-os-installer-only": {
+                name: "Parrot OS USB (Installer Only)",
+                shortDesc: "Parrot OS dedicated installer.",
+                description: "Installer-only Parrot OS bootable USB. For clean installations of Parrot on your system, optimized for performance.",
+                image: "img/live/1/parrot-1.webp",
+                image2: "img/live/2/parrot-2.webp",
+                image3: "img/boot/parrot-boot.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Parrot OS ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "ubuntu-installer-only": {
+                name: "Ubuntu USB (Installer Only)",
+                shortDesc: "Ubuntu dedicated installer.",
+                description: "Installer-only Ubuntu bootable USB. For clean installations of Ubuntu on your system, optimized for performance.",
+                image: "img/live/1/ubuntu-1.webp",
+                image2: "img/live/2/ubuntu-2.webp",
+                image3: "img/boot/ubuntu.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Ubuntu ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "linux-mint-installer-only": {
+                name: "Linux Mint USB (Installer Only)",
+                shortDesc: "Linux Mint dedicated installer.",
+                description: "Installer-only Linux Mint bootable USB. For clean installations of Linux Mint on your system, optimized for performance.",
+                image: "img/live/1/mint-1.webp",
+                image2: "img/live/2/mint-2.webp",
+                image3: "img/boot/mint.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Linux Mint ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "zorin-os-installer-only": {
+                name: "Zorin OS USB (Installer Only)",
+                shortDesc: "Zorin OS dedicated installer.",
+                description: "Installer-only Zorin OS bootable USB. For clean installations of Zorin on your system, optimized for performance.",
+                image: "img/live/1/zorin-1.webp",
+                image2: "img/live/2/zorin-2.webp",
+                image3: "img/boot/zorin.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Zorin OS ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "pop-os-installer-only": {
+                name: "Pop!_OS USB (Installer Only)",
+                shortDesc: "Pop!_OS dedicated installer.",
+                description: "Installer-only Pop!_OS bootable USB. For clean installations of Pop!_OS on your system, optimized for performance.",
+                image: "img/live/1/pop-1.webp",
+                image2: "img/live/2/popos-2.webp",
+                image3: "img/boot/popos.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Pop!_OS ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "elementary-os-installer-only": {
+                name: "Elementary OS USB (Installer Only)",
+                shortDesc: "Elementary OS dedicated installer.",
+                description: "Installer-only Elementary OS bootable USB. For clean installations of Elementary OS on your system, optimized for performance.",
+                image: "img/live/1/elementary-1.webp",
+                image2: "img/live/2/elementary-2.webp",
+                image3: "img/boot/elementary.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Elementary OS ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "manjaro-installer-only": {
+                name: "Manjaro USB (Installer Only)",
+                shortDesc: "Manjaro dedicated installer.",
+                description: "Installer-only Manjaro bootable USB. For clean installations of Manjaro on your system, optimized for performance.",
+                image: "img/live/1/manjaro-1.webp",
+                image2: "img/live/2/manjaro-2.webp",
+                image3: "img/boot/manjaro.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Manjaro ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "debian-installer-only": {
+                name: "Debian USB (Installer Only)",
+                shortDesc: "Debian dedicated installer.",
+                description: "Installer-only Debian bootable USB. For clean installations of Debian on your system, optimized for performance.",
+                image: "img/live/1/debian-1.webp",
+                image2: "img/live/2/debian-2.webp",
+                image3: "img/boot/debian.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Debian ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "arch-linux-installer-only": {
+                name: "Arch Linux USB (Installer Only)",
+                shortDesc: "Arch Linux dedicated installer.",
+                description: "Installer-only Arch Linux bootable USB. For clean installations of Arch on your system, optimized for performance.",
+                image: "img/live/1/arch-1.webp",
+                image2: "img/live/2/arch-2.webp",
+                image3: "img/boot/arch.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Arch Linux ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "mx-linux-installer-only": {
+                name: "MX Linux USB (Installer Only)",
+                shortDesc: "MX Linux dedicated installer.",
+                description: "Installer-only MX Linux bootable USB. For clean installations of MX Linux on your system, optimized for performance.",
+                image: "img/live/1/mxlinux-1.webp",
+                image2: "img/live/2/mx-linux-2.webp",
+                image3: "img/boot/mxlinux.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["MX Linux ISO", "Bootable USB Drive", "Installation Guide"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "garuda-linux-installer-only": {
+                name: "Garuda Linux USB (Installer Only)",
+                shortDesc: "Installer USB for Garuda Linux",
+                description: "High-performance Arch-based Garuda Linux preloaded for installation. Best for gamers and advanced users.",
+                image: "img/live/1/garuda-1.webp",
+                image2: "img/live/2/garuda-2.webp",
+                image3: "img/boot/garuda.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Garuda Linux ISO", "USB Installer", "Dr460nized Edition"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Live Boot", "Not Included"],
+                    ["Warranty", "5 Years"]
+                ]
+            },
+            "blackarch-installer-only": {
+                name: "BlackArch (Installer Only)",
+                shortDesc: "Installer-only USB for BlackArch Linux.",
+                description: "For advanced penetration testing and research. This USB contains only the official BlackArch ISO for full clean installation.",
+                image: "img/live/1/blackarch-1.webp",
+                image2: "img/live/2/blackarch-2.webp",
+                image3: "img/boot/blackarch.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["BlackArch ISO", "USB Installer", "Over 2700 Tools Included"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.0"],
+                    ["Read Speed", "150MB/s"],
+                    ["Live Boot", "Not Included"],
+                    ["Warranty", "5 Year"]
+                ]
+            },
+            "fedora-installer-only": {
+                name: "Fedora USB (Installer Only)",
+                shortDesc: "Clean installer for Fedora Linux.",
+                description: "Get the official Fedora ISO for a modern Linux experience. Optimized for performance, GNOME UI, and reliable stability.",
+                image: "img/live/1/fedora-1.webp",
+                image2: "img/live/2/fedora-2.webp",
+                image3: "img/boot/fedora.webp",
+                sizes: [
+                    { label: "8GB", price: 399 },
+                    { label: "16GB", price: 499 }
+                ],
+                included: ["Fedora ISO", "USB Installer", "GNOME Edition"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["USB Type", "USB 3.1"],
+                    ["Read Speed", "150MB/s"],
+                    ["Live Boot", "Not Included"],
+                    ["Warranty", "5 Year"]
+                ]
+            }    
+        };
+
+        // --- Function to handle product clicks and pass data ---
+        function selectProduct(productInfo) {
+            sessionStorage.setItem("liveProduct", JSON.stringify(productInfo));
+            // IMPORTANT: Ensure this redirects to your universal product detail page
+            window.location.href = "product.html"; // Corrected path
+        }
+
+        // --- Attach Click Listeners to Product Cards (after DOM content is loaded) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.dataset.productId; // Get the unique ID from data-product-id
+                    const productInfo = allBootProducts[productId]; // Look up the product data
+
+                    if (productInfo) {
+                        selectProduct(productInfo); // Call selectProduct with the retrieved data
+                    } else {
+                        console.error("Error: Product data not found for ID:", productId);
+                        // Optional: show a user-friendly error message
+                    }
+                });
+            });
+        });
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Bootable USB Drives for Windows and Linux",
+      "image": "https://voltnexis.github.io/shop.voltnexis.github.io/img/boot-usb-cover.jpg",
+      "description": "Plug-and-play USBs preloaded with OS installers: Windows 10, 11, Ubuntu, Kali, and more.",
+      "brand": {
+        "@type": "Brand",
+        "name": "VoltNexis"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "price": "349.00",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+</script>
+</body>
+</html>

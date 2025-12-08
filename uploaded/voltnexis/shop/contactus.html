@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - VoltNexis Shop</title>
+  <meta name="description" content="Get in touch with VoltNexis Shop. Connect via WhatsApp, Telegram, YouTube, Facebook, Instagram, and X. Premium tech USBs for Linux, Windows, and more." />
+  <meta name="keywords" content="Contact VoltNexis, USB support India, Linux USB help, WhatsApp tech support, Telegram VoltNexis" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Us - VoltNexis Shop" />
+  <meta property="og:description" content="Talk to VoltNexis via WhatsApp, Telegram, or social media. We're here to help with bootable USBs and tech tools." />
+  <meta property="og:image" content="https://voltnexis.github.io/shop.voltnexis.github.io/img/logo.png" />
+  <meta property="og:url" content="https://voltnexis.github.io/shop.voltnexis.github.io/contact.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Us - VoltNexis Shop" />
+  <meta name="twitter:description" content="Support via WhatsApp, Telegram, YouTube, Facebook, Instagram, and X. VoltNexis bootable USBs for every user." />
+  <meta name="twitter:image" content="https://voltnexis.github.io/shop.voltnexis.github.io/img/logo.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Base styles for light mode */
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --background-color: #f4f7f6;
+      --card-background: #ffffff;
+      --text-color: #333333;
+      --light-text: #ecf0f1;
+      --header-bg: #232f3e;
+      --footer-bg: #232f3e;
+
+      --bg-body: #f5f7fa;
+      --text-body: #333333;
+      --bg-main-card: #ffffff;
+      --border-color: #e0e0e0;
+      --color-accent-blue: #3498db;
+      --color-accent-blue-hover: #2980b9;
+      --input-bg: #ffffff;
+      --input-text: #333333;
+      --input-border: #d1d5db; /* gray-300 */
+      --star-color-empty: #ccc;
+      --star-color-filled: #facc15; /* yellow-400 */
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      --primary-color: #f4f7f6;
+      --secondary-color: #5d9cec;
+      --accent-color: #ff6b6b;
+      --background-color: #1a1a2e;
+      --card-background: #232f3e;
+      --text-color: #ecf0f1;
+      --light-text: #ecf0f1;
+      --header-bg: #162232;
+      --footer-bg: #162232;
+
+      --bg-body: #0D1117; /* Very dark blue-grey for overall background */
+      --text-body: #C9D1D9; /* Light grey for general text */
+      --bg-main-card: #161B22; /* Slightly lighter than body, for containers */
+      --border-color: #30363D; /* Subtle, darker grey for borders */
+      --color-accent-blue: #58A6FF; /* Vibrant blue for accents */
+      --color-accent-blue-hover: #3E8EFF;
+      --input-bg: #242D38;
+      --input-text: #C9D1D9;
+      --input-border: #4F5968;
+      --star-color-empty: #4F5968;
+      --star-color-filled: #facc15; /* Still yellow for contrast */
+    }
+
+    /* Global Base Styles */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-body);
+      line-height: 1.7;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* --- Header & Navigation --- */
+    header {
+        background-color: var(--header-bg);
+        color: var(--light-text);
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: background-color 0.5s ease;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .brand {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--light-text);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: var(--light-text);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+        color: var(--secondary-color);
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* --- Mobile Navigation (Hamburger) --- */
+    .hamburger {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--light-text);
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: var(--header-bg);
+            position: absolute;
+            top: 60px; /* Below the header */
+            left: 0;
+            padding: 10px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links a {
+            padding: 15px 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hamburger {
+            display: block; /* Show hamburger on small screens */
+        }
+    }
+    
+    /* --- Main Content Cards --- */
+    .main-content-card {
+      background-color: var(--bg-main-card);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-top: 50px;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    body.dark-mode .main-content-card {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      color: var(--color-accent-blue);
+      transition: color 0.5s ease;
+      animation: slideInFromTop 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    h1 i {
+        margin-right: 15px;
+        font-size: 1.2em;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      background-color: var(--card-background);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
+    }
+    .contact-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    body.dark-mode .contact-item {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .contact-item img {
+      width: 45px; /* Slightly larger icons */
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .contact-item div {
+      flex-grow: 1;
+    }
+
+    .contact-item p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .contact-item a, .contact-item p.text-sm {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .contact-item a:hover {
+        text-decoration: underline;
+        color: var(--secondary-color);
+    }
+    body.dark-mode .contact-item a, body.dark-mode .contact-item p.text-sm {
+        color: var(--color-accent-blue);
+    }
+
+    /* --- Testimonials/Feedback Section --- */
+    .testimonial-section {
+        margin-top: 50px;
+    }
+
+    .feedback-section {
+        margin-top: 50px;
+    }
+
+    .testimonial-card {
+        background-color: var(--card-background);
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        margin-bottom: 20px; /* Space between testimonials */
+        border: 1px solid var(--border-color);
+        transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease;
+    }
+    .testimonial-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    body.dark-mode .testimonial-card {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .testimonial-text {
+        font-style: italic;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .testimonial-author {
+        font-weight: 600;
+        text-align: right;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .testimonial-stars {
+        color: var(--star-color-filled);
+        font-size: 1.3rem; /* Slightly smaller for static display */
+        text-align: right;
+    }
+
+    .star-rating {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 2.2rem; /* Larger stars for interactive feedback */
+    }
+
+    .star-rating .star {
+        color: var(--star-color-empty);
+        cursor: pointer;
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .star-rating .star:hover,
+    .star-rating .star.hovered {
+        color: var(--star-color-filled);
+        transform: scale(1.1);
+    }
+
+    .star-rating .star.selected {
+        color: var(--star-color-filled);
+    }
+
+    .feedback-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--text-body);
+    }
+
+    .feedback-form input[type="text"],
+    .feedback-form input[type="email"],
+    .feedback-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid var(--input-border);
+        border-radius: 8px;
+        background-color: var(--input-bg);
+        color: var(--input-text);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+    }
+    .feedback-form input[type="text"]:focus,
+    .feedback-form input[type="email"]:focus,
+    .feedback-form textarea:focus {
+        outline: none;
+        border-color: var(--color-accent-blue);
+        box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.3);
+    }
+    .feedback-form textarea {
+        resize: vertical; /* Allow vertical resizing */
+        min-height: 100px;
+    }
+
+    .send-feedback-button {
+        background-color: var(--color-accent-blue);
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        width: 100%;
+    }
+    .send-feedback-button:hover:not(:disabled) {
+        background-color: var(--color-accent-blue-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    .send-feedback-button:disabled {
+        background-color: #6c757d; /* Grey out when disabled */
+        cursor: not-allowed;
+        opacity: 0.8;
+        box-shadow: none;
+    }
+
+    #feedbackMessage {
+        margin-top: 15px;
+        text-align: center;
+        font-weight: 600;
+        color: #28a745; /* Green success message */
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    body.dark-mode #feedbackMessage {
+        color: #2ED47A; /* Lighter green for dark mode */
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideInFromTop {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    /* --- Footer --- */
+    footer {
+        background-color: var(--footer-bg);
+        color: white;
+        padding: 40px 0;
+        margin-top: 80px;
+        transition: background-color 0.5s ease;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+
+    .footer-section h3 {
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+    }
+
+    .footer-section p, .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+        color: var(--secondary-color);
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+        transform: scale(1.1);
+        color: var(--secondary-color);
+    }
+
+    .copyright {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+    }
+    
+    /* Mobile-Specific Styles */
+    @media (max-width: 768px) {
+        .navbar {
+            flex-wrap: wrap;
+        }
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: var(--header-bg);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            padding: 10px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .nav-links.active {
+            display: flex;
+        }
+        .nav-links a {
+            padding: 15px 20px;
+            width: 100%;
+            text-align: center;
+        }
+        .hamburger {
+            display: block;
+            order: 2;
+        }
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        .footer-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .footer-section {
+            margin-bottom: 20px;
+        }
+    }
+
+    /* --- PC Layout Adjustments (min-width: 1024px) --- */
+    @media (min-width: 1024px) {
+        .main-content-card {
+            max-width: 900px; /* Make the main card a bit narrower */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 40px; /* Slightly more padding for desktop */
+        }
+
+        .contact-grid {
+            grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns for PC */
+            max-width: 650px; /* Adjust max-width to look good with 2 columns */
+            margin-left: auto;
+            margin-right: auto;
+            gap: 25px; /* Adjust gap for better spacing */
+        }
+
+        .feedback-form {
+            max-width: 600px; /* Make the form narrower and centered */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px; /* Add some padding if needed */
+        }
+
+        .testimonial-section .grid {
+            grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns for testimonials on desktop */
+            max-width: 800px; /* Limit width of testimonial grid */
+            margin-left: auto;
+            margin-right: auto;
+            gap: 30px; /* Space between testimonial cards */
+        }
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+      <div class="main-content-card">
+        <h1 class="text-3xl font-bold text-center mb-6"><i class="fas fa-headset"></i>Contact VoltNexis Shop</h1>
+        <p class="text-center text-lg mb-10 opacity-75">We're always here to help you with your bootable USB orders, product queries, and tech support. Choose your preferred contact method below:</p>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp" />
+            <div>
+              <p>WhatsApp</p>
+              <a href="https://wa.me/919947557025" target="_blank">97787 19567</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <img src="https://img.icons8.com/ios-filled/50/0088cc/telegram-app.png" alt="Telegram" />
+            <div>
+              <p>Telegram</p>
+              <a href="https://t.me/9946042794" target="_blank">@9778719567</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <img src="https://img.icons8.com/color/48/apple-mail.png" alt="Email" />
+            <div>
+              <p>Email</p>
+              <a href="mailto:voltnexis@gmail.com">voltnexis@gmail.com</a>
+            </div>
+          </div>
+        
+          <div class="contact-item">
+            <img src="https://img.icons8.com/color/48/youtube-play.png" alt="YouTube" />
+            <div>
+              <p>YouTube</p>
+              <a href="https://youtube.com/@voltnexis?si=w4EubKaFgpwQSYTv" target="_blank">@VoltNexis</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <img src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="Instagram" />
+            <div>
+              <p>Instagram</p>
+              <a href="https://www.instagram.com/voltnexis/profilecard/?igsh=MXJ2YnBvbzMzeXV6dA==" target="_blank">@voltNexis</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook" />
+            <div>
+              <p>Facebook</p>
+              <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/" target="_blank">VoltNexis</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <img src="https://img.icons8.com/ios-filled/50/000000/twitterx--v1.png" alt="X (Twitter)" />
+            <div>
+              <p>X (Twitter)</p>
+              <a href="https://x.com/voltnexis?t=Tj9brPTalBvg7F8SgwsDow&s=03" target="_blank">@voltnexis</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <img src="https://img.icons8.com/ios-filled/50/808080/phone.png" alt="Phone" />
+            <div>
+              <p>Phone</p>
+              <p class="text-sm opacity-75">97787 19567</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content-card testimonial-section">
+        <h2 class="text-2xl font-bold text-center mb-6" style="color: var(--color-accent-blue);"><i class="fas fa-comments"></i>What Our Customers Say</h2>
+        <p class="text-center opacity-75 mb-8">Hear from satisfied customers about their experience with VoltNexis's products and support.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"VoltNexis's support via WhatsApp was incredibly fast and helpful. They guided me through the whole process!"</div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-author">- Ajay S.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The Telegram support team is fantastic! Quick responses and clear solutions. Highly recommend VoltNexis for their service."</div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-author">- Priya K.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Got my Kali Linux USB. Had a small query about boot options, and their email support was surprisingly fast and precise. Great product and service!"</div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-author">- Rohit D.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The social media team for VoltNexis is very responsive. I asked a question on Instagram and got an answer super quick!"</div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="testimonial-author">- Sarah M.</div>
+            </div>
+        </div>
+      </div>
+
+      <div class="main-content-card feedback-section">
+        <h2 class="text-2xl font-bold text-center mb-6" style="color: var(--color-accent-blue);"><i class="fas fa-star"></i>Leave Your Feedback</h2>
+        <p class="text-center opacity-75 mb-8">We'd love to hear about your experience with VoltNexis. Your feedback helps us improve!</p>
+        
+        <div class="star-rating" id="starRating">
+            <i class="far fa-star star" data-rating="1"></i>
+            <i class="far fa-star star" data-rating="2"></i>
+            <i class="far fa-star star" data-rating="3"></i>
+            <i class="far fa-star star" data-rating="4"></i>
+            <i class="far fa-star star" data-rating="5"></i>
+        </div>
+
+        <form id="feedbackForm" class="feedback-form">
+            <label for="feedbackText">Your Feedback:</label>
+            <textarea id="feedbackText" placeholder="Share your thoughts about our products or service..." required></textarea>
+
+            <label for="feedbackName">Your Name (Optional):</label>
+            <input type="text" id="feedbackName" placeholder="e.g., John Doe">
+
+            <label for="feedbackEmail">Your Email (Optional):</label>
+            <input type="email" id="feedbackEmail" placeholder="e.g., your@example.com">
+
+            <button type="button" id="sendFeedbackBtn" class="send-feedback-button" onclick="sendFeedback()">Send Feedback</button>
+            <p id="feedbackMessage" class="hidden"></p>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: 9947557025</p>
+                <p>📱 Telegram: 9946042794</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis/profilecard/?igsh=MXJ2YnBvbzMzeXV6dA=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+  
+    <script>
+        // --- Theme Persistence Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                body.classList.add(currentTheme);
+            } else {
+                body.classList.add('dark-mode'); // Default to dark mode
+                localStorage.setItem('theme', 'dark-mode');
+            }
+            initializeStarRating(); // Initialize star rating after DOM is ready
+        });
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- Star Rating Logic ---
+        let currentRating = 0; // Stores the selected star rating
+
+        function initializeStarRating() {
+            const stars = document.querySelectorAll('.star-rating .star');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    currentRating = parseInt(star.dataset.rating);
+                    highlightStars(currentRating);
+                });
+
+                star.addEventListener('mouseover', () => {
+                    highlightStars(parseInt(star.dataset.rating), true);
+                });
+
+                star.addEventListener('mouseout', () => {
+                    highlightStars(currentRating); // Revert to selected rating or no rating
+                });
+            });
+        }
+
+        function highlightStars(rating, isHover = false) {
+            const stars = document.querySelectorAll('.star-rating .star');
+            stars.forEach(star => {
+                const starValue = parseInt(star.dataset.rating);
+                if (starValue <= rating) {
+                    star.classList.remove('far'); // Empty star
+                    star.classList.add('fas', 'selected'); // Solid star, selected
+                } else {
+                    star.classList.remove('fas', 'selected'); // Solid star, selected
+                    star.classList.add('far'); // Empty star
+                }
+                if (isHover && starValue > currentRating) { // Add hovered class for stars above selected in hover state
+                    star.classList.add('hovered');
+                } else {
+                    star.classList.remove('hovered');
+                }
+            });
+        }
+
+        // --- Feedback Submission Logic (Actual sending) ---
+        async function sendFeedback() { // Made async to use await for fetch
+            const feedbackText = document.getElementById('feedbackText');
+            const feedbackName = document.getElementById('feedbackName');
+            const feedbackEmail = document.getElementById('feedbackEmail');
+            const sendFeedbackBtn = document.getElementById('sendFeedbackBtn');
+            const feedbackMessage = document.getElementById('feedbackMessage');
+
+            // Basic validation: Ensure a rating is given and feedback text is not empty
+            if (currentRating === 0) {
+                feedbackMessage.textContent = "Please select a star rating.";
+                feedbackMessage.style.color = "var(--accent-color)"; // Red for error
+                feedbackMessage.classList.remove('hidden');
+                feedbackMessage.style.opacity = 1;
+                setTimeout(() => { feedbackMessage.style.opacity = 0; }, 3000);
+                return;
+            }
+            if (feedbackText.value.trim() === '') {
+                feedbackMessage.textContent = "Please enter your feedback.";
+                feedbackMessage.style.color = "var(--accent-color)";
+                feedbackMessage.classList.remove('hidden');
+                feedbackMessage.style.opacity = 1;
+                setTimeout(() => { feedbackMessage.style.opacity = 0; }, 3000);
+                return;
+            }
+
+            // Data to send to Google Apps Script
+            const feedbackData = {
+                rating: currentRating,
+                feedback: feedbackText.value.trim(),
+                name: feedbackName.value.trim(),
+                email: feedbackEmail.value.trim()
+            };
+
+            // !!! IMPORTANT: This URL MUST be obtained from your DEPLOYED Google Apps Script Web App. !!!
+            // !!! Ensure the "Who has access" setting for the deployment is set to "Anyone" to avoid CORS errors. !!!
+            // !!! The URL from your console error has been inserted here, but verify it matches your active deployment. !!!
+            const appsScriptURL = "https://script.google.com/macros/s/AKfycbxr_rNAaqqkrFbpLtmbnzGkZ0CdtkBO_Z4J5nYAWV-O9eE-O2MSg-wVhAUxhYi9DVU/exec"; 
+
+            // Disable button and show sending state
+            sendFeedbackBtn.textContent = "Sending...";
+            sendFeedbackBtn.disabled = true;
+            feedbackMessage.classList.add('hidden'); // Hide previous messages
+
+            try {
+                const response = await fetch(appsScriptURL, {
+                    method: 'POST',
+                    mode: 'cors', // Crucial for cross-origin requests
+                    headers: {
+                        'Content-Type': 'text/plain' // Changed back to text/plain
+                    },
+                    body: JSON.stringify(feedbackData)
+                });
+
+                // Check if the response itself is OK (HTTP status 200-299)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    feedbackMessage.textContent = "Thank you for your feedback!";
+                    feedbackMessage.style.color = "#28a745"; // Green success
+                } else {
+                    feedbackMessage.textContent = "Failed to send feedback. Please try again.";
+                    feedbackMessage.style.color = "var(--accent-color)"; // Red error
+                    console.error("Apps Script Error:", result.message || "Unknown error from script");
+                }
+            } catch (error) {
+                // This catch block handles network errors or errors from response.json() or custom errors
+                feedbackMessage.textContent = "Network error or script issue. Please check your connection and script deployment.";
+                feedbackMessage.style.color = "var(--accent-color)";
+                console.error("Fetch/Processing Error:", error);
+            } finally {
+                // Keep button disabled for 7 seconds regardless of success/failure
+                setTimeout(() => {
+                    sendFeedbackBtn.textContent = "Send Feedback";
+                    sendFeedbackBtn.disabled = false;
+                    
+                    // Clear fields only on successful submission (check the displayed message content)
+                    if (feedbackMessage.textContent.includes("Thank you")) { 
+                        feedbackText.value = '';
+                        feedbackName.value = '';
+                        feedbackEmail.value = '';
+                        currentRating = 0; // Reset rating
+                        highlightStars(0); // Clear star visuals
+                    }
+
+                    // Show message and fade out after a delay
+                    feedbackMessage.classList.remove('hidden');
+                    feedbackMessage.style.opacity = 1;
+                    setTimeout(() => {
+                        feedbackMessage.style.opacity = 0;
+                    }, 5000); // Fade out success/error message after 5 seconds
+                }, 7000); // 7-second total delay (simulates network latency + processing)
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

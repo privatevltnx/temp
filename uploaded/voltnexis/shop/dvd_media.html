@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DVD & Offline Media - VoltNexis Shop</title>
+    <meta name="description" content="Explore essential DVD and offline media solutions from VoltNexis. Ideal for system boot, recovery, and offline software installations.">
+    <meta name="keywords" content="Bootable DVD, Recovery DVD, Offline Software DVD, Exam Boot DVD, Legacy System Media, VoltNexis DVDs">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <meta property="og:title" content="DVD & Offline Media Solutions - VoltNexis Shop" />
+    <meta property="og:description" content="Reliable bootable and recovery DVDs for all your offline needs. Fast delivery across India." />
+    <meta property="og:image" content="img/dvd.webp" />
+    <meta property="og:url" content="https://voltnexis.github.io/shop.voltnexis.github.io/dvd_media.html" />
+    <meta property="og:type" content="product" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DVD & Offline Media Solutions - VoltNexis Shop" />
+    <meta name="twitter:description" content="Get essential DVDs for system boot, recovery, and offline software.">
+    <meta name="twitter:image" content="img/dvd.webp" />
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text: #ecf0f1;
+            --header-bg: #232f3e;
+            --footer-bg: #232f3e;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            --primary-color: #f4f7f6;
+            --secondary-color: #5d9cec;
+            --accent-color: #ff6b6b;
+            --background-color: #1a1a2e;
+            --card-background: #232f3e;
+            --text-color: #ecf0f1;
+            --light-text: #ecf0f1;
+            --header-bg: #162232;
+            --footer-bg: #162232;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--light-text);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Mobile Navigation --- */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title, .page-header p {
+            animation: slideUp 0.8s ease-in-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+        
+        .section-title { animation-delay: 0.1s; }
+        .page-header p { animation-delay: 0.3s; }
+
+        .product-card {
+            animation: slideUp 0.8s ease-in-out;
+            animation-fill-mode: both;
+            opacity: 0; /* Ensures it's hidden before animation */
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.4s; }
+        .product-card:nth-child(2) { animation-delay: 0.5s; }
+        .product-card:nth-child(3) { animation-delay: 0.6s; }
+
+
+        /* --- Page Layout --- */
+        .page-header {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #777;
+        }
+
+        body.dark-mode .page-header p {
+            color: #ccc;
+        }
+
+        .product-cards-list {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; /* Added gap for better spacing */
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px; /* Increased padding */
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+        }
+
+        body.dark-mode .product-card {
+            border-color: #3c546b;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Increased hover lift */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%; /* Make image take full width of card */
+            max-height: 200px; /* Limit image height */
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 10px; /* Rounded image corners */
+            background: none; /* Removed background from image itself */
+            padding: 0; /* Removed padding from image itself */
+        }
+
+        .product-info {
+            flex-grow: 1; /* Retained from previous, but less relevant with new layout */
+        }
+
+        .product-card h3 { /* Changed from .product-info h3 */
+            font-size: 1.5rem; /* Consistent with kit_usb.html */
+            margin: 0 0 10px;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .product-card h3 { /* Changed from .product-info h3 */
+            color: var(--light-text);
+        }
+
+        .product-card p { /* Changed from .product-info p */
+            margin: 0;
+            color: #777;
+            font-size: 1rem; /* Consistent with kit_usb.html */
+        }
+        
+        body.dark-mode .product-card p { /* Changed from .product-info p */
+            color: #ccc;
+        }
+
+        .product-card p strong { /* Changed from .product-info p strong */
+            color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .info-section {
+            padding: 80px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .info-section {
+            border-color: #3c546b;
+        }
+
+        .info-section h2, .info-section h3 {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .info-section h2, body.dark-mode .info-section h3 {
+            color: var(--light-text);
+        }
+
+        .info-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .info-section li {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .info-section li::before {
+            content: '✔️';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: -20px;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #3c546b;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+            color: #555;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #ccc;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 40px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--header-bg);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 2; /* Ensures it's on the right */
+            }
+            
+            .product-card { /* Changed from .product-item */
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="brand">VoltNexis</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="returns.html">↩ Returns</a></li>
+                <li><a href="orders.html">📦 Orders</a></li>
+                <li><a href="contactus.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">DVD & Offline Media Solutions</h1>
+                <p>Reliable media for system boot, data recovery, and offline software installations, perfect for systems without USB boot.</p>
+            </div>
+        </section>
+       
+        <section class="product-cards-list container">
+            <!-- Exam Boot DVD -->
+            <div class="product-card" data-product-id="exam-boot-dvd">
+                <img src="img/dvd/exam_boot_dvd.webp" alt="Exam Boot DVD">
+                <h3>Exam Boot DVD</h3>
+                <p>
+                    <strong>📝 Secure Exam Environment</strong><br>
+                    <strong>🔒 Tamper-Proof Boot</strong><br>
+                    <strong>💡 Ideal for Secure Testing</strong><br>
+                    <strong>✅ Essential for Legacy Systems</strong>
+                </p>
+            </div>
+
+            <!-- Recovery DVD -->
+            <div class="product-card" data-product-id="recovery-dvd">
+                <img src="img/dvd/recovery_dvd.webp" alt="Recovery DVD">
+                <h3>Recovery DVD</h3>
+                <p>
+                    <strong>🚑 System Restore & Repair</strong><br>
+                    <strong>💾 Data Recovery Tools</strong><br>
+                    <strong>🔑 Password Reset Utility</strong><br>
+                    <strong>🌐 Offline Troubleshooting</strong>
+                </p>
+            </div>
+
+            <!-- Offline Resource DVD -->
+            <div class="product-card" data-product-id="offline-resource-dvd">
+                <img src="img/dvd/offline_resource_dvd.webp" alt="Offline DVD">
+                <h3>Offline Resource DVD</h3>
+                <p>
+                    <strong>📁 Large Software Collections</strong><br>
+                    <strong>📡 No Internet Required</strong><br>
+                    <strong>🧩 Driver Packs & Utilities</strong><br>
+                    <strong>⚙️ Essential for New Builds</strong>
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h2 class="section-title">About Our DVD & Offline Media</h2>
+                <p>In a world increasingly reliant on USBs, VoltNexis still recognizes the critical need for reliable **DVD and offline media**. Our collection is perfect for older systems that don't support USB boot, or for situations where a secure, unalterable boot environment is paramount.</p>
+                <p>From dedicated **Exam Boot DVDs** for secure testing environments, to comprehensive **Recovery DVDs** packed with troubleshooting and data retrieval tools, and **Offline DVDs** preloaded with essential software and driver packages, we've got your offline needs covered.</p>
+                <p>All our DVDs are meticulously prepared, tested for compatibility, and delivered safely across India, ensuring you have the tools you need, even without an internet connection or modern USB ports.</p>
+                
+                <h3 style="margin-top: 40px;">Key Features of VoltNexis DVDs:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;<strong>Universal Compatibility:</strong> Works seamlessly with most older and newer systems that have optical drives.</li>
+                    <li>&nbsp;&nbsp;<strong>Unalterable Media:</strong> Provides a secure, read-only boot environment, ideal for critical operations.</li>
+                    <li>&nbsp;&nbsp;<strong>Comprehensive Tools:</strong> Packed with essential utilities for system repair, data rescue, or software installation.</li>
+                    <li>&nbsp;&nbsp;<strong>Offline Access:</strong> Get crucial software and system tools without needing an internet connection.</li>
+                    <li>&nbsp;&nbsp;<strong>Reliable & Tested:</strong> Each disc is verified to ensure error-free performance and longevity.</li>
+                </ul>
+                <h3 style="margin-top: 40px;">What’s Included:</h3>
+                <ul>
+                    <li>&nbsp;&nbsp;Bootable DVD configured for specific purpose (Exam, Recovery, or Offline Software)</li>
+                    <li>&nbsp;&nbsp;High-quality, durable DVD disc</li>
+                    <li>&nbsp;&nbsp;️Tested for hardware compatibility</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="faq-section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Why should I use a DVD instead of a USB?</div>
+                <div class="faq-answer">
+                    <p>DVDs are ideal for older systems that may not support USB booting, or when you need an unalterable, read-only medium for secure environments like exams or critical system recovery, as they cannot be easily modified after burning.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Are these DVDs compatible with all operating systems?</div>
+                <div class="faq-answer">
+                    <p>Our DVDs are designed to be universally bootable where an optical drive is present. The specific tools or OS on the DVD will function based on the intended purpose (e.g., recovery tools might be OS-agnostic, while an offline software DVD might be for Windows or Linux).</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I install software from the Offline DVD?</div>
+                <div class="faq-answer">
+                    <p>Yes, the Offline DVD is preloaded with various software packages, drivers, and utilities that can be installed directly onto your system without requiring an internet connection. It's a great solution for new builds or systems without network access.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-section">
+                <h3>About VoltNexis</h3>
+                <p>Your trusted partner for high-quality tech tools and custom builds. We make technology accessible and exciting for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <a href="returns.html">Returns & Refunds</a>
+                <a href="orders.html">Track Orders</a>
+                <a href="contactus.html">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>📱 WhatsApp: (Coming soon)</p>
+                <p>📱 Telegram: (Coming soon)</p>
+                <p>☎️ Phone: (Coming soon)</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://youtube.com/@voltnexis" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/voltnexis/profilecard/?igsh=MXJ2YnBvbzMzeXV6dA=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1Ea1o2Hj3Z/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright container">
+            &copy; 2025 VoltNexis Shop. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // --- Theme Persistence Logic ---
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else {
+            // If no theme is saved (e.g., first visit or cleared cache),
+            // default to dark mode and save this preference for future visits
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        }
+
+        // --- Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // --- FAQ accordion functionality ---
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // --- Product Data Definitions for DVD & Offline Media ---
+        const allDVDProducts = {
+            "exam-boot-dvd": {
+                name: "Exam Boot DVD (Offline Study OS)",
+                shortDesc: "Offline bootable DVD with study OS for JEE, NEET, UPSC.",
+                description: "Designed for competitive exam aspirants, this DVD boots into a secure offline OS preloaded with study materials, notes, and practice sets. No internet required.",
+                image: "img/dvd/1/exam_boot.webp", // Placeholder, replace with actual
+                image2: "img/dvd/2/exam_boot.webp",
+                image3: "img/dvd/exam_boot_dvd.webp",
+                sizes: [
+                    { label: "Single Layer DVD", price: 199 },
+                    { label: "Dual Layer DVD", price: 299 }
+                ],
+                included: ["Offline Study OS", "JEE/NEET/UPSC Notes", "Practice Sets", "PDF Guides"],
+                specs: [
+                    ["Boot Mode", "Legacy Only"],
+                    ["Media Type", "DVD-R"],
+                    ["Read Speed", "Up to 16x"],
+                    ["Internet Required", "No"],
+                    ["Warranty", "1 Year"]
+                ]
+            },
+            "recovery-dvd": {
+                name: "System Recovery DVD",
+                shortDesc: "Bootable DVD for repairing and recovering Windows/Linux systems.",
+                description: "This DVD includes essential recovery tools for fixing boot issues, restoring partitions, and recovering lost data. Ideal for emergency system repair.",
+                image: "img/dvd/1/recovery.webp", // Placeholder, replace with actual
+                image2: "img/dvd/2/recovery.webp",
+                image3: "img/dvd/recovery_dvd.webp",
+                sizes: [
+                    { label: "Standard DVD", price: 249 },
+                    { label: "Pro Edition DVD", price: 349 }
+                ],
+                included: ["Recovery Tools", "Boot Repair Utilities", "Partition Manager", "Data Recovery Suite"],
+                specs: [
+                    ["Boot Mode", "Legacy + UEFI"],
+                    ["Media Type", "DVD-R"],
+                    ["Read Speed", "Up to 16x"],
+                    ["OS Support", "Windows & Linux"],
+                    ["Warranty", "2 Years"]
+                ]
+            },
+            "offline-resource-dvd": {
+                name: "Offline Resource DVD",
+                shortDesc: "DVD packed with offline tools, guides, and educational content.",
+                description: "Perfect for low-connectivity environments, this DVD includes curated offline resources: coding guides, cybersecurity tools, PDFs, and more.",
+                image: "img/dvd/1/offline_resource.webp", // Placeholder, replace with actual
+                image2: "img/dvd/2/offline_resource.webp",
+                image3: "img/dvd/offline_resource_dvd.webp",
+                sizes: [
+                    { label: "Standard DVD", price: 199 },
+                    { label: "Extended Edition DVD", price: 299 }
+                ],
+                included: ["Offline Tools", "Educational PDFs", "Coding Resources", "Cybersecurity Guides"],
+                specs: [
+                    ["Boot Mode", "Non-bootable (Data Only)"],
+                    ["Media Type", "DVD-R"],
+                    ["Read Speed", "Up to 16x"],
+                    ["Internet Required", "No"],
+                    ["Warranty", "1 Year"]
+                ]
+            }
+        };
+
+        // --- Function to handle product clicks and pass data ---
+        function selectProduct(productInfo) {
+            sessionStorage.setItem("liveProduct", JSON.stringify(productInfo));
+            // IMPORTANT: Ensure this redirects to your universal product detail page
+            window.location.href = "product.html"; 
+        }
+
+        // --- Attach Click Listeners to Product Cards (after DOM content is loaded) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update data-product-id for consistency
+            const offlineDvdCard = document.querySelector('.product-card[data-product-id="offline-dvd"]');
+            if (offlineDvdCard) {
+                offlineDvdCard.dataset.productId = "offline-resource-dvd";
+            }
+
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const productId = card.dataset.productId; // Get the unique ID from data-product-id
+                    const productInfo = allDVDProducts[productId]; // Look up the product data
+
+                    if (productInfo) {
+                        selectProduct(productInfo); // Call selectProduct with the retrieved data
+                    } else {
+                        console.error("Error: Product data not found for ID:", productId);
+                        // Optional: show a user-friendly error message
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
