@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - VoltNexis Studio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">VoltNexis</span>
+                    <span class="logo-accent">Studio</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-hero-content">
+                <h1>Get In Touch</h1>
+                <p>Ready to turn your ideas into launch-ready products? Let's start the conversation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-form">
+                <h2>Start Your Project</h2>
+                <p>Tell us about your project and we'll get back to you within 24 hours.</p>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp_phone">WhatsApp Number (Optional)</label>
+                        <input type="tel" id="whatsapp_phone" name="whatsapp_phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="enquiry_type">Enquiry Type *</label>
+                        <select id="enquiry_type" name="enquiry_type" required>
+                            <option value="">Select service type</option>
+                            <option value="web">Web Development</option>
+                            <option value="app">App Development</option>
+                            <option value="db">Database Setup</option>
+                            <option value="seo">SEO Optimization</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferred_method">Preferred Contact Method</label>
+                        <select id="preferred_method" name="preferred_method">
+                            <option value="email">Email (Default)</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="telegram">Telegram</option>
+                            <option value="voice_call">Voice Call</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" placeholder="Any additional information about your project..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>voltnexis@gmail.com</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>+91 9778719567</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61579094093361" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/voltnexis" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.x.com/voltnexis" class="social-link" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@voltnexis" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Response Time</h3>
+                    <p>Within 24 hours</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Project Start</h3>
+                    <p>Within 1 week</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-text">VoltNexis</span>
+                        <span class="logo-accent">Studio</span>
+                    </div>
+                    <p>Where ideas turn into launch-ready products</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="web-development.html">Web Development</a>
+                        <a href="app-development.html">App Development</a>
+                        <a href="database-setup.html">Database Setup</a>
+                        <a href="seo-optimization.html">SEO Optimization</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="showcase.html">Showcase</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Supabase configuration
+        const SUPABASE_URL = 'https://acbevxgpjwysxfzrdonp.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjYmV2eGdwand5c3hmenJkb25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyNjY3NDcsImV4cCI6MjA3NTg0Mjc0N30.K3vUDomYNcinBVCZCbeX01IzGcmkNxW2RxRZzXBrvWA';
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(this);
+                const data = {};
+                
+                // Manually build data object to ensure all fields are included
+                data.name = formData.get('name');
+                data.email = formData.get('email');
+                data.phone = formData.get('phone');
+                data.whatsapp_phone = formData.get('whatsapp_phone') || null;
+                data.enquiry_type = formData.get('enquiry_type');
+                data.preferred_method = formData.get('preferred_method') || 'email';
+                data.notes = formData.get('notes') || null;
+                
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/contact_submissions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                    this.reset();
+                } else {
+                    const errorText = await response.text();
+                    console.error('Supabase error:', errorText);
+                    throw new Error('Failed to submit form');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                alert('Sorry, there was an error submitting your form. Please try again.');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+## 💰 **Multi-Service Pricing Reference Table**
+
+### 1️⃣ Single Service (for reference)
+
+| Services | Tier     | Price   |
+| -------- | -------- | ------- |
+| Website  | Basic    | ₹1,999  |
+| Website  | Medium   | ₹4,999  |
+| Website  | Pro      | ₹8,999  |
+| Website  | Advanced | ₹13,999 |
+| App      | Basic    | ₹2,999  |
+| App      | Medium   | ₹6,999  |
+| App      | Pro      | ₹11,999 |
+| App      | Advanced | ₹17,999 |
+| Database | Basic    | ₹1,499  |
+| Database | Medium   | ₹3,499  |
+| Database | Pro      | ₹5,499  |
+| Database | Advanced | ₹8,499  |
+| SEO      | Basic    | ₹999    |
+| SEO      | Medium   | ₹2,499  |
+| SEO      | Pro      | ₹4,499  |
+| SEO      | Advanced | ₹7,499  |
+
+---
+
+### 2️⃣ Two Services Combo
+
+| Services           | Tier     | Price (Suggested)               |
+| ------------------ | -------- | ------------------------------- |
+| Website + App      | Basic    | ₹1,999 + ₹3,999 = **₹5,998**    |
+| Website + App      | Medium   | ₹4,999 + ₹3,999 = **₹8,998**    |
+| Website + App      | Pro      | ₹8,999 + ₹7,199 = **₹16,198**   |
+| Website + App      | Advanced | ₹13,999 + ₹10,799 = **₹24,798** |
+| Website + Database | Basic    | ₹1,999 + ₹899 = **₹2,898**      |
+| Website + Database | Medium   | ₹4,999 + ₹2,099 = **₹7,098**    |
+| Website + Database | Pro      | ₹8,999 + ₹3,299 = **₹12,298**   |
+| Website + Database | Advanced | ₹13,999 + ₹5,099 = **₹19,098**  |
+| Website + SEO      | Basic    | ₹1,999 + ₹599 = **₹2,598**      |
+| Website + SEO      | Medium   | ₹4,999 + ₹1,499 = **₹6,498**    |
+| Website + SEO      | Pro      | ₹8,999 + ₹2,699 = **₹11,698**   |
+| Website + SEO      | Advanced | ₹13,999 + ₹4,499 = **₹18,498**  |
+| App + Database     | Basic    | ₹2,999 + ₹899 = **₹3,898**      |
+| App + Database     | Medium   | ₹6,999 + ₹2,099 = **₹9,098**    |
+| App + Database     | Pro      | ₹11,999 + ₹3,299 = **₹15,298**  |
+| App + Database     | Advanced | ₹17,999 + ₹5,099 = **₹23,098**  |
+| App + SEO          | Basic    | ₹2,999 + ₹599 = **₹3,598**      |
+| App + SEO          | Medium   | ₹6,999 + ₹1,499 = **₹8,498**    |
+| App + SEO          | Pro      | ₹11,999 + ₹2,699 = **₹14,698**  |
+| App + SEO          | Advanced | ₹17,999 + ₹4,499 = **₹22,498**  |
+| Database + SEO     | Basic    | ₹1,499 + ₹599 = **₹2,098**      |
+| Database + SEO     | Medium   | ₹3,499 + ₹1,499 = **₹4,998**    |
+| Database + SEO     | Pro      | ₹5,499 + ₹2,699 = **₹8,198**    |
+| Database + SEO     | Advanced | ₹8,499 + ₹4,499 = **₹12,998**   |
+
+---
+
+### 3️⃣ Three Services Combo
+
+| Services                 | Tier     | Price                                 |
+| ------------------------ | -------- | ------------------------------------- |
+| Website + App + Database | Basic    | 1,999 + 3,999 + 899 = **₹6,897**      |
+| Website + App + Database | Medium   | 4,999 + 3,999 + 2,099 = **₹11,097**   |
+| Website + App + Database | Pro      | 8,999 + 7,199 + 3,299 = **₹19,497**   |
+| Website + App + Database | Advanced | 13,999 + 10,799 + 5,099 = **₹29,897** |
+| Website + App + SEO      | Basic    | 1,999 + 3,999 + 599 = **₹6,597**      |
+| Website + App + SEO      | Medium   | 4,999 + 3,999 + 1,499 = **₹9,997**    |
+| Website + App + SEO      | Pro      | 8,999 + 7,199 + 2,699 = **₹18,897**   |
+| Website + App + SEO      | Advanced | 13,999 + 10,799 + 4,499 = **₹29,297** |
+| Website + Database + SEO | Basic    | 1,999 + 899 + 599 = **₹3,497**        |
+| Website + Database + SEO | Medium   | 4,999 + 2,099 + 1,499 = **₹8,597**    |
+| Website + Database + SEO | Pro      | 8,999 + 3,299 + 2,699 = **₹14,997**   |
+| Website + Database + SEO | Advanced | 13,999 + 5,099 + 4,499 = **₹23,597**  |
+| App + Database + SEO     | Basic    | 2,999 + 899 + 599 = **₹4,497**        |
+| App + Database + SEO     | Medium   | 6,999 + 2,099 + 1,499 = **₹10,597**   |
+| App + Database + SEO     | Pro      | 11,999 + 3,299 + 2,699 = **₹17,997**  |
+| App + Database + SEO     | Advanced | 17,999 + 5,099 + 4,499 = **₹27,597**  |
+
+---
+
+### 4️⃣ Four Services Combo (All)
+
+| Services                       | Tier     | Price                                         |
+| ------------------------------ | -------- | --------------------------------------------- |
+| Website + App + Database + SEO | Basic    | 1,999 + 3,999 + 899 + 599 = **₹7,496**        |
+| Website + App + Database + SEO | Medium   | 4,999 + 3,999 + 2,099 + 1,499 = **₹12,596**   |
+| Website + App + Database + SEO | Pro      | 8,999 + 7,199 + 3,299 + 2,699 = **₹22,196**   |
+| Website + App + Database + SEO | Advanced | 13,999 + 10,799 + 5,099 + 4,499 = **₹34,396** |
+
+---
+
+✅ **Notes:**
+
+1. The first service in each combo is **highest tier full price**.
+2. Each additional service is **partial price** (about 60% of its standalone price) rounded to a nice number.
+3. You can **add add-ons** (Hosting, Dashboard, etc.) and **multiply by speed** afterwards to get final total.
+
+
+##

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - VoltNexis Studio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .confirmation-hero {
+            min-height: 100vh;
+            padding: 8rem 0 4rem;
+            display: flex;
+            align-items: center;
+            background: #020617;
+        }
+        .confirmation-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .success-icon {
+            font-size: 5rem;
+            color: #10b981;
+            margin-bottom: 2rem;
+            animation: bounce 1s ease-out;
+        }
+        .confirmation-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .confirmation-subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .queue-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+        .queue-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .queue-card:hover {
+            transform: translateY(-10px);
+            border-color: #6366f1;
+        }
+        .queue-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        .queue-icon i {
+            font-size: 1.75rem;
+            color: #ffffff;
+        }
+        .queue-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #f8fafc;
+        }
+        .queue-card p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+        .next-steps {
+            margin-bottom: 4rem;
+        }
+        .next-steps h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #f8fafc;
+        }
+        .steps-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+        .timeline-step {
+            text-align: center;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 auto 1.5rem;
+        }
+        .step-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #f8fafc;
+        }
+        .step-content p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .contact-details {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .contact-details h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #f8fafc;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+        }
+        .contact-item a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .action-buttons .btn {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.1rem;
+            min-width: 180px;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">VoltNexis</span>
+                    <span class="logo-accent">Studio</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="confirmation-hero">
+        <div class="container">
+            <div class="confirmation-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1>You're in the Queue!</h1>
+                <p class="confirmation-subtitle">Thank you for choosing VoltNexis Studio. Your project request has been received successfully.</p>
+                
+                <div class="queue-info">
+                    <div class="queue-card">
+                        <div class="queue-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Our Team Will Contact You</h3>
+                        <p>Within 24 hours, our project manager will reach out to discuss your requirements in detail and finalize the project scope.</p>
+                    </div>
+                    
+                    <div class="queue-card">
+                        <div class="queue-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Payment Discussion</h3>
+                        <p>We'll discuss payment options and project milestones during our initial consultation call.</p>
+                    </div>
+                    
+                    <div class="queue-card">
+                        <div class="queue-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Project Kickoff</h3>
+                        <p>Once everything is confirmed, we'll start working on your project with our signature speed and quality.</p>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h2>What Happens Next?</h2>
+                    <div class="steps-timeline">
+                        <div class="timeline-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Confirmation Email</h4>
+                                <p>You'll receive a confirmation email with your project details within 30 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Team Contact</h4>
+                                <p>Our project manager will contact you within 24 hours to discuss details.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Project Start</h4>
+                                <p>After finalizing requirements and payment, we begin your project immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-details">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:voltnexis@gmail.com">voltnexis@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+919778719567">+91 9778719567</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61579094093361" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/voltnexis" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.x.com/voltnexis" class="social-link" title="Twitter/X"><i class="fab fa-x"></i></a>
+                        <a href="https://www.youtube.com/@voltnexis" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="../index.html" class="btn btn-primary">Back to Home</a>
+                    <a href="showcase.html" class="btn btn-secondary">View Our Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-text">VoltNexis</span>
+                        <span class="logo-accent">Studio</span>
+                    </div>
+                    <p>Where ideas turn into launch-ready products</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

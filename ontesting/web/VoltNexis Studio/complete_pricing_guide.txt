@@ -1,0 +1,143 @@
+# VoltNexis Studio - Complete Pricing Guide
+
+## 📋 BASE SERVICE PRICING
+
+### 🌐 Website Development
+- Basic: ₹1,999 (Single-page or landing page)
+- Medium: ₹4,999 (3-6 pages or simple app)
+- Pro: ₹8,999 (Full website or multi-screen app)
+- Advanced: ₹13,999 (Complete business system)
+
+### 📱 Mobile App Development
+- Basic: ₹2,999 (Simple mobile app)
+- Medium: ₹6,999 (3-6 pages or simple app)
+- Pro: ₹11,999 (Cross-platform app)
+- Advanced: ₹17,999 (Enterprise solution)
+
+### 🗄️ Database + Backend Setup
+- Basic: ₹1,499 (Simple database setup)
+- Medium: ₹3,499 (3-6 pages or simple app)
+- Pro: ₹5,499 (Advanced backend system)
+- Advanced: ₹8,499 (Enterprise solution)
+
+### 🔍 SEO Optimization
+- Basic: ₹999 (Essential SEO setup)
+- Medium: ₹2,499 (3-6 pages or simple app)
+- Pro: ₹4,499 (Complete SEO package)
+- Advanced: ₹7,499 (Enterprise SEO solution)
+
+---
+
+## 🎯 COMBO PRICING (Multiple Services)
+
+### 2 Services Combinations:
+- Website + App: ₹5,998 | ₹8,998 | ₹16,198 | ₹24,798
+- Website + Database: ₹2,898 | ₹7,098 | ₹12,298 | ₹19,098
+- Website + SEO: ₹2,598 | ₹6,498 | ₹11,698 | ₹18,498
+- App + Database: ₹3,898 | ₹9,098 | ₹15,298 | ₹23,098
+- App + SEO: ₹3,598 | ₹8,498 | ₹14,698 | ₹22,498
+- Database + SEO: ₹2,098 | ₹4,998 | ₹8,198 | ₹12,998
+
+### 3 Services Combinations:
+- Website + App + Database: ₹6,897 | ₹11,097 | ₹19,497 | ₹29,897
+- Website + App + SEO: ₹6,597 | ₹9,997 | ₹18,897 | ₹29,297
+- Website + Database + SEO: ₹3,497 | ₹8,597 | ₹14,997 | ₹23,597
+- App + Database + SEO: ₹4,497 | ₹10,597 | ₹17,997 | ₹27,597
+
+### 4 Services (Complete Package):
+- Website + App + Database + SEO: ₹7,496 | ₹12,596 | ₹22,196 | ₹34,396
+
+---
+
+## 🔧 ADD-ON FEATURES PRICING
+
+### 🌐 Website Add-ons:
+- Contact Form / Booking: +₹499
+- Authentication / Login: +₹1,499
+- Admin Dashboard: +₹2,499
+- Payment Integration: +₹1,499
+- API Integration: +₹999
+- Hosting / Deployment: +₹799
+
+### 📱 Mobile App Add-ons:
+- Authentication / Login: +₹1,499
+- Admin Dashboard: +₹2,499
+- Payment Integration: +₹1,499
+- API Integration: +₹999
+- Push Notifications: +₹799
+- Hosting / Deployment: +₹999
+
+### 🗄️ Database Add-ons:
+- Authentication / Login: +₹1,499
+- Admin Dashboard: +₹2,499
+- API Integration: +₹999
+- Backups / Maintenance: +₹799
+- Hosting / Deployment: +₹799
+- Security Setup: +₹699
+
+### 🔍 SEO Add-ons:
+- On-page SEO: +₹699
+- Keywords Research: +₹499
+- Bing SEO: +₹499
+- Google Analytics Setup: +₹499
+- SEO Report: +₹599
+- Content Optimization: +₹499
+
+---
+
+## ⚡ DELIVERY SPEED MULTIPLIERS
+
+- Normal Delivery (3-7 days): ×1.0 (No extra charge)
+- Fast Delivery (2-3 days): ×1.3 (+30% of total)
+- Express Delivery (24 hours): ×1.6 (+60% of total)
+
+---
+
+## 💰 PRICING CALCULATION EXAMPLES
+
+### Example 1: Single Service
+- Website (Pro): ₹8,999
+- Add-ons: Contact Form (₹499) + Hosting (₹799) = ₹1,298
+- Subtotal: ₹8,999 + ₹1,298 = ₹10,297
+- Speed: Fast (×1.3)
+- **Final Total: ₹13,386**
+
+### Example 2: Combo Service
+- Website + App (Pro): ₹16,198
+- Add-ons: Authentication (₹1,499) + Payment (₹1,499) = ₹2,998
+- Subtotal: ₹16,198 + ₹2,998 = ₹19,196
+- Speed: Normal (×1.0)
+- **Final Total: ₹19,196**
+
+### Example 3: Complete Package
+- Website + App + Database + SEO (Advanced): ₹34,396
+- Add-ons: Dashboard (₹2,499) + Analytics (₹499) = ₹2,998
+- Subtotal: ₹34,396 + ₹2,998 = ₹37,394
+- Speed: Express (×1.6)
+- **Final Total: ₹59,830**
+
+---
+
+## 📊 PRICING STRATEGY NOTES
+
+1. **Base Pricing**: First service gets full price
+2. **Combo Discount**: Additional services get optimized combo pricing
+3. **Add-ons**: Fixed price regardless of base service tier
+4. **Speed Multiplier**: Applied to final total (base + add-ons)
+5. **Minimum Order**: ₹999 (SEO Basic)
+6. **Maximum Savings**: Up to 40% with combo packages
+
+---
+
+## 🎯 COMPETITIVE ADVANTAGES
+
+- **4× Faster Delivery**: Industry standard 2-4 weeks vs our 3-7 days
+- **¼ Lower Cost**: 60-75% less than traditional agencies
+- **Transparent Pricing**: No hidden fees or surprise charges
+- **Combo Savings**: Significant discounts for multiple services
+- **Premium Quality**: High-end results at competitive prices
+
+---
+
+*Last Updated: December 2024*
+*VoltNexis Studio - Where ideas turn into launch-ready products*

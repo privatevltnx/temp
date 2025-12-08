@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Project - VoltNexis Studio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">VoltNexis</span>
+                    <span class="logo-accent">Studio</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="booking-hero">
+        <div class="container">
+            <div class="booking-header">
+                <h1>Book Your Project</h1>
+                <p>Get instant pricing and start your project in minutes</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="step-indicator">
+                    <span class="step active">1</span>
+                    <span class="step">2</span>
+                    <span class="step">3</span>
+                    <span class="step">4</span>
+                    <span class="step">5</span>
+                    <span class="step">6</span>
+                    <span class="step">7</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-wizard">
+        <div class="container">
+            <div class="wizard-container">
+                <!-- Step 1: Project Type -->
+                <div class="wizard-step active" id="step1">
+                    <h2>What do you want to build?</h2>
+                    <p class="step-instruction">Select one or multiple services</p>
+                    <div class="options-grid">
+                        <div class="option-card multi-select" data-type="website" data-price="1999,4999,8999,13999">
+                            <div class="option-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Website</h3>
+                            <p>Responsive, modern websites</p>
+                            <div class="price-range">₹1,999 - ₹13,999</div>
+                        </div>
+                        <div class="option-card multi-select" data-type="app" data-price="2999,6999,11999,17999">
+                            <div class="option-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Mobile App</h3>
+                            <p>Android, iOS & hybrid apps</p>
+                            <div class="price-range">₹2,999 - ₹17,999</div>
+                        </div>
+                        <div class="option-card multi-select" data-type="database" data-price="1499,3499,5499,8499">
+                            <div class="option-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>Database + Backend</h3>
+                            <p>Supabase & API setup</p>
+                            <div class="price-range">₹1,499 - ₹8,499</div>
+                        </div>
+                        <div class="option-card multi-select" data-type="seo" data-price="999,2499,4499,7499">
+                            <div class="option-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>SEO Optimization</h3>
+                            <p>Google & Bing visibility</p>
+                            <div class="price-range">₹999 - ₹7,499</div>
+                        </div>
+                    </div>
+                    <div class="current-total">
+                        <span>Current Selection Total: <span id="currentTotal">₹0</span></span>
+                    </div>
+                </div>
+
+                <!-- Step 2: Project Size -->
+                <div class="wizard-step" id="step2">
+                    <h2>How big or detailed is your project?</h2>
+                    <div class="size-options">
+                        <div class="size-card" data-tier="0">
+                            <h3>Basic</h3>
+                            <p>Single-page or landing page</p>
+                            <div class="tier-price" id="basicPrice">₹1,999</div>
+                        </div>
+                        <div class="size-card" data-tier="1">
+                            <h3>Medium</h3>
+                            <p>3–6 pages or simple app</p>
+                            <div class="tier-price" id="mediumPrice">₹4,999</div>
+                        </div>
+                        <div class="size-card" data-tier="2">
+                            <h3>Pro</h3>
+                            <p>Full website or multi-screen app</p>
+                            <div class="tier-price" id="proPrice">₹8,999</div>
+                        </div>
+                        <div class="size-card" data-tier="3">
+                            <h3>Advanced</h3>
+                            <p>Complete business system</p>
+                            <div class="tier-price" id="advancedPrice">₹13,999</div>
+                        </div>
+                    </div>
+                    <div class="current-total">
+                        <span>Current Selection Total: <span id="currentTotal2">₹0</span></span>
+                    </div>
+                </div>
+
+                <!-- Step 3: Design Preference -->
+                <div class="wizard-step" id="step3">
+                    <h2>What style do you prefer?</h2>
+                    <div class="design-options">
+                        <div class="design-card" data-style="minimal">
+                            <div class="design-preview minimal"></div>
+                            <h3>Minimal & Clean</h3>
+                            <p>Simple, elegant design</p>
+                        </div>
+                        <div class="design-card" data-style="modern">
+                            <div class="design-preview modern"></div>
+                            <h3>Aesthetic & Modern</h3>
+                            <p>Trendy, eye-catching design</p>
+                        </div>
+                        <div class="design-card" data-style="premium">
+                            <div class="design-preview premium"></div>
+                            <h3>Premium / Brand-focused</h3>
+                            <p>Professional, corporate look</p>
+                        </div>
+                        <div class="design-card" data-style="playful">
+                            <div class="design-preview playful"></div>
+                            <h3>Cute / Playful</h3>
+                            <p>Fun, colorful design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Features -->
+                <div class="wizard-step" id="step4">
+                    <h2>What features do you need?</h2>
+                    <div class="features-grid" id="featuresContainer">
+                        <!-- Features will be dynamically loaded based on selected services -->
+                    </div>
+                    <div class="current-total">
+                        <span>Current Selection Total: <span id="currentTotal4">₹0</span></span>
+                    </div>
+                </div>
+
+                <!-- Step 5: Deadline -->
+                <div class="wizard-step" id="step5">
+                    <h2>When do you need it?</h2>
+                    <div class="deadline-options">
+                        <div class="deadline-card" data-speed="1.0">
+                            <div class="speed-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Normal Delivery</h3>
+                            <p>3–7 days</p>
+                            <div class="multiplier">×1.0</div>
+                        </div>
+                        <div class="deadline-card" data-speed="1.3">
+                            <div class="speed-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <h3>Fast</h3>
+                            <p>2–3 days</p>
+                            <div class="multiplier">×1.3</div>
+                        </div>
+                        <div class="deadline-card" data-speed="1.6">
+                            <div class="speed-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Express</h3>
+                            <p>Within 24 hrs</p>
+                            <div class="multiplier">×1.6</div>
+                        </div>
+                    </div>
+                    <div class="current-total">
+                        <span>Current Selection Total: <span id="currentTotal5">₹0</span></span>
+                    </div>
+                </div>
+
+                <!-- Step 6: Contact Information -->
+                <div class="wizard-step" id="step6">
+                    <h2>How should we contact you?</h2>
+                    <div class="contact-form-wizard">
+                        <div class="form-group">
+                            <label for="clientName">Full Name *</label>
+                            <input type="text" id="clientName" name="clientName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="clientEmail">Email Address *</label>
+                            <input type="email" id="clientEmail" name="clientEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="clientCompany">Company/Organization</label>
+                            <input type="text" id="clientCompany" name="clientCompany">
+                        </div>
+                        
+                        <div class="contact-options">
+                            <div class="contact-toggle">
+                                <input type="checkbox" id="addPhone" name="addPhone">
+                                <label for="addPhone">Add Phone Number</label>
+                            </div>
+                            
+                            <div class="phone-section" id="phoneSection" style="display: none;">
+                                <div class="form-group">
+                                    <label for="clientPhone">Phone Number</label>
+                                    <input type="tel" id="clientPhone" name="clientPhone">
+                                </div>
+                                
+                                <div class="phone-apps">
+                                    <label class="phone-app">
+                                        <input type="checkbox" name="phoneApps" value="whatsapp">
+                                        <span>WhatsApp</span>
+                                    </label>
+                                    <label class="phone-app">
+                                        <input type="checkbox" name="phoneApps" value="telegram">
+                                        <span>Telegram</span>
+                                    </label>
+                                    <label class="phone-app">
+                                        <input type="checkbox" name="phoneApps" value="call">
+                                        <span>Voice Call</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectNotes">Additional Notes</label>
+                            <textarea id="projectNotes" name="projectNotes" placeholder="Any specific requirements or questions..."></textarea>
+                        </div>
+                    </div>
+                    <div class="current-total">
+                        <span>Current Selection Total: <span id="currentTotal6">₹0</span></span>
+                    </div>
+                </div>
+
+                <!-- Step 7: Summary -->
+                <div class="wizard-step" id="step7">
+                    <h2>Project Summary</h2>
+                    <div class="summary-container">
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <span class="label">Project Type:</span>
+                                <span class="value" id="summaryType">Website</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Size:</span>
+                                <span class="value" id="summarySize">Pro</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Style:</span>
+                                <span class="value" id="summaryStyle">Modern</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Features:</span>
+                                <span class="value" id="summaryFeatures">Contact Form, Hosting</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Delivery:</span>
+                                <span class="value" id="summaryDelivery">Fast (×1.3)</span>
+                            </div>
+                        </div>
+                        <div class="price-breakdown">
+                            <div class="breakdown-item">
+                                <span>Base Price:</span>
+                                <span id="basePrice">₹8,999</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Add-ons:</span>
+                                <span id="addonsPrice">₹1,298</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Speed Multiplier:</span>
+                                <span id="speedMultiplier">×1.3</span>
+                            </div>
+                            <div class="breakdown-total">
+                                <span>Total:</span>
+                                <span id="totalPrice">₹13,386</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="final-actions">
+                        <button class="btn btn-primary btn-large" id="proceedBtn">Finish</button>
+                        <button class="btn btn-secondary" id="chatBtn">Chat with Us</button>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="wizard-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                    <button class="btn btn-primary" id="nextBtn">Next</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-text">VoltNexis</span>
+                        <span class="logo-accent">Studio</span>
+                    </div>
+                    <p>Where ideas turn into launch-ready products</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/booking.js"></script>
+</body>
+</html>
