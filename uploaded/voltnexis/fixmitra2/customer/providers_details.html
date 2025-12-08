@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Details - FixMitra by VoltNexis</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .gradient-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-ocean { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .header-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        .detail-card {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .gallery-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="header-glass fixed w-full top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html"><img src="img/logo-icon.webp" alt="FixMitra Logo" class="w-12 h-12 mr-3 rounded-xl"></a>
+                    <h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                        <a href="index.html">FixMitra by VoltNexis</a>
+                    </h1>
+                </div>
+                <div class="flex space-x-3">
+                    <button onclick="goBack()" class="btn-primary px-4 py-2 text-sm">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
+                    </button>
+                    <a href="index.html" class="btn-primary px-4 py-2 text-sm">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 mt-20">
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-12">
+            <i class="fas fa-spinner fa-spin text-4xl text-purple-600 mb-4"></i>
+            <p class="text-gray-600">Loading provider details...</p>
+        </div>
+
+        <!-- Provider Details -->
+        <div id="providerDetails" class="hidden">
+            <!-- Provider Header -->
+            <div class="detail-card bg-white p-8 mb-6">
+                <div class="gradient-ocean text-white p-6 rounded-lg mb-6">
+                    <div class="flex items-center">
+                        <div id="providerLogo" class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-user-tie text-3xl text-white"></i>
+                        </div>
+                        <div>
+                            <h1 id="providerName" class="text-3xl font-bold mb-2"></h1>
+                            <div id="providerBadges" class="flex space-x-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                        <div class="space-y-3">
+                            <div id="providerPhone" class="flex items-center text-gray-600">
+                                <i class="fas fa-phone text-purple-600 mr-3"></i>
+                                <span></span>
+                            </div>
+                            <div id="providerEmail" class="flex items-center text-gray-600">
+                                <i class="fas fa-envelope text-purple-600 mr-3"></i>
+                                <span></span>
+                            </div>
+                            <div id="providerAddress" class="flex items-start text-gray-600">
+                                <i class="fas fa-map-marker-alt text-purple-600 mr-3 mt-1"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Service Information</h3>
+                        <div class="space-y-3">
+                            <div id="providerCategories" class="flex items-start text-gray-600">
+                                <i class="fas fa-tools text-purple-600 mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-medium">Services:</span>
+                                    <div id="categoriesList" class="mt-1"></div>
+                                </div>
+                            </div>
+                            <div id="providerPincodes" class="flex items-start text-gray-600">
+                                <i class="fas fa-map text-purple-600 mr-3 mt-1"></i>
+                                <div>
+                                    <span class="font-medium">Service Areas:</span>
+                                    <div id="serviceAreasDisplay" class="mt-1"></div>
+                                    <div id="pincodesList" class="mt-1 hidden"></div>
+                                    <button id="togglePincodes" onclick="togglePincodesList()" class="text-purple-600 hover:text-purple-800 text-sm mt-2 hidden">
+                                        <i class="fas fa-eye mr-1"></i>Show all pincodes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Details -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Experience & Ratings -->
+                <div class="detail-card bg-white p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Experience & Ratings</h3>
+                    <div class="space-y-4">
+                        <div id="providerExperience" class="flex items-center">
+                            <i class="fas fa-calendar-alt text-purple-600 mr-3"></i>
+                            <span class="text-gray-600">Experience: <span id="experienceYears"></span></span>
+                        </div>
+                        <div id="providerRating" class="flex items-center">
+                            <i class="fas fa-star text-yellow-500 mr-3"></i>
+                            <span class="text-gray-600">Rating: <span id="ratingValue"></span></span>
+                        </div>
+                        <div id="providerJoined" class="flex items-center">
+                            <i class="fas fa-user-plus text-purple-600 mr-3"></i>
+                            <span class="text-gray-600">Joined: <span id="joinedDate"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="detail-card bg-white p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">About Provider</h3>
+                    <div id="providerDescription" class="text-gray-600 leading-relaxed">
+                        <!-- Description will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div id="gallerySection" class="mt-8 hidden">
+                <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Work Gallery</h3>
+                <div id="galleryContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+            </div>
+            
+            <!-- Gallery Modal -->
+            <div id="galleryModal" class="gallery-modal hidden" onclick="closeGalleryModal()">
+                <img id="modalImage" src="" alt="Gallery Image">
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-8 text-center">
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="contactProvider()" class="btn-primary px-8 py-3">
+                        <i class="fas fa-phone mr-2"></i>Contact Provider
+                    </button>
+                    <button onclick="bookService()" class="btn-primary px-8 py-3">
+                        <i class="fas fa-calendar-plus mr-2"></i>Book Service
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="text-center py-12 hidden">
+            <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"></i>
+            <p class="text-gray-600 mb-4">Provider not found or failed to load details</p>
+            <a href="providers_list.html" class="btn-primary">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Providers
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Supabase Configuration
+        const supabaseUrl = 'https://imdrjtjlpuqdixvpdytk.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZHJqdGpscHVxZGl4dnBkeXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMzExMTcsImV4cCI6MjA3MTYwNzExN30.Sa8UFkFyLKTL-JLzaojq9whdq3VjHFqxSVlWY_W4HkU';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+        let currentProvider = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const providerId = urlParams.get('id');
+            
+            if (providerId) {
+                loadProviderDetails(providerId);
+            } else {
+                showError();
+            }
+        });
+
+        async function loadProviderDetails(providerId) {
+            try {
+                const { data: provider, error } = await supabaseClient
+                    .from('providers')
+                    .select('*')
+                    .eq('id', providerId)
+                    .single();
+
+                if (error) throw error;
+
+                if (!provider) {
+                    showError();
+                    return;
+                }
+
+                currentProvider = provider;
+                displayProviderDetails(provider);
+                
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('providerDetails').classList.remove('hidden');
+            } catch (error) {
+                console.error('Error loading provider details:', error);
+                showError();
+            }
+        }
+
+        function displayProviderDetails(provider) {
+            // Provider Name
+            document.getElementById('providerName').textContent = provider.company_name || provider.name;
+
+            // Logo/Profile Picture
+            const logoContainer = document.getElementById('providerLogo');
+            if (provider.profile_picture) {
+                logoContainer.innerHTML = `<img src="${provider.profile_picture}" alt="Profile" class="w-20 h-20 rounded-full object-cover">`;
+            } else if (provider.logo) {
+                logoContainer.innerHTML = `<img src="${provider.logo}" alt="Logo" class="w-20 h-20 rounded-full object-cover">`;
+            }
+
+            // Badges
+            const badgesContainer = document.getElementById('providerBadges');
+            let badges = '';
+            if (provider.verified) {
+                badges += '<span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800 mr-2"><i class="fas fa-check-circle mr-1"></i>Verified</span>';
+            }
+            if (provider.isfast) {
+                badges += '<span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800"><i class="fas fa-bolt mr-1"></i>Fast Service</span>';
+            }
+            badgesContainer.innerHTML = badges;
+
+            // Contact Information
+            if (provider.phone) {
+                document.getElementById('providerPhone').querySelector('span').textContent = provider.phone;
+            } else {
+                document.getElementById('providerPhone').style.display = 'none';
+            }
+
+            if (provider.email) {
+                document.getElementById('providerEmail').querySelector('span').textContent = provider.email;
+            } else {
+                document.getElementById('providerEmail').style.display = 'none';
+            }
+
+            if (provider.address) {
+                document.getElementById('providerAddress').querySelector('span').textContent = provider.address;
+            } else {
+                document.getElementById('providerAddress').style.display = 'none';
+            }
+
+            // Services
+            if (provider.categories) {
+                const categories = provider.categories.split(',').map(cat => cat.trim());
+                document.getElementById('categoriesList').innerHTML = categories.map(cat => 
+                    `<span class="inline-block bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-sm mr-2 mb-1">${cat}</span>`
+                ).join('');
+            }
+
+            // Service Areas
+            displayServiceAreas(provider);
+
+            // Experience - calculate from created_at date
+            if (provider.created_at) {
+                const createdDate = new Date(provider.created_at);
+                const now = new Date();
+                const diffTime = Math.abs(now - createdDate);
+                const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30.44)); // Average days per month
+                
+                if (diffMonths < 12) {
+                    document.getElementById('experienceYears').textContent = `${diffMonths} months with FixMitra`;
+                } else {
+                    const years = Math.floor(diffMonths / 12);
+                    const remainingMonths = diffMonths % 12;
+                    if (remainingMonths === 0) {
+                        document.getElementById('experienceYears').textContent = `${years} ${years === 1 ? 'year' : 'years'} with FixMitra`;
+                    } else {
+                        document.getElementById('experienceYears').textContent = `${years}y ${remainingMonths}m with FixMitra`;
+                    }
+                }
+            } else {
+                document.getElementById('experienceYears').textContent = 'New provider';
+            }
+
+            // Rating
+            document.getElementById('ratingValue').textContent = provider.rating ? `${provider.rating}/5` : 'No ratings yet';
+
+            // Joined Date
+            if (provider.created_at) {
+                const joinedDate = new Date(provider.created_at).toLocaleDateString();
+                document.getElementById('joinedDate').textContent = joinedDate;
+            } else {
+                document.getElementById('joinedDate').textContent = 'Not available';
+            }
+
+            // Description
+            const description = provider.description || 'No description available for this provider.';
+            document.getElementById('providerDescription').textContent = description;
+
+            // Gallery
+            if (provider.ads) {
+                const galleryUrls = provider.ads.split(',').map(url => url.trim()).filter(url => url);
+                if (galleryUrls.length > 0) {
+                    document.getElementById('gallerySection').classList.remove('hidden');
+                    document.getElementById('galleryContainer').innerHTML = galleryUrls.map((url, index) => 
+                        `<img src="${url}" alt="Work Photo ${index + 1}" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity" onclick="openGalleryModal('${url}')">`
+                    ).join('');
+                }
+            }
+        }
+
+        function showError() {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+        }
+
+        function contactProvider() {
+            if (currentProvider && currentProvider.phone) {
+                window.open(`tel:${currentProvider.phone}`, '_self');
+            } else {
+                alert('Phone number not available for this provider');
+            }
+        }
+
+        function bookService() {
+            if (currentProvider) {
+                // Store provider info and redirect to service booking
+                localStorage.setItem('selectedProvider', JSON.stringify(currentProvider));
+                window.location.href = 'confirm_service.html';
+            }
+        }
+
+        function getProviderServiceDisplay(provider) {
+            if (!provider) return '';
+            
+            const selectionType = provider.selection_type || 'manual';
+            
+            if (selectionType === 'manual') {
+                const pincodeCount = provider.pincodes.split(',').filter(p => p.trim()).length;
+                return `${pincodeCount} service areas`;
+            }
+            
+            if (selectionType === 'district' || selectionType === 'combined') {
+                const districts = provider.selected_districts ? 
+                    provider.selected_districts.split(',').filter(d => d.trim()) : [];
+                
+                if (districts.length === 0) {
+                    const pincodeCount = provider.pincodes.split(',').filter(p => p.trim()).length;
+                    return `${pincodeCount} service areas`;
+                }
+                
+                let displayText = districts.length <= 2 ? 
+                    districts.join(', ') : 
+                    `${districts.slice(0, 2).join(', ')} +${districts.length - 2} more`;
+                
+                if (selectionType === 'combined') {
+                    const additionalCount = provider.additional_pincodes ? 
+                        provider.additional_pincodes.split(',').filter(p => p.trim()).length : 0;
+                    const excludedCount = provider.excluded_pincodes ? 
+                        provider.excluded_pincodes.split(',').filter(p => p.trim()).length : 0;
+                    
+                    if (additionalCount > 0) displayText += ` +${additionalCount} extra`;
+                    if (excludedCount > 0) displayText += ` -${excludedCount} excluded`;
+                }
+                
+                return displayText;
+            }
+            
+            return 'Service areas available';
+        }
+
+        function displayServiceAreas(provider) {
+            const serviceAreasDisplay = document.getElementById('serviceAreasDisplay');
+            const pincodesList = document.getElementById('pincodesList');
+            const toggleButton = document.getElementById('togglePincodes');
+            
+            serviceAreasDisplay.innerHTML = getProviderServiceDisplay(provider);
+            
+            if (provider.pincodes) {
+                const pincodes = provider.pincodes.split(',').map(pin => pin.trim());
+                if (pincodes.length > 5) {
+                    const firstFive = pincodes.slice(0, 5);
+                    serviceAreasDisplay.innerHTML += '<br>' + firstFive.map(pin => 
+                        `<span class="inline-block bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-1 mb-1">${pin}</span>`
+                    ).join('') + `<span class="text-gray-500 text-xs">... +${pincodes.length - 5} more</span>`;
+                    
+                    pincodesList.innerHTML = pincodes.map(pin => 
+                        `<span class="inline-block bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-1 mb-1">${pin}</span>`
+                    ).join('');
+                    
+                    toggleButton.classList.remove('hidden');
+                } else {
+                    serviceAreasDisplay.innerHTML += '<br>' + pincodes.map(pin => 
+                        `<span class="inline-block bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-1 mb-1">${pin}</span>`
+                    ).join('');
+                }
+            }
+        }
+        
+        let pincodesExpanded = false;
+        
+        function togglePincodesList() {
+            const serviceAreasDisplay = document.getElementById('serviceAreasDisplay');
+            const pincodesList = document.getElementById('pincodesList');
+            const toggleButton = document.getElementById('togglePincodes');
+            
+            if (!pincodesExpanded) {
+                serviceAreasDisplay.classList.add('hidden');
+                pincodesList.classList.remove('hidden');
+                toggleButton.innerHTML = '<i class="fas fa-eye-slash mr-1"></i>Show less';
+                pincodesExpanded = true;
+            } else {
+                serviceAreasDisplay.classList.remove('hidden');
+                pincodesList.classList.add('hidden');
+                toggleButton.innerHTML = '<i class="fas fa-eye mr-1"></i>Show all pincodes';
+                pincodesExpanded = false;
+            }
+        }
+        
+        function openGalleryModal(imageUrl) {
+            document.getElementById('modalImage').src = imageUrl;
+            document.getElementById('galleryModal').classList.remove('hidden');
+        }
+        
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').classList.add('hidden');
+        }
+        
+        function goBack() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const returnPage = urlParams.get('return');
+            if (returnPage) {
+                window.location.href = returnPage;
+            } else {
+                window.location.href = 'providers_list.html';
+            }
+        }
+    </script>
+</body>
+</html>

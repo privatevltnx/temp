@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Service - FixMitra by VoltNexis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <style>
+        /* Beautiful Gradients */
+        .gradient-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-secondary { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .gradient-success { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .gradient-warm { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .gradient-cool { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .gradient-ocean { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        
+        /* Status Styles */
+        .status-pending { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; border: none; }
+        .status-accepted { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; }
+        .status-rejected { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border: none; }
+        .status-completed { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border: none; }
+        .status-cancelled { background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%); color: white; border: none; }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        /* Header Styling */
+        .header-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Button Animations */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.6);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+        }
+        
+        /* Card Effects */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Input Styling */
+        .form-input {
+            border-radius: 15px;
+            border: 2px solid #e5e7eb;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        /* Chat Styling */
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border-radius: 15px;
+        }
+        
+        /* Modal Styling */
+        .modal-content {
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-cool min-h-screen">
+    <!-- Header -->
+    <header class="header-glass fixed w-full top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+					<a href="index.html"><img src="img/logo_fixmitra.png" alt="FixMitra Logo" class="w-12 h-12 mr-3 rounded-xl"></a>
+					<h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+						<a href="index.html"><span class="sm:hidden">FixMitra</span></a>
+						<a href="index.html"><span class="block sm:hidden text-sm italic font-normal text-gray-700 leading-none">by VoltNexis</span></a>
+						<a href="index.html"><span class="hidden sm:inline-block">FixMitra by VoltNexis</span></a>
+					</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="btn-primary px-4 py-2 text-sm">Home</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl mt-20">
+        <!-- Header Section -->
+        <div class="service-card bg-white p-8 mb-8">
+            <div class="text-center mb-8">
+                <div class="gradient-primary p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <i class="fas fa-list text-white text-3xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Your Service Requests</h1>
+                <p class="text-gray-600">View and manage all your service bookings</p>
+            </div>
+            
+            <div id="loadingMessage" class="text-center">
+                <i class="fas fa-spinner fa-spin text-2xl text-gray-400 mb-2"></i>
+                <p class="text-gray-600">Loading your service requests...</p>
+            </div>
+        </div>
+
+        <!-- Multiple Services List (Hidden by default) -->
+        <div id="multipleServices" class="hidden">
+            <div class="service-card bg-white p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="gradient-success p-2 rounded-full mr-3">
+                        <i class="fas fa-list text-white"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Your Service Requests</h2>
+                </div>
+                <div id="servicesList" class="space-y-4"></div>
+            </div>
+        </div>
+
+        <!-- Service Details Section (Hidden by default) -->
+        <div id="serviceDetails" class="hidden">
+            <!-- Service Info Card -->
+            <div class="service-card bg-white overflow-hidden mb-8">
+                <div class="gradient-ocean text-white p-6 md:p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full -ml-12 -mb-12"></div>
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 relative z-10">
+                        <div class="flex items-center">
+                            <div id="serviceIcon" class="w-16 h-16 md:w-20 md:h-20 glass-effect rounded-2xl flex items-center justify-center mr-4 md:mr-6">
+                                <i class="fas fa-broom text-2xl md:text-3xl text-white"></i>
+                            </div>
+                            <div>
+                                <h2 id="serviceName" class="text-2xl md:text-3xl font-bold mb-2">Home Cleaning</h2>
+                                <p class="text-purple-100 text-base md:text-lg">Service ID: <span id="displayServiceId" class="font-mono font-bold"></span></p>
+                            </div>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <div id="serviceStatus" class="px-4 py-2 rounded-full text-sm font-bold status-pending inline-block shadow-lg">
+                                Pending
+                            </div>
+                            <div class="text-purple-100 text-sm md:text-base mt-2 font-medium" id="serviceDate"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <!-- Customer Details -->
+                        <div class="glass-effect p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="gradient-primary p-2 rounded-full mr-3">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Customer Details</h3>
+                            </div>
+                            <div class="space-y-3 text-base">
+                                <div class="flex justify-between"><span class="font-semibold text-gray-600">Name:</span> <span id="customerName" class="font-medium"></span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-gray-600">Phone:</span> <span id="customerPhone" class="font-medium"></span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-gray-600">Pincode:</span> <span id="customerPincode" class="font-medium"></span></div>
+                                <div><span class="font-semibold text-gray-600">Address:</span> <span id="customerAddress" class="font-medium block mt-1"></span></div>
+                            </div>
+                        </div>
+
+                        <!-- Service Details -->
+                        <div class="glass-effect p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="gradient-success p-2 rounded-full mr-3">
+                                    <i class="fas fa-cog text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">Service Information</h3>
+                            </div>
+                            <div class="space-y-3 text-base">
+                                <div class="flex justify-between"><span class="font-semibold text-gray-600">Service:</span> <span id="serviceType" class="font-medium"></span></div>
+                                <div class="flex justify-between"><span class="font-semibold text-gray-600">Provider Type:</span> <span id="providerType" class="font-medium"></span></div>
+                                <div><span class="font-semibold text-gray-600">Extra Notes:</span> <span id="extraNotes" class="font-medium block mt-1"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div id="actionButtons" class="service-card bg-white p-6 md:p-8 mb-8">
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button id="cancelBtn" onclick="cancelService()" class="btn-secondary px-8 py-3 text-lg hidden">
+                        <i class="fas fa-times mr-2"></i>Cancel Service
+                    </button>
+                    <button id="chatBtn" onclick="openChat()" class="btn-success px-8 py-3 text-lg hidden">
+                        <i class="fas fa-comments mr-2"></i>Chat with Provider
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Section (Hidden by default) -->
+            <div id="chatSection" class="service-card bg-white p-6 md:p-8 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <div class="gradient-success p-2 rounded-full mr-3">
+                            <i class="fas fa-comments text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Chat with Provider</h3>
+                    </div>
+                    <button onclick="closeChat()" class="glass-effect p-2 rounded-full text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div id="chatMessages" class="chat-container glass-effect p-4 mb-6">
+                    <div class="text-center text-gray-500 text-sm">
+                        Chat will be available once a provider accepts your request
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <input type="text" id="messageInput" placeholder="Type your message..." class="form-input flex-1 text-base" onkeypress="handleMessageKeyPress(event)">
+                    <button onclick="sendMessage()" class="btn-primary px-6 py-3">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="service-card bg-white p-12 text-center hidden">
+            <div class="gradient-secondary p-6 rounded-full w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                <i class="fas fa-search text-white text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">No Service Found</h3>
+            <p class="text-gray-600 text-lg">Please check your Service ID or phone number and try again.</p>
+        </div>
+    </div>
+
+    <!-- Cancel Confirmation Modal -->
+    <div id="cancelModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 hidden">
+        <div class="modal-content bg-white w-full max-w-md mx-4">
+            <div class="p-8">
+                <div class="text-center">
+                    <div class="gradient-secondary w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-exclamation-triangle text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Cancel Service Request</h3>
+                    <p class="text-gray-600 mb-8 text-lg">Are you sure you want to cancel this service request? This action cannot be undone.</p>
+                    
+                    <div class="flex flex-col space-y-4">
+                        <button onclick="closeCancelModal()" class="glass-effect text-gray-800 py-3 px-6 rounded-full font-semibold hover:bg-white transition duration-300">
+                            Keep Service
+                        </button>
+                        <button onclick="confirmCancel()" class="btn-secondary py-3 px-6">
+                            Cancel Service
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Supabase Configuration
+        const supabaseUrl = 'https://imdrjtjlpuqdixvpdytk.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZHJqdGpscHVxZGl4dnBkeXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMzExMTcsImV4cCI6MjA3MTYwNzExN30.Sa8UFkFyLKTL-JLzaojq9whdq3VjHFqxSVlWY_W4HkU';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+        
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3brs9fwpmiJemKQ2fxotB4A-cHM3J_8o",
+            authDomain: "my-chat-app-890.firebaseapp.com",
+            databaseURL: "https://my-chat-app-890-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "my-chat-app-890",
+            storageBucket: "my-chat-app-890.firebasestorage.app",
+            messagingSenderId: "493505638473",
+            appId: "1:493505638473:web:dcee0e34eb948f9448cf98",
+            measurementId: "G-K7M6M0E5BF"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
+        let currentServiceData = null;
+        let unsubscribeChat = null;
+
+        // Service configurations
+        const serviceConfig = {
+            'Home Cleaning': { icon: 'fas fa-broom', color: 'blue' },
+            'AC Repair': { icon: 'fas fa-snowflake', color: 'green' },
+            'Plumbing': { icon: 'fas fa-wrench', color: 'red' },
+            'Electrical Work': { icon: 'fas fa-bolt', color: 'yellow' },
+            'Painting': { icon: 'fas fa-paint-roller', color: 'purple' },
+            'Appliance Repair': { icon: 'fas fa-tools', color: 'indigo' }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('fixmitra_user') || '{}');
+            if (!currentUser.id) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            loadUserServices();
+        });
+
+        async function loadUserServices() {
+            const currentUser = JSON.parse(localStorage.getItem('fixmitra_user') || '{}');
+            
+            try {
+                // Get user's services from Supabase using full phone number
+                const { data, error } = await supabaseClient
+                    .from('requests')
+                    .select('*')
+                    .eq('phone', currentUser.phone)
+                    .order('created_at', { ascending: false });
+                
+                if (error) {
+                    console.error('Supabase error:', error);
+                    throw error;
+                }
+                
+                console.log('Found services:', data);
+                
+                // Hide loading message
+                document.getElementById('loadingMessage').style.display = 'none';
+                
+                if (data && data.length > 0) {
+                    // Convert Supabase format to display format
+                    const convertedServices = data.map(service => ({
+                        serviceId: service.request_id,
+                        serviceName: service.category,
+                        userName: service.customer_name,
+                        userPhone: service.phone,
+                        userPincode: service.pincode,
+                        userAddress: service.address,
+                        extraNotes: service.notes,
+                        providerType: service.provider,
+                        status: service.status || 'Pending',
+                        createdAt: service.created_at
+                    }));
+                    
+                    displayMultipleServices(convertedServices);
+                } else {
+                    showNoServices();
+                }
+                
+            } catch (error) {
+                console.error('Error fetching user services:', error);
+                document.getElementById('loadingMessage').innerHTML = `
+                    <i class="fas fa-exclamation-triangle text-2xl text-red-400 mb-2"></i>
+                    <p class="text-red-600">Error loading your services. Please try again.</p>
+                `;
+            }
+        }
+
+        function displayMultipleServices(services) {
+            // Hide other sections and show multiple services
+            document.getElementById('noResults').classList.add('hidden');
+            document.getElementById('serviceDetails').classList.add('hidden');
+            document.getElementById('multipleServices').classList.remove('hidden');
+            
+            const servicesList = document.getElementById('servicesList');
+            servicesList.innerHTML = '';
+            
+            services.forEach(service => {
+                const config = serviceConfig[service.serviceName] || { icon: 'fas fa-cog', color: 'blue' };
+                const date = new Date(service.createdAt);
+                
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer';
+                serviceCard.onclick = () => {
+                    document.getElementById('multipleServices').classList.add('hidden');
+                    displayServiceDetails(service);
+                };
+                
+                serviceCard.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-${config.color}-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="${config.icon} text-${config.color}-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">${service.serviceName}</h3>
+                                <p class="text-sm text-gray-600">ID: ${service.serviceId}</p>
+                                <p class="text-sm text-gray-500">${date.toLocaleDateString()}</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-3 py-1 rounded-full text-sm font-medium border status-${service.status.toLowerCase()}">
+                                ${service.status}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                servicesList.appendChild(serviceCard);
+            });
+        }
+
+        function displayServiceDetails(serviceData) {
+            currentServiceData = serviceData;
+            
+            // Hide no results and multiple services, show service details
+            document.getElementById('noResults').classList.add('hidden');
+            document.getElementById('multipleServices').classList.add('hidden');
+            document.getElementById('serviceDetails').classList.remove('hidden');
+
+            // Configure service display
+            const config = serviceConfig[serviceData.serviceName] || { icon: 'fas fa-cog', color: 'blue' };
+            document.getElementById('serviceIcon').innerHTML = `<i class="${config.icon} text-xl"></i>`;
+            document.getElementById('serviceName').textContent = serviceData.serviceName;
+            document.getElementById('displayServiceId').textContent = serviceData.serviceId;
+
+            // Set status
+            const statusElement = document.getElementById('serviceStatus');
+            statusElement.textContent = serviceData.status;
+            statusElement.className = `px-3 py-1 rounded-full text-sm font-medium border status-${serviceData.status.toLowerCase()}`;
+
+            // Set date
+            const date = new Date(serviceData.createdAt);
+            document.getElementById('serviceDate').textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+            // Fill customer details
+            document.getElementById('customerName').textContent = serviceData.userName;
+            document.getElementById('customerPhone').textContent = serviceData.userPhone;
+            document.getElementById('customerPincode').textContent = serviceData.userPincode;
+            document.getElementById('customerAddress').textContent = serviceData.userAddress;
+
+            // Fill service details
+            document.getElementById('serviceType').textContent = serviceData.serviceName;
+            document.getElementById('providerType').textContent = serviceData.providerType === 'default' ? 'Default Provider' : 'Custom Provider';
+            document.getElementById('extraNotes').textContent = serviceData.extraNotes || 'None';
+
+            // Show appropriate action buttons based on status
+            updateActionButtons(serviceData.status);
+        }
+
+        function updateActionButtons(status) {
+            const cancelBtn = document.getElementById('cancelBtn');
+            const chatBtn = document.getElementById('chatBtn');
+
+            // Hide all buttons first
+            cancelBtn.classList.add('hidden');
+            chatBtn.classList.add('hidden');
+
+            switch (status.toLowerCase()) {
+                case 'pending':
+                    cancelBtn.classList.remove('hidden');
+                    break;
+                case 'accepted':
+                    cancelBtn.classList.remove('hidden');
+                    chatBtn.classList.remove('hidden');
+                    break;
+                case 'rejected':
+                case 'completed':
+                case 'cancelled':
+                    // No buttons for these statuses
+                    break;
+            }
+        }
+
+        function showNoServices() {
+            document.getElementById('serviceDetails').classList.add('hidden');
+            document.getElementById('multipleServices').classList.remove('hidden');
+            
+            const servicesList = document.getElementById('servicesList');
+            servicesList.innerHTML = `
+                <div class="text-center py-12">
+                    <div class="gradient-secondary p-6 rounded-full w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-clipboard-list text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">No Service Requests Yet</h3>
+                    <p class="text-gray-600 text-lg mb-6">You haven't made any service requests yet.</p>
+                    <a href="index.html" class="btn-primary px-8 py-3 text-lg">
+                        <i class="fas fa-plus mr-2"></i>Book Your First Service
+                    </a>
+                </div>
+            `;
+        }
+
+        function cancelService() {
+            document.getElementById('cancelModal').classList.remove('hidden');
+        }
+
+        function closeCancelModal() {
+            document.getElementById('cancelModal').classList.add('hidden');
+        }
+
+        async function confirmCancel() {
+            if (currentServiceData) {
+                try {
+                    // Update status in Supabase
+                    const { data, error } = await supabaseClient
+                        .from('requests')
+                        .update({ status: 'Cancelled' })
+                        .eq('request_id', currentServiceData.serviceId);
+                    
+                    if (error) {
+                        console.error('Supabase error:', error);
+                        alert('Failed to cancel service. Please try again.');
+                        return;
+                    }
+                    
+                    // Update localStorage for backward compatibility
+                    let serviceRequests = JSON.parse(localStorage.getItem('serviceRequests') || '[]');
+                    const index = serviceRequests.findIndex(service => service.serviceId === currentServiceData.serviceId);
+                    
+                    if (index !== -1) {
+                        serviceRequests[index].status = 'Cancelled';
+                        localStorage.setItem('serviceRequests', JSON.stringify(serviceRequests));
+                    }
+                    
+                    // Update display
+                    currentServiceData.status = 'Cancelled';
+                    displayServiceDetails(currentServiceData);
+                    
+                    console.log('Service cancelled successfully:', currentServiceData.serviceId);
+                    
+                } catch (error) {
+                    console.error('Error cancelling service:', error);
+                    alert('Failed to cancel service. Please try again.');
+                }
+            }
+            
+            closeCancelModal();
+            alert('Service request has been cancelled successfully.');
+        }
+
+        function openChat() {
+            document.getElementById('chatSection').classList.remove('hidden');
+            loadChatMessages();
+        }
+
+
+
+        function loadChatMessages() {
+            const chatContainer = document.getElementById('chatMessages');
+            
+            if (currentServiceData && currentServiceData.status.toLowerCase() === 'accepted') {
+                chatContainer.innerHTML = '<div class="text-center text-gray-500">Loading messages...</div>';
+                
+                // Listen for real-time messages
+                unsubscribeChat = db.collection('chats').doc(String(currentServiceData.serviceId)).collection('messages')
+                    .orderBy('timestamp', 'asc')
+                    .onSnapshot((snapshot) => {
+                        chatContainer.innerHTML = '';
+                        
+                        if (snapshot.empty) {
+                            chatContainer.innerHTML = `
+                                <div class="text-center text-gray-500 text-sm mb-4">
+                                    Chat started with your service provider
+                                </div>
+                            `;
+                        }
+                        
+                        snapshot.forEach((doc) => {
+                            const message = doc.data();
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = `mb-3 ${message.sender === 'customer' ? 'text-right' : 'text-left'}`;
+                            
+                            const messageContent = document.createElement('div');
+                            messageContent.className = `inline-block max-w-xs p-3 rounded-lg ${
+                                message.sender === 'customer' 
+                                    ? 'bg-blue-500 text-white' 
+                                    : 'bg-gray-200 text-gray-800'
+                            }`;
+                            messageContent.textContent = message.text;
+                            
+                            const timestamp = document.createElement('div');
+                            timestamp.className = 'text-xs text-gray-500 mt-1';
+                            timestamp.textContent = new Date(message.timestamp?.toDate()).toLocaleTimeString();
+                            
+                            messageDiv.appendChild(messageContent);
+                            messageDiv.appendChild(timestamp);
+                            chatContainer.appendChild(messageDiv);
+                        });
+                        
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    });
+            }
+        }
+
+        function closeChat() {
+            document.getElementById('chatSection').classList.add('hidden');
+            if (unsubscribeChat) {
+                unsubscribeChat();
+                unsubscribeChat = null;
+            }
+        }
+
+        async function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (!message || !currentServiceData) return;
+            
+            try {
+                await db.collection('chats').doc(String(currentServiceData.serviceId)).collection('messages').add({
+                    text: message,
+                    sender: 'customer',
+                    senderName: currentServiceData.userName,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                messageInput.value = '';
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert('Failed to send message');
+            }
+        }
+
+        function handleMessageKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Demo function to simulate status changes (for testing)
+        function simulateStatusChange(newStatus) {
+            if (currentServiceData) {
+                let serviceRequests = JSON.parse(localStorage.getItem('serviceRequests') || '[]');
+                const index = serviceRequests.findIndex(service => service.serviceId === currentServiceData.serviceId);
+                
+                if (index !== -1) {
+                    serviceRequests[index].status = newStatus;
+                    localStorage.setItem('serviceRequests', JSON.stringify(serviceRequests));
+                    
+                    currentServiceData.status = newStatus;
+                    displayServiceDetails(currentServiceData);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="tPLMObaC3EgIjoJex4M1o9yWQDS1m8g8y-Wx5vYNN8E" />
+  <meta name="description" content="CodeXaurA is a powerful AI chat assistant for developers. Get instant help with coding questions, debug issues, and explore new concepts with an intelligent">
+  <meta name="keywords" content="AI chat, coding assistant, AI chatbot, developer tool, code help, programming questions, CodeXaurA, chatbot, AI for developers">
+  <meta name="author" content="Your Name or Company Name">
+
+  <meta property="og:title" content="CodeXaurA — The AI Coding Assistant">
+  <meta property="og:description" content="Get instant help with coding questions, debug issues, and explore new concepts with an intelligent AI chatbot.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voltnexis.github.io/codexaura">
+  <meta property="og:image" content="https://voltnexis.github.io/codexaura/img/codexaura.webp"> <meta name="twitter:card" content="summary_large_image">
+  
+  <meta name="twitter:site" content="@yourtwitterhandle">
+  <meta name="twitter:title" content="CodeXaurA — The AI Coding Assistant">
+  <meta name="twitter:description" content="Get instant help with coding questions, debug issues, and explore new concepts with an intelligent AI chatbot.">
+  <meta name="twitter:image" content="https://voltnexis.github.io/codexaura/img/codexaura.webp">
+  <title>CodeXaurA - AI Coder</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <h1 class="hidden">ameeen </h1>
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="top">
+      <button onclick="window.newChat()">+ New Chat</button>
+    </div>
+    <h3>Your Chats</h3>
+    <ul id="chatList"></ul>
+    <div id="sidebarActions" class="sidebar-actions">
+      <!-- Settings and Logout will be dynamically loaded here -->
+      <div class="sidebar-footer" onclick="window.goToSettings()">
+        <span>⚙️</span><span>Settings</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="header">
+      <button id="menuBtn" class="menu-btn" onclick="window.toggleSidebar()">☰</button>
+      <div class="brand">Code<span>XaurA</span> — AI</div>
+      <div class="user-actions" id="userArea">
+        <!-- User actions content will be dynamically loaded here -->
+      </div>
+    </header>
+    <section id="chat"></section>
+    <div class="input-area">
+      <textarea id="userInput" placeholder="Type your message..."></textarea>
+      <button class="send-btn" onclick="window.sendMessage()">Send</button>
+    </div>
+  </main>
+</div>
+
+<div id="overlay" onclick="window.toggleSidebar()"></div>
+
+<!-- Auth Popup -->
+<div id="authPopup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="window.skipAuth()">✖</button>
+    <div class="popup-title">Login/Sign up</div>
+    <div class="auth-row">
+      <button id="googleBtn" onclick="window.googleLogin()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G">
+        Sign IN with Google
+      </button>
+      <button id="googleBtn" onclick="window.googleLogin()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G">
+        Sign UP with Google
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Message Popup (for alerts/confirmations) -->
+<div id="messagePopup">
+    <div class="popup-content">
+        <h3 id="messagePopupTitle" class="popup-title"></h3>
+        <p id="messagePopupContent" style="text-align: center; color: var(--text-primary); margin-bottom: 20px;"></p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <button id="messagePopupConfirm" class="action-btn" style="display: none;">Confirm</button>
+            <button id="messagePopupClose" class="ghost-btn action-btn">OK</button>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+/************ CONFIG ************/
+const supabase = window.supabase.createClient(
+  "https://tfmwzeiznhfbjbhfchiu.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRmbXd6ZWl6bmhmYmpiaGZjaGl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzNjQyOTUsImV4cCI6MjA3MDk0MDI5NX0.cuYHdMjqkSMIn31oClhDh1_BhBfTXLKKX_KHqQI-3nU"
+);
+
+/************ ELEMENTS ************/
+const chatEl = document.getElementById("chat");
+const userInput = document.getElementById("userInput");
+const authPopup = document.getElementById("authPopup");
+const userArea = document.getElementById("userArea");
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const chatListEl = document.getElementById("chatList");
+const overlay = document.getElementById("overlay");
+const messagePopup = document.getElementById("messagePopup");
+const messagePopupTitle = document.getElementById("messagePopupTitle");
+const messagePopupContent = document.getElementById("messagePopupContent");
+const messagePopupConfirm = document.getElementById("messagePopupConfirm");
+const messagePopupClose = document.getElementById("messagePopupClose");
+const sidebarActionsEl = document.getElementById("sidebarActions");
+
+
+/************ STATE ************/
+let currentUser = null;
+let currentChatId = null;
+let isIncognito = false; // New state for incognito mode
+
+/************ HELPERS ************/
+// Replaces alert() with a custom modal
+function showMessage(title, content, isConfirm = false) {
+    messagePopupTitle.innerText = title;
+    messagePopupContent.innerText = content;
+    messagePopupConfirm.style.display = isConfirm ? 'block' : 'none';
+    messagePopup.style.display = 'flex';
+
+    return new Promise(resolve => {
+        messagePopupConfirm.onclick = () => {
+            messagePopup.style.display = 'none';
+            resolve(true);
+        };
+        messagePopupClose.onclick = () => {
+            messagePopup.style.display = 'none';
+            resolve(false);
+        };
+    });
+}
+
+// Make functions globally accessible for onclick attributes
+window.openAuthPopup = function() {
+  authPopup.style.display="flex";
+}
+
+window.skipAuth = function() {
+  authPopup.style.display="none";
+  // Reset user area to guest state and update sidebar actions
+  userArea.innerHTML = `<button class="ghost-btn" onclick="window.openAuthPopup()">Login | Signup</button>`;
+  sidebarActionsEl.innerHTML = `
+      <div class="sidebar-footer" onclick="window.goToSettings()">
+          <span>⚙️</span><span>Settings</span>
+      </div>
+  `;
+  menuBtn.style.display = "none";
+  sidebar.classList.remove("open");
+  overlay.style.display = "none";
+  currentUser = null;
+  currentChatId = null;
+  isIncognito = false; // Reset incognito mode on guest login
+  chatEl.innerHTML = ""; // Clear chat
+  chatListEl.innerHTML = ""; // Clear chat list
+}
+
+window.toggleSidebar = function() {
+  if (!currentUser && !isIncognito) return; // Only allow sidebar toggle if logged in or in incognito
+  const open = sidebar.classList.toggle("open");
+  overlay.style.display = open ? "block" : "none";
+}
+
+window.goToSettings = function() { window.location.href = "settings.html"; }
+
+function scrollChatToBottom(){ chatEl.scrollTop = chatEl.scrollHeight; }
+
+function addMsg(role, content){
+  const d = document.createElement("div");
+  d.className = `message ${role === "user" ? "user" : "ai"}`;
+
+  if (role === 'ai' && content.includes('```')) {
+    const parts = content.split('```');
+    let htmlContent = '';
+    
+    parts.forEach((part, index) => {
+      if (index % 2 === 1) {
+        const lines = part.split('\n');
+        const language = lines[0].trim().toLowerCase();
+        const code = lines.slice(1).join('\n');
+        
+        const codeContainer = document.createElement('div');
+        codeContainer.className = 'code-container';
+        
+        const header = document.createElement('div');
+        header.className = 'code-header';
+        header.innerHTML = `
+          <span class="language-label">${language || 'text'}</span>
+          <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+        `;
+        
+        const pre = document.createElement('pre');
+        const codeEl = document.createElement('code');
+        codeEl.className = `language-${language}`;
+        codeEl.textContent = code;
+        
+        pre.appendChild(codeEl);
+        codeContainer.appendChild(header);
+        codeContainer.appendChild(pre);
+        
+        d.appendChild(codeContainer);
+        
+        // Highlight the code
+        hljs.highlightElement(codeEl);
+      } else if (part.trim()) {
+        const textDiv = document.createElement('div');
+        textDiv.className = 'message-text';
+        textDiv.textContent = part;
+        d.appendChild(textDiv);
+      }
+    });
+  } else {
+    d.textContent = content;
+  }
+
+  chatEl.appendChild(d);
+  scrollChatToBottom();
+}
+
+window.copyCode = function(btn) {
+  const codeBlock = btn.closest('.code-container').querySelector('code');
+  navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.innerHTML = '📋 Copy', 2000);
+  });
+}
+
+/************ AUTH (EMAIL) ************/
+/************ OAUTH LOGIN ************/
+window.googleLogin = async function() {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: "https://voltnexis.github.io/codexaura" }
+  });
+  if (error) {
+    showMessage("Login Error", error.message);
+  }
+}
+
+/************ SESSION / HEADER ************/
+async function checkSession(){
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session?.user){
+    currentUser = session.user;
+    const { data: userRow } = await supabase
+      .from("users")
+      .select("is_upgraded")
+      .eq("id", currentUser.id)
+      .single();
+    const upgraded = !!userRow?.is_upgraded;
+
+    // Update userArea with avatar and buttons
+    userArea.innerHTML = `
+      <button class="ghost-btn" id="incognitoToggleBtn" title="Toggle Incognito Mode">
+          ${isIncognito ? '👁️ Normal' : '🤫 Incognito'} <!-- Incognito icon with text -->
+      </button>
+      <div class="user-avatar ${isIncognito ? 'incognito' : 'default'}" title="${currentUser.email}" id="userAvatar"></div>
+      ${upgraded ? "" : "<button id='upgradeBtn'>Upgrade</button>"}
+    `;
+
+    // Update sidebar actions (Settings and Logout)
+    sidebarActionsEl.innerHTML = `
+        <div class="sidebar-footer" onclick="window.goToSettings()">
+            <span>⚙️</span><span>Settings</span>
+        </div>
+        <div class="sidebar-footer" id="logoutSidebarBtn">
+            <span>🚪</span><span>Logout</span>
+        </div>
+    `;
+
+    // Attach event listeners
+    if (!upgraded){
+      document.getElementById("upgradeBtn")?.addEventListener("click", () => {
+        window.location.href = "plans.html";
+      });
+    }
+    // No need for userAvatar click listener or userMenu popup anymore for logout
+    document.getElementById("logoutSidebarBtn").addEventListener("click", window.logout); // Attach logout to sidebar button
+    document.getElementById("incognitoToggleBtn")?.addEventListener("click", window.toggleIncognito);
+
+
+    authPopup.style.display = "none";
+    menuBtn.style.display = "inline-block";
+    if (!isIncognito) {
+      await loadChats();
+      // After loading chats, check if there are any existing chats for the user
+      // If no chats exist, automatically create a new one
+      if (chatListEl.children.length === 0) {
+          console.log("No existing chats found. Creating a new default chat.");
+          await window.newChat(true); // Pass true to indicate it's a default initial chat
+      }
+    } else {
+      chatEl.innerHTML = '<div class="incognito-info">You are in Incognito Mode. Chats will not be saved.</div>';
+    }
+  } else {
+    // If no session, show auth popup and login/signup button
+    openAuthPopup();
+    userArea.innerHTML = `<button class="ghost-btn" onclick="window.openAuthPopup()">Login | Signup</button>`; // Ensure button is there
+    sidebarActionsEl.innerHTML = `
+        <div class="sidebar-footer" onclick="window.goToSettings()">
+            <span>⚙️</span><span>Settings</span>
+        </div>
+    `; // Remove logout button if not logged in
+    menuBtn.style.display = "none";
+    currentUser = null;
+    currentChatId = null;
+    sidebar.classList.remove("open");
+    overlay.style.display = "none";
+    isIncognito = false; // Ensure incognito is off when logged out
+    chatEl.innerHTML = ""; // Clear chat
+    chatListEl.innerHTML = ""; // Clear chat list
+  }
+}
+
+// User Menu Popup (not needed for logout anymore, kept empty)
+// window.toggleUserMenu is no longer needed.
+
+// Logout function (made global)
+window.logout = async function() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+        showMessage("Logout Error", error.message);
+    } else {
+        showMessage("Logged Out", "You have been successfully logged out.");
+        // Re-check session to update UI to logged-out state
+        checkSession();
+    }
+}
+
+// Toggle Incognito Mode (made global)
+window.toggleIncognito = async function() {
+    if (!currentUser) {
+        await console.log("Login Required", "Please login to use Incognito Mode.");
+        return;
+    }
+    isIncognito = !isIncognito;
+    checkSession(); // Re-render header and chat area based on new incognito state
+    if (isIncognito) {
+        showMessage("Incognito Mode", "You are now in Incognito Mode. Your chats will not be saved.");
+        currentChatId = null; // Ensure no chat is selected in incognito
+        chatEl.innerHTML = '<div class="incognito-info">You are in Incognito Mode. Chats will not be saved.</div>';
+    } else {
+        showMessage("Incognito Mode Off", "You are no longer in Incognito Mode. Your chats will be saved if you create a new one or load an existing chat.");
+        chatEl.innerHTML = ""; // Clear existing incognito message
+        loadChats(); // Reload chats when exiting incognito
+        // If exiting incognito and no current chat, create one (only if user has no chats at all)
+        if (currentUser && chatListEl.children.length === 0) {
+            await window.newChat(true);
+        }
+    }
+}
+
+/************ CHATS ************/
+// Added an optional 'isDefaultChat' parameter to handle initial chat creation
+window.newChat = async function(isDefaultChat = false) {
+  if (!currentUser) {
+    await showMessage("Login Required", "Please login to create and save chats.");
+    return;
+  }
+  if (isIncognito && !isDefaultChat) { // Only prevent if not a default chat and in incognito
+      await showMessage("Incognito Mode Active", "You cannot create new saved chats in Incognito Mode. Switch to normal mode to save chats.");
+      return;
+  }
+  // Create chat with a generic title initially
+  const { data, error } = await supabase
+    .from("chats")
+    .insert([{ user_id: currentUser.id, title: "New Chat", messages: [] }])
+    .select();
+  if (!error) {
+    currentChatId = data[0].id;
+    chatEl.innerHTML = "";
+    await loadChats(); // Reload to show new chat
+    await loadChat(currentChatId); // Load the newly created chat
+  } else {
+    showMessage("Error", "Failed to create new chat: " + error.message);
+  }
+}
+
+async function loadChats() {
+  if (!currentUser) return;
+  const { data, error } = await supabase
+    .from("chats")
+    .select("id, title, created_at")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending: false });
+  if (error) {
+    showMessage("Error", "Failed to load chats: " + error.message);
+    return;
+  }
+  chatListEl.innerHTML = "";
+  data.forEach(c => {
+    const li = document.createElement("li");
+    const chatTitleSpan = document.createElement("span");
+    chatTitleSpan.className = "chat-title";
+    chatTitleSpan.textContent = c.title;
+    chatTitleSpan.onclick = () => window.loadChat(c.id); // Use window.loadChat
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-chat-btn";
+    deleteBtn.innerHTML = "🗑️"; // Trash can emoji for deletion
+    deleteBtn.title = "Delete Chat";
+    deleteBtn.onclick = (event) => {
+        event.stopPropagation(); // Prevent loading chat when clicking delete
+        window.deleteChat(c.id, c.title); // Use window.deleteChat
+    };
+
+    li.appendChild(chatTitleSpan);
+    li.appendChild(deleteBtn);
+    chatListEl.appendChild(li);
+  });
+}
+
+window.loadChat = async function(chatId) { // Made global
+  if (isIncognito) {
+      showMessage("Incognito Mode Active", "You cannot load saved chats in Incognito Mode. Switch to normal mode.");
+      return;
+  }
+  const { data, error } = await supabase
+    .from("chats")
+    .select("messages, title")
+    .eq("id", chatId)
+    .single();
+  if (error) {
+    showMessage("Error", "Failed to load chat: " + error.message);
+    return;
+  }
+  currentChatId = chatId;
+  chatEl.innerHTML = "";
+  (data.messages || []).forEach(msg => addMsg(msg.role, msg.content));
+}
+
+window.deleteChat = async function(chatId, chatTitle) { // Made global
+    const confirmed = await showMessage(
+        "Delete Chat",
+        `Are you sure you want to delete "${chatTitle}"? This cannot be undone.`, 
+        true
+    );
+    if (!confirmed) {
+        return;
+    }
+
+    const { error } = await supabase
+        .from("chats")
+        .delete()
+        .eq("id", chatId);
+
+    if (!error) {
+        showMessage("Chat Deleted", `"${chatTitle}" has been deleted.`);
+        currentChatId = null; // Deselect current chat if it was deleted
+        chatEl.innerHTML = ""; // Clear chat area
+        loadChats(); // Reload the chat list
+    } else {
+        showMessage("Error", "Failed to delete chat: " + error.message);
+    }
+}
+
+// Function to generate a chat title using the LLM
+async function generateChatTitle(firstMessage) {
+    let chatHistory = [];
+    chatHistory.push({ role: "user", parts: [{ text: `Generate a very concise (3-7 words) and descriptive title for a chat conversation starting with: "${firstMessage}". Only return the title, no other text.` }] });
+    const payload = { contents: chatHistory };
+    const apiKey = ""; // Canvas will provide this
+
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+    let retryCount = 0;
+    const maxRetries = 3;
+    const baseDelay = 1000; // 1 second
+
+    while (retryCount < maxRetries) {
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                if (response.status === 429 && retryCount < maxRetries - 1) {
+                    const delay = baseDelay * Math.pow(2, retryCount);
+                    console.log(`Rate limit hit. Retrying in ${delay}ms...`);
+                    await new Promise(res => setTimeout(res, delay));
+                    retryCount++;
+                    continue;
+                }
+                throw new Error(`API error: ${response.status} ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const title = result.candidates[0].content.parts[0].text.trim();
+                // Basic clean-up for common LLM title formatting (e.g., removing quotes)
+                return title.replace(/^["']|["']$/g, '');
+            } else {
+                throw new Error("Invalid API response structure for title generation.");
+            }
+        } catch (error) {
+            console.error("Error during title generation API call:", error);
+            if (retryCount < maxRetries - 1) {
+                const delay = baseDelay * Math.pow(2, retryCount);
+                console.log(`Retrying after error in ${delay}ms...`);
+                await new Promise(res => setTimeout(res, delay));
+                retryCount++;
+            } else {
+                throw error; // Re-throw if max retries reached
+            }
+        }
+    }
+    throw new Error("Max retries reached for title generation.");
+}
+
+
+/************ SENDING ************/
+userInput.addEventListener("keydown", (e)=>{
+  if(e.key==="Enter" && !e.shiftKey){
+    e.preventDefault();
+    window.sendMessage(); // Call global function
+  }
+});
+
+window.sendMessage = async function() { // Made global
+  const message = userInput.value.trim();
+  if (!message) return;
+  addMsg("user", message);
+  userInput.value = "";
+  const aiDiv = document.createElement("div");
+  aiDiv.classList.add("message", "ai");
+  aiDiv.innerText = "Thinking...";
+  chatEl.appendChild(aiDiv);
+  chatEl.scrollTop = chatEl.scrollHeight;
+
+  try {
+    const res = await fetch("https://ai-coder-backend.onrender.com/chat", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      mode: 'cors',
+      body: JSON.stringify({ message }),
+    });
+    
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    const data = await res.json();
+    const reply = data.reply || "Error: No reply received.";
+
+    // Clear the thinking message and use the improved addMsg function
+    aiDiv.remove();
+    addMsg("ai", reply);
+
+    // Save chat only if not in incognito mode and logged in and a chat is selected
+    if (currentUser && currentChatId && !isIncognito) {
+      let { data: chatRow, error: fetchError } = await supabase
+        .from("chats")
+        .select("messages, title") // Also select title to check if it's "New Chat"
+        .eq("id", currentChatId)
+        .single();
+
+      if (fetchError) {
+        console.error("Error fetching chat for update:", fetchError.message);
+        showMessage("Save Error", "Failed to save chat history: " + fetchError.message);
+        return;
+      }
+
+      const messages = chatRow?.messages || [];
+      // Check if it's the first message and the title is still generic
+      const isFirstMessageInNewChat = (messages.length === 0 && chatRow.title === "New Chat");
+
+      messages.push({ role: "user", content: message });
+      messages.push({ role: "ai", content: reply });
+
+      // Prepare update payload
+      let updatePayload = { messages };
+
+      // If it's the first message in a new chat, generate a title
+      if (isFirstMessageInNewChat) {
+          try {
+              const generatedTitle = await generateChatTitle(message);
+              updatePayload.title = generatedTitle;
+              console.log("Generated chat title:", generatedTitle);
+          } catch (titleError) {
+              console.error("Error generating chat title:", titleError);
+              showMessage("Title Error", "Failed to generate chat title. Defaulting to 'New Chat'.");
+              // If title generation fails, it will keep "New Chat"
+          }
+      }
+
+      const { error: updateError } = await supabase.from("chats").update(updatePayload).eq("id", currentChatId);
+      if (updateError) {
+        console.error("Error updating chat:", updateError.message);
+        showMessage("Save Error", "Failed to save chat history: " + updateError.message);
+      } else if (isFirstMessageInNewChat) {
+          // If title was generated, refresh the chat list in the sidebar to show the new title
+          loadChats();
+      }
+    } else if (isIncognito) {
+        console.log("Not saving chat in Incognito Mode.");
+    } else if (!currentUser) {
+        console.log("Not saving chat: User not logged in.");
+    } else if (!currentChatId) {
+        console.log("Not saving chat: No chat selected.");
+    }
+  } catch (error) {
+    aiDiv.innerText = "Error: Could not connect to AI service. Please make sure you're running the app on a server.";
+    console.error("AI service error:", error);
+    
+    if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+      showMessage("Connection Error", "CORS error detected. Please run server.bat to start the local server.");
+    } else {
+      showMessage("AI Service Error", "Could not connect to the AI service. Please try again later.");
+    }
+  }
+  scrollChatToBottom();
+}
+
+/************ INIT ************/
+checkSession();
+</script>
+</body>
+</html>

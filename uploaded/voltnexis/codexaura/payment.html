@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen p-4">
+    <div class="payment-box bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl w-full border border-gray-700">
+        <h2 class="text-3xl font-bold text-blue-400 mb-8 text-center">Complete Your Payment</h2>
+
+        <!-- Pay with UPI -->
+        <div class="option bg-gray-700 p-5 rounded-xl mb-6 cursor-pointer transform transition-all duration-300 hover:scale-[1.01] hover:shadow-lg" id="upiOption">
+            <label class="option-header flex items-center space-x-4">
+                <input type="radio" name="paymentMethod" value="upi" class="form-radio text-blue-400 h-5 w-5 border-gray-600 focus:ring-blue-500">
+                <span class="head text-xl font-semibold text-blue-300">Pay with UPI</span>
+            </label>
+            <div class="option-content mt-5 pl-9 hidden">
+                <label for="upiId" class="text-gray-300 text-sm mb-2 block">Enter UPI ID:</label>
+                <input type="text" id="upiId" placeholder="example@upi" class="w-full p-3 mb-4 rounded-md bg-gray-900 text-white placeholder-gray-500 border border-gray-700 focus:outline-none focus:border-blue-500">
+                <button onclick="makePayment('upi')" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md hover:shadow-xl">Pay ₹1250</button>
+                <div class="qr-box mt-6 text-center">
+                    <p class="text-gray-300 mb-3">Or Scan QR:</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=demo@upi&am=1250" alt="UPI QR" class="w-36 h-36 bg-white p-2 rounded-lg shadow-md mx-auto border border-gray-400">
+                </div>
+            </div>
+        </div>
+
+        <!-- Pay with Card -->
+        <div class="option bg-gray-700 p-5 rounded-xl mb-6 cursor-pointer transform transition-all duration-300 hover:scale-[1.01] hover:shadow-lg" id="cardOption">
+            <label class="option-header flex items-center space-x-4">
+                <input type="radio" name="paymentMethod" value="card" class="form-radio text-blue-400 h-5 w-5 border-gray-600 focus:ring-blue-500">
+                <span class="head text-xl font-semibold text-blue-300">Pay with Card</span>
+            </label>
+            <div class="option-content mt-5 pl-9 hidden">
+                <label for="cardNumber" class="text-gray-300 text-sm mb-2 block">Card Number:</label>
+                <input type="number" id="cardNumber" placeholder="1234 5678 9012 3456" class="w-full p-3 mb-4 rounded-md bg-gray-900 text-white placeholder-gray-500 border border-gray-700 focus:outline-none focus:border-blue-500">
+
+                <label for="cardExpiry" class="text-gray-300 text-sm mb-2 block">Expiry:</label>
+                <input type="text" id="cardExpiry" placeholder="MM/YY" class="w-full p-3 mb-4 rounded-md bg-gray-900 text-white placeholder-gray-500 border border-gray-700 focus:outline-none focus:border-blue-500">
+
+                <label for="cardCVV" class="text-gray-300 text-sm mb-2 block">CVV:</label>
+                <input type="number" id="cardCVV" placeholder="123" class="w-full p-3 mb-4 rounded-md bg-gray-900 text-white placeholder-gray-500 border border-gray-700 focus:outline-none focus:border-blue-500">
+
+                <button onclick="makePayment('card')" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md hover:shadow-xl">Pay ₹1250</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Placeholder for Supabase initialization (replace with your actual config)
+        // In a real application, you would initialize Supabase here with your project credentials.
+        const supabase = {
+            from: () => ({
+                update: () => ({
+                    eq: () => Promise.resolve({ data: {}, error: null }) // Simulating a successful update
+                })
+            })
+        };
+        const currentUser = { id: 'user_123' }; // Placeholder user ID
+
+        const upiOption = document.getElementById("upiOption");
+        const cardOption = document.getElementById("cardOption");
+        const radios = document.querySelectorAll("input[name='paymentMethod']");
+
+        radios.forEach(r => {
+            r.addEventListener("change", () => {
+                if (r.value === "upi") {
+                    upiOption.classList.add("active");
+                    upiOption.querySelector('.option-content').classList.remove('hidden');
+                    cardOption.classList.remove("active");
+                    cardOption.querySelector('.option-content').classList.add('hidden');
+                } else {
+                    cardOption.classList.add("active");
+                    cardOption.querySelector('.option-content').classList.remove('hidden');
+                    upiOption.classList.remove("active");
+                    upiOption.querySelector('.option-content').classList.add('hidden');
+                }
+            });
+        });
+
+        // Add 'active' class to the first option by default and show its content
+        window.onload = () => {
+            if (radios.length > 0) {
+                radios[0].checked = true;
+                upiOption.classList.add("active");
+                upiOption.querySelector('.option-content').classList.remove('hidden');
+            }
+        };
+
+        async function makePayment(method) {
+            console.log("Payment initiated via " + method);
+
+            // Simulate API call and payment success
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
+
+            console.log("Payment Successful via " + method);
+
+            // ✅ Update Supabase after success
+            // Replace `supabase` and `currentUser` with your actual Supabase client and user session.
+            const { data, error } = await supabase
+                .from("users") // Your table name, e.g., 'users'
+                .update({ is_upgraded: true }) // The column to update and its new value
+                .eq("id", currentUser.id); // Condition to find the correct user record
+
+            if (!error) {
+                console.log("User upgrade status updated successfully!");
+                // 🚀 Redirect to your account page or a success page
+                window.location.href = "index.html"; // Change 'index.html' to your desired success URL
+            } else {
+                console.error("Failed to update user status:", error.message);
+                // Handle payment failure or update error (e.g., show an error message to the user)
+            }
+        }
+    </script>
+</body>
+</html>

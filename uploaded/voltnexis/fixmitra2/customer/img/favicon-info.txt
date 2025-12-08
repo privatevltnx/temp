@@ -1,0 +1,19 @@
+FAVICON FILES NEEDED FOR CUSTOMER PORTAL:
+
+Required files to add to this directory:
+- favicon.ico (16x16, 32x32, 48x48 sizes)
+- apple-touch-icon.png (180x180)
+- favicon-32x32.png (32x32)
+- favicon-16x16.png (16x16)
+- android-chrome-192x192.png (192x192)
+- android-chrome-512x512.png (512x512)
+- og-image-customer.png (1200x630 for Open Graph)
+- twitter-card-customer.png (1200x600 for Twitter Card)
+
+Design Guidelines:
+- Use FixMitra brand colors: #667eea (primary), #764ba2 (secondary)
+- Include customer-focused elements (home, services icons)
+- Maintain consistent branding with provider side
+- Ensure readability at small sizes
+
+The site.webmanifest file has been created and configured for PWA support.

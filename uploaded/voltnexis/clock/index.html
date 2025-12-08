@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Function Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-bar">
+            <button class="nav-btn active" data-mode="clock">Clock</button>
+            <button class="nav-btn" data-mode="timer">Timer</button>
+            <button class="nav-btn" data-mode="stopwatch">Stopwatch</button>
+            <button class="nav-btn" data-mode="background">Background</button>
+        </nav>
+
+        <!-- Clock Mode -->
+        <div class="mode-container active" id="clock-mode">
+            <div class="time-display" id="clock-display">00:00:00</div>
+            <div class="date-display" id="date-display"></div>
+        </div>
+
+        <!-- Timer Mode -->
+        <div class="mode-container" id="timer-mode">
+            <div class="timer-inputs">
+                <input type="number" id="timer-hours" min="0" max="23" value="0" placeholder="H">
+                <span>:</span>
+                <input type="number" id="timer-minutes" min="0" max="59" value="0" placeholder="M">
+                <span>:</span>
+                <input type="number" id="timer-seconds" min="0" max="59" value="0" placeholder="S">
+            </div>
+            <div class="time-display" id="timer-display">00:00:00</div>
+            <div class="controls">
+                <button id="timer-start">Start</button>
+                <button id="timer-pause">Pause</button>
+                <button id="timer-reset">Reset</button>
+            </div>
+        </div>
+
+        <!-- Stopwatch Mode -->
+        <div class="mode-container" id="stopwatch-mode">
+            <div class="time-display" id="stopwatch-display">00:00:00</div>
+            <div class="controls">
+                <button id="stopwatch-start">Start</button>
+                <button id="stopwatch-pause">Pause</button>
+                <button id="stopwatch-reset">Reset</button>
+            </div>
+        </div>
+
+        <!-- Background Mode -->
+        <div class="mode-container" id="background-mode">
+            <h2>Choose Background</h2>
+            <div class="bg-options">
+                <div class="bg-option" data-bg="gradient1">Gradient 1</div>
+                <div class="bg-option" data-bg="gradient2">Gradient 2</div>
+                <div class="bg-option" data-bg="gradient3">Gradient 3</div>
+                <div class="bg-option" data-bg="dark">Dark</div>
+                <div class="bg-option" data-bg="light">Light</div>
+                <div class="bg-option" data-img="img/desktop/1.png">Image 1</div>
+                <div class="bg-option" data-img="img/desktop/2.png">Image 2</div>
+                <div class="bg-option" data-img="img/desktop/3.png">Image 3</div>
+                <div class="bg-option" data-img="img/desktop/5.png">Image 4</div>
+            </div>
+            <div class="file-upload">
+                <input type="file" id="bg-upload" accept="image/*">
+                <label for="bg-upload">Upload Image</label>
+            </div>
+        </div>
+    </div>
+    <div class="size-control">
+            <label>Size:</label>
+            <input type="range" id="size-slider" min="40" max="100" value="60">
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMitra by VoltNexis - Professional Home Services | Trusted Local Service Providers</title>
+
+    <meta name="google-site-verification" content="tPLMObaC3EgIjoJex4M1o9yWQDS1m8g8y-Wx5vYNN8E" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="FixMitra by VoltNexis - Find trusted local service providers for all your home needs. Professional plumbing, electrical, cleaning, and repair services with quality guarantee.">
+    <meta name="keywords" content="home services, local service providers, plumbing, electrical, cleaning, repair, maintenance, FixMitra, VoltNexis, professional services">
+    <meta name="author" content="VoltNexis">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="FixMitra by VoltNexis - Professional Home Services">
+    <meta property="og:description" content="Find trusted local service providers for all your home needs. Quality guaranteed professional services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://volnexis.github.io/fixmitra">
+    <meta property="og:site_name" content="FixMitra by VoltNexis">
+	<meta property="og:image" content="https://voltnexis.github.io/fixmitra/img/logo_fixmitra.webp">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FixMitra by VoltNexis - Professional Home Services">
+    <meta name="twitter:description" content="Find trusted local service providers for all your home needs. Quality guaranteed professional services.">
+	<meta name="twitter:image" content="https://voltnexis.github.io/fixmitra/img/logo_fixmitra.webp">
+    
+    <!-- Additional SEO Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <link rel="canonical" href="https://volnexis.github.io/fixmitra">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "FixMitra by VoltNexis",
+      "description": "Professional home services  offering trusted local service s for all your home needs",
+      "url": "https://voltnexis.github.io/fixmitra",
+      "telephone": "+91-9778719567",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "serviceType": ["Home Services", "Plumbing", "Electrical", "Cleaning", "Repair Services"],
+      "areaServed": "India"
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .fade-in { opacity: 1; transition: opacity 0.3s ease-in-out; }
+        .fade-out { opacity: 0; transition: opacity 0.3s ease-in-out; }
+        
+        /* Beautiful Gradients */
+        .gradient-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-secondary { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .gradient-success { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .gradient-warm { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .gradient-cool { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .gradient-ocean { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        
+        /* Card Effects */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        /* Button Animations */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.6);
+        }
+        
+        /* Header Styling */
+        .header-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Language Toggle */
+        .lang-toggle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            padding: 4px;
+        }
+        .lang-btn {
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: 500;
+        }
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Service Icons */
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; line-height: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .service-card { margin-bottom: 2rem; }
+            .container { padding-left: 1rem; padding-right: 1rem; }
+        }
+        @media (max-width: 640px) {
+            .hero-title { font-size: 1.75rem; line-height: 2.25rem; }
+            .hero-subtitle { font-size: 1rem; }
+        }
+        
+        /* Modal Styling */
+        .modal-content {
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Input Styling */
+        .form-input {
+            border-radius: 15px;
+            border: 2px solid #e5e7eb;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="header-glass fixed w-full top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+					<a href="index.html"><img src="img/logo-icon.webp" alt="FixMitra Logo" class="w-12 h-12 mr-3 rounded-xl"></a>
+					<h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+						<a href="index.html"><span class="sm:hidden">FixMitra</span></a>
+						<a href="index.html"><span class="block sm:hidden text-sm italic font-normal text-gray-700 leading-none">by VoltNexis</span></a>
+						<a href="index.html"><span class="hidden sm:inline-block">FixMitra by VoltNexis</span></a>
+					</h1>
+                </div>
+                
+                <!-- Language Toggle -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <div class="hidden sm:flex lang-toggle">
+                        <button onclick="changeLanguage('en')" class="lang-btn text-xs sm:text-sm" id="en-btn">En</button>
+                        <button onclick="changeLanguage('ml')" class="lang-btn text-xs sm:text-sm" id="ml-btn">Mal</button>
+                    </div>
+                    
+                    <!-- Auth Buttons -->
+                    <div id="authButtons" class="flex">
+                        <button onclick="openLoginModal()" class="btn-primary text-xs sm:text-sm px-4 py-2 sm:px-6 sm:py-3">Sign In</button>
+                    </div>
+                    
+                    <!-- User Menu (hidden by default) -->
+                    <div id="userMenu" class="hidden flex items-center space-x-3">
+                        <div class="flex items-center space-x-2 glass-effect px-3 py-2 rounded-full">
+                            <div id="userAvatar" class="w-8 h-8 rounded-full gradient-primary flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <span id="userName" class="hidden sm:block text-sm font-medium text-gray-700">User</span>
+                        </div>
+                        <button onclick="logout()" class="btn-secondary text-xs sm:text-sm px-4 py-2">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-ocean text-white py-12 sm:py-20 mt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 id="hero-title" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 hero-title leading-tight">Find Trusted Local Service Providers</h2>
+                <p id="hero-subtitle" class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-10 hero-subtitle opacity-90 max-w-3xl mx-auto">Book professional services for your home with just a few clicks. Quality guaranteed!</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#services" class="glass-effect text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300 text-lg shadow-lg">Browse Services</a>
+                        <a href="providers_list.html" class="glass-effect text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300 text-lg shadow-lg">View Providers</a>
+                    </div>
+                    <div class="flex justify-center">
+                        <a href="track_service.html" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition duration-300 text-lg">Track Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative Elements -->
+        <div class="absolute top-10 left-10 w-20 h-20 bg-white opacity-10 rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-32 h-32 bg-white opacity-5 rounded-full"></div>
+        <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white opacity-10 rounded-full"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 sm:py-16">
+        <div class="container mx-auto px-4">
+            <h2 id="services-title" class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Our Services</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Home Cleaning -->
+                <div class="service-card bg-white cursor-pointer" onclick="selectService('Home Cleaning')">
+                    <img src="img/home-cleaning.webp" alt="Description of the service" class="w-full h-auto object-cover">
+					<div class="p-8 text-center">
+						<h3 class="text-2xl font-bold text-gray-800 mb-3">Home Cleaning</h3>
+						<p class="text-gray-600 mb-6 leading-relaxed">
+							Professional deep cleaning services for your home. We handle kitchens, bathrooms, living areas, and more.
+						</p>
+						<button class="btn-primary w-full">
+							Book Now
+						</button>
+					</div>
+				</div>
+                
+                <!-- AC Repair -->
+                <div class="service-card bg-white cursor-pointer" onclick="selectService('AC Repair')">
+            <img src="img/ac-repair.webp" alt="A clean, modern air conditioning unit." class="w-full h-auto object-cover">
+            <div class="p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">AC Repair</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Expert AC repair and maintenance services by certified technicians. Get your cooling system running smoothly.
+                </p>
+                <button class="btn-primary w-full">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+
+               
+                <!-- Plumbing -->
+        <div class="service-card bg-white cursor-pointer" onclick="selectService('Plumbing')">
+            <img src="img/plumbing.webp" alt="A set of plumbing tools on a workbench." class="w-full h-auto object-cover">
+            <div class="p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Plumbing</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Fix leaks, unclog drains, and solve all plumbing issues with our experienced plumbers.
+                </p>
+                <button class="btn-primary w-full">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Electrical Work -->
+        <div class="service-card bg-white cursor-pointer" onclick="selectService('Electrical Work')">
+            <img src="img/electrical.webp" alt="A technician working on electrical wiring." class="w-full h-auto object-cover">
+            <div class="p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Electrical</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Safe and reliable electrical repairs, installations, and maintenance for your home.
+                </p>
+                <button class="btn-primary w-full">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Painting -->
+        <div class="service-card bg-white cursor-pointer" onclick="selectService('Painting')">
+            <img src="img/painting.webp" alt="A freshly painted wall with a roller." class="w-full h-auto object-cover">
+            <div class="p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Painting</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Interior and exterior painting services by skilled professionals using quality materials.
+                </p>
+                <button class="btn-primary w-full">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Appliance Repair -->
+        <div class="service-card bg-white cursor-pointer" onclick="selectService('Appliance Repair')">
+            <img src="img/appliance-repair.webp" alt="A person repairing a broken washing machine." class="w-full h-auto object-cover">
+            <div class="p-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Appliance Repair</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Repair services for all major home appliances - refrigerators, washing machines, and more.
+                </p>
+                <button class="btn-primary w-full">
+                    Book Now
+                </button>
+            </div>
+        </div>
+        </div>
+            <!-- Additional Navigation -->
+            <div class="mt-16 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="providers_list.html" class="glass-effect text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-white transition duration-300 text-center text-lg shadow-lg">
+                    <i class="fas fa-users mr-3"></i> View Providers
+                </a>
+                <a href="track_service.html" class="glass-effect text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-white transition duration-300 text-center text-lg shadow-lg">
+                    <i class="fas fa-map-marker-alt mr-3"></i> Track Your Service
+                </a>
+                <a href="https://voltnexis.github.io/provider.fixmitra" class="btn-secondary px-8 py-4 text-center text-lg">
+                    <i class="fas fa-user-plus mr-3"></i> Become a Provider
+                </a>
+            </div>
+        </div>
+    </section>
+    
+     <!-- Features Section -->
+    <section class="py-20 gradient-cool">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose FixMitra by VoltNexis?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Experience the difference with our premium service approach</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="gradient-primary w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Verified Professionals</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        All our service providers are thoroughly vetted and background-checked for your safety and peace of mind.
+                    </p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="gradient-success w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-rupee-sign text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Transparent Pricing</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        No hidden charges or surprises. Get upfront, honest pricing before you book any service.
+                    </p>
+                </div>
+                
+                <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="gradient-secondary w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">24/7 Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Our dedicated customer support team is always available to assist you with any queries or concerns.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-ocean text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="img/logo-icon.webp" alt="FixMitra Logo" class="w-12 h-12 mr-3 rounded-xl">
+                        <h3 class="text-2xl font-bold">FixMitra by VoltNexis</h3>
+                    </div>
+                    <p class="text-purple-100 leading-relaxed">
+                        Your trusted partner for all home service needs. Quality service at your doorstep, every time.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-purple-100 hover:text-white transition duration-300 flex items-center"><i class="fas fa-home mr-2"></i> Home</a></li>
+                        <li><a href="#services" class="text-purple-100 hover:text-white transition duration-300 flex items-center"><i class="fas fa-concierge-bell mr-2"></i> Services</a></li>
+                        <li><a href="track_service.html" class="text-purple-100 hover:text-white transition duration-300 flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Track Service</a></li>
+                        <li><a href="https://voltnexis.github.io/provider.fixmitra" class="text-purple-100 hover:text-white transition duration-300 flex items-center"><i class="fas fa-user-plus mr-2"></i> Become a Provider</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                    <ul class="space-y-4 text-purple-100">
+                        <li class="flex items-center">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            +91 97787 19567
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            voltnexis@gmail.com
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-full mr-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            Kochi, Kerala
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/profile.php?id=61579094093361" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-white hover:text-purple-600 transition duration-300">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://x.com/voltnexis" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-white hover:text-purple-600 transition duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://instagram.com/voltnexis" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-white hover:text-purple-600 transition duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://youtube.com/@voltnexis" class="bg-white bg-opacity-20 p-3 rounded-full hover:bg-white hover:text-purple-600 transition duration-300">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-purple-100 text-sm">Stay connected for updates and offers!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-purple-300 border-opacity-30 mt-12 pt-8 text-center">
+                <p class="text-purple-100">&copy; 2024 FixMitra by VoltNexis. All rights reserved. Made with ❤️ in Kerala</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 fade-out hidden" onclick="closeModal('loginModal')">
+        <div class="modal-content bg-white w-full max-w-md mx-4" onclick="event.stopPropagation()">
+            <div class="p-8">
+                <div class="text-center mb-6">
+                    <div class="gradient-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-user text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Welcome Back</h3>
+                    <p class="text-gray-600 mt-2">Sign in to your account</p>
+                </div>
+                
+                <form onsubmit="loginUser(event)">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Email</label>
+                        <input type="text" id="loginEmail" required class="form-input w-full" placeholder="Enter email or phone number">
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Password</label>
+                        <input type="password" id="loginPassword" required class="form-input w-full" placeholder="Enter your password">
+                    </div>
+                    
+                    <button type="submit" id="loginBtn" class="btn-primary w-full mb-4">
+                        Sign In
+                    </button>
+                    
+                    <div class="mt-4 text-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500">Or</span>
+                            </div>
+                        </div>
+                        <button type="button" onclick="signInWithGoogle()" class="mt-4 w-full py-2 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 flex items-center justify-center shadow-sm">
+                            <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            Sign in with Google
+                        </button>
+                    </div>
+                    
+                    <div class="text-center text-sm mt-4">
+                        <span class="text-gray-600">Don't have an account? </span>
+                        <button type="button" onclick="switchToSignup()" class="text-blue-600 hover:underline">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 fade-out hidden" onclick="closeModal('signupModal')">
+        <div class="modal-content bg-white w-full max-w-md mx-4 max-h-screen overflow-y-auto" onclick="event.stopPropagation()">
+            <div class="p-8">
+                <div class="text-center mb-6">
+                    <div class="gradient-secondary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-user-plus text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Join FixMitra by VoltNexis</h3>
+                    <p class="text-gray-600 mt-2">Create your account today</p>
+                </div>
+                
+                <form onsubmit="registerUser(event)">
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Full Name</label>
+                        <input type="text" id="signupName" required class="form-input w-full" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Phone Number</label>
+                        <input type="tel" id="signupPhone" required class="form-input w-full" placeholder="+91 9876543210">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Email</label>
+                        <input type="email" id="signupEmail" class="form-input w-full" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Password</label>
+                        <input type="password" id="signupPassword" required class="form-input w-full" placeholder="Create a strong password">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" required class="form-input w-full" placeholder="Confirm your password">
+                    </div>
+                    
+                    <button type="submit" id="signupBtn" class="btn-secondary w-full mb-4">
+                        Create Account
+                    </button>
+                    
+                    <div class="mt-4 text-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500">Or</span>
+                            </div>
+                        </div>
+                        <button type="button" onclick="signInWithGoogle()" class="mt-4 w-full py-2 px-4 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition duration-300 flex items-center justify-center shadow-sm">
+                            <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            Sign up with Google
+                        </button>
+                    </div>
+                    
+                    <div class="text-center text-sm mt-4">
+                        <span class="text-gray-600">Already have an account? </span>
+                        <button type="button" onclick="switchToLogin()" class="text-blue-600 hover:underline">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Required Modal -->
+    <div id="authRequiredModal" class="modal fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 fade-out hidden" onclick="closeModal('authRequiredModal')">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4" onclick="event.stopPropagation()">
+            <div class="p-6">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
+                        <i class="fas fa-exclamation text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Authentication Required</h3>
+                    <p class="text-gray-600 mb-6">You need to sign in to book this service.</p>
+                    
+                    <div class="flex flex-col space-y-3">
+                        <button onclick="closeModal('authRequiredModal'); openLoginModal();" class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Sign In
+                        </button>
+                        <button onclick="closeModal('authRequiredModal'); openSignupModal();" class="w-full py-2 px-4 bg-white border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50">
+                            Create Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'en';
+        let isLoggedIn = false;
+        let currentUser = {};
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check localStorage immediately for instant UI update
+            const savedUser = localStorage.getItem('fixmitra_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    isLoggedIn = true;
+                    updateAuthUI();
+                    console.log('Quick auto-login from localStorage');
+                } catch (e) {
+                    localStorage.removeItem('fixmitra_user');
+                    isLoggedIn = false;
+                    updateAuthUI();
+                }
+            } else {
+                isLoggedIn = false;
+                updateAuthUI();
+            }
+            
+            changeLanguage(currentLanguage);
+            
+            // Initialize Google Auth when page loads
+            window.addEventListener('load', function() {
+                if (typeof google !== 'undefined' && google.accounts) {
+                    initializeGoogleAuth();
+                } else {
+                    console.error('Google Sign-In library not loaded');
+                }
+            });
+        });
+
+        // Initialize authentication
+        async function initializeAuth() {
+            try {
+                const { data: { session }, error } = await supabaseClient.auth.getSession();
+                
+                if (session && session.user) {
+                    await setUserSession(session);
+                    updateAuthUI();
+                } else if (!isLoggedIn) {
+                    clearUserSession();
+                    updateAuthUI();
+                }
+            } catch (error) {
+                console.error('Auth initialization error:', error);
+                if (!isLoggedIn) {
+                    clearUserSession();
+                    updateAuthUI();
+                }
+            }
+        }
+
+        // Set user session
+        async function setUserSession(session) {
+            console.log('Setting user session for:', session.user.id);
+            try {
+                const { data: userProfile, error } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('id', session.user.id)
+                    .single();
+
+                console.log('User profile query result:', { userProfile, error });
+
+                if (userProfile) {
+                    currentUser = {
+                        id: session.user.id,
+                        email: session.user.email || userProfile.email,
+                        name: userProfile.full_name,
+                        phone: userProfile.phone,
+                        picture: userProfile.profile_picture,
+                        authMethod: userProfile.auth_method
+                    };
+                    
+                    isLoggedIn = true;
+                    localStorage.setItem('fixmitra_user', JSON.stringify(currentUser));
+                    console.log('User session set successfully:', currentUser.name || currentUser.email);
+                } else {
+                    console.error('User profile not found in database');
+                    throw new Error('User profile not found');
+                }
+            } catch (error) {
+                console.error('Failed to set user session:', error);
+                clearUserSession();
+            }
+        }
+
+        // Clear user session
+        function clearUserSession() {
+            isLoggedIn = false;
+            currentUser = {};
+            localStorage.removeItem('fixmitra_user');
+            console.log('User session cleared - localStorage removed');
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button styles
+            document.getElementById('en-btn').className = lang === 'en' ? 
+                'lang-btn active text-xs sm:text-sm' : 
+                'lang-btn text-xs sm:text-sm';
+            document.getElementById('ml-btn').className = lang === 'ml' ? 
+                'lang-btn active text-xs sm:text-sm' : 
+                'lang-btn text-xs sm:text-sm';
+
+            if (lang === 'ml') {
+                document.getElementById('hero-title').textContent = 'വിശ്വസനീയമായ പ്രാദേശിക സേവന ദാതാക്കളെ കണ്ടെത്തുക';
+                document.getElementById('hero-subtitle').textContent = 'നിങ്ങളുടെ വീട്ടിനായി പ്രൊഫഷണൽ സേവനങ്ങൾ ബുക്ക് ചെയ്യുക. ഗുണനിലവാരം ഉറപ്പാക്കുന്നു!';
+                document.getElementById('services-title').textContent = 'ഞങ്ങളുടെ സേവനങ്ങൾ';
+            } else {
+                document.getElementById('hero-title').textContent = 'Find Trusted Local Service Providers';
+                document.getElementById('hero-subtitle').textContent = 'Book professional services for your home with just a few clicks. Quality guaranteed!';
+                document.getElementById('services-title').textContent = 'Our Services';
+            }
+        }
+
+        function updateAuthUI() {
+            console.log('Updating UI - isLoggedIn:', isLoggedIn);
+            if (isLoggedIn) {
+                document.getElementById('authButtons').classList.add('hidden');
+                document.getElementById('userMenu').classList.remove('hidden');
+                document.getElementById('userName').textContent = currentUser.name || currentUser.email || 'User';
+                
+                // Update avatar
+                const avatar = document.getElementById('userAvatar');
+                if (currentUser.picture) {
+                    // Google user - show profile picture
+                    avatar.innerHTML = `<img src="${currentUser.picture}" alt="Profile" class="w-8 h-8 rounded-full">`;
+                } else {
+                    // Email user - show grey placeholder
+                    avatar.innerHTML = '<i class="fas fa-user text-white text-sm"></i>';
+                    avatar.className = 'w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center';
+                }
+            } else {
+                document.getElementById('authButtons').classList.remove('hidden');
+                document.getElementById('userMenu').classList.add('hidden');
+                console.log('UI updated to show login button');
+            }
+        }
+
+        function selectService(serviceName) {
+            if (!isLoggedIn) {
+                openAuthRequiredModal();
+                return;
+            }
+            
+            // Store selected service and redirect
+            localStorage.setItem('selectedService', serviceName);
+            window.location.href = 'confirm_service.html';
+        }
+
+        function openLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.remove('hidden', 'fade-out');
+            modal.classList.add('fade-in');
+        }
+
+        function openSignupModal() {
+            const modal = document.getElementById('signupModal');
+            modal.classList.remove('hidden', 'fade-out');
+            modal.classList.add('fade-in');
+        }
+
+        function openAuthRequiredModal() {
+            const modal = document.getElementById('authRequiredModal');
+            modal.classList.remove('hidden', 'fade-out');
+            modal.classList.add('fade-in');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('fade-in');
+            modal.classList.add('fade-out');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function closeAllModals() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('fade-in');
+                modal.classList.add('fade-out', 'hidden');
+            });
+        }
+
+        function switchToSignup() {
+            closeModal('loginModal');
+            setTimeout(() => openSignupModal(), 350);
+        }
+
+        function switchToLogin() {
+            closeModal('signupModal');
+            setTimeout(() => openLoginModal(), 350);
+        }
+
+        async function loginUser(event) {
+            event.preventDefault();
+            const emailOrPhone = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const loginBtn = document.getElementById('loginBtn');
+
+            // Set loading state
+            setButtonLoading(loginBtn, true, 'Signing In...');
+
+            try {
+                let loginEmail = emailOrPhone;
+                
+                // If input looks like phone number, find associated email
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailOrPhone)) {
+                    const { data: phoneUser } = await supabaseClient
+                        .from('users')
+                        .select('email, auth_method')
+                        .eq('phone', emailOrPhone)
+                        .maybeSingle();
+
+                    if (!phoneUser) {
+                        throw new Error('Phone number not found. Please check your phone number.');
+                    }
+                    
+                    if (phoneUser.auth_method === 'google') {
+                        throw new Error('This phone number is associated with a Google account. Please sign in with Google.');
+                    }
+                    
+                    loginEmail = phoneUser.email || `${emailOrPhone.replace(/[^0-9]/g, '')}@fixmitra.local`;
+                } else {
+                    const { data: emailUser } = await supabaseClient
+                        .from('users')
+                        .select('auth_method')
+                        .eq('email', emailOrPhone)
+                        .maybeSingle();
+                    
+                    if (emailUser && emailUser.auth_method === 'google') {
+                        throw new Error('This email is associated with a Google account. Please sign in with Google.');
+                    }
+                }
+
+                // Sign in with Supabase Auth
+                console.log('Attempting login with email:', loginEmail);
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email: loginEmail,
+                    password: password
+                });
+
+                console.log('Login response:', { data, error });
+                if (error) throw error;
+
+                // Get user profile and set session manually
+                const { data: userProfile } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('id', data.user.id)
+                    .single();
+
+                if (userProfile) {
+                    currentUser = {
+                        id: data.user.id,
+                        email: data.user.email || userProfile.email,
+                        name: userProfile.full_name,
+                        phone: userProfile.phone,
+                        picture: userProfile.profile_picture,
+                        authMethod: userProfile.auth_method
+                    };
+                    
+                    isLoggedIn = true;
+                    localStorage.setItem('fixmitra_user', JSON.stringify(currentUser));
+                    updateAuthUI();
+                }
+                
+                closeModal('loginModal');
+                console.log('Successfully logged in!');
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed: ' + error.message);
+            } finally {
+                setButtonLoading(loginBtn, false, 'Sign In');
+            }
+        }
+
+        async function registerUser(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const phone = document.getElementById('signupPhone').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const signupBtn = document.getElementById('signupBtn');
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            setButtonLoading(signupBtn, true, 'Creating Account...');
+
+            try {
+                // Check if phone already exists
+                const { data: existingPhone } = await supabaseClient
+                    .from('users')
+                    .select('phone')
+                    .eq('phone', phone)
+                    .maybeSingle();
+
+                if (existingPhone) {
+                    throw new Error('Phone number already registered. Please use a different phone number.');
+                }
+
+                // Check if email already exists (if provided)
+                if (email) {
+                    const { data: existingEmail } = await supabaseClient
+                        .from('users')
+                        .select('email')
+                        .eq('email', email)
+                        .maybeSingle();
+
+                    if (existingEmail) {
+                        throw new Error('Email already registered. Please use a different email.');
+                    }
+                }
+
+                // Use phone as primary identifier, create email if not provided
+                const userEmail = email || `${phone.replace(/[^0-9]/g, '')}@fixmitra.local`;
+                
+                // Sign up with Supabase Auth (auto-confirm)
+                const { data, error } = await supabaseClient.auth.signUp({
+                    email: userEmail,
+                    password: password,
+                    options: {
+                        emailRedirectTo: undefined,
+                        data: {
+                            full_name: name,
+                            phone: phone
+                        },
+                        captchaToken: undefined
+                    }
+                });
+
+                if (error) throw error;
+
+                // If user created but not auto-logged in, sign them in
+                if (data.user && !data.session) {
+                    const { data: signInData, error: signInError } = await supabaseClient.auth.signInWithPassword({
+                        email: userEmail,
+                        password: password
+                    });
+                    
+                    if (signInError) {
+                        console.error('Auto sign-in failed:', signInError);
+                    } else {
+                        data.session = signInData.session;
+                    }
+                }
+
+                // Insert user profile into users table
+                const { error: insertError } = await supabaseClient
+                    .from('users')
+                    .insert({
+                        id: data.user.id,
+                        email: email || null,
+                        phone: phone,
+                        full_name: name,
+                        auth_method: email ? 'email' : 'phone'
+                    });
+
+                if (insertError) {
+                    console.error('Profile creation error:', insertError);
+                    throw new Error('Failed to create user profile: ' + insertError.message);
+                }
+
+                // Session will be handled by onAuthStateChange
+                closeModal('signupModal');
+                alert('Account created and logged in successfully!');
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Registration failed: ' + error.message);
+            } finally {
+                setButtonLoading(signupBtn, false, 'Create Account');
+            }
+        }
+
+        // Supabase Configuration
+        const supabaseUrl = 'https://imdrjtjlpuqdixvpdytk.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZHJqdGpscHVxZGl4dnBkeXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMzExMTcsImV4cCI6MjA3MTYwNzExN30.Sa8UFkFyLKTL-JLzaojq9whdq3VjHFqxSVlWY_W4HkU';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+        
+        // Google OAuth Configuration
+        let googleAuth = null;
+        
+        // Initialize Google OAuth
+        function initializeGoogleAuth() {
+            try {
+                google.accounts.id.initialize({
+                    client_id: '403529757349-vu7hdavb3eghco76hr977r4jekr8b9jt.apps.googleusercontent.com',
+                    callback: handleGoogleSignIn,
+                    auto_select: false,
+                    cancel_on_tap_outside: true
+                });
+                console.log('Google Sign-In initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize Google Sign-In:', error);
+            }
+        }
+        
+        function signInWithGoogle() {
+            try {
+                if (typeof google !== 'undefined' && google.accounts) {
+                    google.accounts.id.prompt((notification) => {
+                        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                            // Fallback to renderButton if prompt fails
+                            renderGoogleSignInButton();
+                        }
+                    });
+                } else {
+                    alert('Google Sign-In is not available. Please try again later.');
+                }
+            } catch (error) {
+                console.error('Google Sign-In error:', error);
+                alert('Google Sign-In failed. Please try again.');
+            }
+        }
+        
+        function renderGoogleSignInButton() {
+            // Create a temporary container for Google button
+            const tempDiv = document.createElement('div');
+            tempDiv.id = 'google-signin-temp';
+            document.body.appendChild(tempDiv);
+            
+            google.accounts.id.renderButton(tempDiv, {
+                theme: 'outline',
+                size: 'large',
+                width: '100%'
+            });
+            
+            // Trigger click on the rendered button
+            setTimeout(() => {
+                const googleBtn = tempDiv.querySelector('div[role="button"]');
+                if (googleBtn) {
+                    googleBtn.click();
+                }
+                document.body.removeChild(tempDiv);
+            }, 100);
+        }
+        
+        // Listen for auth state changes
+        supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            console.log('Auth state changed:', event);
+            // Only handle explicit sign out events
+            if (event === 'SIGNED_OUT') {
+                clearUserSession();
+                updateAuthUI();
+            }
+        });
+
+        function setButtonLoading(button, isLoading, text) {
+            if (isLoading) {
+                button.disabled = true;
+                button.style.opacity = '0.7';
+                button.style.cursor = 'not-allowed';
+                button.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i>${text}`;
+            } else {
+                button.disabled = false;
+                button.style.opacity = '1';
+                button.style.cursor = 'pointer';
+                button.innerHTML = text;
+            }
+        }
+
+        function generateUserId() {
+            return crypto.randomUUID();
+        }
+        
+        async function handleGoogleSignIn(response) {
+            try {
+                console.log('Google Sign-In response received:', response);
+                
+                if (!response || !response.credential) {
+                    throw new Error('Invalid Google Sign-In response');
+                }
+                
+                // Decode JWT token
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                console.log('Google user payload:', payload);
+                
+                // Check if email already exists with different auth method
+                const { data: existingUser } = await supabaseClient
+                    .from('users')
+                    .select('auth_method, email')
+                    .eq('email', payload.email)
+                    .maybeSingle();
+                
+                if (existingUser && existingUser.auth_method !== 'google') {
+                    throw new Error('This email is already registered with email/password. Please sign in with your password.');
+                }
+                
+                // Sign in with Supabase using Google ID token
+                const { data, error } = await supabaseClient.auth.signInWithIdToken({
+                    provider: 'google',
+                    token: response.credential
+                });
+
+                if (error) {
+                    // Fallback: create user manually
+                    console.log('Supabase Google auth failed, creating user manually');
+                    await handleGoogleSignInFallback(payload);
+                    return;
+                }
+
+                // Check if user exists in users table
+                let { data: userProfile, error: profileError } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('email', payload.email)
+                    .maybeSingle();
+
+                // If user doesn't exist, create profile
+                if (!userProfile) {
+                    const { error: insertError } = await supabaseClient
+                        .from('users')
+                        .insert({
+                            id: data.user.id,
+                            email: payload.email,
+                            full_name: payload.name,
+                            google_id: payload.sub,
+                            profile_picture: payload.picture,
+                            auth_method: 'google',
+                            is_verified: true
+                        });
+
+                    if (!insertError) {
+                        userProfile = {
+                            email: payload.email,
+                            full_name: payload.name,
+                            google_id: payload.sub,
+                            profile_picture: payload.picture,
+                            auth_method: 'google'
+                        };
+                    }
+                }
+                
+                // Session will be handled by onAuthStateChange
+                closeAllModals();
+                alert('Successfully signed in with Google!');
+            } catch (error) {
+                console.error('Google sign-in error:', error);
+                alert('Google sign-in failed: ' + error.message + '. Please try again.');
+            }
+        }
+
+        async function handleGoogleSignInFallback(payload) {
+            try {
+                // Check if user already exists
+                const { data: existingUser } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('email', payload.email)
+                    .maybeSingle();
+
+                if (existingUser && existingUser.auth_method !== 'google') {
+                    throw new Error('This email is already registered with email/password. Please sign in with your password.');
+                }
+
+                if (!existingUser) {
+                    // Create new user with generated ID
+                    const userId = generateUserId();
+                    const { error: insertError } = await supabaseClient
+                        .from('users')
+                        .insert({
+                            id: userId,
+                            email: payload.email,
+                            full_name: payload.name,
+                            google_id: payload.sub,
+                            profile_picture: payload.picture,
+                            auth_method: 'google',
+                            is_verified: true
+                        });
+
+                    if (insertError) throw insertError;
+                }
+
+                // Session will be handled by onAuthStateChange
+                closeAllModals();
+                alert('Successfully signed in with Google!');
+            } catch (error) {
+                console.error('Google fallback error:', error);
+                throw error;
+            }
+        }
+
+        function logout() {
+            console.log('Logout button clicked!');
+            
+            // Force Supabase logout without waiting
+            supabaseClient.auth.signOut().catch(err => console.log('Supabase signout error:', err));
+            
+            clearUserSession();
+            updateAuthUI();
+            console.log('Successfully logged out!');
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Choose Your Plan - CodexAura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container plans-container">
+    <h1>Choose Your CodexAura Plan</h1>
+
+    <div class="plans">
+      <!-- Free Plan -->
+      <div class="plan">
+        <h2>Normal</h2>
+        <p class="price">₹0 / month</p>
+        <ul class="features">
+          <li>Qwen-2.5 (Basic Model)</li>
+          <li>Limited Credits</li>
+          <li>Community Support</li>
+          <li>Good for casual coding</li>
+        </ul>
+        <button onclick="continueFree()">Continue</button>
+      </div>
+
+      <!-- Plus Plan -->
+      <div class="plan">
+        <h2>Plus</h2>
+        <p class="price">₹0 / month (free 1 month trial)<br><del>₹750 / month</del>&nbsp<del>₹1,250 / month</del></p>
+        <ul class="features">
+          <li>Best AI Models for Coding</li>
+          <li>Unlimited Credits</li>
+          <li>Priority Support</li>
+          <li>Perfect for developers</li>
+        </ul>
+        <button onclick="goToPayment()">Upgrade</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function continueFree() {
+      window.location.href = "index.html"; // go back to app
+    }
+
+    function goToPayment() {
+      window.location.href = "payment.html"; // go to payment page
+    }
+  </script>
+</body>
+</html>
