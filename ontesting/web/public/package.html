@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Send Package - PureRide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); min-height: 100vh; }
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 40px; color: white; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .back-btn { color: white; text-decoration: none; font-size: 1.1rem; margin-bottom: 20px; display: inline-block; }
+        .back-btn:hover { text-decoration: underline; }
+        .form-card { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #28a745; }
+        .btn { background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.3s ease; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .status { padding: 15px; margin: 20px 0; border-radius: 10px; font-weight: 500; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .package-info { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px; }
+        .package-info h3 { color: #28a745; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+        <div class="header">
+            <h1>📦 Send Package</h1>
+            <p>Fast, reliable package delivery</p>
+        </div>
+
+        <div class="form-card">
+            <div class="package-info">
+                <h3>How it works:</h3>
+                <p>• Your package travels with our drivers and riders<br>
+                • Real-time tracking with QR codes<br>
+                • Flexible delivery windows<br>
+                • Secure chain of custody</p>
+            </div>
+
+            <form id="packageForm">
+                <div class="form-group">
+                    <label for="senderName">Your Name</label>
+                    <input type="text" id="senderName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senderPhone">Phone Number</label>
+                    <input type="tel" id="senderPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="packagePickup">Pickup Address</label>
+                    <input type="text" id="packagePickup" placeholder="Enter pickup location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="packageDropoff">Delivery Address</label>
+                    <input type="text" id="packageDropoff" placeholder="Enter delivery location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientName">Recipient Name</label>
+                    <input type="text" id="recipientName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientPhone">Recipient Phone</label>
+                    <input type="tel" id="recipientPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="packageSize">Package Size</label>
+                    <select id="packageSize" required>
+                        <option value="">Select size</option>
+                        <option value="small">Small (envelope/document)</option>
+                        <option value="medium">Medium (shoebox size)</option>
+                        <option value="large">Large (up to 20kg)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeWindow">Delivery Time Window</label>
+                    <select id="timeWindow" required>
+                        <option value="">Select time window</option>
+                        <option value="today">Today (within 8 hours)</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="flexible">Flexible (2-3 days)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialInstructions">Special Instructions (Optional)</label>
+                    <textarea id="specialInstructions" rows="3" placeholder="Any special handling instructions..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Request Package Delivery</button>
+            </form>
+
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('packageForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const data = {
+                senderId: document.getElementById('senderName').value,
+                senderPhone: document.getElementById('senderPhone').value,
+                pickup: document.getElementById('packagePickup').value,
+                dropoff: document.getElementById('packageDropoff').value,
+                recipientName: document.getElementById('recipientName').value,
+                recipientPhone: document.getElementById('recipientPhone').value,
+                packageSize: document.getElementById('packageSize').value,
+                timeWindow: document.getElementById('timeWindow').value,
+                specialInstructions: document.getElementById('specialInstructions').value
+            };
+            
+            try {
+                const response = await fetch('/api/package/request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                showStatus(`✅ Package delivery requested successfully!<br>Tracking ID: <strong>${result.packageId}</strong><br>You'll receive SMS updates on delivery progress.`, 'success');
+                document.getElementById('packageForm').reset();
+            } catch (error) {
+                showStatus('❌ Error requesting package delivery. Please try again.', 'error');
+            }
+        });
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>
