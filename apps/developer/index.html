@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Developer - VoltNexis</title>
+    <meta name="description" content="Developer profile and apps">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html">
+                    <h1><span class="volt">Volt</span><span class="nexis">Nexis</span></h1>
+                    <span class="tagline">Developer Profile</span>
+                </a>
+            </div>
+            <div class="nav-icons">
+                <a href="../android/index.html"><i class="fab fa-android"></i></a>
+                <a href="../ios/index.html"><i class="fab fa-apple"></i></a>
+                <a href="../windows/index.html"><i class="fab fa-windows"></i></a>
+                <a href="../linux/index.html"><i class="fab fa-linux"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="developer-main">
+        <div class="container">
+            <div class="developer-header">
+                <div class="developer-info">
+                    <h1 id="developerName">Loading...</h1>
+                    <p id="developerDescription">Developer profile and applications</p>
+                    <div class="developer-stats">
+                        <span class="stat">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span id="totalApps">0</span> Apps
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            <span id="avgRating">0.0</span> Avg Rating
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="apps-section">
+                <h2>Apps by this Developer</h2>
+                <div class="platform-tabs">
+                    <button class="platform-tab active" data-platform="all">All Platforms</button>
+                    <button class="platform-tab" data-platform="android">Android</button>
+                    <button class="platform-tab" data-platform="ios">iOS</button>
+                    <button class="platform-tab" data-platform="windows">Windows</button>
+                    <button class="platform-tab" data-platform="linux">Linux</button>
+                </div>
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Apps will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VoltNexis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

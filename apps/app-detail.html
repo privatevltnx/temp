@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">App Details - VoltNexis</title>
+    <meta name="description" id="pageDescription" content="Download premium software safely with VoltNexis">
+    <meta name="keywords" id="pageKeywords" content="download, software, apps, premium">
+    <link rel="canonical" id="pageCanonical" href="">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-logo a {
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .volt { color: #00d4ff; }
+        .nexis { color: #ff6b6b; }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .app-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .app-info h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #00d4ff;
+        }
+        .app-meta {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            background: rgba(0, 212, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        .download-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .download-options {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+        .download-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .download-meta {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .app-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .screenshot {
+            width: 100%;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+        .ad-space {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../"><span class="volt">Volt</span><span class="nexis">Nexis</span></a>
+            </div>
+            <div class="nav-menu">
+                <a href="../android/" class="nav-link">Android</a>
+                <a href="../ios/" class="nav-link">iOS</a>
+                <a href="../windows/" class="nav-link">Windows</a>
+                <a href="../linux/" class="nav-link">Linux</a>
+                <a href="../android_mod/" class="nav-link">MOD APK</a>
+                <a href="../ios_mod/" class="nav-link">IPA MOD</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="app-header">
+            <img id="appIcon" src="" alt="App Icon" class="app-icon">
+            <div class="app-info">
+                <h1 id="appName">Loading...</h1>
+                <p id="appDeveloper">Developer</p>
+                <div class="app-meta">
+                    <span class="meta-item" id="appVersion">Version</span>
+                    <span class="meta-item" id="appSize">Size</span>
+                    <span class="meta-item" id="appCategory">Category</span>
+                    <span class="meta-item" id="appPlatform">Platform</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2><i class="fas fa-download"></i> Download Options</h2>
+            <div class="download-options" id="downloadOptions">
+                <!-- Download buttons will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="ad-space">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="app-description">
+            <h2><i class="fas fa-info-circle"></i> Description</h2>
+            <p id="appDescription">Loading description...</p>
+            <div class="screenshots" id="screenshots">
+                <!-- Screenshots will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Universal app detail script
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId = urlParams.get('id');
+        const platform = urlParams.get('platform') || 'android';
+        
+        // Load app data based on platform and ID
+        loadAppDetails(platform, appId);
+        
+        function loadAppDetails(platform, id) {
+            // This would normally fetch from a database or API
+            // For demo purposes, using sample data
+            const sampleApps = {
+                android: {
+                    1: {
+                        name: "ServeTracko by VoltNexis",
+                        developer: "VoltNexis Team",
+                        version: "1.0.0",
+                        size: "25 MB",
+                        category: "Tools",
+                        icon: "https://via.placeholder.com/120",
+                        description: "Professional service tracking application with advanced features.",
+                        downloads: [
+                            { type: "APK", size: "25 MB", arch: "Universal", url: "#" },
+                            { type: "OBB", size: "150 MB", arch: "Universal", url: "#" }
+                        ]
+                    }
+                },
+                windows: {
+                    1: {
+                        name: "VLC Media Player",
+                        developer: "VideoLAN",
+                        version: "3.0.18",
+                        size: "45 MB",
+                        category: "Media",
+                        icon: "https://via.placeholder.com/120",
+                        description: "Free and open source cross-platform multimedia player.",
+                        downloads: [
+                            { type: "EXE", size: "45 MB", arch: "64-bit", url: "#" },
+                            { type: "EXE", size: "42 MB", arch: "32-bit", url: "#" },
+                            { type: "MSI", size: "47 MB", arch: "64-bit", url: "#" }
+                        ]
+                    }
+                }
+            };
+            
+            const app = sampleApps[platform]?.[id];
+            if (app) {
+                document.getElementById('appName').textContent = app.name;
+                document.getElementById('appDeveloper').textContent = app.developer;
+                document.getElementById('appVersion').textContent = `v${app.version}`;
+                document.getElementById('appSize').textContent = app.size;
+                document.getElementById('appCategory').textContent = app.category;
+                document.getElementById('appPlatform').textContent = platform.charAt(0).toUpperCase() + platform.slice(1);
+                document.getElementById('appIcon').src = app.icon;
+                document.getElementById('appDescription').textContent = app.description;
+                
+                // Update page title and meta
+                document.getElementById('pageTitle').textContent = `${app.name} Download - VoltNexis`;
+                document.getElementById('pageDescription').content = `Download ${app.name} v${app.version} for ${platform}. ${app.description}`;
+                
+                // Populate download options
+                const downloadContainer = document.getElementById('downloadOptions');
+                downloadContainer.innerHTML = '';
+                
+                app.downloads.forEach(download => {
+                    const btn = document.createElement('a');
+                    btn.className = 'download-btn';
+                    btn.href = download.url;
+                    btn.innerHTML = `
+                        <div class="download-info">
+                            <i class="fas fa-download"></i>
+                            <div>
+                                <div>Download ${download.type} (${download.arch})</div>
+                                <div class="download-meta">${download.size} • MediaFire</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-external-link-alt"></i>
+                    `;
+                    downloadContainer.appendChild(btn);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

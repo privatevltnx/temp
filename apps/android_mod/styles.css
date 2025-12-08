@@ -1,0 +1,7 @@
+.tutorial-btn {
+    background: linear-gradient(45deg, #FF1493, #C71585);
+}
+
+.tutorial-btn:hover {
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+}
