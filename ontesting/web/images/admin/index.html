@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - Voltnexis</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header admin-header">
+    <div class="container">
+      <a href="index.html" class="logo">Voltnexis Admin</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active">Dashboard</a>
+        <a href="../index.html">View Site</a>
+        <a href="../login/index.html">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Dashboard -->
+  <section class="admin-dashboard container">
+    <h1>📊 Admin Dashboard</h1>
+    <p>Manage image approvals, user accounts, and site statistics</p>
+
+    <!-- Quick Stats -->
+    <div class="admin-stats">
+      <div class="stat-box">
+        <div class="stat-number">234</div>
+        <div class="stat-label">✅ Approved Images</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">6</div>
+        <div class="stat-label">🕒 Pending Reviews</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">45</div>
+        <div class="stat-label">👤 Active Users</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">1.2K</div>
+        <div class="stat-label">📈 Total Downloads</div>
+      </div>
+    </div>
+
+    <!-- Admin Tabs -->
+    <div class="dashboard-tabs">
+      <button class="tab active" onclick="showAdminTab('pending')">Pending Approvals</button>
+      <button class="tab" onclick="showAdminTab('users')">User Management</button>
+      <button class="tab" onclick="showAdminTab('analytics')">Analytics</button>
+    </div>
+
+    <!-- Pending Images Tab -->
+    <div id="pending" class="tab-content active">
+      <h2>Pending Image Approvals</h2>
+      <div class="pending-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Preview</th>
+              <th>Title</th>
+              <th>User</th>
+              <th>Category</th>
+              <th>Upload Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="https://picsum.photos/100/70?random=201" alt="Pending Image" /></td>
+              <td>Ocean Sunset</td>
+              <td>user123</td>
+              <td>Nature</td>
+              <td>2025-01-15</td>
+              <td>
+                <button class="approve-btn" onclick="approveImage(this, 1)">Approve</button>
+                <button class="reject-btn" onclick="rejectImage(this, 1)">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="https://picsum.photos/100/70?random=202" alt="Pending Image" /></td>
+              <td>City Skyline</td>
+              <td>photogirl</td>
+              <td>Architecture</td>
+              <td>2025-01-15</td>
+              <td>
+                <button class="approve-btn" onclick="approveImage(this, 2)">Approve</button>
+                <button class="reject-btn" onclick="rejectImage(this, 2)">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="https://picsum.photos/100/70?random=203" alt="Pending Image" /></td>
+              <td>Mountain Peak</td>
+              <td>explorer99</td>
+              <td>Nature</td>
+              <td>2025-01-14</td>
+              <td>
+                <button class="approve-btn" onclick="approveImage(this, 3)">Approve</button>
+                <button class="reject-btn" onclick="rejectImage(this, 3)">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- User Management Tab -->
+    <div id="users" class="tab-content">
+      <h2>User Management</h2>
+      <div class="user-management">
+        <div class="user-stats">
+          <div class="user-stat-card">
+            <h3>New Users This Month</h3>
+            <div class="big-number">12</div>
+          </div>
+          <div class="user-stat-card">
+            <h3>Active Contributors</h3>
+            <div class="big-number">28</div>
+          </div>
+          <div class="user-stat-card">
+            <h3>Total Users</h3>
+            <div class="big-number">156</div>
+          </div>
+        </div>
+        
+        <div class="user-actions">
+          <h3>Recent User Activity</h3>
+          <div class="activity-list">
+            <div class="activity-item">
+              <span class="activity-user">john_doe</span>
+              <span class="activity-action">uploaded 3 new images</span>
+              <span class="activity-time">2 hours ago</span>
+            </div>
+            <div class="activity-item">
+              <span class="activity-user">sarah_photo</span>
+              <span class="activity-action">joined the platform</span>
+              <span class="activity-time">5 hours ago</span>
+            </div>
+            <div class="activity-item">
+              <span class="activity-user">mike_lens</span>
+              <span class="activity-action">updated profile</span>
+              <span class="activity-time">1 day ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div id="analytics" class="tab-content">
+      <h2>Site Analytics</h2>
+      <div class="analytics-grid">
+        <div class="analytics-card">
+          <h3>Popular Categories</h3>
+          <div class="category-stats">
+            <div class="category-stat">
+              <span>Nature</span>
+              <div class="progress-bar">
+                <div class="progress" style="width: 85%"></div>
+              </div>
+              <span>85%</span>
+            </div>
+            <div class="category-stat">
+              <span>People</span>
+              <div class="progress-bar">
+                <div class="progress" style="width: 72%"></div>
+              </div>
+              <span>72%</span>
+            </div>
+            <div class="category-stat">
+              <span>Architecture</span>
+              <div class="progress-bar">
+                <div class="progress" style="width: 58%"></div>
+              </div>
+              <span>58%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="analytics-card">
+          <h3>Download Trends</h3>
+          <div class="trend-stats">
+            <div class="trend-item">
+              <span>Today</span>
+              <span class="trend-number">47</span>
+            </div>
+            <div class="trend-item">
+              <span>This Week</span>
+              <span class="trend-number">312</span>
+            </div>
+            <div class="trend-item">
+              <span>This Month</span>
+              <span class="trend-number">1,247</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Admin Panel</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    function showAdminTab(tabId) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Remove active class from all tabs
+      document.querySelectorAll('.tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Show selected tab content
+      const selectedTab = document.getElementById(tabId);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+      
+      // Add active class to clicked tab button
+      event.target.classList.add('active');
+    }
+
+    function approveImage(button, imageId) {
+      button.style.background = 'var(--success)';
+      button.textContent = 'Approved';
+      button.disabled = true;
+      
+      // Disable reject button
+      const rejectBtn = button.nextElementSibling;
+      if (rejectBtn) {
+        rejectBtn.disabled = true;
+        rejectBtn.style.opacity = '0.5';
+      }
+      
+      // Update stats
+      updateStats('approved');
+      
+      console.log(`Image ${imageId} approved`);
+    }
+
+    function rejectImage(button, imageId) {
+      if (confirm('Are you sure you want to reject this image?')) {
+        button.style.background = 'var(--danger)';
+        button.textContent = 'Rejected';
+        button.disabled = true;
+        
+        // Disable approve button
+        const approveBtn = button.previousElementSibling;
+        if (approveBtn) {
+          approveBtn.disabled = true;
+          approveBtn.style.opacity = '0.5';
+        }
+        
+        // Update stats
+        updateStats('rejected');
+        
+        console.log(`Image ${imageId} rejected`);
+      }
+    }
+
+    function updateStats(action) {
+      const approvedStat = document.querySelector('.stat-box .stat-number');
+      const pendingStat = document.querySelectorAll('.stat-box .stat-number')[1];
+      
+      if (action === 'approved') {
+        approvedStat.textContent = parseInt(approvedStat.textContent) + 1;
+        pendingStat.textContent = parseInt(pendingStat.textContent) - 1;
+      } else if (action === 'rejected') {
+        pendingStat.textContent = parseInt(pendingStat.textContent) - 1;
+      }
+    }
+
+    // Initialize admin dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Admin dashboard loaded');
+    });
+  </script>
+
+</body>
+</html>

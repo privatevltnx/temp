@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Voltnexis</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">Voltnexis</div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Home</a>
+        <a href="../category/category.html">Categories</a>
+        <a href="../upload/index.html">Upload</a>
+        <a href="index.html" class="active">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Auth Section -->
+  <section class="auth-section container">
+    <div class="auth-box">
+      <h1>Sign In</h1>
+      <form class="auth-form" id="loginForm">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com"/>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="••••••••"/>
+
+        <button type="submit" class="auth-btn">Sign In</button>
+      </form>
+
+      <div class="divider"><span>or</span></div>
+
+      <form class="auth-form" id="registerForm">
+        <h2>Create New Account</h2>
+        <label for="reg-name">Full Name</label>
+        <input type="text" id="reg-name" name="name" required placeholder="John Doe"/>
+        
+        <label for="reg-email">Email Address</label>
+        <input type="email" id="reg-email" name="email" required placeholder="email@example.com"/>
+
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" name="password" required placeholder="Minimum 8 characters"/>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirmPassword" required placeholder="Repeat password"/>
+
+        <button type="submit" class="auth-btn secondary">Create Account</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Help</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

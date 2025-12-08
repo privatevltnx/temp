@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results - Voltnexis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="category/category.html">Categories</a>
+        <a href="index.html#trending">Trending</a>
+        <a href="index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" id="searchInput" onkeypress="handleSearch(event)" />
+        <a href="upload/index.html" class="upload-btn">Upload</a>
+        <a href="login/index.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> > <span>Search Results</span>
+    </div>
+  </div>
+
+  <!-- Search Results Header -->
+  <section class="container">
+    <div class="search-header">
+      <h1 id="searchTitle">Search Results</h1>
+      <p id="searchInfo">Enter a search term to find images</p>
+    </div>
+  </section>
+
+  <!-- Search Suggestions -->
+  <section class="container" id="suggestionsSection" style="display: none;">
+    <div class="search-suggestions">
+      <h3>Popular Searches</h3>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag" onclick="performSearch('nature')">nature</span>
+        <span class="suggestion-tag" onclick="performSearch('landscape')">landscape</span>
+        <span class="suggestion-tag" onclick="performSearch('portrait')">portrait</span>
+        <span class="suggestion-tag" onclick="performSearch('abstract')">abstract</span>
+        <span class="suggestion-tag" onclick="performSearch('architecture')">architecture</span>
+        <span class="suggestion-tag" onclick="performSearch('food')">food</span>
+        <span class="suggestion-tag" onclick="performSearch('travel')">travel</span>
+        <span class="suggestion-tag" onclick="performSearch('technology')">technology</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="container" id="filtersSection" style="display: none;">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy" onchange="sortResults()">
+        <option value="relevance">Most Relevant</option>
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+
+      <label for="orientation">Orientation:</label>
+      <select id="orientation" onchange="filterResults()">
+        <option value="all">All Orientations</option>
+        <option value="landscape">Landscape</option>
+        <option value="portrait">Portrait</option>
+        <option value="square">Square</option>
+      </select>
+
+      <label for="color">Color:</label>
+      <select id="color" onchange="filterResults()">
+        <option value="all">All Colors</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+        <option value="black">Black & White</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Search Results -->
+  <section class="container" id="resultsSection" style="display: none;">
+    <div class="results-info">
+      <p id="resultsCount">Found 0 images</p>
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="setView('grid')" data-view="grid">Grid</button>
+        <button class="view-btn" onclick="setView('list')" data-view="list">List</button>
+      </div>
+    </div>
+    
+    <div class="image-grid" id="searchResults">
+      <!-- Search results will be populated here -->
+    </div>
+    
+    <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+      <button class="load-more-btn" onclick="loadMoreResults()">Load More Results</button>
+    </div>
+  </section>
+
+  <!-- No Results -->
+  <section class="container" id="noResultsSection" style="display: none;">
+    <div class="no-results">
+      <div class="no-results-icon">🔍</div>
+      <h2>No images found</h2>
+      <p>Try different keywords or browse our categories</p>
+      <div class="no-results-actions">
+        <a href="category/category.html" class="cta-btn">Browse Categories</a>
+        <button class="cta-btn secondary" onclick="clearSearch()">Clear Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">License</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    let currentQuery = '';
+    let currentPage = 1;
+    let currentView = 'grid';
+    let searchResultsData = [];
+
+    // Initialize search page
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+      
+      if (query) {
+        document.getElementById('searchInput').value = query;
+        performSearch(query);
+      } else {
+        showSuggestions();
+      }
+    });
+
+    function showSuggestions() {
+      document.getElementById('suggestionsSection').style.display = 'block';
+      document.getElementById('filtersSection').style.display = 'none';
+      document.getElementById('resultsSection').style.display = 'none';
+      document.getElementById('noResultsSection').style.display = 'none';
+      
+      document.getElementById('searchTitle').textContent = 'Discover Amazing Images';
+      document.getElementById('searchInfo').textContent = 'Search through thousands of high-quality images';
+    }
+
+    function performSearch(query) {
+      currentQuery = query;
+      currentPage = 1;
+      
+      // Update URL
+      const newUrl = `${window.location.pathname}?q=${encodeURIComponent(query)}`;
+      window.history.pushState({}, '', newUrl);
+      
+      // Update search input
+      document.getElementById('searchInput').value = query;
+      
+      // Update header
+      document.getElementById('searchTitle').textContent = `Search Results for "${query}"`;
+      
+      // Simulate search API call
+      setTimeout(() => {
+        const mockResults = generateMockResults(query);
+        displaySearchResults(mockResults);
+      }, 500);
+    }
+
+    function generateMockResults(query) {
+      // Simulate different result counts based on query
+      const resultCounts = {
+        'nature': 45,
+        'landscape': 32,
+        'portrait': 28,
+        'abstract': 19,
+        'architecture': 36,
+        'food': 24,
+        'travel': 41,
+        'technology': 22
+      };
+      
+      const count = resultCounts[query.toLowerCase()] || Math.floor(Math.random() * 50) + 10;
+      const results = [];
+      
+      for (let i = 1; i <= count; i++) {
+        results.push({
+          id: i,
+          src: `https://picsum.photos/400/300?random=${Date.now() + i}`,
+          title: `${query} image ${i}`,
+          author: `photographer${i}`,
+          downloads: Math.floor(Math.random() * 1000) + 100,
+          likes: Math.floor(Math.random() * 500) + 50
+        });
+      }
+      
+      return results;
+    }
+
+    function displaySearchResults(results) {
+      searchResultsData = results;
+      
+      if (results.length === 0) {
+        showNoResults();
+        return;
+      }
+      
+      // Show results sections
+      document.getElementById('suggestionsSection').style.display = 'none';
+      document.getElementById('filtersSection').style.display = 'block';
+      document.getElementById('resultsSection').style.display = 'block';
+      document.getElementById('noResultsSection').style.display = 'none';
+      
+      // Update results count
+      document.getElementById('searchInfo').textContent = `Found ${results.length} images matching "${currentQuery}"`;
+      document.getElementById('resultsCount').textContent = `Found ${results.length} images`;
+      
+      // Display first 12 results
+      const container = document.getElementById('searchResults');
+      container.innerHTML = '';
+      
+      const initialResults = results.slice(0, 12);
+      initialResults.forEach(result => {
+        const img = document.createElement('img');
+        img.src = result.src;
+        img.alt = result.title;
+        img.loading = 'lazy';
+        img.onclick = () => openImage(img);
+        container.appendChild(img);
+      });
+      
+      // Show load more button if there are more results
+      if (results.length > 12) {
+        document.getElementById('loadMoreContainer').style.display = 'block';
+      }
+    }
+
+    function showNoResults() {
+      document.getElementById('suggestionsSection').style.display = 'none';
+      document.getElementById('filtersSection').style.display = 'none';
+      document.getElementById('resultsSection').style.display = 'none';
+      document.getElementById('noResultsSection').style.display = 'block';
+      
+      document.getElementById('searchInfo').textContent = `No results found for "${currentQuery}"`;
+    }
+
+    function loadMoreResults() {
+      const container = document.getElementById('searchResults');
+      const startIndex = currentPage * 12;
+      const endIndex = Math.min(startIndex + 12, searchResultsData.length);
+      
+      const moreResults = searchResultsData.slice(startIndex, endIndex);
+      moreResults.forEach(result => {
+        const img = document.createElement('img');
+        img.src = result.src;
+        img.alt = result.title;
+        img.loading = 'lazy';
+        img.onclick = () => openImage(img);
+        container.appendChild(img);
+      });
+      
+      currentPage++;
+      
+      // Hide load more button if no more results
+      if (endIndex >= searchResultsData.length) {
+        document.getElementById('loadMoreContainer').style.display = 'none';
+      }
+    }
+
+    function setView(view) {
+      currentView = view;
+      
+      // Update button states
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`[data-view="${view}"]`).classList.add('active');
+      
+      // Update grid class
+      const container = document.getElementById('searchResults');
+      if (view === 'list') {
+        container.classList.add('list-view');
+      } else {
+        container.classList.remove('list-view');
+      }
+    }
+
+    function sortResults() {
+      const sortBy = document.getElementById('sortBy').value;
+      console.log('Sorting by:', sortBy);
+      // Implementation would sort searchResultsData and re-render
+    }
+
+    function filterResults() {
+      const orientation = document.getElementById('orientation').value;
+      const color = document.getElementById('color').value;
+      console.log('Filtering by:', { orientation, color });
+      // Implementation would filter searchResultsData and re-render
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      window.history.pushState({}, '', window.location.pathname);
+      showSuggestions();
+    }
+
+    // Override the global handleSearch function for this page
+    function handleSearch(event) {
+      if (event.key === 'Enter') {
+        const query = event.target.value.trim();
+        if (query) {
+          performSearch(query);
+        } else {
+          showSuggestions();
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

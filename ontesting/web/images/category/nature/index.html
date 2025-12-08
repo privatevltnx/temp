@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nature Images - Voltnexis</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../category.html">Categories</a>
+        <a href="../../index.html#trending">Trending</a>
+        <a href="../../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="../../upload/index.html" class="upload-btn">Upload</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> > <a href="../category.html">Categories</a> > <span>🌲 Nature</span>
+    </div>
+  </div>
+
+  <section class="category-banner">
+    <div class="container">
+      <h1>🌲 Nature Photography</h1>
+      <p>Discover breathtaking landscapes, forests, mountains, and natural wonders</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy">
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+      <label for="orientation">Orientation:</label>
+      <select id="orientation">
+        <option value="all">All Orientations</option>
+        <option value="landscape">Landscape</option>
+        <option value="portrait">Portrait</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="category-header">
+      <div class="category-meta">
+        <h2>Nature Images</h2>
+        <p>1,234 images available</p>
+      </div>
+    </div>
+    
+    <div class="image-grid" id="category-grid">
+      <!-- Images loaded dynamically by JavaScript -->
+    </div>
+    
+    <div class="load-more-container">
+      <button class="load-more-btn" onclick="loadMoreImages()">Load More Images</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+    </div>
+  </footer>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="forceDownload()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      loadCategoryImages('nature');
+    });
+    
+    function loadCategoryImages(category) {
+      const grid = document.getElementById('category-grid');
+      const imageDatabase = JSON.parse(localStorage.getItem('imageDatabase')) || [];
+      const categoryImages = imageDatabase.filter(img => img.category === category && img.approved);
+      
+      categoryImages.forEach(imageData => {
+        const img = document.createElement('img');
+        img.src = imageData.dataUrl || `../../assets/${imageData.category}/${imageData.id}.${imageData.extension}`;
+        img.alt = imageData.title;
+        img.loading = 'lazy';
+        img.onclick = () => window.location.href = `../../image/${imageData.id}/index.html`;
+        grid.appendChild(img);
+      });
+      
+      // Update count
+      const countElement = document.querySelector('.category-meta p');
+      if (countElement) {
+        countElement.textContent = `${categoryImages.length} images available`;
+      }
+    }
+    
+    function loadMoreImages() {
+      // Load more from database if needed
+    }
+    async function forceDownload() {
+      const fileUrl = document.getElementById("modalImage").src;
+      const fileName = "nature_image.jpg";
+      
+      if (fileUrl.startsWith('data:')) {
+        // Handle base64 images
+        const link = document.createElement("a");
+        link.href = fileUrl;
+        link.download = fileName;
+        link.click();
+      } else {
+        // Handle file URLs
+        const response = await fetch(fileUrl);
+        const blob = await response.blob();
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+      }
+    }
+
+  </script>
+
+</body>
+</html>

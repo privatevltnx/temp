@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Dashboard - Voltnexis</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../index.html">Home</a>
+        <a href="../upload/index.html">Upload</a>
+        <a href="../category/category.html">Categories</a>
+        <a href="index.html" class="active">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard container">
+    <h1>👋 Welcome Back!</h1>
+    <p>Manage your uploads, favorites, and account settings from your personal dashboard.</p>
+
+    <!-- Dashboard Tabs -->
+    <div class="dashboard-tabs">
+      <button class="tab active" onclick="showTab('uploads')">My Uploads</button>
+      <button class="tab" onclick="showTab('favorites')">Favorites</button>
+      <button class="tab" onclick="showTab('settings')">Settings</button>
+    </div>
+
+    <!-- Uploads -->
+    <div id="uploads" class="tab-content active">
+      <h2>My Uploaded Images</h2>
+      <div class="image-grid" id="uploads-grid">
+        <!-- User uploads loaded dynamically -->
+      </div>
+      <p id="no-uploads" class="text-center" style="display: none;">You haven't uploaded any images yet. <a href="../upload/index.html">Upload your first image!</a></p>
+    </div>
+
+    <!-- Favorites -->
+    <div id="favorites" class="tab-content">
+      <h2>Saved Favorites</h2>
+      <div id="favorites-grid" class="image-grid">
+        <!-- Favorites will be loaded dynamically -->
+      </div>
+      <p id="no-favorites" class="text-center" style="display: none;">You haven't saved any images yet. Start exploring and save your favorites!</p>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings" class="tab-content">
+      <h2>Account Settings</h2>
+      <form class="settings-form" id="settingsForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" />
+
+        <label for="user-email">Email Address</label>
+        <input type="email" id="user-email" name="email" placeholder="your@email.com" />
+        
+        <label for="bio">Bio</label>
+        <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+
+        <button type="submit" class="auth-btn">Update Profile</button>
+      </form>
+      
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+        <h3>Account Actions</h3>
+        <button class="auth-btn secondary" onclick="clearFavorites()" style="margin-top: 1rem;">Clear All Favorites</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+      <div class="footer-links">
+        <a href="#">Help</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    // Dashboard specific functions
+    function editImage(id) {
+      alert(`Edit functionality for image ${id} would be implemented here.`);
+    }
+    
+    function deleteImage(id) {
+      if (confirm('Are you sure you want to delete this image?')) {
+        alert(`Image ${id} deleted successfully.`);
+        // Remove the image card from DOM
+        event.target.closest('.image-card').remove();
+      }
+    }
+    
+    function clearFavorites() {
+      if (confirm('Are you sure you want to clear all favorites?')) {
+        localStorage.removeItem('favorites');
+        loadFavorites();
+        alert('All favorites cleared.');
+      }
+    }
+    
+    function loadFavorites() {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const favoritesGrid = document.getElementById('favorites-grid');
+      const noFavorites = document.getElementById('no-favorites');
+      
+      favoritesGrid.innerHTML = '';
+      
+      if (favorites.length === 0) {
+        noFavorites.style.display = 'block';
+      } else {
+        noFavorites.style.display = 'none';
+        favorites.forEach(fav => {
+          const img = document.createElement('img');
+          img.src = fav.src;
+          img.alt = fav.title;
+          img.onclick = () => openImage(img);
+          favoritesGrid.appendChild(img);
+        });
+      }
+    }
+    
+    function loadUserUploads() {
+      const imageDatabase = JSON.parse(localStorage.getItem('imageDatabase')) || [];
+      const user = JSON.parse(localStorage.getItem('user'));
+      const uploadsGrid = document.getElementById('uploads-grid');
+      const noUploads = document.getElementById('no-uploads');
+      
+      uploadsGrid.innerHTML = '';
+      
+      // For demo, show all images. In real app, filter by user
+      const userImages = imageDatabase;
+      
+      if (userImages.length === 0) {
+        noUploads.style.display = 'block';
+      } else {
+        noUploads.style.display = 'none';
+        userImages.forEach(imageData => {
+          const imageCard = document.createElement('div');
+          imageCard.className = 'image-card';
+          imageCard.innerHTML = `
+            <img src="${imageData.dataUrl || `../assets/${imageData.category}/${imageData.id}.${imageData.extension}`}" 
+                 alt="${imageData.title}" onclick="openImage(this)" />
+            <div class="image-card-footer">
+              <span>${imageData.title}</span>
+              <span class="status ${imageData.approved ? 'approved' : 'pending'}">
+                ${imageData.approved ? '✓ Approved' : '⏳ Pending'}
+              </span>
+              <button class="delete-btn" onclick="deleteUserImage(${imageData.id})">Delete</button>
+            </div>
+          `;
+          uploadsGrid.appendChild(imageCard);
+        });
+      }
+    }
+    
+    function deleteUserImage(imageId) {
+      if (confirm('Are you sure you want to delete this image?')) {
+        let imageDatabase = JSON.parse(localStorage.getItem('imageDatabase')) || [];
+        imageDatabase = imageDatabase.filter(img => img.id !== imageId);
+        localStorage.setItem('imageDatabase', JSON.stringify(imageDatabase));
+        loadUserUploads();
+        alert('Image deleted successfully.');
+      }
+    }
+    
+    // Load user data and favorites on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        document.getElementById('username').value = user.name || user.username || '';
+        document.getElementById('user-email').value = user.email || '';
+      }
+      
+      loadFavorites();
+      loadUserUploads();
+    });
+  </script>
+
+</body>
+</html>

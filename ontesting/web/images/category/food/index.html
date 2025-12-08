@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Images - Voltnexis</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../category.html">Categories</a>
+        <a href="../../index.html#trending">Trending</a>
+        <a href="../../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="../../upload/index.html" class="upload-btn">Upload</a>
+        <a href="../../login/index.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> > <a href="../category.html">Categories</a> > <span>🥗 Food</span>
+    </div>
+  </div>
+
+  <section class="category-banner">
+    <div class="container">
+      <h1>🥗 Food Photography</h1>
+      <p>Delicious culinary creations, fresh ingredients, and food styling</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy">
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+      <label for="foodType">Food Type:</label>
+      <select id="foodType">
+        <option value="all">All Food</option>
+        <option value="desserts">Desserts</option>
+        <option value="healthy">Healthy</option>
+        <option value="drinks">Drinks</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="category-header">
+      <div class="category-meta">
+        <h2>Food Images</h2>
+        <p>567 images available</p>
+      </div>
+    </div>
+    
+    <div class="image-grid">
+      <img src="https://picsum.photos/400/300?random=901" alt="Fresh Salad" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=902" alt="Chocolate Cake" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=903" alt="Coffee Cup" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=904" alt="Pizza Slice" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=905" alt="Fresh Fruits" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=906" alt="Burger Deluxe" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=907" alt="Sushi Platter" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=908" alt="Wine Glass" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=909" alt="Pasta Dish" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=910" alt="Ice Cream" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=911" alt="Breakfast Bowl" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=912" alt="Smoothie Bowl" onclick="openImage(this)" loading="lazy" />
+    </div>
+    
+    <div class="load-more-container">
+      <button class="load-more-btn" onclick="loadMoreImages()">Load More Images</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+    </div>
+  </footer>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js"></script>
+
+</body>
+</html>

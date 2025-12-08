@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Landscape - VoltNexis</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <a href="../../index.html">VoltNexis</a>
+            </div>
+            <div class="nav-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../category/nature/index.html">Nature</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="image-page">
+        <div class="image-container">
+            <img src="../../assets/nature/1.jpg" alt="Mountain Landscape" onclick="openImage(this)">
+        </div>
+        
+        <div class="image-info">
+            <h1>Mountain Landscape</h1>
+            <p class="image-description">Beautiful mountain landscape with snow-capped peaks</p>
+            <div class="image-meta">
+                <span class="category">Category: nature</span>
+                <span class="views">Views: <span id="view-count">150</span></span>
+            </div>
+            
+            <div class="image-actions">
+                <button onclick="downloadCurrentImage()" class="download-btn">⬇ Download</button>
+                <button onclick="toggleCurrentFavorite()" class="favorite-btn" id="fav-btn">♡ Save</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-actions">
+            <button onclick="downloadImage()" class="modal-btn">⬇ Download</button>
+            <button onclick="toggleFavorite()" class="modal-btn favorite-btn">♡ Save</button>
+        </div>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script>
+        const currentImageData = {id: 1, title: 'Mountain Landscape', category: 'nature', extension: 'jpg'};
+        
+        function downloadCurrentImage() {
+            const link = document.createElement('a');
+            link.href = '../../assets/nature/1.jpg';
+            link.download = 'Mountain_Landscape.jpg';
+            link.click();
+        }
+        
+        function toggleCurrentFavorite() {
+            const btn = document.getElementById('fav-btn');
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const existingIndex = favorites.findIndex(fav => fav.id === 1);
+            
+            if (existingIndex > -1) {
+                favorites.splice(existingIndex, 1);
+                btn.innerHTML = '♡ Save';
+                btn.style.color = '#64748b';
+            } else {
+                favorites.push(currentImageData);
+                btn.innerHTML = '♥ Saved';
+                btn.style.color = '#ef4444';
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+    </script>
+</body>
+</html>

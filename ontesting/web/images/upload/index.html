@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Image - Voltnexis Vault</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../category/category.html">Categories</a>
+        <a href="../index.html#trending">Trending</a>
+        <a href="../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="index.html" class="upload-btn active">Upload</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- Upload Form -->
+  <section class="upload-section container">
+    <h1>📤 Share Your Creative Vision</h1>
+    <p>Upload high-quality images and contribute to our growing community of photographers and artists.</p>
+
+    <!-- Upload Form -->
+    <form class="upload-form" id="uploadForm">
+      <!-- File Upload -->
+      <div class="file-upload-area" id="fileUploadArea">
+        <input type="file" id="imageFile" name="image" accept="image/*" required style="display: none;" />
+        <div class="upload-placeholder" onclick="document.getElementById('imageFile').click()">
+          <div class="upload-icon">📁</div>
+          <h3>Click to select an image</h3>
+          <p>Or drag and drop your image here</p>
+          <p class="file-info">Supports: JPG, PNG, WebP (Max 10MB)</p>
+        </div>
+        <div class="image-preview" id="imagePreview" style="display: none;">
+          <img id="previewImg" src="" alt="Preview" />
+          <button type="button" class="remove-image" onclick="removeImage()">&times;</button>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <label for="title">Image Title *</label>
+      <input type="text" id="title" name="title" placeholder="Give your image a descriptive title" required />
+
+      <!-- Description -->
+      <label for="description">Description *</label>
+      <textarea id="description" name="description" placeholder="Describe your image, the story behind it, or technical details..." rows="4" required></textarea>
+
+      <!-- Tags -->
+      <label for="tags">Tags</label>
+      <input type="text" id="tags" name="tags" placeholder="landscape, sunset, nature, photography (comma-separated)" />
+      <small>Add relevant tags to help people discover your image</small>
+
+      <!-- Category -->
+      <label for="category">Category *</label>
+      <select id="category" name="category" required>
+        <option value="">Select a category</option>
+        <option value="nature">🌲 Nature</option>
+        <option value="animals">🐶 Animals</option>
+        <option value="people">👥 People</option>
+        <option value="technology">💻 Technology</option>
+        <option value="architecture">🏙️ Architecture</option>
+        <option value="food">🥗 Food</option>
+        <option value="abstract">🎨 Abstract</option>
+        <option value="travel">✈️ Travel</option>
+      </select>
+
+      <!-- License -->
+      <label for="license">License *</label>
+      <select id="license" name="license" required>
+        <option value="">Choose a license</option>
+        <option value="cc0">Free for personal and commercial use (CC0)</option>
+        <option value="cc-by">Attribution required (CC BY 4.0)</option>
+        <option value="personal">Personal use only</option>
+      </select>
+      <small>Choose how others can use your image</small>
+
+      <!-- Location (Optional) -->
+      <label for="location">Location (Optional)</label>
+      <input type="text" id="location" name="location" placeholder="Where was this photo taken?" />
+
+      <!-- Camera Info (Optional) -->
+      <div class="camera-info">
+        <h3>Camera Information (Optional)</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label for="camera">Camera</label>
+            <input type="text" id="camera" name="camera" placeholder="Canon EOS R5" />
+          </div>
+          <div>
+            <label for="lens">Lens</label>
+            <input type="text" id="lens" name="lens" placeholder="24-70mm f/2.8" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="upload-btn-large" id="submitBtn">
+        <span>Upload Image</span>
+        <div class="loading-spinner" style="display: none;"></div>
+      </button>
+      
+      <p class="upload-note">
+        By uploading, you agree to our <a href="#">Terms of Service</a> and confirm that you own the rights to this image.
+      </p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">License</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    // File upload handling
+    const fileInput = document.getElementById('imageFile');
+    const fileUploadArea = document.getElementById('fileUploadArea');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+    const uploadPlaceholder = document.querySelector('.upload-placeholder');
+
+    // Drag and drop functionality
+    fileUploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      fileUploadArea.style.borderColor = 'var(--primary)';
+      fileUploadArea.style.backgroundColor = '#eff6ff';
+    });
+
+    fileUploadArea.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      fileUploadArea.style.borderColor = 'var(--border)';
+      fileUploadArea.style.backgroundColor = 'white';
+    });
+
+    fileUploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      fileUploadArea.style.borderColor = 'var(--border)';
+      fileUploadArea.style.backgroundColor = 'white';
+      
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        handleFileSelect(files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleFileSelect(e.target.files[0]);
+      }
+    });
+
+    function handleFileSelect(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file.');
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File size must be less than 10MB.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImg.src = e.target.result;
+        uploadPlaceholder.style.display = 'none';
+        imagePreview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage() {
+      fileInput.value = '';
+      uploadPlaceholder.style.display = 'block';
+      imagePreview.style.display = 'none';
+      previewImg.src = '';
+    }
+
+    // Form submission handled by main script
+    document.getElementById('uploadForm').classList.add('upload-form');
+    
+    // Override file input to update main script's file input
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleFileSelect(e.target.files[0]);
+      }
+    });
+  </script>
+
+</body>
+</html>

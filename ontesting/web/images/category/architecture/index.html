@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture Images - Voltnexis</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../category.html">Categories</a>
+        <a href="../../index.html#trending">Trending</a>
+        <a href="../../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="../../upload/index.html" class="upload-btn">Upload</a>
+        <a href="../../login/index.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> > <a href="../category.html">Categories</a> > <span>🏙️ Architecture</span>
+    </div>
+  </div>
+
+  <section class="category-banner">
+    <div class="container">
+      <h1>🏙️ Architecture Photography</h1>
+      <p>Stunning buildings, modern structures, and architectural masterpieces</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy">
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+      <label for="buildingType">Building Type:</label>
+      <select id="buildingType">
+        <option value="all">All Buildings</option>
+        <option value="modern">Modern</option>
+        <option value="historic">Historic</option>
+        <option value="residential">Residential</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="category-header">
+      <div class="category-meta">
+        <h2>Architecture Images</h2>
+        <p>934 images available</p>
+      </div>
+    </div>
+    
+    <div class="image-grid">
+      <img src="https://picsum.photos/400/300?random=801" alt="Modern Skyscraper" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=802" alt="Historic Cathedral" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=803" alt="Glass Building" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=804" alt="Bridge Design" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=805" alt="Museum Interior" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=806" alt="City Skyline" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=807" alt="Spiral Staircase" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=808" alt="Modern House" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=809" alt="Office Complex" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=810" alt="Ancient Temple" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=811" alt="Shopping Mall" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=812" alt="Stadium Design" onclick="openImage(this)" loading="lazy" />
+    </div>
+    
+    <div class="load-more-container">
+      <button class="load-more-btn" onclick="loadMoreImages()">Load More Images</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+    </div>
+  </footer>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js"></script>
+
+</body>
+</html>

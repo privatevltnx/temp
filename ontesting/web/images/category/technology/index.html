@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technology Images - Voltnexis</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../category.html">Categories</a>
+        <a href="../../index.html#trending">Trending</a>
+        <a href="../../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="../../upload/index.html" class="upload-btn">Upload</a>
+        <a href="../../login/index.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> > <a href="../category.html">Categories</a> > <span>💻 Technology</span>
+    </div>
+  </div>
+
+  <section class="category-banner">
+    <div class="container">
+      <h1>💻 Technology Images</h1>
+      <p>Modern gadgets, computers, AI, and cutting-edge technology photography</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy">
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+      <label for="techType">Tech Type:</label>
+      <select id="techType">
+        <option value="all">All Technology</option>
+        <option value="computers">Computers</option>
+        <option value="mobile">Mobile</option>
+        <option value="ai">AI & Robotics</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="category-header">
+      <div class="category-meta">
+        <h2>Technology Images</h2>
+        <p>678 images available</p>
+      </div>
+    </div>
+    
+    <div class="image-grid">
+      <img src="https://picsum.photos/400/300?random=701" alt="Laptop Coding" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=702" alt="Smartphone Modern" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=703" alt="Robot AI" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=704" alt="Circuit Board" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=705" alt="VR Headset" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=706" alt="Data Center" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=707" alt="Gaming Setup" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=708" alt="Smart Watch" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=709" alt="Drone Flying" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=710" alt="3D Printer" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=711" alt="Server Room" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=712" alt="Electric Car" onclick="openImage(this)" loading="lazy" />
+    </div>
+    
+    <div class="load-more-container">
+      <button class="load-more-btn" onclick="loadMoreImages()">Load More Images</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+    </div>
+  </footer>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Images - Voltnexis</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="../../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="../category.html">Categories</a>
+        <a href="../../index.html#trending">Trending</a>
+        <a href="../../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="../../upload/index.html" class="upload-btn">Upload</a>
+        <a href="../../login/index.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> > <a href="../category.html">Categories</a> > <span>✈️ Travel</span>
+    </div>
+  </div>
+
+  <section class="category-banner">
+    <div class="container">
+      <h1>✈️ Travel Photography</h1>
+      <p>Explore destinations, landmarks, and travel experiences from around the world</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy">
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+      </select>
+      <label for="destination">Destination:</label>
+      <select id="destination">
+        <option value="all">All Destinations</option>
+        <option value="europe">Europe</option>
+        <option value="asia">Asia</option>
+        <option value="america">America</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="category-header">
+      <div class="category-meta">
+        <h2>Travel Images</h2>
+        <p>1,123 images available</p>
+      </div>
+    </div>
+    
+    <div class="image-grid">
+      <img src="https://picsum.photos/400/300?random=1101" alt="Paris Eiffel Tower" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1102" alt="Tokyo Street" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1103" alt="New York Skyline" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1104" alt="Bali Beach" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1105" alt="Swiss Alps" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1106" alt="London Bridge" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1107" alt="Dubai Marina" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1108" alt="Rome Colosseum" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1109" alt="Iceland Waterfall" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1110" alt="Thailand Temple" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1111" alt="Australia Outback" onclick="openImage(this)" loading="lazy" />
+      <img src="https://picsum.photos/400/300?random=1112" alt="Brazil Beach" onclick="openImage(this)" loading="lazy" />
+    </div>
+    
+    <div class="load-more-container">
+      <button class="load-more-btn" onclick="loadMoreImages()">Load More Images</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+    </div>
+  </footer>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js"></script>
+
+</body>
+</html>

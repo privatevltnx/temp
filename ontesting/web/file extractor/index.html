@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free File Viewer & Downloader - VoltNexis Tools</title>
+    <meta name="description" content="Free online file viewer and downloader tool. Preview and download files from any URL instantly. Part of VoltNexis ecosystem - free tech tools for everyone.">
+    <meta name="keywords" content="file downloader, file viewer, URL downloader, free tools, VoltNexis, online tools, file preview, download manager">
+    <meta name="author" content="VoltNexis">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://voltnexis.github.io/file-downloader">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Free File Viewer & Downloader - VoltNexis Tools">
+    <meta property="og:description" content="Free online file viewer and downloader tool. Preview and download files from any URL instantly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://voltnexis.github.io/file-downloader">
+    <meta property="og:image" content="https://voltnexis.github.io/assets/logo.png">
+    <meta property="og:site_name" content="VoltNexis">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free File Viewer & Downloader - VoltNexis Tools">
+    <meta name="twitter:description" content="Free online file viewer and downloader tool. Preview and download files from any URL instantly.">
+    <meta name="twitter:image" content="https://voltnexis.github.io/assets/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Light background for clean look */
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-lg bg-white shadow-2xl rounded-xl p-8 md:p-10 border border-gray-100">
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <svg class="mx-auto h-12 w-12 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <h1 class="text-3xl font-extrabold text-gray-900 mt-2">File Viewer & Downloader</h1>
+            <p class="text-gray-500 mt-1">Free tool to preview and download files from any URL</p>
+        </header>
+
+        <!-- Input Form -->
+        <div class="space-y-6">
+            <div class="relative">
+                <input
+                    type="url"
+                    id="fileUrl"
+                    placeholder="e.g., https://example.com/document.pdf"
+                    class="w-full p-3 pl-4 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm text-sm"
+                >
+            </div>
+
+            <button
+                id="loadButton"
+                onclick="loadFile()"
+                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 disabled:opacity-50"
+            >
+                Load File
+            </button>
+
+            <!-- Message Box -->
+            <div id="messageBox" class="hidden p-3 rounded-lg text-sm transition-all duration-300" role="alert">
+                <p id="messageText" class="font-medium"></p>
+            </div>
+        </div>
+
+        <!-- File Preview Container -->
+        <div id="filePreview" class="hidden mt-6 p-4 border border-gray-200 rounded-lg bg-gray-50">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">File Preview</h3>
+                <button
+                    id="downloadIcon"
+                    onclick="downloadCurrentFile()"
+                    class="flex items-center px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200"
+                    title="Download File"
+                >
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    Download
+                </button>
+            </div>
+            <div id="fileContent" class="bg-white border rounded p-4 max-h-96 overflow-auto"></div>
+        </div>
+
+        <!-- Footer/Instructions -->
+        <footer class="mt-8 pt-6 border-t border-gray-100 text-center text-xs text-gray-400">
+            <p>Part of <a href="https://voltnexis.github.io"><strong class="text-indigo-600">VoltNexis Ecosystem</strong></a> - Free tech tools for everyone</p>
+            <p class="mt-1">Ad-free, privacy-focused, and completely free to use</p>
+        </footer>
+
+    </div>
+
+    <script>
+        /**
+         * Cleans a URL to extract a suitable filename.
+         * @param {string} url - The URL string.
+         * @returns {string} - A clean filename.
+         */
+        function getFilenameFromUrl(url) {
+            try {
+                const urlObject = new URL(url);
+                // Get the last part of the path (e.g., /path/to/file.ext -> file.ext)
+                let filename = urlObject.pathname.split('/').pop();
+
+                // Remove any URL query parameters (e.g., ?key=value)
+                filename = filename.split('?')[0];
+
+                // If the filename is empty or just a slash, use a default
+                if (!filename || filename === '/') {
+                    return 'downloaded_file.bin';
+                }
+                return filename;
+            } catch (e) {
+                // In case of invalid URL or parsing error, return a generic name
+                return 'downloaded_file.bin';
+            }
+        }
+
+        /**
+         * Displays a message to the user.
+         * @param {string} text - The message text.
+         * @param {string} type - 'success' or 'error'.
+         */
+        function showMessage(text, type) {
+            const box = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            
+            // Set message and make visible
+            messageText.textContent = text;
+            box.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800');
+
+            if (type === 'error') {
+                box.classList.add('bg-red-100', 'text-red-800');
+            } else if (type === 'success') {
+                box.classList.add('bg-green-100', 'text-green-800');
+            } else {
+                 box.classList.add('bg-blue-100', 'text-blue-800');
+            }
+
+            // Hide the message after 5 seconds
+            setTimeout(() => {
+                box.classList.add('hidden');
+            }, 5000);
+        }
+
+        let currentFileUrl = '';
+
+        /**
+         * Loads and displays the file content in the preview area.
+         */
+        async function loadFile() {
+            const urlInput = document.getElementById('fileUrl');
+            const url = urlInput.value.trim();
+            const button = document.getElementById('loadButton');
+            const preview = document.getElementById('filePreview');
+            const content = document.getElementById('fileContent');
+
+            if (!url) {
+                showMessage('Please enter a valid file URL.', 'error');
+                return;
+            }
+
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                showMessage('The URL must start with http:// or https://', 'error');
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = 'Loading...';
+            currentFileUrl = url;
+
+            try {
+                // Determine file type from URL first (more reliable)
+                if (url.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
+                    content.innerHTML = `<img src="${url}" alt="Image" class="max-w-full h-auto rounded" onerror="this.parentElement.innerHTML='<div class=\"text-center py-8\"><p class=\"text-red-600\">Failed to load image</p></div>'">`;
+                } else if (url.match(/\.pdf$/i)) {
+                    content.innerHTML = `<embed src="${url}" type="application/pdf" width="100%" height="400px" class="rounded">`;
+                } else {
+                    content.innerHTML = `<div class="text-center py-8"><p class="text-gray-600">File ready for download</p><p class="text-sm text-gray-500 mt-2">Preview not available. Use the download button to get the file.</p></div>`;
+                }
+
+                preview.classList.remove('hidden');
+                showMessage('File loaded successfully!', 'success');
+            } catch (error) {
+                showMessage(`Error loading file: ${error.message}`, 'error');
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Load File';
+            }
+        }
+
+        /**
+         * Downloads the currently loaded file.
+         */
+        async function downloadCurrentFile() {
+            if (!currentFileUrl) {
+                showMessage('No file loaded to download.', 'error');
+                return;
+            }
+
+            const downloadBtn = document.getElementById('downloadIcon');
+            downloadBtn.disabled = true;
+            downloadBtn.innerHTML = '<svg class="w-4 h-4 mr-1 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" class="opacity-75"></path></svg>Downloading...';
+
+            try {
+                // Check if it's an image and use canvas method
+                if (currentFileUrl.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                    await downloadImageAsFile();
+                } else {
+                    // For other files, try fetch to blob first
+                    try {
+                        const response = await fetch(currentFileUrl);
+                        if (response.ok) {
+                            const blob = await response.blob();
+                            const url = window.URL.createObjectURL(blob);
+                            const anchor = document.createElement('a');
+                            anchor.href = url;
+                            anchor.download = getFilenameFromUrl(currentFileUrl);
+                            anchor.style.display = 'none';
+                            document.body.appendChild(anchor);
+                            anchor.click();
+                            document.body.removeChild(anchor);
+                            window.URL.revokeObjectURL(url);
+                        } else {
+                            throw new Error('Fetch failed');
+                        }
+                    } catch (fetchError) {
+                        // Fallback: open in new window
+                        window.open(currentFileUrl, '_blank');
+                    }
+                }
+                
+                showMessage('Download initiated!', 'success');
+            } catch (error) {
+                showMessage(`Download failed: ${error.message}`, 'error');
+            } finally {
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = '<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>Download';
+            }
+        }
+
+        /**
+         * Downloads image using canvas conversion.
+         */
+        async function downloadImageAsFile() {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    canvas.toBlob(function(blob) {
+                        const url = window.URL.createObjectURL(blob);
+                        const anchor = document.createElement('a');
+                        anchor.href = url;
+                        anchor.download = getFilenameFromUrl(currentFileUrl);
+                        anchor.style.display = 'none';
+                        document.body.appendChild(anchor);
+                        anchor.click();
+                        document.body.removeChild(anchor);
+                        window.URL.revokeObjectURL(url);
+                        resolve();
+                    }, 'image/png');
+                };
+                
+                img.onerror = function() {
+                    // Fallback to direct anchor download
+                    const anchor = document.createElement('a');
+                    anchor.href = currentFileUrl;
+                    anchor.download = getFilenameFromUrl(currentFileUrl);
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                    anchor.style.display = 'none';
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(anchor);
+                    resolve();
+                };
+                
+                img.src = currentFileUrl;
+            });
+        }
+
+        /**
+         * Escapes HTML characters to prevent XSS.
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

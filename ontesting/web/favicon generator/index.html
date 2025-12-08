@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Favicon Generator - Create Professional Website Icons Online | VoltNexis</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Generate professional favicons for your website instantly. Free online favicon generator creates all sizes (16x16, 32x32, 180x180, 512x512) from your image. No signup required. Fast, secure, browser-based tool." />
+    <meta name="keywords" content="favicon generator, favicon creator, free favicon tool, website icon, favicon maker, online favicon generator, ico generator, apple touch icon, android chrome icon, web app manifest, voltnexis, Volt Nexis" />
+    <meta name="author" content="VoltNexis" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://voltnexis.github.io/favicongenerator/" />
+    
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#3b82f6">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Free Favicon Generator - Create Professional Website Icons Online" />
+    <meta property="og:description" content="Generate professional favicons instantly with our free online tool. Create all favicon sizes from your image. No signup required, works in your browser." />
+    <meta property="og:image" content="https://voltnexis.github.io/favicongenerator/favicon-512x512.png" />
+    <meta property="og:url" content="https://voltnexis.github.io/favicongenerator/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VoltNexis Favicon Generator" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Favicon Generator - Create Professional Website Icons">
+    <meta name="twitter:description" content="Generate professional favicons instantly. Free online tool creates all favicon sizes from your image.">
+    <meta name="twitter:image" content="https://voltnexis.github.io/favicongenerator/favicon-512x512.png">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="application-name" content="VoltNexis Favicon Generator">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "VoltNexis Favicon Generator",
+      "description": "Free online favicon generator tool that creates professional website icons in all required sizes from your uploaded image.",
+      "url": "https://voltnexis.github.io/favicongenerator/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "VoltNexis"
+      }
+    }
+    </script>
+    
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load JSZip for client-side ZIP file creation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <!-- Load FileSaver.js to trigger the download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        /* Custom styles for a polished look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        /* Custom file input appearance */
+        .custom-file-input {
+            border: 2px dashed #93c5fd; /* blue-300 */
+            background-color: #eff6ff; /* blue-50 */
+            transition: all 0.2s ease-in-out;
+        }
+        .custom-file-input:hover {
+            border-color: #60a5fa; /* blue-400 */
+            background-color: #e0f2fe; /* blue-100 */
+        }
+        .custom-file-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* ring blue-500 */
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-xl bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-blue-100">
+        <header class="mb-6 text-center">
+            <h1 class="text-3xl font-bold text-gray-800">Free Favicon Generator</h1>
+            <p class="text-gray-500 mt-2">Create professional website favicons instantly. Upload your image and download a complete favicon package with all required sizes.</p>
+        </header>
+
+        <!-- Image Input Section -->
+        <div class="mb-8">
+            <label for="imageUpload" class="block text-sm font-medium text-gray-700 mb-2">Select Source Image (PNG or JPG)</label>
+            <!-- FIX: Added onclick to trigger the hidden file input -->
+            <div class="custom-file-input p-6 rounded-lg text-center cursor-pointer hover:shadow-md" onclick="document.getElementById('imageUpload').click()">
+                <input type="file" id="imageUpload" accept="image/png, image/jpeg" class="hidden" onchange="previewImage(event)">
+                <p class="text-blue-600 font-semibold mb-1">Click to Upload or Drag and Drop</p>
+                <p class="text-xs text-gray-500">Recommended size: 260x260px or larger</p>
+                <img id="imagePreview" class="mt-4 mx-auto max-h-40 rounded-lg shadow-inner object-contain hidden" alt="Image Preview">
+            </div>
+        </div>
+
+        <!-- Conversion Button and Status -->
+        <button id="convertButton" onclick="handleConversion()" disabled class="w-full px-4 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-150 shadow-md disabled:bg-blue-300 disabled:cursor-not-allowed flex items-center justify-center">
+            <span id="buttonText">Upload Image to Enable Conversion</span>
+            <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+        </button>
+
+        <!-- Output Status Messages -->
+        <div id="statusMessage" class="mt-4 text-center text-sm font-medium text-gray-600"></div>
+
+        <!-- Hidden Canvas for Image Processing -->
+        <canvas id="conversionCanvas" class="hidden"></canvas>
+        
+        <!-- Advertisement Section -->
+        <div class="mt-8 p-3 bg-gray-50 border-2 border-gray-400 rounded-lg text-center">
+            <p class="text-xs text-gray-500 mb-2">Advertisement</p>
+            <!-- AdGem Ad Unit -->
+            <div id="adgem-ad" style="height:60px;max-height:60px"></div>
+        </div>
+    </div>
+
+    <!-- AdGem Script -->
+    <script>
+        // AdGem API integration
+        const adgemToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmQ0NDhkZmM5MTBhZTEyZmU4MTU3MTZhZTIxMWZjMjdmOGExMDJlNGZmOGQyYjkzYzU2NjFmZjhkZmQ4ZWZlZmEzOTdkZmViNTM1MDdmZjAiLCJpYXQiOjE3NjAzNzY4MzUuMDAwNTc1LCJuYmYiOjE3NjAzNzY4MzUuMDAwNTc3LCJleHAiOjE3OTE5MTI4MzQuOTk3MzEyLCJzdWIiOiIyODk4OCIsInNjb3BlcyI6W119.P5ypzoeWBZxFjCcDNH0nbxjkXnuzR94AyWCnlFyQ_BgpSSx501iv6j7nSB8nUUzFBgz_UDEp-mluJBv2Z_GtQrbrQMOw8c_7_bB5Q_7LhxiUHMV_nVFI3xBo-Aukq9X7FQ60glT2bfwcdJsur7L9od-k2GZO__EaoaeDxtE4NBLwipJwkQkDnlx720b2L0IPAn3xiMO205opteUHGz7qxIrskDRfw5HqhfTZHT3JnpBcfSQQ7FDPkaxQo_gBRGqtXld-9LDAkaEwf15bSEoZjZr2b9HHAWLAtDgQ4ugf-Z_-vgnMiPbIX7grBa0SufEbbJYXZ3CH4_1NXkJxVG--uYBsBv1wdeN9JvpKL7SgYPu8CHgi8X982RpGQpvDBhM7-5mICYMgEaxYsFHW94GI8Z9jOG4tamg6x826HLcB31HNhHtyDdnUNS0Qd-AtgKZCl0ajRDYPKITFOFYhwtgYAtDKYDhKW-yzYU7CC2eqU-NNxFqPiseI9TCHPfKD6RGCFLadPg4Rfg5ApTflfWm2H5BrU6d_WqHRw1sTA0l1Kos70q4CFEEGdzKISo5t-yQJjsRVfDtPYE9JwXa3VrL1YQn8AvUhxrr9vP7EwOb2D_BzT2XG-BO6YyZmmG9CFE_S7FLsJZk3QubSxscfL6xKqtjdEfe50WJidfHzDB1LTtU';
+        
+        // Load AdGem ad
+        function loadAdGemAd() {
+            fetch('https://api.adgem.com/v1/ads', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${adgemToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.ad_content) {
+                    document.getElementById('adgem-ad').innerHTML = data.ad_content;
+                }
+            })
+            .catch(error => {
+                console.log('AdGem ad failed to load:', error);
+            });
+        }
+        
+        // Load ad when page loads
+        window.addEventListener('load', loadAdGemAd);
+    </script>
+
+    <script>
+        // Global variables
+        const canvas = document.getElementById('conversionCanvas');
+        const ctx = canvas.getContext('2d');
+        const imagePreview = document.getElementById('imagePreview');
+        const convertButton = document.getElementById('convertButton');
+        const buttonText = document.getElementById('buttonText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const statusMessage = document.getElementById('statusMessage');
+        let uploadedImage = null;
+
+        // Configuration of the favicon files to generate (size in pixels and filename)
+        const FAVICON_SIZES = [
+            { size: 16, name: 'favicon-16x16.png' },
+            { size: 32, name: 'favicon-32x32.png' },
+            { size: 48, name: 'favicon-48x48.png' },
+            { size: 180, name: 'apple-touch-icon.png' },
+            { size: 192, name: 'android-chrome-192x192.png' },
+            { size: 512, name: 'android-chrome-512x512.png' },
+            // Modern browsers prefer PNGs, but the old .ico standard is still sometimes needed.
+            // A basic 16x16 PNG named favicon.ico is included for simplicity.
+            { size: 16, name: 'favicon.ico' },
+        ];
+
+        /**
+         * Converts a Base64 Data URL (like image/png) into a raw Blob.
+         * Necessary for JSZip to correctly process file contents.
+         * @param {string} dataurl - The data URL string.
+         * @returns {Blob} The binary Blob object.
+         */
+        function dataURLtoBlob(dataurl) {
+            const arr = dataurl.split(',');
+            // Extract mime type (e.g., 'image/png')
+            const mime = arr[0].match(/:(.*?);/)[1];
+            // Decode the base64 string
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+
+            // Convert character codes to byte array
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+
+            return new Blob([u8arr], {type:mime});
+        }
+
+        /**
+         * Resizes the uploaded image to the target size and returns the PNG data URL.
+         * @param {number} targetSize - The desired output size (e.g., 16, 32).
+         * @returns {string} The base64 data URL for the resized PNG image.
+         */
+        function resizeAndExport(targetSize) {
+            canvas.width = targetSize;
+            canvas.height = targetSize;
+
+            // Draw the uploaded image onto the canvas, scaling it to the target size
+            ctx.drawImage(uploadedImage, 0, 0, targetSize, targetSize);
+
+            // Export the canvas content as a PNG data URL
+            return canvas.toDataURL('image/png');
+        }
+
+        /**
+         * Core logic to read a File object and set up the image preview.
+         * This function is used by both the file input change and drag-and-drop.
+         * @param {File} file - The image file to process.
+         */
+        function readAndPreviewFile(file) {
+            if (!file || !file.type.startsWith('image/')) {
+                statusMessage.textContent = 'Please select a valid image file (PNG or JPG).';
+                convertButton.disabled = true;
+                imagePreview.classList.add('hidden');
+                return;
+            }
+            
+            // Read the file as a Data URL for preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.classList.remove('hidden');
+
+                // Load the image into an Image object for processing
+                const img = new Image();
+                img.onload = function() {
+                    uploadedImage = img;
+                    convertButton.disabled = false;
+                    buttonText.textContent = 'Generate Favicons (Download ZIP)';
+                    statusMessage.textContent = `Image loaded successfully. Ready to convert! (${img.width}x${img.height})`;
+                };
+                img.onerror = function() {
+                    statusMessage.textContent = 'Error loading image, please try a different file.';
+                    convertButton.disabled = true;
+                    imagePreview.classList.add('hidden');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        /**
+         * Handles the file selection from the file input element (onchange event).
+         * @param {Event} event - The change event from the file input.
+         */
+        function previewImage(event) {
+            const file = event.target.files[0];
+            readAndPreviewFile(file);
+        }
+
+        /**
+         * Main function to handle the conversion and ZIP generation.
+         */
+        async function handleConversion() {
+            if (!uploadedImage) {
+                statusMessage.textContent = 'Please upload an image first.';
+                return;
+            }
+
+            // UI state: Disable button and show spinner
+            convertButton.disabled = true;
+            buttonText.textContent = 'Generating...';
+            loadingSpinner.classList.remove('hidden');
+            statusMessage.textContent = 'Processing image and creating ZIP file...';
+
+            const zip = new JSZip();
+
+            try {
+                // 1. Generate all required favicon PNG files
+                for (const config of FAVICON_SIZES) {
+                    const dataURL = resizeAndExport(config.size);
+                    const blob = dataURLtoBlob(dataURL);
+                    zip.file(config.name, blob);
+                    console.log(`Generated file: ${config.name} (${config.size}x${config.size})`);
+                }
+
+                // 2. Add an HTML snippet with suggested link tags
+                const htmlContent = `
+<!-- Place this code inside the <head> section of your website -->
+
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<!-- Legacy .ico (contains 16x16 PNG for compatibility) -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- Android / Chrome -->
+<meta name="theme-color" content="#ffffff">
+`;
+                zip.file("suggested-html-code.txt", htmlContent);
+
+
+                // 3. Generate the ZIP file
+                const content = await zip.generateAsync({ type: "blob" });
+
+                // 4. Trigger the download using FileSaver.js
+                saveAs(content, "favicons.zip");
+
+                statusMessage.textContent = 'Success! favicons.zip has been downloaded.';
+
+            } catch (error) {
+                console.error("Conversion failed:", error);
+                statusMessage.textContent = `Error during generation: ${error.message}. Check the console for details.`;
+            } finally {
+                // UI state: Re-enable button and hide spinner
+                convertButton.disabled = false;
+                buttonText.textContent = 'Download New ZIP';
+                loadingSpinner.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Provides a simple mechanism for drag-and-drop upload.
+         */
+        const fileInputArea = document.querySelector('.custom-file-input');
+        
+        fileInputArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileInputArea.classList.add('ring-4', 'ring-blue-400');
+        });
+
+        fileInputArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            fileInputArea.classList.remove('ring-4', 'ring-blue-400');
+        });
+
+        fileInputArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileInputArea.classList.remove('ring-4', 'ring-blue-400');
+            const files = e.dataTransfer.files;
+            
+            if (files.length > 0) {
+                // FIX: Call the unified file reading function directly with the dropped file.
+                readAndPreviewFile(files[0]);
+            }
+        });
+    </script>
+</body>
+</html>

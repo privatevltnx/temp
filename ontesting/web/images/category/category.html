@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Categories - Voltnexis</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">Voltnexis</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <nav class="nav" id="nav">
+        <a href="category.html" class="active">Categories</a>
+        <a href="../index.html#trending">Trending</a>
+        <a href="../index.html#recent">New</a>
+        <input type="text" placeholder="Search images..." class="search-bar" onkeypress="handleSearch(event)" />
+        <a href="../upload/index.html" class="upload-btn">Upload</a>
+        <a href="../login/index.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> > <span>Categories</span>
+    </div>
+  </div>
+
+  <!-- Category Banner -->
+  <section class="category-banner" id="categoryBanner">
+    <div class="container">
+      <h1 id="categoryTitle">Explore Image Categories</h1>
+      <p id="categoryDescription">Discover amazing images organized by category</p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="container">
+    <div class="filters">
+      <label for="sortBy">Sort by:</label>
+      <select id="sortBy" onchange="sortImages()">
+        <option value="popular">Most Popular</option>
+        <option value="recent">Most Recent</option>
+        <option value="downloads">Most Downloaded</option>
+        <option value="alphabetical">A-Z</option>
+      </select>
+
+      <label for="orientation">Orientation:</label>
+      <select id="orientation" onchange="filterByOrientation()">
+        <option value="all">All Orientations</option>
+        <option value="landscape">Landscape</option>
+        <option value="portrait">Portrait</option>
+        <option value="square">Square</option>
+      </select>
+
+      <label for="resolution">Resolution:</label>
+      <select id="resolution" onchange="filterByResolution()">
+        <option value="all">All Sizes</option>
+        <option value="hd">HD (1280x720+)</option>
+        <option value="fullhd">Full HD (1920x1080+)</option>
+        <option value="4k">4K (3840x2160+)</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Category Grid or Image Grid -->
+  <section class="container" id="mainContent">
+    <!-- All Categories View -->
+    <div id="categoriesView">
+      <h2>Browse by Category</h2>
+      <div class="category-grid">
+        <div class="category-card" onclick="window.location.href='nature/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=301" alt="Nature" />
+          </div>
+          <div class="category-info">
+            <h3>🌲 Nature</h3>
+            <p>1,234 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='animals/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=302" alt="Animals" />
+          </div>
+          <div class="category-info">
+            <h3>🐶 Animals</h3>
+            <p>856 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='people/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=303" alt="People" />
+          </div>
+          <div class="category-info">
+            <h3>👥 People</h3>
+            <p>2,145 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='technology/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=304" alt="Technology" />
+          </div>
+          <div class="category-info">
+            <h3>💻 Technology</h3>
+            <p>678 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='architecture/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=305" alt="Architecture" />
+          </div>
+          <div class="category-info">
+            <h3>🏙️ Architecture</h3>
+            <p>934 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='food/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=306" alt="Food" />
+          </div>
+          <div class="category-info">
+            <h3>🥗 Food</h3>
+            <p>567 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='abstract/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=307" alt="Abstract" />
+          </div>
+          <div class="category-info">
+            <h3>🎨 Abstract</h3>
+            <p>445 images</p>
+          </div>
+        </div>
+        
+        <div class="category-card" onclick="window.location.href='travel/index.html'">
+          <div class="category-image">
+            <img src="https://picsum.photos/300/200?random=308" alt="Travel" />
+          </div>
+          <div class="category-info">
+            <h3>✈️ Travel</h3>
+            <p>1,123 images</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specific Category View -->
+    <div id="categoryView" style="display: none;">
+      <div class="category-header">
+        <button class="back-btn" onclick="showAllCategories()">← Back to Categories</button>
+        <div class="category-meta">
+          <h2 id="currentCategoryTitle">Category Images</h2>
+          <p id="imageCount">Loading images...</p>
+        </div>
+      </div>
+      
+      <div class="image-grid" id="categoryImages">
+        <!-- Images will be loaded dynamically -->
+      </div>
+      
+      <div class="load-more-container">
+        <button class="load-more-btn" onclick="loadMoreCategoryImages()">Load More Images</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pagination -->
+  <div class="container">
+    <div class="pagination" id="pagination" style="display: none;">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">Next</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Voltnexis Media Group</p>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">License</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="" />
+      <div class="modal-info">
+        <h3 id="modalTitle">Image Title</h3>
+        <div class="modal-actions">
+          <button class="download-btn" onclick="downloadImage()">Download</button>
+          <button class="favorite-btn" onclick="toggleFavorite()">♡ Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    let currentCategory = null;
+    let currentImageIndex = 20;
+    
+    // Category data
+    const categoryData = {
+      nature: { title: '🌲 Nature', description: 'Beautiful landscapes, forests, mountains, and natural scenery', count: 1234 },
+      animals: { title: '🐶 Animals', description: 'Wildlife, pets, and animal photography', count: 856 },
+      people: { title: '👥 People', description: 'Portraits, lifestyle, and human photography', count: 2145 },
+      technology: { title: '💻 Technology', description: 'Gadgets, computers, and tech-related imagery', count: 678 },
+      architecture: { title: '🏙️ Architecture', description: 'Buildings, structures, and architectural photography', count: 934 },
+      food: { title: '🥗 Food', description: 'Culinary photography and food styling', count: 567 },
+      abstract: { title: '🎨 Abstract', description: 'Artistic and abstract compositions', count: 445 },
+      travel: { title: '✈️ Travel', description: 'Destinations, landmarks, and travel photography', count: 1123 }
+    };
+
+    function loadCategory(category) {
+      currentCategory = category;
+      const data = categoryData[category];
+      
+      // Update breadcrumb
+      document.querySelector('.breadcrumb').innerHTML = 
+        `<a href="../index.html">Home</a> > <a href="category.html">Categories</a> > <span>${data.title}</span>`;
+      
+      // Update banner
+      document.getElementById('categoryTitle').textContent = data.title;
+      document.getElementById('categoryDescription').textContent = data.description;
+      
+      // Update current category info
+      document.getElementById('currentCategoryTitle').textContent = data.title;
+      document.getElementById('imageCount').textContent = `${data.count} images available`;
+      
+      // Hide categories view, show category view
+      document.getElementById('categoriesView').style.display = 'none';
+      document.getElementById('categoryView').style.display = 'block';
+      
+      // Load category images
+      loadCategoryImages();
+      
+      // Show pagination
+      document.getElementById('pagination').style.display = 'block';
+    }
+
+    function showAllCategories() {
+      currentCategory = null;
+      
+      // Reset breadcrumb
+      document.querySelector('.breadcrumb').innerHTML = 
+        `<a href="../index.html">Home</a> > <span>Categories</span>`;
+      
+      // Reset banner
+      document.getElementById('categoryTitle').textContent = 'Explore Image Categories';
+      document.getElementById('categoryDescription').textContent = 'Discover amazing images organized by category';
+      
+      // Show categories view, hide category view
+      document.getElementById('categoriesView').style.display = 'block';
+      document.getElementById('categoryView').style.display = 'none';
+      
+      // Hide pagination
+      document.getElementById('pagination').style.display = 'none';
+    }
+
+    function loadCategoryImages() {
+      const container = document.getElementById('categoryImages');
+      container.innerHTML = '';
+      
+      // Generate 12 images for the category
+      for (let i = 1; i <= 12; i++) {
+        const img = document.createElement('img');
+        img.src = `https://picsum.photos/400/300?random=${currentImageIndex + i}`;
+        img.alt = `${currentCategory} image ${i}`;
+        img.loading = 'lazy';
+        img.onclick = () => openImage(img);
+        container.appendChild(img);
+      }
+      
+      currentImageIndex += 12;
+    }
+
+    function loadMoreCategoryImages() {
+      const container = document.getElementById('categoryImages');
+      
+      // Add 6 more images
+      for (let i = 1; i <= 6; i++) {
+        const img = document.createElement('img');
+        img.src = `https://picsum.photos/400/300?random=${currentImageIndex + i}`;
+        img.alt = `${currentCategory} image ${currentImageIndex + i}`;
+        img.loading = 'lazy';
+        img.onclick = () => openImage(img);
+        container.appendChild(img);
+      }
+      
+      currentImageIndex += 6;
+    }
+
+    function sortImages() {
+      const sortBy = document.getElementById('sortBy').value;
+      console.log('Sorting by:', sortBy);
+      // Implementation would sort the current images
+    }
+
+    function filterByOrientation() {
+      const orientation = document.getElementById('orientation').value;
+      console.log('Filtering by orientation:', orientation);
+      // Implementation would filter images by orientation
+    }
+
+    function filterByResolution() {
+      const resolution = document.getElementById('resolution').value;
+      console.log('Filtering by resolution:', resolution);
+      // Implementation would filter images by resolution
+    }
+
+    // Check URL parameters on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('cat');
+      
+      if (category && categoryData[category]) {
+        loadCategory(category);
+      }
+    });
+  </script>
+
+</body>
+</html>
