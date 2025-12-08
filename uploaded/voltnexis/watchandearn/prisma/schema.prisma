@@ -1,0 +1,274 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(uuid())
+  role            Role     @default(VIEWER)
+  email           String   @unique
+  passwordHash    String?
+  googleId        String?  @unique
+  phone           String?
+  country         String?
+  createdAt       DateTime @default(now())
+  lastLoginAt     DateTime?
+  status          UserStatus @default(ACTIVE)
+  
+  profile         Profile?
+  streamer        Streamer?
+  wallet          Wallet?
+  streams         Stream[]
+  watchSessions   WatchSession[]
+  payments        Payment[]
+  payouts         Payout[]
+  adImpressions   AdImpression[]
+  fraudEvents     FraudEvent[]
+  
+  @@map("users")
+}
+
+model Profile {
+  userId              String   @id
+  displayName         String?
+  avatarUrl           String?
+  deviceFingerprints  Json[]   @default([])
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("profiles")
+}
+
+model Streamer {
+  userId      String      @id
+  kycStatus   KycStatus   @default(PENDING)
+  plan        StreamerPlan @default(NONE)
+  planExpiresAt DateTime?
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("streamers")
+}
+
+model Stream {
+  id                    String      @id @default(uuid())
+  ownerId               String
+  title                 String
+  category              String
+  tags                  String[]    @default([])
+  provider              StreamProvider
+  providerStreamId      String?
+  rtmpKey               String?
+  status                StreamStatus @default(SCHEDULED)
+  startedAt             DateTime?
+  endedAt               DateTime?
+  latencyMode           LatencyMode @default(STANDARD)
+  maxViewerRewardBudget Int?        // in paise
+  allowChat             Boolean     @default(true)
+  isFeatured            Boolean     @default(false)
+  createdAt             DateTime    @default(now())
+  
+  owner         User @relation(fields: [ownerId], references: [id])
+  watchSessions WatchSession[]
+  adImpressions AdImpression[]
+  
+  @@index([status, startedAt])
+  @@map("streams")
+}
+
+model WatchSession {
+  id               String    @id @default(uuid())
+  userId           String
+  streamId         String
+  startedAt        DateTime  @default(now())
+  lastVerifiedAt   DateTime?
+  verifiedMinutes  Int       @default(0)
+  earnedPaise      Int       @default(0)
+  fraudFlags       Json      @default("{}")
+  
+  user             User @relation(fields: [userId], references: [id])
+  stream           Stream @relation(fields: [streamId], references: [id])
+  engagementChecks EngagementCheck[]
+  
+  @@index([userId, streamId])
+  @@map("watch_sessions")
+}
+
+model EngagementCheck {
+  id        String   @id @default(uuid())
+  sessionId String
+  type      String   // click_emoji, code, slider
+  issuedAt  DateTime @default(now())
+  solvedAt  DateTime?
+  success   Boolean  @default(false)
+  
+  session WatchSession @relation(fields: [sessionId], references: [id])
+  
+  @@map("engagement_checks")
+}
+
+model Wallet {
+  userId              String @id
+  balancePaise        Int    @default(0)
+  pendingPaise        Int    @default(0)
+  lifetimeEarnedPaise Int    @default(0)
+  upiVpa              String?
+  upiVerified         Boolean @default(false)
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("wallets")
+}
+
+model Payout {
+  id          String      @id @default(uuid())
+  userId      String
+  amountPaise Int
+  feePaise    Int         @default(0)
+  status      PayoutStatus @default(PENDING)
+  providerRef String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  user User @relation(fields: [userId], references: [id])
+  
+  @@index([status])
+  @@map("payouts")
+}
+
+model Payment {
+  id                String        @id @default(uuid())
+  userId            String
+  type              PaymentType
+  amountPaise       Int
+  status            PaymentStatus @default(CREATED)
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  
+  user User @relation(fields: [userId], references: [id])
+  
+  @@map("payments")
+}
+
+model AdImpression {
+  id           String    @id @default(uuid())
+  userId       String?
+  device       Device
+  adUnit       String
+  streamId     String?
+  impressionAt DateTime  @default(now())
+  clicked      Boolean   @default(false)
+  revenuePaise Int       @default(0)
+  
+  user   User?   @relation(fields: [userId], references: [id])
+  stream Stream? @relation(fields: [streamId], references: [id])
+  
+  @@map("ads_impressions")
+}
+
+model Config {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @default(now()) @updatedAt
+  
+  @@map("config")
+}
+
+model Kpi {
+  id                   Int      @id @default(autoincrement())
+  date                 DateTime @unique @db.Date
+  dau                  Int?
+  concurrentAvg        Int?
+  adRevenuePaise       Int?
+  streamerRevenuePaise Int?
+  payoutsPaise         Int?
+  createdAt            DateTime @default(now())
+  
+  @@map("kpis")
+}
+
+model FraudEvent {
+  id        String   @id @default(uuid())
+  userId    String?
+  sessionId String?
+  eventType String
+  payload   Json
+  score     Int
+  createdAt DateTime @default(now())
+  
+  user User? @relation(fields: [userId], references: [id])
+  
+  @@map("fraud_events")
+}
+
+enum Role {
+  VIEWER
+  STREAMER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
+}
+
+enum KycStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum StreamerPlan {
+  NONE
+  PER_STREAM
+  MONTHLY
+}
+
+enum StreamProvider {
+  LIVEPEER
+  AGORA
+}
+
+enum StreamStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+  CANCELED
+}
+
+enum LatencyMode {
+  ULTRA
+  STANDARD
+}
+
+enum PayoutStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+}
+
+enum PaymentType {
+  PER_STREAM
+  SUBSCRIPTION
+  ADDON
+}
+
+enum PaymentStatus {
+  CREATED
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum Device {
+  DESKTOP
+  MOBILE
+  TABLET
+}
