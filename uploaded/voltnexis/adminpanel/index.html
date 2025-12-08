@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - FixMitra by VoltNexis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-shadow { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .notification-critical { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 w-full max-w-md mx-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900">Admin Access</h2>
+                <p class="text-gray-600 mt-2">Enter admin credentials to continue</p>
+            </div>
+            <form onsubmit="adminLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <input type="text" id="adminUsername" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="adminPassword" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="adminContent" class="hidden">
+    <!-- Header -->
+    <header class="gradient-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-shield-alt text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white">Admin Dashboard</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleNotifications()" class="relative p-2 bg-white bg-opacity-20 rounded-full text-white hover:bg-opacity-30">
+                            <i class="fas fa-bell text-lg"></i>
+                            <span id="notificationBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1 hidden">0</span>
+                        </button>
+                        <div id="notificationPanel" class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl z-50 hidden">
+                            <div class="p-4 border-b">
+                                <h3 class="font-semibold text-gray-800">Notifications</h3>
+                            </div>
+                            <div id="notificationList" class="max-h-96 overflow-y-auto"></div>
+                        </div>
+                    </div>
+                    <button onclick="logout()" class="px-4 py-2 bg-white bg-opacity-20 text-white hover:bg-opacity-30 rounded-lg">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Navigation -->
+        <div class="mb-8">
+            <nav class="flex space-x-4">
+                <button onclick="showSection('dashboard')" class="nav-btn px-4 py-2 bg-blue-600 text-white rounded-lg">Dashboard</button>
+                <button onclick="showSection('providers')" class="nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Providers</button>
+                <button onclick="showSection('requests')" class="nav-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Requests</button>
+            </nav>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="section">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-100">
+                            <i class="fas fa-users text-blue-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Total Providers</p>
+                            <p id="totalProviders" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-100">
+                            <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Active Providers</p>
+                            <p id="activeProviders" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-yellow-100">
+                            <i class="fas fa-clipboard-list text-yellow-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Total Requests</p>
+                            <p id="totalRequests" class="text-2xl font-bold text-gray-900">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6 cursor-pointer hover:bg-red-50 transition" onclick="showCriticalAlerts()">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-red-100">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Critical Alerts</p>
+                            <p id="criticalAlerts" class="text-2xl font-bold text-red-600">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Request Status Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Pending Requests</h3>
+                    <p id="pendingCount" class="text-3xl font-bold text-yellow-600">0</p>
+                    <button onclick="showRequestsByStatus('Pending')" class="mt-2 text-sm text-blue-600 hover:underline">View Details</button>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Accepted Requests</h3>
+                    <p id="acceptedCount" class="text-3xl font-bold text-green-600">0</p>
+                    <button onclick="showRequestsByStatus('Accepted')" class="mt-2 text-sm text-blue-600 hover:underline">View Details</button>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Rejected Requests</h3>
+                    <p id="rejectedCount" class="text-3xl font-bold text-red-600">0</p>
+                    <button onclick="showRequestsByStatus('Rejected')" class="mt-2 text-sm text-blue-600 hover:underline">View Details</button>
+                </div>
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Completed Requests</h3>
+                    <p id="completedCount" class="text-3xl font-bold text-blue-600">0</p>
+                    <button onclick="showRequestsByStatus('Completed')" class="mt-2 text-sm text-blue-600 hover:underline">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Providers Section -->
+        <div id="providersSection" class="section hidden">
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Provider Management</h2>
+                    <div class="flex space-x-2">
+                        <select id="providerStatusFilter" onchange="filterProviders()" class="px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                        <input type="text" id="providerSearch" placeholder="Search providers..." onkeyup="searchProviders()" class="px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div id="providersList" class="space-y-4"></div>
+            </div>
+        </div>
+
+        <!-- Requests Section -->
+        <div id="requestsSection" class="section hidden">
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Request Management</h2>
+                    <div class="flex space-x-2">
+                        <select id="requestStatusFilter" onchange="filterRequests()" class="px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="">All Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <input type="text" id="requestSearch" placeholder="Search requests..." onkeyup="searchRequests()" class="px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div id="requestsList" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Critical Alerts Modal -->
+    <div id="criticalAlertsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-4xl mx-4 max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-red-600">Critical Alerts - Overdue Requests</h3>
+                <button onclick="closeCriticalAlerts()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="criticalAlertsList"></div>
+        </div>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div id="requestModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Request Details</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="requestDetails"></div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        // Supabase Configuration
+        const supabaseUrl = 'https://imdrjtjlpuqdixvpdytk.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltZHJqdGpscHVxZGl4dnBkeXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMzExMTcsImV4cCI6MjA3MTYwNzExN30.Sa8UFkFyLKTL-JLzaojq9whdq3VjHFqxSVlWY_W4HkU';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+        let allProviders = [];
+        let allRequests = [];
+        let notifications = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Always show login modal on page load
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+        });
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (username === 'admin890' && password === 'Admin@890') {
+                document.getElementById('adminLoginModal').classList.add('hidden');
+                document.getElementById('adminContent').classList.remove('hidden');
+                loadDashboardData();
+                checkCriticalRequests();
+                setInterval(checkCriticalRequests, 300000);
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Load providers
+                const { data: providers, error: providerError } = await supabaseClient
+                    .from('providers')
+                    .select('*');
+                
+                if (providerError) throw providerError;
+                allProviders = providers || [];
+
+                // Load requests
+                const { data: requests, error: requestError } = await supabaseClient
+                    .from('requests')
+                    .select('*');
+                
+                if (requestError) throw requestError;
+                allRequests = requests || [];
+
+                updateDashboardStats();
+                loadProviders();
+                loadRequests();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        function updateDashboardStats() {
+            const activeProviders = allProviders.filter(p => p.status === 'active').length;
+            const pendingRequests = allRequests.filter(r => r.status === 'Pending').length;
+            const acceptedRequests = allRequests.filter(r => r.status === 'Accepted').length;
+            const rejectedRequests = allRequests.filter(r => r.status === 'Rejected').length;
+            const completedRequests = allRequests.filter(r => r.status === 'Completed').length;
+
+            document.getElementById('totalProviders').textContent = allProviders.length;
+            document.getElementById('activeProviders').textContent = activeProviders;
+            document.getElementById('totalRequests').textContent = allRequests.length;
+            document.getElementById('pendingCount').textContent = pendingRequests;
+            document.getElementById('acceptedCount').textContent = acceptedRequests;
+            document.getElementById('rejectedCount').textContent = rejectedRequests;
+            document.getElementById('completedCount').textContent = completedRequests;
+        }
+
+        function loadProviders() {
+            const container = document.getElementById('providersList');
+            container.innerHTML = '';
+
+            allProviders.forEach(provider => {
+                const providerCard = document.createElement('div');
+                providerCard.className = 'border border-gray-200 rounded-lg p-4 hover:bg-gray-50';
+                
+                const statusColor = provider.status === 'active' ? 'green' : 
+                                  provider.status === 'inactive' ? 'gray' : 'red';
+                
+                providerCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <h3 class="font-semibold text-lg">${provider.company_name || provider.name}</h3>
+                                <span class="px-2 py-1 text-xs rounded-full bg-${statusColor}-100 text-${statusColor}-800">
+                                    ${provider.status}
+                                </span>
+                            </div>
+                            <p class="text-gray-600">${provider.name} • ${provider.email}</p>
+                            <p class="text-gray-600">Phone: ${provider.phone}</p>
+                            <p class="text-gray-600">Categories: ${provider.categories}</p>
+                            <p class="text-gray-600">Pincodes: ${provider.pincodes}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            ${provider.status === 'active' ? 
+                                `<button onclick="toggleProviderStatus('${provider.email}', 'inactive')" class="px-3 py-1 bg-yellow-600 text-white rounded text-sm">Deactivate</button>` :
+                                `<button onclick="toggleProviderStatus('${provider.email}', 'active')" class="px-3 py-1 bg-green-600 text-white rounded text-sm">Activate</button>`
+                            }
+                            <button onclick="deleteProvider('${provider.email}')" class="px-3 py-1 bg-red-600 text-white rounded text-sm">Delete</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(providerCard);
+            });
+        }
+
+        function loadRequests() {
+            const container = document.getElementById('requestsList');
+            container.innerHTML = '';
+
+            allRequests.forEach(request => {
+                const requestCard = document.createElement('div');
+                requestCard.className = 'border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer';
+                requestCard.onclick = () => showRequestDetails(request);
+                
+                const statusColor = request.status === 'Pending' ? 'yellow' :
+                                  request.status === 'Accepted' ? 'green' :
+                                  request.status === 'Rejected' ? 'red' : 'blue';
+                
+                const daysSinceCreated = Math.floor((new Date() - new Date(request.created_at)) / (1000 * 60 * 60 * 24));
+                const isOverdue = request.status === 'Pending' && daysSinceCreated >= 4;
+                
+                requestCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <h3 class="font-semibold">${request.category}</h3>
+                                <span class="px-2 py-1 text-xs rounded-full bg-${statusColor}-100 text-${statusColor}-800">
+                                    ${request.status}
+                                </span>
+                                ${isOverdue ? '<span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800 notification-critical">OVERDUE</span>' : ''}
+                            </div>
+                            <p class="text-gray-600">ID: ${request.request_id} • Customer: ${request.customer_name}</p>
+                            <p class="text-gray-600">Pincode: ${request.pincode} • Created: ${daysSinceCreated} days ago</p>
+                            ${request.provider && request.provider !== 'default' ? 
+                                `<p class="text-gray-600">Provider: ${request.provider}</p>` : 
+                                '<p class="text-gray-600">Provider: Not assigned</p>'
+                            }
+                        </div>
+                        <div class="text-right">
+                            <button class="text-blue-600 hover:underline text-sm">View Details</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(requestCard);
+            });
+        }
+
+        async function checkCriticalRequests() {
+            const now = new Date();
+            const fourDaysAgo = new Date(now.getTime() - (4 * 24 * 60 * 60 * 1000));
+            
+            const criticalRequests = allRequests.filter(request => {
+                if (request.status !== 'Pending') return false;
+                return new Date(request.created_at) < fourDaysAgo;
+            });
+
+            document.getElementById('criticalAlerts').textContent = criticalRequests.length;
+
+            // Add notifications for critical requests
+            criticalRequests.forEach(request => {
+                const daysSince = Math.floor((now - new Date(request.created_at)) / (1000 * 60 * 60 * 24));
+                const notificationId = `critical-${request.request_id}`;
+                
+                if (!notifications.find(n => n.id === notificationId)) {
+                    notifications.unshift({
+                        id: notificationId,
+                        type: 'critical',
+                        title: 'Critical: Request Overdue',
+                        message: `Request #${request.request_id} (${request.category}) has been pending for ${daysSince} days`,
+                        timestamp: now,
+                        requestId: request.request_id
+                    });
+                }
+            });
+
+            // Check for providers that need warnings or deactivation
+            await checkProviderPerformance();
+
+            updateNotificationUI();
+        }
+
+        async function checkProviderPerformance() {
+            const now = new Date();
+            const twoDaysAgo = new Date(now.getTime() - (2 * 24 * 60 * 60 * 1000));
+
+            // Check each active provider
+            for (const provider of allProviders.filter(p => p.status === 'active')) {
+                const providerPincodes = provider.pincodes.split(',').map(p => p.trim());
+                const providerCategories = provider.categories.split(',').map(c => c.trim());
+
+                // Find pending requests in provider's area older than 2 days
+                const overdueRequests = allRequests.filter(request => {
+                    if (request.status !== 'Pending') return false;
+                    
+                    const requestDate = new Date(request.created_at);
+                    if (requestDate > twoDaysAgo) return false;
+
+                    const matchesPincode = providerPincodes.includes(request.pincode);
+                    const matchesCategory = providerCategories.includes(request.category);
+                    const isAssigned = request.provider === 'default' || request.provider.includes(provider.email);
+
+                    return matchesPincode && matchesCategory && isAssigned;
+                });
+
+                if (overdueRequests.length > 0) {
+                    // Add warning notification
+                    const warningId = `provider-warning-${provider.email}`;
+                    if (!notifications.find(n => n.id === warningId)) {
+                        notifications.unshift({
+                            id: warningId,
+                            type: 'warning',
+                            title: 'Provider Performance Warning',
+                            message: `Provider ${provider.name} has ${overdueRequests.length} unresponded request(s) older than 2 days`,
+                            timestamp: now,
+                            providerEmail: provider.email
+                        });
+                    }
+
+                    // Check if provider should be deactivated (simulate multiple warnings)
+                    const warningCount = overdueRequests.length;
+                    if (warningCount >= 3) {
+                        await deactivateProvider(provider.email, `Multiple unresponded requests (${warningCount})`);
+                    }
+                }
+            }
+        }
+
+        async function deactivateProvider(email, reason) {
+            try {
+                const { error } = await supabaseClient
+                    .from('providers')
+                    .update({ 
+                        status: 'suspended',
+                        suspension_reason: reason,
+                        suspended_at: new Date().toISOString()
+                    })
+                    .eq('email', email);
+
+                if (error) throw error;
+
+                // Update local data
+                const provider = allProviders.find(p => p.email === email);
+                if (provider) {
+                    provider.status = 'suspended';
+                }
+
+                // Add notification
+                notifications.unshift({
+                    id: `deactivated-${email}`,
+                    type: 'critical',
+                    title: 'Provider Deactivated',
+                    message: `Provider ${provider?.name || email} has been automatically deactivated: ${reason}`,
+                    timestamp: new Date(),
+                    providerEmail: email
+                });
+
+                console.log(`Provider ${email} deactivated: ${reason}`);
+            } catch (error) {
+                console.error('Error deactivating provider:', error);
+            }
+        }
+
+        function updateNotificationUI() {
+            const badge = document.getElementById('notificationBadge');
+            const list = document.getElementById('notificationList');
+            
+            if (notifications.length > 0) {
+                badge.textContent = notifications.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            list.innerHTML = '';
+            if (notifications.length === 0) {
+                list.innerHTML = '<div class="p-4 text-gray-500 text-center">No notifications</div>';
+                return;
+            }
+
+            notifications.forEach(notification => {
+                const notificationDiv = document.createElement('div');
+                let bgClass = '';
+                let textClass = 'text-gray-800';
+                let borderClass = '';
+                
+                if (notification.type === 'critical') {
+                    bgClass = 'bg-red-50';
+                    textClass = 'text-red-800';
+                    borderClass = 'border-l-4 border-red-500';
+                } else if (notification.type === 'warning') {
+                    bgClass = 'bg-yellow-50';
+                    textClass = 'text-yellow-800';
+                    borderClass = 'border-l-4 border-yellow-500';
+                }
+                
+                notificationDiv.className = `p-4 border-b hover:bg-gray-50 ${bgClass} ${borderClass}`;
+                notificationDiv.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-sm ${textClass}">${notification.title}</h4>
+                            <p class="text-sm text-gray-600 mt-1">${notification.message}</p>
+                            <p class="text-xs text-gray-500 mt-2">${new Date(notification.timestamp).toLocaleString()}</p>
+                        </div>
+                        <button onclick="removeNotification('${notification.id}')" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                list.appendChild(notificationDiv);
+            });
+        }
+
+        function toggleNotifications() {
+            const panel = document.getElementById('notificationPanel');
+            panel.classList.toggle('hidden');
+        }
+
+        function removeNotification(id) {
+            notifications = notifications.filter(n => n.id !== id);
+            updateNotificationUI();
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+
+            // Show selected section
+            document.getElementById(sectionName + 'Section').classList.remove('hidden');
+
+            // Add active class to clicked button
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            event.target.classList.add('bg-blue-600', 'text-white');
+
+            if (sectionName === 'dashboard') {
+                loadDashboardData();
+            }
+        }
+
+        function showRequestsByStatus(status) {
+            showSection('requests');
+            document.getElementById('requestStatusFilter').value = status;
+            filterRequests();
+        }
+
+        function filterProviders() {
+            const statusFilter = document.getElementById('providerStatusFilter').value;
+            const searchTerm = document.getElementById('providerSearch').value.toLowerCase();
+            
+            let filtered = allProviders;
+            
+            if (statusFilter) {
+                filtered = filtered.filter(p => p.status === statusFilter);
+            }
+            
+            if (searchTerm) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(searchTerm) ||
+                    p.company_name?.toLowerCase().includes(searchTerm) ||
+                    p.email.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderFilteredProviders(filtered);
+        }
+
+        function searchProviders() {
+            filterProviders();
+        }
+
+        function renderFilteredProviders(providers) {
+            const container = document.getElementById('providersList');
+            container.innerHTML = '';
+
+            providers.forEach(provider => {
+                const providerCard = document.createElement('div');
+                providerCard.className = 'border border-gray-200 rounded-lg p-4 hover:bg-gray-50';
+                
+                const statusColor = provider.status === 'active' ? 'green' : 
+                                  provider.status === 'inactive' ? 'gray' : 'red';
+                
+                providerCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <h3 class="font-semibold text-lg">${provider.company_name || provider.name}</h3>
+                                <span class="px-2 py-1 text-xs rounded-full bg-${statusColor}-100 text-${statusColor}-800">
+                                    ${provider.status}
+                                </span>
+                            </div>
+                            <p class="text-gray-600">${provider.name} • ${provider.email}</p>
+                            <p class="text-gray-600">Phone: ${provider.phone}</p>
+                            <p class="text-gray-600">Categories: ${provider.categories}</p>
+                            <p class="text-gray-600">Pincodes: ${provider.pincodes}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            ${provider.status === 'active' ? 
+                                `<button onclick="toggleProviderStatus('${provider.email}', 'inactive')" class="px-3 py-1 bg-yellow-600 text-white rounded text-sm">Deactivate</button>` :
+                                `<button onclick="toggleProviderStatus('${provider.email}', 'active')" class="px-3 py-1 bg-green-600 text-white rounded text-sm">Activate</button>`
+                            }
+                            <button onclick="deleteProvider('${provider.email}')" class="px-3 py-1 bg-red-600 text-white rounded text-sm">Delete</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(providerCard);
+            });
+        }
+
+        function filterRequests() {
+            const statusFilter = document.getElementById('requestStatusFilter').value;
+            const searchTerm = document.getElementById('requestSearch').value.toLowerCase();
+            
+            let filtered = allRequests;
+            
+            if (statusFilter) {
+                filtered = filtered.filter(r => r.status === statusFilter);
+            }
+            
+            if (searchTerm) {
+                filtered = filtered.filter(r => 
+                    r.customer_name.toLowerCase().includes(searchTerm) ||
+                    r.category.toLowerCase().includes(searchTerm) ||
+                    r.request_id.toString().includes(searchTerm)
+                );
+            }
+            
+            renderFilteredRequests(filtered);
+        }
+
+        function searchRequests() {
+            filterRequests();
+        }
+
+        function renderFilteredRequests(requests) {
+            const container = document.getElementById('requestsList');
+            container.innerHTML = '';
+
+            requests.forEach(request => {
+                const requestCard = document.createElement('div');
+                requestCard.className = 'border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer';
+                requestCard.onclick = () => showRequestDetails(request);
+                
+                const statusColor = request.status === 'Pending' ? 'yellow' :
+                                  request.status === 'Accepted' ? 'green' :
+                                  request.status === 'Rejected' ? 'red' : 'blue';
+                
+                const daysSinceCreated = Math.floor((new Date() - new Date(request.created_at)) / (1000 * 60 * 60 * 24));
+                const isOverdue = request.status === 'Pending' && daysSinceCreated >= 4;
+                
+                requestCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3">
+                                <h3 class="font-semibold">${request.category}</h3>
+                                <span class="px-2 py-1 text-xs rounded-full bg-${statusColor}-100 text-${statusColor}-800">
+                                    ${request.status}
+                                </span>
+                                ${isOverdue ? '<span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800 notification-critical">OVERDUE</span>' : ''}
+                            </div>
+                            <p class="text-gray-600">ID: ${request.request_id} • Customer: ${request.customer_name}</p>
+                            <p class="text-gray-600">Pincode: ${request.pincode} • Created: ${daysSinceCreated} days ago</p>
+                            ${request.provider && request.provider !== 'default' ? 
+                                `<p class="text-gray-600">Provider: ${request.provider}</p>` : 
+                                '<p class="text-gray-600">Provider: Not assigned</p>'
+                            }
+                        </div>
+                        <div class="text-right">
+                            <button class="text-blue-600 hover:underline text-sm">View Details</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(requestCard);
+            });
+        }
+
+        function showRequestDetails(request) {
+            const modal = document.getElementById('requestModal');
+            const details = document.getElementById('requestDetails');
+            
+            const daysSinceCreated = Math.floor((new Date() - new Date(request.created_at)) / (1000 * 60 * 60 * 24));
+            
+            details.innerHTML = `
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Request ID</label>
+                            <p class="text-gray-900">${request.request_id}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Status</label>
+                            <p class="text-gray-900">${request.status}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Customer Name</label>
+                            <p class="text-gray-900">${request.customer_name}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Phone</label>
+                            <p class="text-gray-900">${request.phone}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Category</label>
+                        <p class="text-gray-900">${request.category}</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Address</label>
+                        <p class="text-gray-900">${request.address}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Pincode</label>
+                            <p class="text-gray-900">${request.pincode}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Provider</label>
+                            <p class="text-gray-900">${request.provider || 'Not assigned'}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Created</label>
+                        <p class="text-gray-900">${new Date(request.created_at).toLocaleString()} (${daysSinceCreated} days ago)</p>
+                    </div>
+                    ${request.accepted_by ? `
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Accepted By</label>
+                            <p class="text-gray-900">${request.accepted_by}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('requestModal').classList.add('hidden');
+        }
+
+        async function showCriticalAlerts() {
+            const modal = document.getElementById('criticalAlertsModal');
+            const list = document.getElementById('criticalAlertsList');
+            
+            modal.classList.remove('hidden');
+            list.innerHTML = '<div class="text-center py-4">Loading...</div>';
+
+            try {
+                const fourDaysAgo = new Date();
+                fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
+
+                const criticalRequests = allRequests.filter(request => {
+                    if (request.status !== 'Pending') return false;
+                    return new Date(request.created_at) < fourDaysAgo;
+                });
+
+                const providerGroups = {};
+                
+                criticalRequests.forEach(request => {
+                    const matchingProviders = allProviders.filter(provider => {
+                        if (provider.status !== 'active') return false;
+                        const providerPincodes = provider.pincodes.split(',').map(p => p.trim());
+                        const providerCategories = provider.categories.split(',').map(c => c.trim());
+                        return providerPincodes.includes(request.pincode) && 
+                               providerCategories.includes(request.category);
+                    });
+
+                    if (matchingProviders.length === 0) {
+                        // No matching providers - show under "Unassigned"
+                        if (!providerGroups['Unassigned Requests']) {
+                            providerGroups['Unassigned Requests'] = [];
+                        }
+                        providerGroups['Unassigned Requests'].push({
+                            ...request,
+                            daysSince: Math.floor((new Date() - new Date(request.created_at)) / (1000 * 60 * 60 * 24))
+                        });
+                    } else {
+                        matchingProviders.forEach(provider => {
+                            const companyName = provider.company_name || provider.name;
+                            if (!providerGroups[companyName]) {
+                                providerGroups[companyName] = [];
+                            }
+                            providerGroups[companyName].push({
+                                ...request,
+                                daysSince: Math.floor((new Date() - new Date(request.created_at)) / (1000 * 60 * 60 * 24))
+                            });
+                        });
+                    }
+                });
+
+                list.innerHTML = '';
+                
+                if (Object.keys(providerGroups).length === 0) {
+                    list.innerHTML = '<div class="text-center py-8 text-gray-500">No critical alerts</div>';
+                    return;
+                }
+
+                Object.entries(providerGroups).forEach(([companyName, requests], index) => {
+                    const providerSection = document.createElement('div');
+                    providerSection.className = 'mb-6 border border-red-200 rounded-lg bg-red-50';
+                    
+                    const sectionId = `provider-section-${index}`;
+                    
+                    providerSection.innerHTML = `
+                        <div class="p-4 cursor-pointer" onclick="toggleProviderSection('${sectionId}')">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-semibold text-red-800">
+                                    <i class="fas fa-building mr-2"></i>
+                                    ${companyName} (${requests.length} overdue)
+                                </h4>
+                                <i id="icon-${sectionId}" class="fas fa-chevron-down text-red-600 transition-transform"></i>
+                            </div>
+                        </div>
+                        <div id="${sectionId}" class="hidden px-4 pb-4">
+                            <div class="space-y-2">
+                                ${requests.slice(0, 3).map(request => `
+                                    <div class="bg-white p-3 rounded border-l-4 border-red-500">
+                                        <div class="flex justify-between">
+                                            <div>
+                                                <p class="font-medium">Request #${request.request_id}</p>
+                                                <p class="text-sm text-gray-600">${request.category} • ${request.customer_name}</p>
+                                            </div>
+                                            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
+                                                ${request.daysSince} days
+                                            </span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                                ${requests.length > 3 ? `
+                                    <div id="more-${sectionId}" class="hidden space-y-2">
+                                        ${requests.slice(3).map(request => `
+                                            <div class="bg-white p-3 rounded border-l-4 border-red-500">
+                                                <div class="flex justify-between">
+                                                    <div>
+                                                        <p class="font-medium">Request #${request.request_id}</p>
+                                                        <p class="text-sm text-gray-600">${request.category} • ${request.customer_name}</p>
+                                                    </div>
+                                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
+                                                        ${request.daysSince} days
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                    <button onclick="toggleMoreRequests('${sectionId}')" class="mt-2 text-sm text-red-600 hover:text-red-800 font-medium">
+                                        <span id="btn-text-${sectionId}">Show ${requests.length - 3} more</span>
+                                        <i id="btn-icon-${sectionId}" class="fas fa-chevron-down ml-1"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `;
+                    
+                    list.appendChild(providerSection);
+                });
+
+            } catch (error) {
+                list.innerHTML = '<div class="text-center py-4 text-red-600">Error loading alerts</div>';
+            }
+        }
+
+        function closeCriticalAlerts() {
+            document.getElementById('criticalAlertsModal').classList.add('hidden');
+        }
+
+        function toggleProviderSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const icon = document.getElementById(`icon-${sectionId}`);
+            
+            if (section.classList.contains('hidden')) {
+                section.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                section.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function toggleMoreRequests(sectionId) {
+            const moreSection = document.getElementById(`more-${sectionId}`);
+            const btnText = document.getElementById(`btn-text-${sectionId}`);
+            const btnIcon = document.getElementById(`btn-icon-${sectionId}`);
+            
+            if (moreSection.classList.contains('hidden')) {
+                moreSection.classList.remove('hidden');
+                btnText.textContent = 'Show less';
+                btnIcon.style.transform = 'rotate(180deg)';
+            } else {
+                moreSection.classList.add('hidden');
+                const hiddenCount = moreSection.children.length;
+                btnText.textContent = `Show ${hiddenCount} more`;
+                btnIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        async function toggleProviderStatus(email, newStatus) {
+            try {
+                const { error } = await supabaseClient
+                    .from('providers')
+                    .update({ status: newStatus })
+                    .eq('email', email);
+
+                if (error) throw error;
+
+                // Update local data
+                const provider = allProviders.find(p => p.email === email);
+                if (provider) {
+                    provider.status = newStatus;
+                }
+
+                loadProviders();
+                updateDashboardStats();
+                alert(`Provider ${newStatus === 'active' ? 'activated' : 'deactivated'} successfully`);
+            } catch (error) {
+                console.error('Error updating provider status:', error);
+                alert('Failed to update provider status');
+            }
+        }
+
+        async function deleteProvider(email) {
+            if (!confirm('Are you sure you want to delete this provider? This action cannot be undone.')) return;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('providers')
+                    .delete()
+                    .eq('email', email);
+
+                if (error) throw error;
+
+                // Update local data
+                allProviders = allProviders.filter(p => p.email !== email);
+
+                loadProviders();
+                updateDashboardStats();
+                alert('Provider deleted successfully');
+            } catch (error) {
+                console.error('Error deleting provider:', error);
+                alert('Failed to delete provider');
+            }
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../fixmitra/index.html';
+            }
+        }
+
+        // Close notification panel when clicking outside
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('notificationPanel');
+            const button = event.target.closest('button[onclick="toggleNotifications()"]');
+            
+            if (!panel.contains(event.target) && !button) {
+                panel.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

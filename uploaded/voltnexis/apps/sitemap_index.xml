@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/sitemap.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/android/sitemap.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/ios/sitemap_ios.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/windows/sitemap_win.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/linux/sitemap_linux.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/android_mod/sitemap.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/ios_mod/sitemap.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://voltnexis.github.io/apps/windows_mod/sitemap.xml</loc>
+        <lastmod>2024-12-19</lastmod>
+    </sitemap>
+</sitemapindex>

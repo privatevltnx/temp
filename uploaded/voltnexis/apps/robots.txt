@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://voltnexis.github.io/apps/sitemap.xml
+Sitemap: https://voltnexis.github.io/apps/android/sitemap.xml
+Sitemap: https://voltnexis.github.io/apps/ios/sitemap_ios.xml
+Sitemap: https://voltnexis.github.io/apps/windows/sitemap_win.xml
+Sitemap: https://voltnexis.github.io/apps/linux/sitemap_linux.xml
+Sitemap: https://voltnexis.github.io/apps/android_mod/sitemap.xml
+Sitemap: https://voltnexis.github.io/apps/ios_mod/sitemap.xml
+Sitemap: https://voltnexis.github.io/apps/windows_mod/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow certain paths
+Disallow: /assets/temp/
+Disallow: /*.json$
+Disallow: /*?*&*

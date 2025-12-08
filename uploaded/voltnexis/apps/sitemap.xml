@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Main Navigation Page -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>VoltNexis Downloads - Premium Software Downloads</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Android Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/android/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>Android APK Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+    
+    <!-- iOS Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/ios/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>iOS IPA Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Windows Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/windows/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>Windows EXE Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Linux Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/linux/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>Linux Package Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Android MOD Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/android_mod/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>MOD APK Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+    
+    <!-- iOS MOD Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/ios_mod/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>IPA MOD Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Windows MOD Platform -->
+    <url>
+        <loc>https://voltnexis.github.io/apps/windows_mod/index.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://voltnexis.github.io/apps/img/logo.webp</image:loc>
+            <image:title>Windows MOD Downloads - VoltNexis</image:title>
+        </image:image>
+    </url>
+</urlset>

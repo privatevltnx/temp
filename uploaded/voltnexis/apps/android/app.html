@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="appTitle">App Details - APKDownload by VoltNexis</title>
+    <meta name="description" content="Download APK safely. Latest version with old versions available.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h1><span class="volt">Volt</span><span class="nexis">Nexis</span></h1>
+                    <span class="tagline">APK Download</span>
+                </a>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Search apps, games..." class="search-input">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-icons">
+                <i class="fas fa-user-circle"></i>
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-detail-main">
+        <div class="container">
+            <div class="app-header">
+                <div class="app-icon">
+                    <img id="appIcon" src="https://via.placeholder.com/120" alt="App Icon">
+                </div>
+                <div class="app-info">
+                    <h1 id="appName">Loading...</h1>
+                    <p class="developer">by <a href="#" id="developerName">Developer</a></p>
+                    <div class="app-meta">
+                        <span class="version">Version: <span id="appVersion">1.0</span></span>
+                        <span class="size">Size: <span id="appSize">10MB</span></span>
+                        <span class="updated">Updated: <span id="lastUpdated">Today</span></span>
+                        <div class="rating">
+                            <div class="stars" id="appRating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.2 (1.2k reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <div class="ad-small">
+                    <div class="ad-placeholder">Small Ad - 320x100</div>
+                </div>
+                
+                <div class="download-buttons" id="downloadButtons">
+                    <button class="download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        Download APK
+                    </button>
+                    <button class="download-btn obb-btn" id="obbBtn" style="display: none;">
+                        <i class="fas fa-cube"></i>
+                        Download OBB
+                    </button>
+                </div>
+
+                <div class="ad-blocks">
+                    <div class="ad-block">
+                        <div class="ad-placeholder">Advertisement - 300x250</div>
+                    </div>
+                    <div class="ad-block">
+                        <div class="ad-placeholder">Advertisement - 300x250</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="old-versions" id="oldVersionsSection">
+                <h3>Old Versions <i class="fas fa-chevron-down" id="versionsToggle"></i></h3>
+                <div class="versions-list" id="versionsList">
+                    <!-- Old versions will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="app-description">
+                <h2>About This App</h2>
+                <div class="description-content" id="appDescription">
+                    <p>Loading app description...</p>
+                </div>
+                
+                <div class="app-screenshots">
+                    <h3>Screenshots</h3>
+                    <div class="screenshots-grid">
+                        <img src="https://via.placeholder.com/200x350" alt="Screenshot 1">
+                        <img src="https://via.placeholder.com/200x350" alt="Screenshot 2">
+                        <img src="https://via.placeholder.com/200x350" alt="Screenshot 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="ad-bottom">
+                <div class="ad-placeholder">Bottom Advertisement - 728x90</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 APKDownload by VoltNexis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Download Overlay Ad -->
+    <div class="overlay-ad" id="overlayAd">
+        <div class="overlay-content">
+            <button class="close-overlay" id="closeOverlay">&times;</button>
+            <div class="ad-placeholder">Overlay Advertisement - 400x300</div>
+        </div>
+    </div>
+
+    <script src="app-detail.js"></script>
+    <script src="ads.js"></script>
+</body>
+</html>
