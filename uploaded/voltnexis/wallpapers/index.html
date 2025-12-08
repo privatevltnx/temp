@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- SEO Meta -->
+  <title>VoltNexis Wallpapers: Free Tech, Minimal & Gaming Backgrounds | 4K & HD</title>
+  <meta name="description" content="Download free, high-quality wallpapers from VoltNexis. Explore a curated collection of tech, cyberpunk, minimal, gaming, and abstract backgrounds in 4K, 1440p, and 1080p resolutions.">
+  <meta name="keywords" content="wallpapers, free wallpapers, tech wallpapers, cyberpunk, minimal, gaming, abstract, 4K wallpapers, HD wallpapers, desktop backgrounds, VoltNexis, free downloads">
+  <meta name="author" content="VoltNexis">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://voltnexis.github.io/wallpapers">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voltnexis.github.io/wallpapers">
+  <meta property="og:title" content="VoltNexis Wallpapers: High-Quality Tech & Gaming Backgrounds">
+  <meta property="og:description" content="Download a curated collection of free wallpapers for your desktop. Find stunning tech, cyberpunk, minimal, and gaming backgrounds in multiple resolutions.">
+  <meta property="og:image" content="https://voltnexis.github.io/wallpapers/img/wallpapers.webp">
+  <meta property="og:image:alt" content="A collection of VoltNexis tech and gaming wallpapers">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Wallpapers from VoltNexis">
+  <meta name="twitter:description" content="Explore a stunning collection of tech, gaming, and abstract wallpapers from VoltNexis. Download for free in 4K, 1440p, and 1080p.">
+  <meta name="twitter:image" content="https://voltnexis.github.io/wallpapers/img/wallpapers.webp">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/wallpapers/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/wallpapers/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/wallpapers/images/favicon-16x16.png">
+  <link rel="shortcut icon" href="/wallpapers/images/favicon.ico">
+  <link rel="manifest" href="/wallpapers/images/site.webmanifest">
+
+  <!-- Organization Schema for Logo Indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VoltNexis Wallpapers",
+    "url": "https://voltnexis.github.io/wallpapers",
+    "logo": "https://voltnexis.github.io/wallpapers/img/wallpapers.webp",
+    "sameAs": [
+      "https://www.instagram.com/voltnexis",
+      "https://www.youtube.com/@voltnexis",
+      "https://www.x.com/voltnexis",
+    ]
+  }
+  </script>
+
+  <!-- Fonts & Styles -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JS Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+    <header class="wrap">
+        <h1>VoltNexis Wallpapers</h1>
+        <p class="tag">All Type of images</p>
+    </header>
+
+    <nav class="wrap tabs" id="tabs">
+        <button data-cat="all" class="active">All</button>
+        <button data-cat="cyberpunk">Cyberpunk</button>
+        <button data-cat="gaming">Gaming</button>
+        <button data-cat="ai">AI</button>
+        
+        <div class="category-filter">
+            <button id="categoryBtn" class="filter-btn">Categories ▼</button>
+            <div id="categoryMenu" class="filter-menu">
+                <input type="text" id="categorySearch" placeholder="Search categories..." />
+                <div id="categoryList"></div>
+            </div>
+        </div>
+
+        <div class="grow"></div>
+
+        <select id="resFilter">
+            <option value="all">All Resolutions</option>
+            <option value="4K">4K</option>
+            <option value="1440p">1440p</option>
+            <option value="1080p">1080p</option>
+        </select>
+        <input type="text" id="searchBox" placeholder="Search..." />
+        <button id="downloadAll" class="accent">Download All (.zip)</button>
+    </nav>
+
+    <main class="wrap">
+        <div id="gallery" class="grid"></div>
+    </main>
+
+    <footer class="wrap foot">
+        <span>© VoltNexis Builds</span>
+    </footer>
+</body>
+</html>
