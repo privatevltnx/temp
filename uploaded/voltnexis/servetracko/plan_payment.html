@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade Your Plan - ServeTracko Business Tool</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: white; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+        .header { text-align: center; color: #1f2937; margin-bottom: 3rem; }
+        .header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        .header p { font-size: 1.1rem; opacity: 0.9; font-weight: 400; }
+        .business-info { background: #f8fafc; padding: 1.5rem; border-radius: 20px; margin-bottom: 3rem; text-align: center; color: #1f2937; border: 1px solid #e5e7eb; }
+        .plans-section { background: white; padding: 3rem; border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 2rem; }
+        .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
+        @media (max-width: 768px) { .plans-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+        .plan-card { border: 3px solid #e5e7eb; border-radius: 20px; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.4s; position: relative; background: #fafafa; }
+        .plan-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2); }
+        .plan-card.selected { border-color: #4f46e5; background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%); box-shadow: 0 15px 35px rgba(79, 70, 229, 0.25); }
+        .plan-card .badge { position: absolute; top: -12px; right: 25px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .plan-card h3 { color: #1f2937; font-size: 1.6rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .plan-card .price { color: #4f46e5; font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .plan-card .features { text-align: left; margin-bottom: 2rem; }
+        .plan-card .features li { margin-bottom: 0.75rem; color: #374151; font-weight: 500; list-style: none; }
+        .select-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; border: none; border-radius: 12px; font-size: 1rem; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .select-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4); }
+        .billing-section { background: white; padding: 3rem; border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.75rem; color: #1f2937; font-weight: 600; }
+        .form-group input { width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 1rem; transition: all 0.3s; }
+        .form-group input:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+        .payment-section { background: white; padding: 3rem; border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .payment-method { border: 2px solid #e5e7eb; border-radius: 15px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s; background: #fafafa; }
+        .payment-method:hover { border-color: #4f46e5; transform: translateY(-3px); }
+        .payment-method.selected { border-color: #4f46e5; background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%); }
+        .payment-method .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .payment-method h4 { color: #1f2937; font-weight: 600; margin-bottom: 0.5rem; }
+        .payment-method p { color: #6b7280; font-size: 0.9rem; }
+        .pay-btn { width: 100%; padding: 1.25rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 15px; font-size: 1.2rem; cursor: pointer; font-weight: 700; transition: all 0.3s; }
+        .pay-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4); }
+        .pay-btn:disabled { background: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
+        .bilingual { color: #6b7280; font-size: 0.9rem; font-weight: 400; }
+        h2 { color: #1f2937; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Upgrade Your ServeTracko Business Tool ⚡</h1>
+            <p>Choose your plan and pay securely. Manage your business without Excel or spreadsheets.</p>
+        </div>
+
+        <div class="business-info">
+            <h3 id="businessNameDisplay">Business Name</h3>
+            <p>Ready to upgrade your business management experience</p>
+        </div>
+
+        <!-- Plan Selection -->
+        <div class="plans-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #333;">Choose Your Plan</h2>
+            <div class="plans-grid">
+                <div class="plan-card" data-plan="plus" onclick="selectPlan('plus')">
+                    <div class="badge">Popular</div>
+                    <h3>Plus Plan</h3>
+                    <div class="price">₹99<span style="font-size: 1rem; color: #666;">/month</span></div>
+                    <ul class="features">
+                        <li>✅ Unlimited invoice credits</li>
+                        <li>✅ 3 watermarks on invoices</li>
+                        <li>✅ WhatsApp auto-send with branding</li>
+                        <li>✅ Standard WhatsApp support</li>
+                        <li>✅ Basic analytics</li>
+                    </ul>
+                    <button class="select-btn">Select Plus Plan</button>
+                </div>
+
+                <div class="plan-card" data-plan="pro" onclick="selectPlan('pro')">
+                    <div class="badge">Best Value</div>
+                    <h3>Pro Plan</h3>
+                    <div class="price">₹299<span style="font-size: 1rem; color: #666;">/month</span></div>
+                    <ul class="features">
+                        <li>✅ Unlimited invoice credits</li>
+                        <li>✅ Only 1 small watermark</li>
+                        <li>✅ Clean WhatsApp (no branding)</li>
+                        <li>✅ Priority support</li>
+                        <li>✅ Advanced analytics</li>
+                        <li>✅ Early access to features</li>
+                    </ul>
+                    <button class="select-btn">Select Pro Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Information -->
+        <div class="billing-section">
+            <h2 style="margin-bottom: 1.5rem; color: #333;">Billing Information</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label>പേര് / Name</label>
+                    <input type="text" id="billingName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>ഫോൺ നമ്പർ / Phone Number</label>
+                    <input type="tel" id="billingPhone" placeholder="Enter phone number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>ഇമെയിൽ / Email <span class="bilingual">(ഐച്ഛികം / Optional)</span></label>
+                <input type="email" id="billingEmail" placeholder="Enter email address">
+            </div>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <h2 style="margin-bottom: 1.5rem; color: #333;">Payment Method</h2>
+            <div class="payment-methods">
+                <div class="payment-method selected" data-method="upi" onclick="selectPaymentMethod('upi')">
+                    <div class="icon">📱</div>
+                    <h4>UPI</h4>
+                    <p>Google Pay, PhonePe, Paytm</p>
+                </div>
+                <div class="payment-method" data-method="card" onclick="selectPaymentMethod('card')">
+                    <div class="icon">💳</div>
+                    <h4>Card</h4>
+                    <p>Debit/Credit Card</p>
+                </div>
+                <div class="payment-method" data-method="netbanking" onclick="selectPaymentMethod('netbanking')">
+                    <div class="icon">🏦</div>
+                    <h4>Net Banking</h4>
+                    <p>All major banks</p>
+                </div>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+                <h4>Order Summary</h4>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                    <span id="selectedPlanName">Plus Plan</span>
+                    <span id="selectedPlanPrice">₹99/month</span>
+                </div>
+                <hr style="margin: 0.5rem 0;">
+                <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                    <span>Total</span>
+                    <span id="totalAmount">₹99</span>
+                </div>
+            </div>
+
+            <button class="pay-btn" onclick="processPayment()" id="payButton">
+                Pay ₹<span id="payAmount">99</span> - Complete Upgrade
+            </button>
+
+            <div style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                <p>🔒 Secure payment powered by Razorpay</p>
+                <p>Your payment information is encrypted and secure</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://kmetxulrezuzzmxhkydm.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZXR4dWxyZXp1enpteGhreWRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMDI5MjgsImV4cCI6MjA3MTc3ODkyOH0.G3dM3GKO7dZwozrjRZ4LZLvZkqYu9L3AdrQbAbgq2rA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let selectedPlan = 'plus';
+        let selectedPaymentMethod = 'upi';
+        let pendingUser = null;
+
+        const planPrices = {
+            plus: { price: 99, name: 'Plus Plan' },
+            pro: { price: 299, name: 'Pro Plan' }
+        };
+
+        function initPage() {
+            const pendingUserData = localStorage.getItem('pendingUser');
+            const existingUser = localStorage.getItem('userProfile');
+            
+            if (pendingUserData) {
+                pendingUser = JSON.parse(pendingUserData);
+                document.getElementById('businessNameDisplay').textContent = pendingUser.business_name;
+                
+                // Pre-fill billing info
+                document.getElementById('billingName').value = pendingUser.business_name;
+                document.getElementById('billingPhone').value = pendingUser.whatsapp || '';
+                document.getElementById('billingEmail').value = pendingUser.email || '';
+                
+                // Set selected plan
+                selectedPlan = pendingUser.plan;
+                selectPlan(selectedPlan);
+            } else if (existingUser) {
+                // Handle existing user upgrade
+                const user = JSON.parse(existingUser);
+                pendingUser = user;
+                document.getElementById('businessNameDisplay').textContent = user.business_name;
+                
+                // Pre-fill billing info
+                document.getElementById('billingName').value = user.business_name;
+                document.getElementById('billingPhone').value = user.whatsapp || '';
+                document.getElementById('billingEmail').value = user.email || '';
+                
+                // Set default upgrade plan
+                selectedPlan = user.plan === 'free' ? 'plus' : 'pro';
+                selectPlan(selectedPlan);
+            } else {
+                // Redirect if no user
+                window.location.href = 'index.html';
+            }
+        }
+
+        function selectPlan(plan) {
+            selectedPlan = plan;
+            document.querySelectorAll('.plan-card').forEach(card => card.classList.remove('selected'));
+            document.querySelector(`[data-plan="${plan}"]`).classList.add('selected');
+            
+            const planInfo = planPrices[plan];
+            document.getElementById('selectedPlanName').textContent = planInfo.name;
+            document.getElementById('selectedPlanPrice').textContent = `₹${planInfo.price}/month`;
+            document.getElementById('totalAmount').textContent = `₹${planInfo.price}`;
+            document.getElementById('payAmount').textContent = planInfo.price;
+        }
+
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-method').forEach(card => card.classList.remove('selected'));
+            document.querySelector(`[data-method="${method}"]`).classList.add('selected');
+        }
+
+        async function processPayment() {
+            const billingName = document.getElementById('billingName').value;
+            const billingPhone = document.getElementById('billingPhone').value;
+            const billingEmail = document.getElementById('billingEmail').value;
+
+            if (!billingName || !billingPhone) {
+                alert('Please fill in required billing information');
+                return;
+            }
+
+            const payButton = document.getElementById('payButton');
+            payButton.disabled = true;
+            payButton.textContent = 'Processing...';
+
+            try {
+                // Simulate payment processing
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Create subscription record
+                const { error: subscriptionError } = await supabase
+                    .from('subscriptions')
+                    .insert([{
+                        user_id: pendingUser.id,
+                        plan: selectedPlan,
+                        amount: planPrices[selectedPlan].price,
+                        payment_id: 'pay_' + Date.now(), // Mock payment ID
+                        status: 'active',
+                        expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() // 30 days from now
+                    }]);
+
+                if (subscriptionError) throw subscriptionError;
+
+                // Update user plan
+                const { error: userError } = await supabase
+                    .from('users')
+                    .update({
+                        plan: selectedPlan,
+                        plan_expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+                    })
+                    .eq('id', pendingUser.id);
+
+                if (userError) throw userError;
+
+                // Update local storage
+                pendingUser.plan = selectedPlan;
+                localStorage.setItem('userProfile', JSON.stringify(pendingUser));
+                localStorage.removeItem('pendingUser');
+
+                alert('Payment successful! Your plan has been upgraded.');
+                window.location.href = 'dashboard.html';
+
+            } catch (error) {
+                console.error('Payment error:', error);
+                alert('Payment failed. Please try again.');
+                payButton.disabled = false;
+                payButton.innerHTML = `Pay ₹<span id="payAmount">${planPrices[selectedPlan].price}</span> - Complete Upgrade`;
+            }
+        }
+
+        window.addEventListener('load', initPage);
+    </script>
+</body>
+</html>

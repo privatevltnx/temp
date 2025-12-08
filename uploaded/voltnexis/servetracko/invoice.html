@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Management - ServeTracko Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        .watermark-free {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 1rem;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .watermark-free .mark {
+            font-size: 1.2rem;
+            color: rgba(220, 38, 38, 0.4);
+            font-weight: 800;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+        .watermark-plus {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .watermark-plus .mark {
+            font-size: 2rem;
+            color: rgba(79, 70, 229, 0.35);
+            font-weight: 800;
+            transform: rotate(-45deg);
+            margin: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+        .watermark-pro {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            color: rgba(79, 70, 229, 0.2);
+            font-weight: 500;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .invoice-content {
+            position: relative;
+            z-index: 2;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { margin: 0; padding: 0; }
+            .invoice-preview { box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">Invoice Management</h1>
+                    <p class="text-indigo-100 mt-1">Create and manage invoices</p>
+                </div>
+                <button onclick="window.location.href='dashboard.html'" 
+                        class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Create Invoice Form -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+                        <i class="fas fa-file-invoice text-indigo-600"></i>
+                        Create New Invoice
+                    </h2>
+                    
+                    <!-- Plan Warning -->
+                    <div id="planLimitWarning" class="hidden mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 text-sm"></div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Customer</label>
+                            <select id="customerId" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Select Customer</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Order</label>
+                            <select id="orderId" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Select Order</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount (₹)</label>
+                            <input type="number" id="amount" placeholder="0.00" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tax Amount (₹)</label>
+                            <input type="number" id="taxAmount" placeholder="0.00" value="0"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
+                            <input type="date" id="dueDate" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        
+                        <button onclick="createInvoice()" id="createInvoiceBtn"
+                                class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
+                            <i class="fas fa-plus"></i>
+                            Create Invoice
+                        </button>
+                        
+                        <button onclick="window.location.href='plan_payment.html'" id="invoiceUpgradeBtn" style="display: none;"
+                                class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                            <i class="fas fa-crown"></i>
+                            Upgrade Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoices List -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800">Recent Invoices</h3>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice #</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoicesTableBody" class="bg-white divide-y divide-gray-200">
+                                <!-- Invoices will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="emptyState" class="p-8 text-center hidden">
+                        <i class="fas fa-file-invoice text-4xl text-gray-300 mb-4"></i>
+                        <h3 class="text-lg font-medium text-gray-500">No invoices found</h3>
+                        <p class="text-gray-400 mt-1">Create your first invoice using the form on the left</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bolt text-yellow-400 text-2xl mr-2"></i>
+                        <h3 class="text-xl font-bold">VoltNexis</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Empowering local businesses with smart digital tools for growth and success.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://youtube.com/@voltnexis" target="_blank" class="text-gray-300 hover:text-red-500 transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="https://instagram.com/voltnexis" target="_blank" class="text-gray-300 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61579094093361" target="_blank" class="text-gray-300 hover:text-blue-500 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://x.com/voltnexis" target="_blank" class="text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-x-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Products -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="dashboard.html" class="hover:text-white transition-colors">Business Tool</a></li>
+                        <li><a href="invoice.html" class="hover:text-white transition-colors">Invoice Generator</a></li>
+                        <li><a href="payments.html" class="hover:text-white transition-colors">Payment Tracker</a></li>
+                        <li><a href="customers.html" class="hover:text-white transition-colors">Customer Manager</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="contactus.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">WhatsApp Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Invoice Preview Modal -->
+    <div id="invoicePreviewModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center no-print">
+                <h3 class="text-lg font-medium">Invoice Preview</h3>
+                <button onclick="closePreview()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="invoice-preview p-8 relative" id="invoiceContent">
+                <!-- Watermark Container -->
+                <div id="watermarkContainer"></div>
+                
+                <!-- Invoice Content -->
+                <div class="invoice-content">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-800" id="businessNameInvoice">Business Name</h1>
+                            <p class="text-gray-600 mt-2">Professional Invoice</p>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-2xl font-bold text-indigo-600">INVOICE</h2>
+                            <p class="text-gray-600">Invoice #: <span id="invoiceNumber"></span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="font-semibold text-gray-700 mb-2">Bill To:</h3>
+                            <div id="customerDetails" class="text-gray-600"></div>
+                        </div>
+                        <div class="text-right">
+                            <div class="space-y-1">
+                                <p><span class="text-gray-600">Date:</span> <span id="invoiceDate"></span></p>
+                                <p><span class="text-gray-600">Due Date:</span> <span id="invoiceDueDate"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden mb-8">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Description</th>
+                                    <th class="px-4 py-3 text-right text-sm font-medium text-gray-700">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoiceItems" class="divide-y divide-gray-200">
+                                <!-- Items will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="flex justify-end mb-8">
+                        <div class="w-64 space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Subtotal:</span>
+                                <span>₹<span id="subtotal"></span></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Tax:</span>
+                                <span>₹<span id="tax"></span></span>
+                            </div>
+                            <div class="flex justify-between text-lg font-bold border-t border-gray-200 pt-2">
+                                <span>Total:</span>
+                                <span class="text-indigo-600">₹<span id="total"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center text-gray-500 text-sm border-t border-gray-200 pt-4">
+                        <p id="invoiceFooterText">Powered by VoltNexis ⚡</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t border-gray-200 flex justify-end space-x-3 no-print">
+                <button onclick="downloadInvoicePDF()" 
+                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
+                    <i class="fas fa-file-pdf"></i>
+                    Download PDF
+                </button>
+                <button onclick="sendWhatsApp()" 
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i>
+                    Send WhatsApp
+                </button>
+                <button onclick="window.print()" 
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
+                    <i class="fas fa-print"></i>
+                    Print
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://kmetxulrezuzzmxhkydm.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZXR4dWxyZXp1enpteGhreWRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMDI5MjgsImV4cCI6MjA3MTc3ODkyOH0.G3dM3GKO7dZwozrjRZ4LZLvZkqYu9L3AdrQbAbgq2rA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentUser = null;
+        let userProfile = null;
+        let invoices = [];
+        let customers = [];
+        let orders = [];
+        let currentInvoice = null;
+
+        async function initPage() {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                window.location.href = 'index.html';
+                return;
+            }
+            currentUser = user;
+            
+            const profile = localStorage.getItem('userProfile');
+            if (profile) {
+                userProfile = JSON.parse(profile);
+            }
+            
+            await loadCustomers();
+            await loadOrders();
+            await loadInvoices();
+            checkPlanLimits();
+            
+            // Set default due date (15 days from today)
+            const dueDate = new Date();
+            dueDate.setDate(dueDate.getDate() + 15);
+            document.getElementById('dueDate').value = dueDate.toISOString().split('T')[0];
+        }
+
+        async function checkPlanLimits() {
+            if (!userProfile) return;
+            
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            const monthlyInvoices = invoices.filter(inv => {
+                const invDate = new Date(inv.created_at);
+                return invDate.getMonth() === currentMonth && invDate.getFullYear() === currentYear;
+            });
+
+            const warningDiv = document.getElementById('planLimitWarning');
+            const createBtn = document.getElementById('createInvoiceBtn');
+            const upgradeBtn = document.getElementById('invoiceUpgradeBtn');
+            
+            if (userProfile.plan === 'free') {
+                upgradeBtn.style.display = 'block';
+                if (monthlyInvoices.length >= 10) {
+                    warningDiv.innerHTML = '⚠️ You have reached your monthly limit of 10 invoices. Upgrade to Plus or Pro for unlimited invoices.';
+                    warningDiv.classList.remove('hidden');
+                    createBtn.disabled = true;
+                    createBtn.innerHTML = '<i class="fas fa-lock"></i> Upgrade Required';
+                    createBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    warningDiv.innerHTML = `📊 Free Plan: ${monthlyInvoices.length}/10 invoices used this month.`;
+                    warningDiv.classList.remove('hidden');
+                }
+            } else if (userProfile.plan === 'plus') {
+                upgradeBtn.style.display = 'block';
+                upgradeBtn.innerHTML = '<i class="fas fa-crown"></i> Upgrade to Pro';
+            }
+        }
+
+        async function loadCustomers() {
+            const { data } = await supabase
+                .from('customers')
+                .select('*')
+                .eq('user_id', currentUser.id);
+            
+            customers = data || [];
+            const select = document.getElementById('customerId');
+            select.innerHTML = '<option value="">Select Customer</option>';
+            customers.forEach(customer => {
+                select.innerHTML += `<option value="${customer.id}">${customer.name}</option>`;
+            });
+        }
+
+        async function loadOrders() {
+            const { data } = await supabase
+                .from('orders')
+                .select(`*, customers (name)`)
+                .eq('user_id', currentUser.id)
+                .eq('status', 'completed');
+            
+            orders = data || [];
+            const select = document.getElementById('orderId');
+            select.innerHTML = '<option value="">Select Order</option>';
+            orders.forEach(order => {
+                select.innerHTML += `<option value="${order.id}">${order.order_number} - ${order.customers?.name}</option>`;
+            });
+        }
+
+        async function loadInvoices() {
+            const { data } = await supabase
+                .from('invoices')
+                .select(`*, customers (name)`)
+                .eq('user_id', currentUser.id)
+                .order('created_at', { ascending: false });
+            
+            invoices = data || [];
+            displayInvoices();
+        }
+
+        function displayInvoices() {
+            const tbody = document.getElementById('invoicesTableBody');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (invoices.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = invoices.map(invoice => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${invoice.invoice_number}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${invoice.customers?.name || 'N/A'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${invoice.total_amount}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full ${
+                            invoice.status === 'paid' ? 'bg-green-100 text-green-800' : 
+                            invoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
+                            'bg-red-100 text-red-800'
+                        }">
+                            ${invoice.status.toUpperCase()}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(invoice.due_date).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                        <button onclick="viewInvoice('${invoice.id}')" 
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-xs transition-colors duration-200">
+                            <i class="fas fa-eye mr-1"></i>View
+                        </button>
+                        <button onclick="deleteInvoice('${invoice.id}')" 
+                                class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs transition-colors duration-200">
+                            <i class="fas fa-trash mr-1"></i>Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function createInvoice() {
+            const customerId = document.getElementById('customerId').value;
+            const orderId = document.getElementById('orderId').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const taxAmount = parseFloat(document.getElementById('taxAmount').value) || 0;
+            const dueDate = document.getElementById('dueDate').value;
+
+            if (!customerId || !amount || !dueDate) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Check plan limits
+            if (userProfile?.plan === 'free') {
+                const currentMonth = new Date().getMonth();
+                const currentYear = new Date().getFullYear();
+                const monthlyInvoices = invoices.filter(inv => {
+                    const invDate = new Date(inv.created_at);
+                    return invDate.getMonth() === currentMonth && invDate.getFullYear() === currentYear;
+                });
+                
+                if (monthlyInvoices.length >= 10) {
+                    alert('You have reached your monthly limit of 10 invoices. Please upgrade your plan.');
+                    return;
+                }
+            }
+
+            const invoiceNumber = 'INV-' + Date.now();
+            const totalAmount = amount + taxAmount;
+
+            const { error } = await supabase
+                .from('invoices')
+                .insert([{
+                    user_id: currentUser.id,
+                    customer_id: customerId,
+                    order_id: orderId || null,
+                    invoice_number: invoiceNumber,
+                    amount: amount,
+                    tax_amount: taxAmount,
+                    total_amount: totalAmount,
+                    due_date: dueDate,
+                    status: 'pending'
+                }]);
+
+            if (error) {
+                alert('Error creating invoice: ' + error.message);
+                return;
+            }
+
+            // Clear form
+            document.getElementById('customerId').value = '';
+            document.getElementById('orderId').value = '';
+            document.getElementById('amount').value = '';
+            document.getElementById('taxAmount').value = '0';
+            
+            await loadInvoices();
+            checkPlanLimits();
+            showToast('Invoice created successfully!');
+        }
+
+        async function viewInvoice(invoiceId) {
+            const invoice = invoices.find(inv => inv.id === invoiceId);
+            if (!invoice) return;
+
+            currentInvoice = invoice;
+            
+            // Populate invoice preview
+            document.getElementById('businessNameInvoice').textContent = userProfile?.business_name || 'Business Name';
+            document.getElementById('invoiceNumber').textContent = invoice.invoice_number;
+            document.getElementById('customerDetails').innerHTML = `
+                <p class="font-medium">${invoice.customers?.name || 'N/A'}</p>
+            `;
+            document.getElementById('invoiceDate').textContent = new Date(invoice.created_at).toLocaleDateString();
+            document.getElementById('invoiceDueDate').textContent = new Date(invoice.due_date).toLocaleDateString();
+            
+            // Add invoice items
+            const itemsContainer = document.getElementById('invoiceItems');
+            itemsContainer.innerHTML = `
+                <tr>
+                    <td class="px-4 py-3 text-sm text-gray-900">Service/Product</td>
+                    <td class="px-4 py-3 text-sm text-gray-900 text-right">₹${invoice.amount}</td>
+                </tr>
+            `;
+            
+            document.getElementById('subtotal').textContent = invoice.amount;
+            document.getElementById('tax').textContent = invoice.tax_amount;
+            document.getElementById('total').textContent = invoice.total_amount;
+            
+            // Add watermarks based on plan
+            addWatermarks();
+            
+            // Show modal
+            document.getElementById('invoicePreviewModal').classList.remove('hidden');
+        }
+
+        function addWatermarks() {
+            const container = document.getElementById('watermarkContainer');
+            container.innerHTML = '';
+            
+            if (!userProfile) return;
+            
+            if (userProfile.plan === 'free') {
+                // 15 watermarks for free plan
+                const watermark = document.createElement('div');
+                watermark.className = 'watermark-free';
+                for (let i = 0; i < 15; i++) {
+                    const mark = document.createElement('div');
+                    mark.className = 'mark';
+                    mark.textContent = 'VoltNexis';
+                    watermark.appendChild(mark);
+                }
+                container.appendChild(watermark);
+            } else if (userProfile.plan === 'plus') {
+                // 3 watermarks for plus plan
+                const watermark = document.createElement('div');
+                watermark.className = 'watermark-plus';
+                for (let i = 0; i < 3; i++) {
+                    const mark = document.createElement('div');
+                    mark.className = 'mark';
+                    mark.textContent = 'VoltNexis';
+                    watermark.appendChild(mark);
+                }
+                container.appendChild(watermark);
+            } else if (userProfile.plan === 'pro') {
+                // 1 small watermark for pro plan
+                const watermark = document.createElement('div');
+                watermark.className = 'watermark-pro';
+                watermark.textContent = 'VoltNexis';
+                container.appendChild(watermark);
+            }
+        }
+
+        async function downloadInvoicePDF() {
+            if (!currentInvoice) return;
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const element = document.getElementById('invoiceContent');
+                
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff'
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                
+                const imgWidth = 210;
+                const pageHeight = 295;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                // Ensure single page by scaling if needed
+                if (heightLeft > 0) {
+                    const scaleFactor = pageHeight / imgHeight;
+                    const scaledWidth = imgWidth * scaleFactor;
+                    const scaledHeight = imgHeight * scaleFactor;
+                    
+                    pdf.deletePage(1);
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, 0, scaledWidth, scaledHeight);
+                }
+                
+                pdf.save(`${currentInvoice.invoice_number}.pdf`);
+                showToast('PDF downloaded successfully!');
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Error generating PDF. Please try again.');
+            }
+        }
+
+        function sendWhatsApp() {
+            if (!currentInvoice) return;
+            
+            const customer = customers.find(c => c.id === currentInvoice.customer_id);
+            if (!customer?.whatsapp) {
+                alert('Customer WhatsApp number not available');
+                return;
+            }
+            
+            let message = `Hello ${customer.name}! Your invoice ${currentInvoice.invoice_number} for ₹${currentInvoice.total_amount} is ready. `;
+            
+            if (userProfile?.plan === 'free') {
+                message += 'Created with VoltNexis Free Tool ⚡';
+            } else if (userProfile?.plan === 'plus') {
+                message += 'By VoltNexis ⚡';
+            }
+            
+            const whatsappUrl = `https://wa.me/${customer.whatsapp}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        async function deleteInvoice(invoiceId) {
+            if (!confirm('Are you sure you want to delete this invoice?')) return;
+
+            const { error } = await supabase
+                .from('invoices')
+                .delete()
+                .eq('id', invoiceId);
+
+            if (error) {
+                alert('Error deleting invoice: ' + error.message);
+                return;
+            }
+
+            await loadInvoices();
+            showToast('Invoice deleted successfully!');
+        }
+
+        function closePreview() {
+            document.getElementById('invoicePreviewModal').classList.add('hidden');
+            currentInvoice = null;
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        window.addEventListener('load', initPage);
+    </script>
+</body>
+</html>

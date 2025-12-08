@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Management - ServeTracko Business Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">Payment Management</h1>
+                    <p class="text-indigo-100 mt-1">Track payments and financial transactions</p>
+                </div>
+                <button onclick="window.location.href='dashboard.html'" 
+                        class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 mr-4">
+                        <i class="fas fa-money-bill-wave text-blue-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Total Payments</p>
+                        <p class="text-2xl font-bold text-gray-800" id="totalPayments">₹0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 mr-4">
+                        <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Received</p>
+                        <p class="text-2xl font-bold text-green-600" id="receivedAmount">₹0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 mr-4">
+                        <i class="fas fa-clock text-yellow-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Pending</p>
+                        <p class="text-2xl font-bold text-yellow-600" id="pendingAmount">₹0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-red-100 mr-4">
+                        <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Overdue</p>
+                        <p class="text-2xl font-bold text-red-600" id="overdueAmount">₹0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Add Payment Form -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+                        <i class="fas fa-plus-circle text-indigo-600"></i>
+                        <span id="formTitle">Add Payment</span>
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Customer</label>
+                            <select id="customerId" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Select Customer</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Invoice</label>
+                            <select id="invoiceId" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Select Invoice (Optional)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount (₹)</label>
+                            <input type="number" id="amount" placeholder="0.00" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
+                            <select id="paymentMethod" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="cash">Cash</option>
+                                <option value="upi">UPI</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="card">Card</option>
+                                <option value="cheque">Cheque</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                            <select id="status" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="received">Received</option>
+                                <option value="pending">Pending</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Payment Date</label>
+                            <input type="date" id="paymentDate" 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+                            <textarea id="notes" rows="3" placeholder="Payment notes..." 
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            <button onclick="savePayment()" id="saveBtn"
+                                    class="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
+                                <i class="fas fa-save"></i>
+                                <span id="saveBtnText">Add Payment</span>
+                            </button>
+                            <button onclick="cancelEdit()" id="cancelBtn" style="display: none;"
+                                    class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors duration-200">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments List -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-800">Payment History</h3>
+                        <div class="flex gap-2">
+                            <button onclick="sendPaymentReminders()" 
+                                    class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-sm transition-colors duration-200 flex items-center gap-1">
+                                <i class="fab fa-whatsapp"></i>
+                                Send Reminders
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Method</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentsTableBody" class="bg-white divide-y divide-gray-200">
+                                <!-- Payments will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="emptyState" class="p-8 text-center hidden">
+                        <i class="fas fa-wallet text-4xl text-gray-300 mb-4"></i>
+                        <h3 class="text-lg font-medium text-gray-500">No payments found</h3>
+                        <p class="text-gray-400 mt-1">Add your first payment using the form on the left</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bolt text-yellow-400 text-2xl mr-2"></i>
+                        <h3 class="text-xl font-bold">VoltNexis</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Empowering local businesses with smart digital tools for growth and success.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://youtube.com/@VoltNexis" target="_blank" class="text-gray-300 hover:text-red-500 transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="https://instagram.com/voltnexis" target="_blank" class="text-gray-300 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61579094093361" target="_blank" class="text-gray-300 hover:text-blue-500 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://x.com/voltnexis" target="_blank" class="text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-x-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Products -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="dashboard.html" class="hover:text-white transition-colors">Business Tool</a></li>
+                        <li><a href="invoice.html" class="hover:text-white transition-colors">Invoice Generator</a></li>
+                        <li><a href="payments.html" class="hover:text-white transition-colors">Payment Tracker</a></li>
+                        <li><a href="customers.html" class="hover:text-white transition-colors">Customer Manager</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="contactus.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">WhatsApp Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const supabaseUrl = 'https://kmetxulrezuzzmxhkydm.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZXR4dWxyZXp1enpteGhreWRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMDI5MjgsImV4cCI6MjA3MTc3ODkyOH0.G3dM3GKO7dZwozrjRZ4LZLvZkqYu9L3AdrQbAbgq2rA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentUser = null;
+        let payments = [];
+        let customers = [];
+        let invoices = [];
+        let editingPaymentId = null;
+
+        async function initPage() {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                window.location.href = 'index.html';
+                return;
+            }
+            currentUser = user;
+            
+            await loadCustomers();
+            await loadInvoices();
+            await loadPayments();
+            
+            // Set default payment date to today
+            document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0];
+        }
+
+        async function loadCustomers() {
+            const { data } = await supabase
+                .from('customers')
+                .select('*')
+                .eq('user_id', currentUser.id);
+            
+            customers = data || [];
+            const select = document.getElementById('customerId');
+            select.innerHTML = '<option value="">Select Customer</option>';
+            customers.forEach(customer => {
+                select.innerHTML += `<option value="${customer.id}">${customer.name}</option>`;
+            });
+        }
+
+        async function loadInvoices() {
+            const { data } = await supabase
+                .from('invoices')
+                .select(`*, customers (name)`)
+                .eq('user_id', currentUser.id)
+                .order('created_at', { ascending: false });
+            
+            invoices = data || [];
+            const select = document.getElementById('invoiceId');
+            select.innerHTML = '<option value="">Select Invoice (Optional)</option>';
+            invoices.forEach(invoice => {
+                select.innerHTML += `<option value="${invoice.id}">${invoice.invoice_number} - ${invoice.customers?.name} (₹${invoice.total_amount})</option>`;
+            });
+        }
+
+        async function loadPayments() {
+            const { data } = await supabase
+                .from('payments')
+                .select(`*, customers (name, whatsapp), invoices (invoice_number)`)
+                .eq('user_id', currentUser.id)
+                .order('created_at', { ascending: false });
+            
+            payments = data || [];
+            displayPayments();
+            updateSummary();
+        }
+
+        function displayPayments() {
+            const tbody = document.getElementById('paymentsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (payments.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = payments.map(payment => `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${new Date(payment.payment_date).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${payment.customers?.name || 'N/A'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹${payment.amount}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${payment.payment_method}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-semibold rounded-full ${getStatusClass(payment.status)}">
+                            ${payment.status.toUpperCase()}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                        <button onclick="editPayment('${payment.id}')" 
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-xs transition-colors duration-200">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                        <button onclick="deletePayment('${payment.id}')" 
+                                class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs transition-colors duration-200">
+                            <i class="fas fa-trash mr-1"></i>Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'received': return 'bg-green-100 text-green-800';
+                case 'pending': return 'bg-yellow-100 text-yellow-800';
+                case 'overdue': return 'bg-red-100 text-red-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function updateSummary() {
+            const total = payments.reduce((sum, payment) => sum + parseFloat(payment.amount || 0), 0);
+            const received = payments.filter(p => p.status === 'received').reduce((sum, payment) => sum + parseFloat(payment.amount || 0), 0);
+            const pending = payments.filter(p => p.status === 'pending').reduce((sum, payment) => sum + parseFloat(payment.amount || 0), 0);
+            const overdue = payments.filter(p => p.status === 'overdue').reduce((sum, payment) => sum + parseFloat(payment.amount || 0), 0);
+
+            document.getElementById('totalPayments').textContent = `₹${total.toFixed(0)}`;
+            document.getElementById('receivedAmount').textContent = `₹${received.toFixed(0)}`;
+            document.getElementById('pendingAmount').textContent = `₹${pending.toFixed(0)}`;
+            document.getElementById('overdueAmount').textContent = `₹${overdue.toFixed(0)}`;
+        }
+
+        async function savePayment() {
+            const customerId = document.getElementById('customerId').value;
+            const invoiceId = document.getElementById('invoiceId').value || null;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const status = document.getElementById('status').value;
+            const paymentDate = document.getElementById('paymentDate').value;
+            const notes = document.getElementById('notes').value.trim();
+
+            if (!customerId || !amount || !paymentDate) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const paymentData = {
+                user_id: currentUser.id,
+                customer_id: customerId,
+                invoice_id: invoiceId,
+                amount: amount,
+                payment_method: paymentMethod,
+                status: status,
+                payment_date: paymentDate,
+                notes: notes || null
+            };
+
+            let error;
+            if (editingPaymentId) {
+                ({ error } = await supabase
+                    .from('payments')
+                    .update(paymentData)
+                    .eq('id', editingPaymentId));
+            } else {
+                ({ error } = await supabase
+                    .from('payments')
+                    .insert([paymentData]));
+            }
+
+            if (error) {
+                alert('Error saving payment: ' + error.message);
+                return;
+            }
+
+            clearForm();
+            await loadPayments();
+            showToast(editingPaymentId ? 'Payment updated successfully!' : 'Payment added successfully!');
+        }
+
+        function editPayment(paymentId) {
+            const payment = payments.find(p => p.id === paymentId);
+            if (!payment) return;
+
+            editingPaymentId = paymentId;
+            document.getElementById('formTitle').textContent = 'Edit Payment';
+            document.getElementById('saveBtnText').textContent = 'Update Payment';
+            document.getElementById('customerId').value = payment.customer_id || '';
+            document.getElementById('invoiceId').value = payment.invoice_id || '';
+            document.getElementById('amount').value = payment.amount || '';
+            document.getElementById('paymentMethod').value = payment.payment_method || 'cash';
+            document.getElementById('status').value = payment.status || 'received';
+            document.getElementById('paymentDate').value = payment.payment_date || '';
+            document.getElementById('notes').value = payment.notes || '';
+            document.getElementById('cancelBtn').style.display = 'block';
+        }
+
+        function cancelEdit() {
+            clearForm();
+        }
+
+        function clearForm() {
+            editingPaymentId = null;
+            document.getElementById('formTitle').textContent = 'Add Payment';
+            document.getElementById('saveBtnText').textContent = 'Add Payment';
+            document.getElementById('customerId').value = '';
+            document.getElementById('invoiceId').value = '';
+            document.getElementById('amount').value = '';
+            document.getElementById('paymentMethod').value = 'cash';
+            document.getElementById('status').value = 'received';
+            document.getElementById('paymentDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('notes').value = '';
+            document.getElementById('cancelBtn').style.display = 'none';
+        }
+
+        async function deletePayment(paymentId) {
+            if (!confirm('Are you sure you want to delete this payment?')) return;
+
+            const { error } = await supabase
+                .from('payments')
+                .delete()
+                .eq('id', paymentId);
+
+            if (error) {
+                alert('Error deleting payment: ' + error.message);
+                return;
+            }
+
+            await loadPayments();
+            showToast('Payment deleted successfully!');
+        }
+
+        async function sendPaymentReminders() {
+            const overduePayments = payments.filter(p => p.status === 'overdue' || p.status === 'pending');
+            
+            if (overduePayments.length === 0) {
+                alert('No pending or overdue payments to send reminders for.');
+                return;
+            }
+
+            overduePayments.forEach(payment => {
+                const customer = customers.find(c => c.id === payment.customer_id);
+                if (customer?.whatsapp) {
+                    const message = `Hello ${customer.name}! This is a friendly reminder about your ${payment.status} payment of ₹${payment.amount}. Please contact us if you have any questions. Thank you!`;
+                    const whatsappUrl = `https://wa.me/${customer.whatsapp}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                }
+            });
+
+            showToast(`Reminders sent for ${overduePayments.length} payment(s)!`);
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        window.addEventListener('load', initPage);
+    </script>
+</body>
+</html>

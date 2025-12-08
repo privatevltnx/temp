@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeTracko Business Tool | Dashboard</title>
+    <meta name="description" content="Manage your business with ServeTracko's all-in-one dashboard. Track orders, customers, invoices, and payments in one place. Perfect for small to medium businesses.">
+    <meta name="keywords" content="business dashboard, business tool, order tracking, customer management, invoice generator, payment tracker, small business, ServeTracko, VoltNexis">
+    <meta name="author" content="VoltNexis">
+
+    <meta property="og:title" content="ServeTracko Business Dashboard | Manage Your Business with Ease">
+    <meta property="og:description" content="ServeTracko's all-in-one business dashboard helps you efficiently manage orders, customers, and finances.">
+    <meta property="og:image" content="https://voltnexis.github.io/servetracko/img/logo.webp">
+    <meta property="og:url" content="https://voltnexis.github.io/servetracko/dashboard.html">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ServeTracko Business Dashboard">
+    <meta name="twitter:description" content="The all-in-one tool for small businesses to track orders, manage customers, and handle invoices.">
+    <meta name="twitter:image" content="https://voltnexis.github.io/servetracko/img/logo.webp">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header class="bg-gradient-primary text-white shadow-md">
+        <!-- Desktop Layout -->
+        <div class="hidden md:block">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                        <i class="fas fa-store text-purple-700 text-xl"></i>
+                    </div>
+                    <h1 class="text-xl font-bold" id="businessName">ServeTracko by VoltNexis</h1>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="bg-white text-purple-700 px-3 py-1 rounded-full text-sm font-semibold shadow" id="planInfo">
+                        <i class="fas fa-crown mr-1"></i> Free Plan
+                    </div>
+                    <button id="upgradeBtn" onclick="window.location.href='plan_payment.html'" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow transition-colors" style="display: none;">
+                        <i class="fas fa-bolt mr-1"></i> Upgrade
+                    </button>
+                    <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow transition-colors">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Layout -->
+        <div class="md:hidden">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                            <i class="fas fa-store text-purple-700 text-sm"></i>
+                        </div>
+                        <h1 class="text-lg font-bold" id="businessNameMobile">ServeTracko</h1>
+                    </div>
+                    <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow transition-colors">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="bg-white text-purple-700 px-2 py-1 rounded-full text-xs font-semibold shadow" id="planInfoMobile">
+                        <i class="fas fa-crown mr-1"></i> Free Plan
+                    </div>
+                    <button id="upgradeBtnMobile" onclick="window.location.href='plan_payment.html'" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow transition-colors" style="display: none;">
+                        <i class="fas fa-bolt mr-1"></i> Upgrade
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Business Dashboard</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Orders Card -->
+            <a href="orders.html" class="card-hover">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center hover:bg-blue-50">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Orders</h3>
+                    <p class="text-gray-600 text-sm">Manage customer orders and track fulfillment</p>
+                </div>
+            </a>
+            
+            <!-- Customers Card -->
+            <a href="customers.html" class="card-hover">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center hover:bg-green-50">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-users text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Customers</h3>
+                    <p class="text-gray-600 text-sm">View and manage your customer database</p>
+                </div>
+            </a>
+            
+            <!-- Invoice Card -->
+            <a href="invoice.html" class="card-hover">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center hover:bg-purple-50">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-file-invoice text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Invoice</h3>
+                    <p class="text-gray-600 text-sm">Create and manage invoices for your business</p>
+                </div>
+            </a>
+            
+            <!-- Payments Card -->
+            <a href="payments.html" class="card-hover">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 text-center hover:bg-yellow-50">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-100 flex items-center justify-center">
+                        <i class="fas fa-credit-card text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Payments</h3>
+                    <p class="text-gray-600 text-sm">Track payments and financial transactions</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Quick Stats Section -->
+        <div class="mt-12 bg-white rounded-xl shadow-md p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Overview</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 rounded-full bg-blue-100 mr-3">
+                            <i class="fas fa-shopping-cart text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Today's Orders</p>
+                            <p class="font-bold text-lg" id="todayOrders">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 rounded-full bg-green-100 mr-3">
+                            <i class="fas fa-users text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Total Customers</p>
+                            <p class="font-bold text-lg" id="totalCustomers">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 rounded-full bg-purple-100 mr-3">
+                            <i class="fas fa-file-invoice text-purple-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Pending Invoices</p>
+                            <p class="font-bold text-lg" id="pendingInvoices">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="p-2 rounded-full bg-yellow-100 mr-3">
+                            <i class="fas fa-dollar-sign text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Today's Revenue</p>
+                            <p class="font-bold text-lg" id="todayRevenue">₹0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+     <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bolt text-yellow-400 text-2xl mr-2"></i>
+                        <h3 class="text-xl font-bold">VoltNexis</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Empowering local businesses with smart digital tools for growth and success.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://youtube.com/@voltnexis" target="_blank" class="text-gray-300 hover:text-red-500 transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="https://instagram.com/voltnexis" target="_blank" class="text-gray-300 hover:text-pink-500 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61579094093361" target="_blank" class="text-gray-300 hover:text-blue-500 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://x.com/voltnexis" target="_blank" class="text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-x-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Products -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="dashboard.html" class="hover:text-white transition-colors">Business Tool</a></li>
+                        <li><a href="invoice.html" class="hover:text-white transition-colors">Invoice Generator</a></li>
+                        <li><a href="payments.html" class="hover:text-white transition-colors">Payment Tracker</a></li>
+                        <li><a href="customers.html" class="hover:text-white transition-colors">Customer Manager</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="contactus.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">WhatsApp Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 VoltNexis. All rights reserved. | Made with ❤️ in India</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const supabaseUrl = 'https://kmetxulrezuzzmxhkydm.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZXR4dWxyZXp1enpteGhreWRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMDI5MjgsImV4cCI6MjA3MTc3ODkyOH0.G3dM3GKO7dZwozrjRZ4LZLvZkqYu9L3AdrQbAbgq2rA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let currentUser = null;
+
+        async function loadUserProfile() {
+            try {
+                // First check localStorage for existing profile
+                const existingProfile = localStorage.getItem('userProfile');
+                if (existingProfile) {
+                    const profile = JSON.parse(existingProfile);
+                    document.getElementById('businessName').textContent = profile.business_name;
+                    document.getElementById('businessNameMobile').textContent = profile.business_name.length > 15 ? profile.business_name.substring(0, 15) + '...' : profile.business_name;
+                    document.getElementById('planInfo').innerHTML = `<i class="fas fa-crown mr-1"></i> ${profile.plan.charAt(0).toUpperCase() + profile.plan.slice(1)} Plan`;
+                    document.getElementById('planInfoMobile').innerHTML = `<i class="fas fa-crown mr-1"></i> ${profile.plan.charAt(0).toUpperCase() + profile.plan.slice(1)}`;
+                    
+                    // Show upgrade button for free and plus users
+                    if (profile.plan === 'free' || profile.plan === 'plus') {
+                        document.getElementById('upgradeBtn').style.display = 'inline-block';
+                        document.getElementById('upgradeBtnMobile').style.display = 'inline-block';
+                    }
+                    
+                    currentUser = { id: profile.id };
+                    await loadDashboardStats();
+                    return;
+                }
+
+                const { data: { user } } = await supabase.auth.getUser();
+                
+                if (!user) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+
+                currentUser = user;
+
+                const { data: profile } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('id', user.id)
+                    .single();
+
+                if (profile) {
+                    document.getElementById('businessName').textContent = profile.business_name;
+                    document.getElementById('businessNameMobile').textContent = profile.business_name.length > 15 ? profile.business_name.substring(0, 15) + '...' : profile.business_name;
+                    document.getElementById('planInfo').innerHTML = `<i class="fas fa-crown mr-1"></i> ${profile.plan.charAt(0).toUpperCase() + profile.plan.slice(1)} Plan`;
+                    document.getElementById('planInfoMobile').innerHTML = `<i class="fas fa-crown mr-1"></i> ${profile.plan.charAt(0).toUpperCase() + profile.plan.slice(1)}`;
+                    localStorage.setItem('userProfile', JSON.stringify(profile));
+                    
+                    // Show upgrade button for free and plus users
+                    if (profile.plan === 'free' || profile.plan === 'plus') {
+                        document.getElementById('upgradeBtn').style.display = 'inline-block';
+                        document.getElementById('upgradeBtnMobile').style.display = 'inline-block';
+                    }
+                    
+                    await loadDashboardStats();
+                } else {
+                    window.location.href = 'index.html';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                window.location.href = 'index.html';
+            }
+        }
+
+        async function loadDashboardStats() {
+            if (!currentUser) return;
+
+            try {
+                // Get today's date
+                const today = new Date().toISOString().split('T')[0];
+
+                // Load today's orders
+                const { data: todayOrdersData } = await supabase
+                    .from('orders')
+                    .select('*')
+                    .eq('user_id', currentUser.id)
+                    .gte('created_at', today + 'T00:00:00')
+                    .lt('created_at', today + 'T23:59:59');
+
+                // Load total customers
+                const { data: customersData } = await supabase
+                    .from('customers')
+                    .select('*')
+                    .eq('user_id', currentUser.id);
+
+                // Load pending invoices
+                const { data: pendingInvoicesData } = await supabase
+                    .from('invoices')
+                    .select('*')
+                    .eq('user_id', currentUser.id)
+                    .eq('status', 'pending');
+
+                // Calculate today's revenue
+                let todayRevenue = 0;
+                if (todayOrdersData) {
+                    todayRevenue = todayOrdersData
+                        .filter(order => order.status === 'completed')
+                        .reduce((sum, order) => sum + parseFloat(order.amount || 0), 0);
+                }
+
+                // Update UI
+                document.getElementById('todayOrders').textContent = todayOrdersData?.length || 0;
+                document.getElementById('totalCustomers').textContent = customersData?.length || 0;
+                document.getElementById('pendingInvoices').textContent = pendingInvoicesData?.length || 0;
+                document.getElementById('todayRevenue').textContent = `₹${todayRevenue.toFixed(0)}`;
+
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+            }
+        }
+
+        async function handleLogout() {
+            try {
+                await supabase.auth.signOut();
+                localStorage.removeItem('userProfile');
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        }
+
+        // Animation for cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+
+        window.addEventListener('load', loadUserProfile);
+    </script>
+</body>
+</html>

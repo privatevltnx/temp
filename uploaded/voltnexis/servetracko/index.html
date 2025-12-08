@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServeTracko - Simplify Business Invoicing, Payments & Orders</title>
+    <meta name="title" content="ServeTracko - Simplify Business Invoicing, Payments & Orders">
+    <meta name="description" content="Tired of spreadsheets? ServeTracko by VoltNexis is a powerful, simple app for small businesses to manage invoices, payments, orders and customer data with ease.">
+    <meta name="keywords" content="invoice software, billing software, small business management, order management, payment tracking, customer management, voltnexis, business tools, VoltNexis, ServeTracko">
+    <meta name="author" content="VoltNexis">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://voltnexis.github.io/servetracko/">
+    <meta property="og:title" content="ServeTracko - Simplify Your Business Operations">
+    <meta property="og:description" content="Manage your orders, invoices, payments, and customers easily without Excel or complex spreadsheets. ServeTracko makes business management simple.">
+    <meta property="og:image" content="https://voltnexis.github.io/servetracko/img/logo_servetracko.webp">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://servetracko.github.io/">
+    <meta property="twitter:title" content="ServeTracko - Simplify Your Business Operations">
+    <meta property="twitter:description" content="Manage your orders, invoices, payments, and customers easily without Excel or complex spreadsheets. ServeTracko makes business management simple.">
+    <meta property="twitter:image" content="https://voltnexis.github.io/servetracko/img/logo_servetracko.webp">
+
+    <link rel="canonical" href="https://voltnexis.github.io/servetracko/">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <meta name="google-site-verification" content="tPLMObaC3EgIjoJex4M1o9yWQDS1m8g8y-Wx5vYNN8E" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4f46e5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <div class="gradient-bg text-white py-4 px-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-bolt text-yellow-300 text-2xl"></i>
+                <h1 class="text-xl font-bold">ServeTracko</h1>
+            </div>
+            <span class="text-sm opacity-80">Powered by VoltNexis ⚡</span>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Simplify Your Business Operations</h2>
+            <p class="text-xl text-gray-600 mb-8">Manage your orders, invoices, payments, and customers easily without Excel or spreadsheets.</p>
+            
+            <div class="flex justify-center space-x-4 mb-12">
+                <button id="loginTab" class="px-6 py-2 bg-indigo-600 text-white rounded-full font-medium transition-all hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Login / Register
+                </button>
+                <button id="plansTab" class="px-6 py-2 bg-white text-indigo-600 border border-indigo-600 rounded-full font-medium transition-all hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Choose Plan
+                </button>
+            </div>
+        </div>
+
+        <!-- Login/Register Form -->
+        <div id="loginForm" class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-8 mb-12">
+            <div class="flex justify-center mb-6">
+                <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button id="loginBtn" type="button" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-l-lg focus:z-10 focus:ring-2 focus:ring-indigo-500">
+                        Login
+                    </button>
+                    <button id="registerBtn" type="button" class="px-4 py-2 text-sm font-medium text-indigo-600 bg-white border-t border-b border-r border-indigo-600 rounded-r-lg focus:z-10 focus:ring-2 focus:ring-indigo-500">
+                        Register
+                    </button>
+                </div>
+            </div>
+
+            <form id="authForm" class="space-y-6">
+                <!-- Mobile Plan Selection (Top) -->
+                <div id="planSelectionMobile" class="hidden md:hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Plan</label>
+                    <div class="space-y-3">
+                        <div class="border rounded-lg p-3 cursor-pointer plan-option" data-plan="free">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-bold text-indigo-600">Free</h3>
+                                    <p class="text-gray-500 text-sm">₹0/month</p>
+                                </div>
+                                <div class="text-xs text-gray-600">
+                                    <div>10 invoices/month</div>
+                                    <div>15 watermarks</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-3 cursor-pointer plan-option border-indigo-600 bg-indigo-50" data-plan="plus">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-bold text-indigo-600">Plus</h3>
+                                    <p class="text-gray-500 text-sm">₹99/month</p>
+                                </div>
+                                <div class="text-xs text-gray-600">
+                                    <div>Unlimited invoices</div>
+                                    <div>3 watermarks</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-3 cursor-pointer plan-option" data-plan="pro">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-bold text-indigo-600">Pro</h3>
+                                    <p class="text-gray-500 text-sm">₹299/month</p>
+                                </div>
+                                <div class="text-xs text-gray-600">
+                                    <div>Unlimited invoices</div>
+                                    <div>1 watermark</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="businessNameField" class="hidden">
+                    <label for="businessName" class="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                    <input type="text" id="businessName" name="businessName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div id="businessTypeField" class="hidden">
+                    <label for="businessType" class="block text-sm font-medium text-gray-700 mb-1">Business Type</label>
+                    <select id="businessType" name="businessType" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select your business type</option>
+                        <option value="retail">Retail Store</option>
+                        <option value="restaurant">Restaurant/Cafe</option>
+                        <option value="service">Service Provider</option>
+                        <option value="manufacturing">Small Manufacturing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email or Phone</label>
+                    <input type="text" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                </div>
+
+                <div id="phoneField" class="hidden">
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <div class="flex">
+                        <select id="countryCode" name="countryCode" class="px-3 py-2 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="+91">+91</option>
+                            <option value="+1">+1</option>
+                            <option value="+44">+44</option>
+                            <option value="+971">+971</option>
+                        </select>
+                        <input type="tel" id="phone" name="phone" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Phone number">
+                    </div>
+                </div>
+
+                <div id="whatsappField" class="hidden">
+                    <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number</label>
+                    <div class="flex">
+                        <select id="whatsappCountryCode" name="whatsappCountryCode" class="px-3 py-2 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="+91">+91</option>
+                            <option value="+1">+1</option>
+                            <option value="+44">+44</option>
+                            <option value="+971">+971</option>
+                        </select>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-r-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="WhatsApp number">
+                    </div>
+                </div>
+
+                <div id="planSelection" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Plan</label>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="border rounded-lg p-4 cursor-pointer plan-option" data-plan="free">
+                            <h3 class="font-bold text-lg text-indigo-600">Free</h3>
+                            <p class="text-gray-500 text-sm">₹0/month</p>
+                            <ul class="mt-3 text-xs text-gray-600 space-y-1">
+                                <li>✓ 10 invoices/month</li>
+                                <li>✓ Basic reporting</li>
+                                <li>✓ 15 watermarks</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-4 cursor-pointer plan-option border-indigo-600 bg-indigo-50" data-plan="plus">
+                            <h3 class="font-bold text-lg text-indigo-600">Plus</h3>
+                            <p class="text-gray-500 text-sm">₹99/month</p>
+                            <ul class="mt-3 text-xs text-gray-600 space-y-1">
+                                <li>✓ Unlimited invoices</li>
+                                <li>✓ 3 watermarks</li>
+                                <li>✓ WhatsApp branding</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-4 cursor-pointer plan-option" data-plan="pro">
+                            <h3 class="font-bold text-lg text-indigo-600">Pro</h3>
+                            <p class="text-gray-500 text-sm">₹299/month</p>
+                            <ul class="mt-3 text-xs text-gray-600 space-y-1">
+                                <li>✓ Unlimited invoices</li>
+                                <li>✓ 1 watermark</li>
+                                <li>✓ Clean WhatsApp</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="rememberMe" class="flex items-center">
+                    <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Login
+                </button>
+            </form>
+        </div>
+
+        <!-- Plans Section -->
+        <div id="plansSection" class="hidden max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Choose Your Plan</h2>
+            <p class="text-center text-gray-600 mb-12">Select the plan that fits your business needs</p>
+
+            <div class="flex justify-center mb-8">
+                <span class="text-sm font-medium text-gray-500 mr-3">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="text-sm font-medium text-gray-500 ml-3">Annual (Save 20%)</span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Free Plan -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 plan-card">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <h3 class="text-2xl font-bold text-gray-800">Free</h3>
+                            <span class="ml-auto bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded">BASIC</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">Perfect for getting started</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-gray-900">₹0</span>
+                            <span class="text-gray-600">/month</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>10 invoices per month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Basic reporting</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>15 watermarks</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-2"></i>
+                                <span>Advanced analytics</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 px-4 border border-indigo-600 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plus Plan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 plan-card border-2 border-indigo-600">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <h3 class="text-2xl font-bold text-gray-800">Plus</h3>
+                            <span class="ml-auto bg-indigo-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded">POPULAR</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">For growing businesses</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-gray-900">₹99</span>
+                            <span class="text-gray-600">/month</span>
+                            <span class="block text-sm text-gray-500">₹79/month billed annually</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited invoices</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>3 watermarks</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>WhatsApp with branding</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Basic analytics</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 px-4 bg-indigo-600 rounded-md text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 plan-card">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <h3 class="text-2xl font-bold text-gray-800">Pro</h3>
+                            <span class="ml-auto bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">For established businesses</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-gray-900">₹299</span>
+                            <span class="text-gray-600">/month</span>
+                            <span class="block text-sm text-gray-500">₹239/month billed annually</span>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited invoices</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>1 watermark only</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Clean WhatsApp</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Full analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-2 px-4 border border-indigo-600 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-600 text-sm">
+            <p>© 2023 ServeTracko by VoltNexis ⚡. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-600">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Supabase configuration
+        const supabaseUrl = 'https://kmetxulrezuzzmxhkydm.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZXR4dWxyZXp1enpteGhreWRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMDI5MjgsImV4cCI6MjA3MTc3ODkyOH0.G3dM3GKO7dZwozrjRZ4LZLvZkqYu9L3AdrQbAbgq2rA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        let selectedPlan = 'plus';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching between Login and Plans
+            const loginTab = document.getElementById('loginTab');
+            const plansTab = document.getElementById('plansTab');
+            const loginForm = document.getElementById('loginForm');
+            const plansSection = document.getElementById('plansSection');
+
+            loginTab.addEventListener('click', function() {
+                loginForm.classList.remove('hidden');
+                plansSection.classList.add('hidden');
+                loginTab.classList.remove('bg-white', 'text-indigo-600', 'border');
+                loginTab.classList.add('bg-indigo-600', 'text-white');
+                plansTab.classList.remove('bg-indigo-600', 'text-white');
+                plansTab.classList.add('bg-white', 'text-indigo-600', 'border');
+            });
+
+            plansTab.addEventListener('click', function() {
+                loginForm.classList.add('hidden');
+                plansSection.classList.remove('hidden');
+                plansTab.classList.remove('bg-white', 'text-indigo-600', 'border');
+                plansTab.classList.add('bg-indigo-600', 'text-white');
+                loginTab.classList.remove('bg-indigo-600', 'text-white');
+                loginTab.classList.add('bg-white', 'text-indigo-600', 'border');
+            });
+
+            // Toggle between Login and Register forms
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const businessNameField = document.getElementById('businessNameField');
+            const businessTypeField = document.getElementById('businessTypeField');
+            const phoneField = document.getElementById('phoneField');
+            const whatsappField = document.getElementById('whatsappField');
+            const planSelection = document.getElementById('planSelection');
+            const submitBtn = document.getElementById('submitBtn');
+            const authForm = document.getElementById('authForm');
+
+            loginBtn.addEventListener('click', function() {
+                loginBtn.classList.add('bg-indigo-600', 'text-white');
+                loginBtn.classList.remove('bg-white', 'text-indigo-600', 'border');
+                registerBtn.classList.remove('bg-indigo-600', 'text-white');
+                registerBtn.classList.add('bg-white', 'text-indigo-600', 'border');
+                
+                businessNameField.classList.add('hidden');
+                businessTypeField.classList.add('hidden');
+                phoneField.classList.add('hidden');
+                whatsappField.classList.add('hidden');
+                planSelection.classList.add('hidden');
+                document.getElementById('planSelectionMobile').classList.add('hidden');
+                submitBtn.textContent = 'Login';
+            });
+
+            registerBtn.addEventListener('click', function() {
+                registerBtn.classList.add('bg-indigo-600', 'text-white');
+                registerBtn.classList.remove('bg-white', 'text-indigo-600', 'border');
+                loginBtn.classList.remove('bg-indigo-600', 'text-white');
+                loginBtn.classList.add('bg-white', 'text-indigo-600', 'border');
+                
+                businessNameField.classList.remove('hidden');
+                businessTypeField.classList.remove('hidden');
+                phoneField.classList.remove('hidden');
+                whatsappField.classList.remove('hidden');
+                planSelection.classList.remove('hidden');
+                document.getElementById('planSelectionMobile').classList.remove('hidden');
+                submitBtn.textContent = 'Register';
+            });
+
+            // Plan selection in registration form
+            const planOptions = document.querySelectorAll('.plan-option');
+            planOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    planOptions.forEach(opt => {
+                        opt.classList.remove('border-indigo-600', 'bg-indigo-50');
+                    });
+                    this.classList.add('border-indigo-600', 'bg-indigo-50');
+                    selectedPlan = this.dataset.plan;
+                });
+            });
+
+            // Billing toggle for annual/monthly
+            const billingToggle = document.getElementById('billingToggle');
+            const priceElements = document.querySelectorAll('.text-4xl.font-bold');
+            
+            billingToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    // Annual pricing (20% discount)
+                    priceElements[1].innerHTML = '₹79';
+                    priceElements[2].innerHTML = '₹239';
+                } else {
+                    // Monthly pricing
+                    priceElements[1].innerHTML = '₹99';
+                    priceElements[2].innerHTML = '₹299';
+                }
+            });
+
+            // Form submission
+            authForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const isRegister = registerBtn.classList.contains('bg-indigo-600');
+                
+                if (isRegister) {
+                    await handleRegister();
+                } else {
+                    await handleLogin();
+                }
+            });
+
+            // Plan selection buttons in the plans section
+            const planButtons = document.querySelectorAll('#plansSection button');
+            planButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const planCard = this.closest('.plan-card');
+                    if (!planCard) return;
+                    
+                    const planTitle = planCard.querySelector('h3');
+                    if (!planTitle) return;
+                    
+                    const plan = planTitle.textContent.toLowerCase();
+                    
+                    // Show registration form with plan pre-selected
+                    loginForm.classList.remove('hidden');
+                    plansSection.classList.add('hidden');
+                    loginTab.classList.remove('bg-white', 'text-indigo-600', 'border');
+                    loginTab.classList.add('bg-indigo-600', 'text-white');
+                    plansTab.classList.remove('bg-indigo-600', 'text-white');
+                    plansTab.classList.add('bg-white', 'text-indigo-600', 'border');
+                    
+                    // Switch to registration
+                    registerBtn.click();
+                    
+                    // Select the corresponding plan
+                    document.querySelectorAll('.plan-option').forEach(option => {
+                        option.classList.remove('border-indigo-600', 'bg-indigo-50');
+                        if (option.dataset.plan === plan) {
+                            option.classList.add('border-indigo-600', 'bg-indigo-50');
+                            selectedPlan = plan;
+                        }
+                    });
+                });
+            });
+        });
+
+        async function handleLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Connecting...';
+            submitBtn.classList.add('opacity-50');
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) throw error;
+
+                // Get user profile
+                const { data: profile } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('id', data.user.id)
+                    .single();
+
+                if (profile) {
+                    localStorage.setItem('userProfile', JSON.stringify(profile));
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (error) {
+                alert('Login failed: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Login';
+                submitBtn.classList.remove('opacity-50');
+            }
+        }
+
+        async function handleRegister() {
+            const businessName = document.getElementById('businessName').value;
+            const businessType = document.getElementById('businessType').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const countryCode = document.getElementById('countryCode').value;
+            const phone = document.getElementById('phone').value;
+            const whatsappCountryCode = document.getElementById('whatsappCountryCode').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            if (!businessName || !businessType || !email || !password || !phone || !whatsapp) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Connecting...';
+            submitBtn.classList.add('opacity-50');
+
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password
+                });
+
+                if (error) throw error;
+
+                // Create user profile
+                const { error: profileError } = await supabase
+                    .from('users')
+                    .insert([{
+                        id: data.user.id,
+                        email: email,
+                        business_name: businessName,
+                        business_type: businessType,
+                        phone: countryCode + phone,
+                        whatsapp: whatsappCountryCode + whatsapp,
+                        plan: selectedPlan
+                    }]);
+
+                if (profileError) throw profileError;
+
+                if (selectedPlan === 'plus' || selectedPlan === 'pro') {
+                    localStorage.setItem('pendingUser', JSON.stringify({
+                        id: data.user.id,
+                        email: email,
+                        business_name: businessName,
+                        business_type: businessType,
+                        whatsapp: whatsappCountryCode + whatsapp,
+                        plan: selectedPlan
+                    }));
+                    window.location.href = 'plan_payment.html';
+                } else {
+                    localStorage.setItem('userProfile', JSON.stringify({
+                        id: data.user.id,
+                        email: email,
+                        business_name: businessName,
+                        business_type: businessType,
+                        whatsapp: whatsappCountryCode + whatsapp,
+                        plan: selectedPlan
+                    }));
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (error) {
+                alert('Registration error: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Register';
+                submitBtn.classList.remove('opacity-50');
+            }
+        }
+
+        // Check if user is already logged in
+        window.addEventListener('load', async () => {
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                    const { data: profile } = await supabase
+                        .from('users')
+                        .select('*')
+                        .eq('id', user.id)
+                        .single();
+                    
+                    if (profile) {
+                        localStorage.setItem('userProfile', JSON.stringify(profile));
+                        window.location.href = 'dashboard.html';
+                    }
+                }
+            } catch (error) {
+                console.log('Not logged in or profile not found');
+            }
+        });
+    </script>
+</body>
+</html>
