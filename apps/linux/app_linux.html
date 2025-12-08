@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="appTitle">Software Details - LinuxDownload by VoltNexis</title>
+    <meta name="description" content="Download Linux software safely. Latest version with previous versions available.">
+    <link rel="stylesheet" href="styles_linux.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index_linux.html">
+                    <h1><span class="volt">Volt</span><span class="nexis">Nexis</span></h1>
+                    <span class="tagline">Linux Download</span>
+                </a>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Search Linux software, tools..." class="search-input">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-detail-main">
+        <div class="container">
+            <div class="app-header">
+                <div class="app-icon">
+                    <img id="appIcon" src="https://via.placeholder.com/120" alt="Software Icon">
+                </div>
+                <div class="app-info">
+                    <h1 id="appName">Loading...</h1>
+                    <p class="developer">by <a href="#" id="developerName">Developer</a></p>
+                    <div class="app-meta">
+                        <span class="version">Version: <span id="appVersion">1.0</span></span>
+                        <span class="size">Size: <span id="appSize">10MB</span></span>
+                        <span class="updated">Updated: <span id="lastUpdated">Today</span></span>
+                        <span class="linux-distro">Distro: <span id="linuxDistro">Ubuntu 20.04+</span></span>
+                        <div class="rating">
+                            <div class="stars" id="appRating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.2 (1.2k reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <div class="ad-small" style="display: none;">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+                
+                <div class="download-buttons" id="downloadButtons">
+                    <button class="download-btn" id="debBtn">
+                        <i class="fab fa-ubuntu"></i>
+                        Download DEB
+                    </button>
+                    <button class="download-btn rpm-btn" id="rpmBtn" style="display: none;">
+                        <i class="fab fa-redhat"></i>
+                        Download RPM
+                    </button>
+                    <button class="download-btn appimage-btn" id="appimageBtn" style="display: none;">
+                        <i class="fas fa-cube"></i>
+                        Download AppImage
+                    </button>
+                </div>
+
+                <div class="install-codes" id="installCodes">
+                    <h3>Installation Commands</h3>
+                    <div class="code-tabs">
+                        <button class="code-tab active" data-distro="ubuntu">Ubuntu/Debian</button>
+                        <button class="code-tab" data-distro="fedora">Fedora/RHEL</button>
+                        <button class="code-tab" data-distro="arch">Arch Linux</button>
+                        <button class="code-tab" data-distro="kali">Kali Linux</button>
+                        <button class="code-tab" data-distro="parrot">Parrot OS</button>
+                        <button class="code-tab" data-distro="mint">Linux Mint</button>
+                        <button class="code-tab" data-distro="opensuse">openSUSE</button>
+                        <button class="code-tab" data-distro="manjaro">Manjaro</button>
+                        <button class="code-tab" data-distro="centos">CentOS</button>
+                        <button class="code-tab" data-distro="elementary">Elementary OS</button>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-block active" id="ubuntu-code">
+                            <pre><code># Download and install DEB package
+wget <span id="ubuntu-url">package-url</span>
+sudo dpkg -i <span id="ubuntu-file">package.deb</span>
+sudo apt-get install -f</code></pre>
+                            <button class="copy-btn" onclick="copyCode('ubuntu-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="fedora-code">
+                            <pre><code># Download and install RPM package
+wget <span id="fedora-url">package-url</span>
+sudo rpm -i <span id="fedora-file">package.rpm</span></code></pre>
+                            <button class="copy-btn" onclick="copyCode('fedora-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="arch-code">
+                            <pre><code># Install from AUR or download package
+yay -S <span id="arch-package">package-name</span>
+# Or download and install manually
+wget <span id="arch-url">package-url</span>
+sudo pacman -U <span id="arch-file">package.tar.xz</span></code></pre>
+                            <button class="copy-btn" onclick="copyCode('arch-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="kali-code">
+                            <pre><code># Kali Linux installation
+wget <span id="kali-url">package-url</span>
+sudo dpkg -i <span id="kali-file">package.deb</span>
+sudo apt-get install -f</code></pre>
+                            <button class="copy-btn" onclick="copyCode('kali-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="parrot-code">
+                            <pre><code># Parrot OS installation
+wget <span id="parrot-url">package-url</span>
+sudo dpkg -i <span id="parrot-file">package.deb</span>
+sudo apt-get install -f</code></pre>
+                            <button class="copy-btn" onclick="copyCode('parrot-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="mint-code">
+                            <pre><code># Linux Mint installation
+wget <span id="mint-url">package-url</span>
+sudo dpkg -i <span id="mint-file">package.deb</span>
+sudo apt-get install -f</code></pre>
+                            <button class="copy-btn" onclick="copyCode('mint-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="opensuse-code">
+                            <pre><code># openSUSE installation
+wget <span id="opensuse-url">package-url</span>
+sudo zypper install <span id="opensuse-file">package.rpm</span></code></pre>
+                            <button class="copy-btn" onclick="copyCode('opensuse-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="manjaro-code">
+                            <pre><code># Manjaro installation
+pamac install <span id="manjaro-package">package-name</span>
+# Or manual install
+wget <span id="manjaro-url">package-url</span>
+sudo pacman -U <span id="manjaro-file">package.tar.xz</span></code></pre>
+                            <button class="copy-btn" onclick="copyCode('manjaro-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="centos-code">
+                            <pre><code># CentOS installation
+wget <span id="centos-url">package-url</span>
+sudo yum install <span id="centos-file">package.rpm</span>
+# Or for CentOS 8+
+sudo dnf install <span id="centos-file2">package.rpm</span></code></pre>
+                            <button class="copy-btn" onclick="copyCode('centos-code')">Copy</button>
+                        </div>
+                        <div class="code-block" id="elementary-code">
+                            <pre><code># Elementary OS installation
+wget <span id="elementary-url">package-url</span>
+sudo dpkg -i <span id="elementary-file">package.deb</span>
+sudo apt-get install -f</code></pre>
+                            <button class="copy-btn" onclick="copyCode('elementary-code')">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ad-blocks" style="display: none;">
+                    <div class="ad-block">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+                    <div class="ad-block">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="old-versions" id="oldVersionsSection">
+                <h3>Previous Versions <i class="fas fa-chevron-down" id="versionsToggle"></i></h3>
+                <div class="versions-list" id="versionsList">
+                    <!-- Old versions will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="app-description">
+                <h2>About This Software</h2>
+                <div class="description-content" id="appDescription">
+                    <p>Loading software description...</p>
+                </div>
+                
+                <div class="app-screenshots">
+                    <h3>Screenshots</h3>
+                    <div class="screenshots-grid">
+                        <img src="https://via.placeholder.com/400x300" alt="Screenshot 1">
+                        <img src="https://via.placeholder.com/400x300" alt="Screenshot 2">
+                        <img src="https://via.placeholder.com/400x300" alt="Screenshot 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="ad-bottom" style="display: none;">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LinuxDownload by VoltNexis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Download Overlay Ad -->
+    <div class="overlay-ad" id="overlayAd">
+        <div class="overlay-content">
+            <button class="close-overlay" id="closeOverlay">&times;</button>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="rectangle"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <script src="script_linux.js"></script>
+    <script src="app-detail_linux.js"></script>
+    <script src="ads_linux.js"></script>
+</body>
+</html>
