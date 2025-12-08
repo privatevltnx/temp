@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>VoltNexis Tools - Free Online Image, Audio, Video & Web Tools</title>
+    <meta name="title" content="VoltNexis Tools - Free Online Image, Audio, Video & Web Tools">
+    <meta name="description" content="Free online tools: resize images, compress photos, convert to base64, create memes, generate ASCII art, remove backgrounds, record audio, text-to-speech, extract video audio, make GIFs, word count, case converter, QR code generator, JSON formatter, regex tester, password generator, color picker, gradient maker. All tools work in your browser - no downloads needed.">
+    <meta name="keywords" content="resize image online, compress image, image to base64, meme generator, ascii art generator, background remover, audio recorder, text to speech, video to audio converter, gif maker, word counter, case converter, uppercase lowercase, QR code generator, JSON formatter, regex tester, password generator, random password, username generator, color picker, hex to rgb, gradient generator, drawing pad, online image editor, photo editor, audio tools, video tools, file tools, web tools, free online tools, browser tools, no download tools">
+    <meta name="author" content="VoltNexis">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://voltnexis.github.io/tools/">
+    <meta property="og:title" content="VoltNexis Tools - Free Online Image, Audio, Video & Web Tools">
+    <meta property="og:description" content="Free online tools: resize images, compress photos, meme generator, QR codes, password generator, audio recorder, video converter and 25+ more tools. No downloads needed - works in browser.">
+    <meta property="og:image" content="https://voltnexis.github.io/tools/logo4.png">
+    <meta property="og:site_name" content="VoltNexis Tools">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://voltnexis.github.io/tools/">
+    <meta property="twitter:title" content="VoltNexis Tools - Free Online Image, Audio, Video & Web Tools">
+    <meta property="twitter:description" content="Free online tools: resize images, compress photos, meme generator, QR codes, password generator, audio recorder, video converter and 25+ more tools. No downloads needed - works in browser.">
+    <meta property="twitter:image" content="https://voltnexis.github.io/tools/logo4.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://voltnexis.github.io/tools/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="img/android-chrome-512x512.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    
+    <!-- Webmaster Tools -->
+    <meta name="google-site-verification" content="">
+    <meta name="msvalidate.01" content="">
+    <meta name="yandex-verification" content="">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "VoltNexis Tools",
+      "description": "Free online tools: resize images, compress photos, convert to base64, create memes, generate ASCII art, remove backgrounds, record audio, text-to-speech, extract video audio, make GIFs, word count, case converter, QR code generator, JSON formatter, regex tester, password generator, color picker, gradient maker.",
+      "url": "https://voltnexis.github.io/tools/",
+      "applicationCategory": ["Utility", "Multimedia", "Productivity", "Graphics"],
+      "operatingSystem": "Web Browser",
+      "browserRequirements": "HTML5, JavaScript",
+      "featureList": [
+        "Image Resize and Crop",
+        "Image Compression",
+        "Base64 Converter",
+        "Meme Generator",
+        "ASCII Art Generator",
+        "Background Remover",
+        "Audio Recorder",
+        "Text-to-Speech",
+        "Video to Audio Converter",
+        "GIF Maker",
+        "Word Counter",
+        "Case Converter",
+        "QR Code Generator",
+        "JSON Formatter",
+        "Regex Tester",
+        "Password Generator",
+        "Username Generator",
+        "Color Picker",
+        "Gradient Generator",
+        "Drawing Pad"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "VoltNexis"
+      }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1><img src="img/logo.png" alt="VoltNexis" class="logo"></h1>
+        
+        <!-- Desktop Navigation -->
+        <div class="category-tabs">
+            <button class="category-btn active" data-category="image">🖼 Image</button>
+            <button class="category-btn" data-category="audio">🎵 Audio</button>
+            <button class="category-btn" data-category="video">🎥 Video</button>
+            <button class="category-btn" data-category="file">📚 File</button>
+            <button class="category-btn" data-category="web">🌐 Web</button>
+            <button class="category-btn" data-category="fun">🎮 Fun</button>
+        </div>
+
+        <!-- Image Tools -->
+        <div class="category-content active" id="image">
+            <div class="tool-tabs">
+                <button class="tool-btn active" data-tool="resize">Resize/Crop</button>
+                <button class="tool-btn" data-tool="compress">Compress</button>
+                <button class="tool-btn" data-tool="base64">Base64</button>
+                <button class="tool-btn" data-tool="meme">Meme</button>
+                <button class="tool-btn" data-tool="ascii">ASCII</button>
+                <button class="tool-btn" data-tool="pdf-img">PDF</button>
+                <button class="tool-btn" data-tool="bg-remove">BG Remove</button>
+            </div>
+            
+            <div class="tool-content active" id="resize">
+                <input type="file" id="resize-input" accept="image/*">
+                <div class="controls">
+                    <input type="number" id="width" placeholder="Width">
+                    <input type="number" id="height" placeholder="Height">
+                    <button onclick="resizeImage()">Resize</button>
+                    <input type="number" id="crop-x" placeholder="X">
+                    <input type="number" id="crop-y" placeholder="Y">
+                    <input type="number" id="crop-w" placeholder="W">
+                    <input type="number" id="crop-h" placeholder="H">
+                    <button onclick="cropImage()">Crop</button>
+                    <input type="range" id="rotate" min="0" max="360" value="0" oninput="document.getElementById('rotate-val').textContent=this.value+'°'">
+                    <span id="rotate-val">0°</span>
+                    <button onclick="rotateImage()">Rotate</button>
+                </div>
+                <canvas id="resize-canvas"></canvas>
+                <button onclick="downloadCanvas('resize-canvas', 'image.png')" style="display:none" id="download-resize">Download</button>
+            </div>
+
+            <div class="tool-content" id="compress">
+                <input type="file" id="compress-input" accept="image/*">
+                <div class="controls">
+                    <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8" oninput="document.getElementById('quality-val').textContent=Math.round(this.value*100)+'%'">
+                    <span id="quality-val">80%</span>
+                    <button onclick="compressImage()">Compress</button>
+                </div>
+                <div class="preview-area">
+                    <div><h3>Original</h3><img id="original-img"><p id="original-size"></p></div>
+                    <div><h3>Compressed</h3><img id="compressed-img"><p id="compressed-size"></p></div>
+                </div>
+            </div>
+
+            <div class="tool-content" id="base64">
+                <input type="file" id="base64-input" accept="image/*" onchange="convertToBase64()">
+                <textarea id="base64-output" placeholder="Base64 output..."></textarea>
+                <button onclick="copyText('base64-output')">Copy</button>
+            </div>
+
+            <div class="tool-content" id="meme">
+                <input type="file" id="meme-input" accept="image/*">
+                <div class="controls">
+                    <input type="text" id="top-text" placeholder="Top text">
+                    <input type="text" id="bottom-text" placeholder="Bottom text">
+                    <button onclick="generateMeme()">Generate</button>
+                </div>
+                <canvas id="meme-canvas"></canvas>
+                <button onclick="downloadCanvas('meme-canvas', 'meme.png')" style="display:none" id="download-meme">Download</button>
+            </div>
+
+            <div class="tool-content" id="ascii">
+                <input type="file" id="ascii-input" accept="image/*">
+                <div class="controls">
+                    <input type="number" id="ascii-width" value="80" min="20" max="200">
+                    <button onclick="generateASCII()">Generate</button>
+                </div>
+                <pre id="ascii-output"></pre>
+                <button onclick="copyText('ascii-output')" style="display:none" id="copy-ascii">Copy</button>
+            </div>
+
+            <div class="tool-content" id="pdf-img">
+                <div>
+                    <h3>Images to PDF</h3>
+                    <input type="file" id="images-input" accept="image/*" multiple>
+                    <button onclick="imagesToPDF()">Convert</button>
+                    <button onclick="downloadPDF()" style="display:none" id="download-pdf">Download PDF</button>
+                </div>
+            </div>
+
+            <div class="tool-content" id="bg-remove">
+                <input type="file" id="bg-input" accept="image/*">
+                <div class="controls">
+                    <input type="range" id="threshold" min="0" max="255" value="128" oninput="document.getElementById('threshold-val').textContent=this.value">
+                    <span id="threshold-val">128</span>
+                    <button onclick="removeBG()">Remove BG</button>
+                </div>
+                <canvas id="bg-canvas"></canvas>
+                <button onclick="downloadCanvas('bg-canvas', 'no-bg.png')" style="display:none" id="download-bg">Download</button>
+            </div>
+        </div>
+
+        <!-- Audio Tools -->
+        <div class="category-content" id="audio">
+            <div class="tool-tabs">
+                <button class="tool-btn active" data-tool="audio-cut">Audio Cut</button>
+                <button class="tool-btn" data-tool="recorder">Recorder</button>
+                <button class="tool-btn" data-tool="tts">Text-to-Speech</button>
+            </div>
+
+            <div class="tool-content active" id="audio-cut">
+                <input type="file" id="audio-input" accept="audio/*">
+                <div class="controls">
+                    <input type="number" id="start-time" placeholder="Start (s)" step="0.1">
+                    <input type="number" id="end-time" placeholder="End (s)" step="0.1">
+                    <button onclick="cutAudio()">Cut</button>
+                </div>
+                <audio id="audio-player" controls style="width:100%"></audio>
+                <button onclick="downloadAudio()" style="display:none" id="download-audio">Download</button>
+            </div>
+
+            <div class="tool-content" id="recorder">
+                <div class="controls">
+                    <button onclick="startRecording()" id="start-rec">Start Recording</button>
+                    <button onclick="stopRecording()" id="stop-rec" disabled>Stop</button>
+                    <select id="audio-format">
+                        <option value="audio/webm">WebM</option>
+                        <option value="audio/mp4">MP4</option>
+                    </select>
+                </div>
+                <audio id="recorded-audio" controls style="width:100%"></audio>
+                <button onclick="downloadRecording()" style="display:none" id="download-rec">Download</button>
+            </div>
+
+            <div class="tool-content" id="tts">
+                <textarea id="tts-text" placeholder="Enter text to speak..."></textarea>
+                <div class="controls">
+                    <select id="voice-select"></select>
+                    <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
+                    <span>Rate: <span id="rate-val">1</span></span>
+                    <button onclick="speakText()">Speak</button>
+                    <button onclick="stopSpeaking()">Stop</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Tools -->
+        <div class="category-content" id="video">
+            <div class="tool-tabs">
+                <button class="tool-btn active" data-tool="video-extract">Extract Audio</button>
+                <button class="tool-btn" data-tool="video-resize">Video Resize</button>
+                <button class="tool-btn" data-tool="gif-maker">GIF Maker</button>
+            </div>
+
+            <div class="tool-content active" id="video-extract">
+                <input type="file" id="video-input" accept="video/*">
+                <button onclick="extractAudio()">Extract MP3</button>
+                <div id="video-progress"></div>
+            </div>
+
+            <div class="tool-content" id="video-resize">
+                <input type="file" id="video-resize-input" accept="video/*">
+                <div class="controls">
+                    <input type="number" id="video-width" placeholder="Width">
+                    <input type="number" id="video-height" placeholder="Height">
+                    <button onclick="resizeVideo()">Resize</button>
+                </div>
+                <div id="video-resize-progress"></div>
+            </div>
+
+            <div class="tool-content" id="gif-maker">
+                <input type="file" id="gif-input" accept="video/*">
+                <div class="controls">
+                    <input type="number" id="gif-start" placeholder="Start (s)" step="0.1">
+                    <input type="number" id="gif-duration" placeholder="Duration (s)" step="0.1" value="3">
+                    <button onclick="makeGIF()">Make GIF</button>
+                </div>
+                <div id="gif-progress"></div>
+            </div>
+        </div>
+
+        <!-- File Tools -->
+        <div class="category-content" id="file">
+            <div class="tool-tabs">
+                <button class="tool-btn active" data-tool="word-count">Word Count</button>
+                <button class="tool-btn" data-tool="case-convert">Case Convert</button>
+                <button class="tool-btn" data-tool="text-clean">Text Clean</button>
+                <button class="tool-btn" data-tool="pdf-tools">PDF Tools</button>
+            </div>
+
+            <div class="tool-content active" id="word-count">
+                <textarea id="word-text" placeholder="Enter text to count..."></textarea>
+                <div class="stats">
+                    <span>Words: <span id="word-count-val">0</span></span>
+                    <span>Characters: <span id="char-count-val">0</span></span>
+                    <span>Lines: <span id="line-count-val">0</span></span>
+                </div>
+            </div>
+
+            <div class="tool-content" id="case-convert">
+                <textarea id="case-text" placeholder="Enter text to convert..."></textarea>
+                <div class="controls">
+                    <button onclick="convertCase('upper')">UPPER</button>
+                    <button onclick="convertCase('lower')">lower</button>
+                    <button onclick="convertCase('title')">Title Case</button>
+                    <button onclick="convertCase('sentence')">Sentence case</button>
+                </div>
+                <textarea id="case-output" readonly></textarea>
+            </div>
+
+            <div class="tool-content" id="text-clean">
+                <textarea id="clean-text" placeholder="Enter text to clean..."></textarea>
+                <div class="controls">
+                    <button onclick="removeLineBreaks()">Remove Line Breaks</button>
+                    <button onclick="removeExtraSpaces()">Remove Extra Spaces</button>
+                    <button onclick="trimWhitespace()">Trim Whitespace</button>
+                </div>
+                <textarea id="clean-output" readonly></textarea>
+            </div>
+
+            <div class="tool-content" id="pdf-tools">
+                <div>
+                    <h3>Merge PDFs</h3>
+                    <input type="file" id="pdf-merge-input" accept=".pdf" multiple>
+                    <button onclick="mergePDFs()">Merge</button>
+                </div>
+                <div>
+                    <h3>Split PDF</h3>
+                    <input type="file" id="pdf-split-input" accept=".pdf">
+                    <input type="text" id="split-pages" placeholder="Pages (e.g., 1,3,5-7)">
+                    <button onclick="splitPDF()">Split</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Web Tools -->
+        <div class="category-content" id="web">
+            <div class="tool-tabs">
+                <button class="tool-btn active" data-tool="qr-code">QR Code</button>
+                <button class="tool-btn" data-tool="json-format">JSON</button>
+                <button class="tool-btn" data-tool="regex-test">Regex</button>
+                <button class="tool-btn" data-tool="base64-text">Base64 Text</button>
+            </div>
+
+            <div class="tool-content active" id="qr-code">
+                <textarea id="qr-text" placeholder="Enter text or URL..."></textarea>
+                <button onclick="generateQR()">Generate QR</button>
+                <div id="qr-output"></div>
+            </div>
+
+            <div class="tool-content" id="json-format">
+                <textarea id="json-input" placeholder="Enter JSON..."></textarea>
+                <div class="controls">
+                    <button onclick="formatJSON()">Format</button>
+                    <button onclick="minifyJSON()">Minify</button>
+                    <button onclick="validateJSON()">Validate</button>
+                </div>
+                <textarea id="json-output" readonly></textarea>
+                <div id="json-error"></div>
+            </div>
+
+            <div class="tool-content" id="regex-test">
+                <input type="text" id="regex-pattern" placeholder="Enter regex pattern...">
+                <input type="text" id="regex-flags" placeholder="Flags (g,i,m)" value="g">
+                <textarea id="regex-text" placeholder="Enter test text..."></textarea>
+                <button onclick="testRegex()">Test</button>
+                <div id="regex-results"></div>
+            </div>
+
+            <div class="tool-content" id="base64-text">
+                <textarea id="base64-text-input" placeholder="Enter text..."></textarea>
+                <div class="controls">
+                    <button onclick="encodeBase64Text()">Encode</button>
+                    <button onclick="decodeBase64Text()">Decode</button>
+                </div>
+                <textarea id="base64-text-output" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- Fun Tools -->
+        <div class="category-content" id="fun">
+            <div class="tool-tabs">
+                <button class="tool-btn active" data-tool="password-gen">Password</button>
+                <button class="tool-btn" data-tool="username-gen">Username</button>
+                <button class="tool-btn" data-tool="color-picker">Color Picker</button>
+                <button class="tool-btn" data-tool="gradient-gen">Gradient</button>
+                <button class="tool-btn" data-tool="drawing-pad">Drawing</button>
+            </div>
+
+            <div class="tool-content active" id="password-gen">
+                <div class="controls">
+                    <label><input type="checkbox" id="include-upper" checked> Uppercase</label>
+                    <label><input type="checkbox" id="include-lower" checked> Lowercase</label>
+                    <label><input type="checkbox" id="include-numbers" checked> Numbers</label>
+                    <label><input type="checkbox" id="include-symbols"> Symbols</label>
+                    <input type="number" id="password-length" value="12" min="4" max="50">
+                    <button onclick="generatePassword()">Generate</button>
+                </div>
+                <input type="text" id="password-output" readonly>
+                <button onclick="copyText('password-output')">Copy</button>
+            </div>
+
+            <div class="tool-content" id="username-gen">
+                <div class="controls">
+                    <select id="username-style">
+                        <option value="adjective-noun">Adjective + Noun</option>
+                        <option value="random">Random</option>
+                        <option value="tech">Tech Style</option>
+                    </select>
+                    <button onclick="generateUsername()">Generate</button>
+                </div>
+                <input type="text" id="username-output" readonly>
+                <button onclick="copyText('username-output')">Copy</button>
+            </div>
+
+            <div class="tool-content" id="color-picker">
+                <input type="color" id="color-input" value="#ff0000">
+                <div class="color-info">
+                    <div>HEX: <span id="hex-value">#ff0000</span></div>
+                    <div>RGB: <span id="rgb-value">rgb(255, 0, 0)</span></div>
+                    <div>HSL: <span id="hsl-value">hsl(0, 100%, 50%)</span></div>
+                </div>
+                <button onclick="copyText('hex-value')">Copy HEX</button>
+            </div>
+
+            <div class="tool-content" id="gradient-gen">
+                <div class="controls">
+                    <input type="color" id="gradient-start" value="#ff0000">
+                    <input type="color" id="gradient-end" value="#0000ff">
+                    <select id="gradient-direction">
+                        <option value="to right">Horizontal</option>
+                        <option value="to bottom">Vertical</option>
+                        <option value="45deg">Diagonal</option>
+                    </select>
+                    <button onclick="generateGradient()">Generate</button>
+                </div>
+                <div id="gradient-preview"></div>
+                <input type="text" id="gradient-css" readonly>
+                <button onclick="copyText('gradient-css')">Copy CSS</button>
+            </div>
+
+            <div class="tool-content" id="drawing-pad">
+                <div class="controls">
+                    <input type="color" id="brush-color" value="#000000">
+                    <input type="range" id="brush-size" min="1" max="50" value="5">
+                    <button onclick="clearCanvas()">Clear</button>
+                    <button onclick="downloadCanvas('drawing-canvas', 'drawing.png')">Download</button>
+                </div>
+                <canvas id="drawing-canvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Toggle -->
+        <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-header">
+                <span>Categories</span>
+                <button onclick="toggleMobileNav()">✕</button>
+            </div>
+            <div class="mobile-category-grid">
+                <button class="mobile-category-btn active" data-category="image">🖼<br>Image</button>
+                <button class="mobile-category-btn" data-category="audio">🎵<br>Audio</button>
+                <button class="mobile-category-btn" data-category="video">🎥<br>Video</button>
+                <button class="mobile-category-btn" data-category="file">📚<br>File</button>
+                <button class="mobile-category-btn" data-category="web">🌐<br>Web</button>
+                <button class="mobile-category-btn" data-category="fun">🎮<br>Fun</button>
+            </div>
+        </div>
+        
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobile-overlay" onclick="toggleMobileNav()"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
