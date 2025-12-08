@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoltNexis Documentation Hub - Complete Guide to All Products & Services</title>
+  <meta name="description" content="Comprehensive documentation for all VoltNexis products and services including FixMitra, ServeTracko, CodeXaurA, PureParent, WanderMatch, and digital tools. Free resources and platform services.">
+  <meta name="keywords" content="VoltNexis, documentation, products, services, FixMitra, ServeTracko, CodeXaurA, PureParent, WanderMatch, digital tools, free software, platform services">
+  <meta name="author" content="VoltNexis">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://voltnexis.github.io/docs/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voltnexis.github.io/docs/">
+  <meta property="og:title" content="VoltNexis Documentation Hub - Complete Guide to All Products & Services">
+  <meta property="og:description" content="Comprehensive documentation for all VoltNexis products and services including FixMitra, ServeTracko, CodeXaurA, PureParent, WanderMatch, and digital tools.">
+  <meta property="og:image" content="https://voltnexis.github.io/docs/assets/og-image.jpg">
+  <meta property="og:site_name" content="VoltNexis Documentation">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://voltnexis.github.io/docs/">
+  <meta property="twitter:title" content="VoltNexis Documentation Hub - Complete Guide to All Products & Services">
+  <meta property="twitter:description" content="Comprehensive documentation for all VoltNexis products and services including FixMitra, ServeTracko, CodeXaurA, PureParent, WanderMatch, and digital tools.">
+  <meta property="twitter:image" content="https://voltnexis.github.io/docs/assets/twitter-image.jpg">
+  <meta property="twitter:site" content="@voltnexis">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#4F46E5">
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VoltNexis",
+    "url": "https://voltnexis.github.io/docs",
+    "logo": "https://voltnexis.github.io/docs/assets/logo.png",
+    "description": "Comprehensive documentation for all VoltNexis products and services including FixMitra, ServeTracko, CodeXaurA, PureParent, WanderMatch, and digital tools.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-9778719567",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    },
+    "sameAs": [
+      "https://instagram.com/voltnexis",
+      "https://x.com/voltnexis",
+      "https://youtube.com/@voltnexis"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "VoltNexis Products & Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "SoftwareApplication",
+            "name": "FixMitra",
+            "description": "Service provider platform connecting users with verified professionals"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "SoftwareApplication",
+            "name": "ServeTracko",
+            "description": "Free business management tool with invoice generator"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "SoftwareApplication",
+            "name": "DocConvert",
+            "description": "Universal file converter supporting unlimited conversions"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .fade-in { animation: fadeIn 1s ease-in-out forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .category-card { transition: all 0.3s ease; }
+    .category-card:hover { transform: translateY(-5px); }
+  </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center text-2xl font-bold text-indigo-600">
+        <img src="logo.png" alt="VoltNexis Logo" class="w-10 h-10 mr-2 rounded-md">
+        VoltNexis
+      </div>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#subsidiary" class="hover:text-indigo-600 transition">Subsidiary</a>
+        <a href="#business" class="hover:text-indigo-600 transition">Business</a>
+        <a href="#platform" class="hover:text-indigo-600 transition">Platform</a>
+        <a href="#tools" class="hover:text-indigo-600 transition">Tools</a>
+      </nav>
+      <button class="md:hidden" onclick="toggleMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <div id="mobileMenu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden">
+        <div class="px-6 py-4 space-y-2">
+          <a href="#subsidiary" class="block hover:text-indigo-600 transition">Subsidiary</a>
+          <a href="#business" class="block hover:text-indigo-600 transition">Business</a>
+          <a href="#platform" class="block hover:text-indigo-600 transition">Platform</a>
+          <a href="#tools" class="block hover:text-indigo-600 transition">Tools</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-32 text-center bg-gradient-to-b from-indigo-100 to-white py-20">
+    <h1 class="text-5xl font-extrabold text-gray-900 fade-in">VoltNexis Documentation Hub</h1>
+    <p class="mt-4 text-lg text-gray-700 fade-in">Complete documentation for all VoltNexis programs, tools, and services</p>
+    <div class="mt-8 space-x-4 fade-in">
+      <a href="#subsidiary" class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">Browse Documentation</a>
+      <a href="#contact" class="bg-white border border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg shadow hover:bg-indigo-50 transition">Get Support</a>
+    </div>
+  </section>
+
+  <!-- Subsidiary Companies -->
+  <section id="subsidiary" class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-12 fade-in">Subsidiary Companies</h2>
+    <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold text-indigo-600 mb-4">FixMitra</h3>
+        <p class="text-gray-600 mb-6">Connect with on-site service providers effortlessly. Free for users, small commission from providers only after service completion.</p>
+        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">6-Month Free Trial!</span>
+        <div class="mt-6">
+          <a href="fixmitra/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Solutions -->
+  <section id="business" class="bg-gray-100 py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 fade-in">Business Solutions</h2>
+      <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+        <h3 class="text-2xl font-bold text-indigo-600 mb-4">ServeTracko</h3>
+        <p class="text-gray-600 mb-4">Optimized database solution for non-tech users. Store customer details, orders, payment records.</p>
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-indigo-600 rounded-full mr-3"></span>
+            <span>Instant invoice generator</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-indigo-600 rounded-full mr-3"></span>
+            <span>WhatsApp integration</span>
+          </div>
+        </div>
+        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4">Free</span>
+        <a href="servetracko/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Development Tools -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-12 fade-in">Development Tools</h2>
+    <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+      <h3 class="text-2xl font-bold text-indigo-600 mb-4">CodeXaurA</h3>
+      <p class="text-gray-600 mb-6">AI coding assistant fully optimized for developers. Enhance productivity with intelligent suggestions and automation.</p>
+      <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4">Free</span>
+      <a href="codexaura/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Lifestyle Apps -->
+  <section class="bg-gray-100 py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 fade-in">Lifestyle Apps</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+          <h3 class="text-2xl font-bold text-indigo-600 mb-4">PureParent</h3>
+          <p class="text-gray-600 mb-4">Complete parenting assistance app with comprehensive tools, baby and mother shopping features.</p>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium mr-4">Parenting</span>
+          <div class="mt-4">
+            <a href="pureparent/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+          </div>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+          <h3 class="text-2xl font-bold text-indigo-600 mb-4">WanderMatch</h3>
+          <p class="text-gray-600 mb-4">Connect with travelers worldwide. Community features, personal profiles, chat functionality.</p>
+          <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4">Free</span>
+          <div class="mt-4">
+            <a href="wandermatch/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Creative Tools -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-12 fade-in">Creative Tools</h2>
+    <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+      <h3 class="text-2xl font-bold text-indigo-600 mb-4">PromptVerse</h3>
+      <p class="text-gray-600 mb-6">AI art prompt library with user upload capabilities. Discover and share creative prompts for AI art generation.</p>
+      <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4">Free</span>
+      <a href="promptverse/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+    </div>
+  </section>
+
+  <!-- VoltNexis Platform Services -->
+  <section id="platform" class="bg-gray-100 py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 fade-in">VoltNexis Platform Services</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg category-card">
+          <h3 class="text-xl font-bold text-indigo-600 mb-3">Web Creator</h3>
+          <p class="text-gray-600 mb-4">Professional websites at 1/4 the price, 4x faster delivery.</p>
+          <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Web Development</span>
+          <div class="mt-4">
+            <a href="webcreator/index.html" class="text-indigo-600 hover:underline">Learn More →</a>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg category-card">
+          <h3 class="text-xl font-bold text-indigo-600 mb-3">Web2App</h3>
+          <p class="text-gray-600 mb-4">Convert any website to mobile app using just the URL.</p>
+          <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
+          <div class="mt-4">
+            <a href="web2app/index.html" class="text-indigo-600 hover:underline">Learn More →</a>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg category-card">
+          <h3 class="text-xl font-bold text-indigo-600 mb-3">Learn</h3>
+          <p class="text-gray-600 mb-4">Comprehensive learning platform with certificates.</p>
+          <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
+          <div class="mt-4">
+            <a href="learn/index.html" class="text-indigo-600 hover:underline">Learn More →</a>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg category-card">
+          <h3 class="text-xl font-bold text-indigo-600 mb-3">eShop</h3>
+          <p class="text-gray-600 mb-4">Electronics marketplace featuring USB devices, NFC cards, and tech accessories.</p>
+          <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">E-commerce</span>
+          <div class="mt-4">
+            <a href="shop/index.html" class="text-indigo-600 hover:underline">Learn More →</a>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg category-card">
+          <h3 class="text-xl font-bold text-indigo-600 mb-3">PC Build</h3>
+          <p class="text-gray-600 mb-4">Custom PC building service with high-quality components at low prices.</p>
+          <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Hardware</span>
+          <div class="mt-4">
+            <a href="builds/index.html" class="text-indigo-600 hover:underline">Learn More →</a>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-lg category-card">
+          <h3 class="text-xl font-bold text-indigo-600 mb-3">Apps Hub</h3>
+          <p class="text-gray-600 mb-4">Free repository of Android, iOS, Windows, and Linux applications.</p>
+          <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
+          <div class="mt-4">
+            <a href="apps/index.html" class="text-indigo-600 hover:underline">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Tools & Utilities -->
+  <section id="tools" class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-12 fade-in">Digital Tools & Utilities</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Songs</h3>
+        <p class="text-gray-600 text-sm mb-3">Free music streaming platform</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="songs/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Smart Clock</h3>
+        <p class="text-gray-600 text-sm mb-3">Online clock with customizable backgrounds</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="clock/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">DocConvert</h3>
+        <p class="text-gray-600 text-sm mb-3">Universal file converter</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="doconvert/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Wallpapers</h3>
+        <p class="text-gray-600 text-sm mb-3">High-quality wallpapers collection</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="wallpapers/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Timer</h3>
+        <p class="text-gray-600 text-sm mb-3">Student-focused productivity timer</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="timer/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Quotes</h3>
+        <p class="text-gray-600 text-sm mb-3">Inspirational quotes collection</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="quotes/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Image Tool</h3>
+        <p class="text-gray-600 text-sm mb-3">Secure image format converter</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="imgtool/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Video Tool</h3>
+        <p class="text-gray-600 text-sm mb-3">Browser-based video converter</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="vidtool/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Browser Themes</h3>
+        <p class="text-gray-600 text-sm mb-3">Themes for all major browsers</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="themes/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">OS Hub</h3>
+        <p class="text-gray-600 text-sm mb-3">Original OS files repository</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="oshub/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Hub</h3>
+        <p class="text-gray-600 text-sm mb-3">Community platform for discussions</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="vnhub/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Tools</h3>
+        <p class="text-gray-600 text-sm mb-3">Simple utility tools collection</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="tools/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Watch and Earn</h3>
+        <p class="text-gray-600 text-sm mb-3">Earn rewards by watching videos</p>
+        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Earn</span>
+        <div class="mt-3">
+          <a href="watch&earn/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Downloader</h3>
+        <p class="text-gray-600 text-sm mb-3">Download videos and media files</p>
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Free</span>
+        <div class="mt-3">
+          <a href="downloader/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Games</h3>
+        <p class="text-gray-600 text-sm mb-3">Collection of fun online games</p>
+        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Entertainment</span>
+        <div class="mt-3">
+          <a href="games/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg category-card text-center">
+        <h3 class="text-lg font-bold text-indigo-600 mb-2">Kerala Bus Samayam</h3>
+        <p class="text-gray-600 text-sm mb-3">Real-time Kerala bus timings</p>
+        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Transport</span>
+        <div class="mt-3">
+          <a href="bustime/index.html" class="text-indigo-600 text-sm hover:underline">Learn More →</a>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- About VoltNexis -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-12 fade-in">About</h2>
+    <div class="bg-white p-8 rounded-xl shadow-lg category-card">
+      <h3 class="text-2xl font-bold text-indigo-600 mb-4">About VoltNexis</h3>
+      <p class="text-gray-600 mb-6">Learn about our company and mission.</p>
+      <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4">Info</span>
+      <a href="about/index.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-white border-t py-12 mt-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-lg font-bold text-indigo-600 mb-4">VoltNexis</h3>
+          <p class="text-gray-600">Comprehensive solutions across multiple domains</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Quick Links</h4>
+          <div class="space-y-2">
+            <a href="#subsidiary" class="block text-gray-600 hover:text-indigo-600">Subsidiary</a>
+            <a href="#business" class="block text-gray-600 hover:text-indigo-600">Business Solutions</a>
+            <a href="#platform" class="block text-gray-600 hover:text-indigo-600">Platform Services</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Categories</h4>
+          <div class="space-y-2">
+            <a href="#" class="block text-gray-600 hover:text-indigo-600">Development Tools</a>
+            <a href="#" class="block text-gray-600 hover:text-indigo-600">Lifestyle Apps</a>
+            <a href="#tools" class="block text-gray-600 hover:text-indigo-600">Digital Tools</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Support</h4>
+          <div class="space-y-2">
+            <a href="contact.html" class="block text-gray-600 hover:text-indigo-600">Contact</a>
+            <a href="privacy.html" class="block text-gray-600 hover:text-indigo-600">Privacy Policy</a>
+            <a href="terms.html" class="block text-gray-600 hover:text-indigo-600">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-600">&copy; 2025 VoltNexis. All rights reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="https://x.com/voltnexis" class="text-gray-400 hover:text-indigo-600">X</a>
+          <a href="https://instagram.com/voltnexis" class="text-gray-400 hover:text-indigo-600">Instagram</a>
+          <a href="https://youtube.com/@voltnexis" class="text-gray-400 hover:text-indigo-600">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

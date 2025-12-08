@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Kerala Bus Time</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>🚌 Kerala Bus Time</h1>
+        </header>
+
+        <main>
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-tabs">
+                    <button class="tab active" data-tab="route">Route Search</button>
+                    <button class="tab" data-tab="bus">Bus Number</button>
+                </div>
+
+                <div class="tab-content active" id="route-tab">
+                    <input type="text" id="origin" placeholder="From (e.g., Ernakulam)" class="input">
+                    <input type="text" id="destination" placeholder="To (e.g., Kottayam)" class="input">
+                    <button id="search-route" class="btn-primary">Search Routes</button>
+                </div>
+
+                <div class="tab-content" id="bus-tab">
+                    <input type="text" id="bus-number" placeholder="Bus Number (e.g., KL-07-1234)" class="input">
+                    <button id="search-bus" class="btn-primary">Search Bus</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="results" style="display: none;">
+                <h2>Bus Timings</h2>
+                <div id="results-list"></div>
+            </section>
+
+            <!-- User Contribution -->
+            <section class="contribute-section" style="display: none;">
+                <div class="contribute-tabs">
+                    <button class="contribute-tab active" data-tab="timing">Update Timing</button>
+                    <button class="contribute-tab" data-tab="report">Report Issue</button>
+                </div>
+                
+                <div class="contribute-content active" id="timing-content">
+                    <h3>Update Bus Timing</h3>
+                    <select id="route-select" class="input">
+                        <option value="">Select Route</option>
+                    </select>
+                    <input type="time" id="actual-time" class="input">
+                    <input type="text" id="stop-name" placeholder="Stop Name" class="input">
+                    <button id="submit-update" class="btn-secondary">Submit Update</button>
+                </div>
+                
+                <div class="contribute-content" id="report-content">
+                    <h3>Report Bus Issue</h3>
+                    <select id="issue-route" class="input">
+                        <option value="">Select Route</option>
+                    </select>
+                    <select id="issue-type" class="input">
+                        <option value="">Issue Type</option>
+                        <option value="delayed">Bus Delayed</option>
+                        <option value="cancelled">Bus Cancelled</option>
+                        <option value="breakdown">Bus Breakdown</option>
+                        <option value="overcrowded">Overcrowded</option>
+                    </select>
+                    <textarea id="issue-details" class="input" placeholder="Additional details (optional)"></textarea>
+                    <button id="submit-report" class="btn-secondary">Submit Report</button>
+                </div>
+            </section>
+            
+            <!-- Favorites Section -->
+            <section class="favorites-section" style="display: none;">
+                <h2>My Favorites</h2>
+                <div id="favorites-list"></div>
+                <div class="empty-state" id="empty-favorites" style="display: none;">
+                    <p>No favorite routes yet. Add some from search results!</p>
+                </div>
+            </section>
+            
+            <!-- User Reports Section -->
+            <section class="reports-section" style="display: none;">
+                <h2>Recent Updates</h2>
+                <div id="user-reports-list"></div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-section="search">🔍<br>Search</button>
+            <button class="nav-btn" data-section="favorites">⭐<br>Favorites</button>
+            <button class="nav-btn" data-section="contribute">📝<br>Update</button>
+            <button class="nav-btn" data-section="reports">📊<br>Reports</button>
+        </nav>
+        
+        <!-- Filters Modal -->
+        <div class="modal" id="filters-modal" style="display: none;">
+            <div class="modal-content">
+                <h3>Filter & Sort Buses</h3>
+                <div class="filter-group">
+                    <label>Sort By:</label>
+                    <select id="sort-by" class="input">
+                        <option value="time">Sort by Time</option>
+                        <option value="fare">Sort by Fare</option>
+                        <option value="rating">Sort by Rating</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Bus Type:</label>
+                    <select id="bus-type-filter" class="input">
+                        <option value="">All Types</option>
+                        <option value="Ordinary">Ordinary</option>
+                        <option value="Fast Passenger">Fast Passenger</option>
+                        <option value="Super Fast">Super Fast</option>
+                        <option value="Deluxe AC">Deluxe AC</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Operator:</label>
+                    <select id="operator-filter" class="input">
+                        <option value="">All Operators</option>
+                        <option value="KSRTC">KSRTC</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+                <div class="filter-buttons">
+                    <button id="apply-filters" class="btn-primary">Apply</button>
+                    <button id="clear-filters" class="btn-secondary">Clear</button>
+                    <button id="close-filters" class="btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app-updated.js"></script>
+</body>
+</html>

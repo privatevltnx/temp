@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Details - Kerala Bus Time</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="app">
+        <header class="details-header">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <h1 id="bus-title">Bus Details</h1>
+            <button class="favorite-btn" id="favorite-btn" onclick="toggleFavorite()">⭐</button>
+        </header>
+
+        <main class="details-main">
+            <!-- Bus Image -->
+            <div class="bus-image-container">
+                <img id="bus-image" src="" alt="Bus Image" class="bus-image">
+                <div class="bus-overlay">
+                    <div class="bus-number-large" id="bus-number-large"></div>
+                    <div class="operator-badge-large" id="operator-badge-large"></div>
+                </div>
+            </div>
+
+            <!-- Quick Info -->
+            <div class="quick-info">
+                <div class="info-item">
+                    <span class="info-label">Route</span>
+                    <span class="info-value" id="route-info"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Type</span>
+                    <span class="info-value" id="type-info"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Fare</span>
+                    <span class="info-value" id="fare-info"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Duration</span>
+                    <span class="info-value" id="duration-info"></span>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="details-tabs">
+                <button class="details-tab active" data-tab="schedule">Schedule</button>
+                <button class="details-tab" data-tab="route">Route</button>
+                <button class="details-tab" data-tab="reviews">Reviews</button>
+                <button class="details-tab" data-tab="updates">Live Updates</button>
+            </div>
+
+            <!-- Schedule Tab -->
+            <div class="tab-content active" id="schedule-tab">
+                <div class="schedule-section">
+                    <h3>Today's Schedule</h3>
+                    <div class="timings-grid" id="timings-grid"></div>
+                    <div class="schedule-info">
+                        <div class="schedule-item">
+                            <strong>First Bus:</strong> <span id="first-bus"></span>
+                        </div>
+                        <div class="schedule-item">
+                            <strong>Last Bus:</strong> <span id="last-bus"></span>
+                        </div>
+                        <div class="schedule-item">
+                            <strong>Frequency:</strong> <span id="frequency"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Route Tab -->
+            <div class="tab-content" id="route-tab">
+                <div class="route-section">
+                    <h3>Complete Route</h3>
+                    <div class="route-timeline" id="route-timeline"></div>
+                </div>
+            </div>
+
+            <!-- Reviews Tab -->
+            <div class="tab-content" id="reviews-tab">
+                <div class="reviews-section">
+                    <div class="rating-summary">
+                        <div class="rating-score" id="rating-score"></div>
+                        <div class="rating-details" id="rating-details"></div>
+                    </div>
+                    <button class="btn-primary" onclick="showRatingModal()">Rate This Bus</button>
+                    <div class="reviews-list" id="reviews-list"></div>
+                </div>
+            </div>
+
+            <!-- Live Updates Tab -->
+            <div class="tab-content" id="updates-tab">
+                <div class="updates-section">
+                    <h3>Live Updates</h3>
+                    <div class="update-form">
+                        <select id="update-stop" class="input">
+                            <option value="">Select Stop</option>
+                        </select>
+                        <input type="time" id="update-time" class="input">
+                        <button class="btn-secondary" onclick="submitLiveUpdate()">Report Timing</button>
+                    </div>
+                    <div class="live-updates-list" id="live-updates-list"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Rating Modal -->
+        <div class="modal" id="rating-modal" style="display: none;">
+            <div class="modal-content">
+                <h3>Rate This Bus</h3>
+                <div class="rating-categories">
+                    <div class="rating-category">
+                        <label>Cleanliness</label>
+                        <div class="star-rating" data-category="cleanliness"></div>
+                    </div>
+                    <div class="rating-category">
+                        <label>Punctuality</label>
+                        <div class="star-rating" data-category="punctuality"></div>
+                    </div>
+                    <div class="rating-category">
+                        <label>Comfort</label>
+                        <div class="star-rating" data-category="comfort"></div>
+                    </div>
+                </div>
+                <textarea id="review-text" class="input" placeholder="Write your review (optional)"></textarea>
+                <div class="modal-buttons">
+                    <button class="btn-primary" onclick="submitRating()">Submit Rating</button>
+                    <button class="btn-secondary" onclick="closeRatingModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bus-details.js"></script>
+</body>
+</html>

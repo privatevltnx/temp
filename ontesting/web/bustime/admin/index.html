@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Kerala Bus Time</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-app">
+        <header class="admin-header">
+            <h1>🚌 Kerala Bus Time - Admin Panel</h1>
+            <div class="admin-user">
+                <span>Welcome, Admin</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <nav class="admin-nav">
+            <button class="nav-item active" data-section="dashboard">📊 Dashboard</button>
+            <button class="nav-item" data-section="buses">🚌 Manage Buses</button>
+            <button class="nav-item" data-section="routes">🛣️ Manage Routes</button>
+            <button class="nav-item" data-section="updates">📝 User Updates</button>
+            <button class="nav-item" data-section="reports">⚠️ Reports</button>
+            <button class="nav-item" data-section="analytics">📈 Analytics</button>
+        </nav>
+
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section class="admin-section active" id="dashboard">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-buses">0</div>
+                        <div class="stat-label">Total Buses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-routes">0</div>
+                        <div class="stat-label">Active Routes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pending-updates">0</div>
+                        <div class="stat-label">Pending Updates</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-users">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div id="recent-activity-list"></div>
+                </div>
+            </section>
+
+            <!-- Buses Management -->
+            <section class="admin-section" id="buses">
+                <div class="section-header">
+                    <h2>Manage Buses</h2>
+                    <button class="btn-primary" onclick="showAddBusModal()">+ Add New Bus</button>
+                </div>
+                
+                <div class="filters">
+                    <input type="text" id="bus-search" placeholder="Search buses..." class="input">
+                    <select id="operator-filter" class="input">
+                        <option value="">All Operators</option>
+                        <option value="KSRTC">KSRTC</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </div>
+                
+                <div class="buses-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bus Number</th>
+                                <th>Route</th>
+                                <th>Operator</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="buses-tbody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Routes Management -->
+            <section class="admin-section" id="routes">
+                <div class="section-header">
+                    <h2>Manage Routes</h2>
+                    <button class="btn-primary" onclick="showAddRouteModal()">+ Add New Route</button>
+                </div>
+                <div id="routes-list"></div>
+            </section>
+
+            <!-- User Updates -->
+            <section class="admin-section" id="updates">
+                <h2>User Updates Moderation</h2>
+                <div class="updates-filters">
+                    <select id="update-status-filter" class="input">
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <div id="updates-list"></div>
+            </section>
+
+            <!-- Reports -->
+            <section class="admin-section" id="reports">
+                <h2>Issue Reports</h2>
+                <div id="reports-list"></div>
+            </section>
+
+            <!-- Analytics -->
+            <section class="admin-section" id="analytics">
+                <h2>Analytics</h2>
+                <div class="analytics-grid">
+                    <div class="chart-container">
+                        <h3>Popular Routes</h3>
+                        <div id="popular-routes-chart"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>User Activity</h3>
+                        <div id="user-activity-chart"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Add Bus Modal -->
+        <div class="modal" id="add-bus-modal" style="display: none;">
+            <div class="modal-content large">
+                <h3>Add New Bus</h3>
+                <form id="add-bus-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Bus Number</label>
+                            <input type="text" id="bus-number" class="input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Route</label>
+                            <input type="text" id="bus-route" class="input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Operator</label>
+                            <select id="bus-operator" class="input" required>
+                                <option value="">Select Operator</option>
+                                <option value="KSRTC">KSRTC</option>
+                                <option value="Private">Private</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bus Type</label>
+                            <select id="bus-type" class="input" required>
+                                <option value="">Select Type</option>
+                                <option value="Ordinary">Ordinary</option>
+                                <option value="Fast Passenger">Fast Passenger</option>
+                                <option value="Super Fast">Super Fast</option>
+                                <option value="Deluxe AC">Deluxe AC</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Photo URL</label>
+                            <input type="url" id="bus-photo" class="input">
+                        </div>
+                        <div class="form-group">
+                            <label>Frequency</label>
+                            <input type="text" id="bus-frequency" class="input" placeholder="e.g., 2 hours">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Stops (comma separated)</label>
+                        <textarea id="bus-stops" class="input" placeholder="Stop1, Stop2, Stop3..."></textarea>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="submit" class="btn-primary">Add Bus</button>
+                        <button type="button" class="btn-secondary" onclick="closeAddBusModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

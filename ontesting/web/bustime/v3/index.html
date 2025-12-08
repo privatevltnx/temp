@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Details | Kerala Bus Time</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .stop-item {
+            transition: all 0.2s ease;
+        }
+        .stop-item:hover {
+            background-color: #f3f4f6;
+        }
+        .time-chip {
+            transition: all 0.2s ease;
+        }
+        .time-chip:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex items-center">
+            <button onclick="window.history.back()" class="mr-2">
+                <i data-feather="chevron-left" class="text-gray-600"></i>
+            </button>
+            <h1 class="text-lg font-bold text-gray-800">Bus Details</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6 pb-20">
+        <!-- Bus Info Card -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">KL-07-1234</h2>
+                    <p class="text-gray-600">Ernakulam → Kottayam</p>
+                    <div class="flex items-center mt-2">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mr-2">KSRTC</span>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Ordinary</span>
+                    </div>
+                </div>
+                <button class="text-yellow-400 hover:text-yellow-500">
+                    <i data-feather="star" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="mt-4">
+                <div class="flex items-center text-gray-600 mb-2">
+                    <i data-feather="clock" class="mr-2 w-4 h-4"></i>
+                    <span>Frequency: Every 30 minutes</span>
+                </div>
+                <div class="flex items-center text-gray-600">
+                    <i data-feather="dollar-sign" class="mr-2 w-4 h-4"></i>
+                    <span>Approx fare: ₹50-₹80</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timings Section -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <h3 class="font-bold text-gray-800 mb-3">Departure Times</h3>
+            <div class="flex flex-wrap gap-2">
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">06:00</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">06:30</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">07:00</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">07:30</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">08:00</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">08:30</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">09:00</button>
+                <button class="time-chip px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-blue-500 hover:text-white">09:30</button>
+            </div>
+        </div>
+
+        <!-- Route Stops -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-4 border-b">
+                <h3 class="font-bold text-gray-800">Route Stops</h3>
+            </div>
+            <div class="divide-y">
+                <div class="stop-item p-4 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                        <i data-feather="map-pin" class="text-blue-500 w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Ernakulam Bus Stand</p>
+                        <p class="text-xs text-gray-500">Departure point</p>
+                    </div>
+                </div>
+                <div class="stop-item p-4 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                        <span class="text-gray-500 text-sm">1</span>
+                    </div>
+                    <div>
+                        <p class="font-medium">Edappally</p>
+                        <p class="text-xs text-gray-500">~15 mins</p>
+                    </div>
+                </div>
+                <div class="stop-item p-4 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                        <span class="text-gray-500 text-sm">2</span>
+                    </div>
+                    <div>
+                        <p class="font-medium">Aluva</p>
+                        <p class="text-xs text-gray-500">~30 mins</p>
+                    </div>
+                </div>
+                <div class="stop-item p-4 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                        <span class="text-gray-500 text-sm">3</span>
+                    </div>
+                    <div>
+                        <p class="font-medium">Perumbavoor</p>
+                        <p class="text-xs text-gray-500">~45 mins</p>
+                    </div>
+                </div>
+                <div class="stop-item p-4 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                        <span class="text-gray-500 text-sm">4</span>
+                    </div>
+                    <div>
+                        <p class="font-medium">Muvattupuzha</p>
+                        <p class="text-xs text-gray-500">~1 hour</p>
+                    </div>
+                </div>
+                <div class="stop-item p-4 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center mr-3">
+                        <i data-feather="map-pin" class="text-red-500 w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">Kottayam Bus Stand</p>
+                        <p class="text-xs text-gray-500">Final stop (~1.5 hours)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Update -->
+        <div class="mt-6 bg-white rounded-lg shadow-md p-4">
+            <h3 class="font-bold text-gray-800 mb-3">Report Update</h3>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <option>On Time</option>
+                        <option>Delayed</option>
+                        <option>Cancelled</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Stop</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <option>Select stop</option>
+                        <option>Ernakulam Bus Stand</option>
+                        <option>Edappally</option>
+                        <option>Aluva</option>
+                        <option>Perumbavoor</option>
+                        <option>Muvattupuzha</option>
+                        <option>Kottayam Bus Stand</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Actual Time</label>
+                    <input type="time" class="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200 mt-2">
+                    Submit Update
+                </button>
+            </div>
+        </div>
+
+        <!-- Recent Updates -->
+        <div class="mt-6">
+            <h3 class="font-bold text-gray-800 mb-3">Recent Updates</h3>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="space-y-3">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i data-feather="clock" class="text-blue-500"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Delayed by 15 mins at Aluva</p>
+                            <p class="text-xs text-gray-500">Reported by User123 • 30 mins ago</p>
+                            <div class="flex mt-1">
+                                <button class="text-xs text-green-500 flex items-center mr-3">
+                                    <i data-feather="thumbs-up" class="w-3 h-3 mr-1"></i>
+                                    <span>2</span>
+                                </button>
+                                <button class="text-xs text-red-500 flex items-center">
+                                    <i data-feather="thumbs-down" class="w-3 h-3 mr-1"></i>
+                                    <span>0</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i data-feather="check" class="text-green-500"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">On time at Ernakulam</p>
+                            <p class="text-xs text-gray-500">Reported by Traveler456 • 1 hour ago</p>
+                            <div class="flex mt-1">
+                                <button class="text-xs text-green-500 flex items-center mr-3">
+                                    <i data-feather="thumbs-up" class="w-3 h-3 mr-1"></i>
+                                    <span>5</span>
+                                </button>
+                                <button class="text-xs text-red-500 flex items-center">
+                                    <i data-feather="thumbs-down" class="w-3 h-3 mr-1"></i>
+                                    <span>1</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bg-white border-t fixed bottom-0 w-full">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-around">
+                <button class="py-3 px-4 text-gray-500 flex flex-col items-center">
+                    <i data-feather="search" class="w-5 h-5"></i>
+                    <span class="text-xs mt-1">Search</span>
+                </button>
+                <button class="py-3 px-4 text-blue-500 flex flex-col items-center">
+                    <i data-feather="star" class="w-5 h-5"></i>
+                    <span class="text-xs mt-1">Favorites</span>
+                </button>
+                <button class="py-3 px-4 text-gray-500 flex flex-col items-center">
+                    <i data-feather="clock" class="w-5 h-5"></i>
+                    <span class="text-xs mt-1">Updates</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        AOS.init();
+        feather.replace();
+    </script>
+</body>
+</html>
