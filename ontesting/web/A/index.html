@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midnight Encounters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Age Verification Modal -->
+    <div id="ageModal" class="modal">
+        <div class="modal-content">
+            <h2>⚠️ Adult Content Warning</h2>
+            <p>This game contains mature content intended for adults 18+ only.</p>
+            <p>By continuing, you confirm that you are at least 18 years old.</p>
+            <button id="confirmAge">I am 18 or older</button>
+            <button id="denyAge">Exit</button>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="gameContainer" class="game-container hidden">
+        <!-- UI Header -->
+        <div class="ui-header">
+            <div class="title">Midnight Encounters</div>
+            <div class="ui-buttons">
+                <button id="saveBtn">Save</button>
+                <button id="loadBtn">Load</button>
+                <button id="settingsBtn">Settings</button>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div class="game-area">
+            <!-- Background -->
+            <div id="background" class="background"></div>
+            
+            <!-- Character Sprites -->
+            <div id="characters" class="characters"></div>
+            
+            <!-- Dialog Box -->
+            <div id="dialogBox" class="dialog-box">
+                <div id="speakerName" class="speaker-name"></div>
+                <div id="dialogText" class="dialog-text"></div>
+                <div id="choices" class="choices"></div>
+                <button id="nextBtn" class="next-btn">▶</button>
+            </div>
+        </div>
+
+        <!-- Relationship Panel -->
+        <div id="relationshipPanel" class="relationship-panel hidden">
+            <h3>Relationships</h3>
+            <div id="relationshipList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Details - Areekode Digital Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="../index.html" style="color: white; text-decoration: none;">Areekode Digital Hub</a></h1>
+                <span class="brand-tagline">by VoltNexis</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#shops" class="nav-link">Shops</a>
+                <a href="../index.html#services" class="nav-link">Services</a>
+                <a href="../index.html#events" class="nav-link">Events</a>
+            </nav>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Shop Details -->
+    <main class="shop-details">
+        <div class="container">
+            <!-- Shop Header -->
+            <section class="shop-header">
+                <div class="shop-hero">
+                    <div class="shop-image-large" id="shopImage">
+                        <!-- Dynamic content -->
+                    </div>
+                    <div class="shop-info">
+                        <h1 id="shopName">Loading...</h1>
+                        <div class="shop-meta">
+                            <span class="category" id="shopCategory"></span>
+                            <div class="rating-display">
+                                <span class="stars" id="shopStars"></span>
+                                <span id="shopRating"></span>
+                            </div>
+                        </div>
+                        <p id="shopDescription"></p>
+                        
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="cta-btn" onclick="openContactModal()">
+                                <i class="fas fa-phone"></i> Contact
+                            </button>
+                            <button class="cta-btn" onclick="openDirections()">
+                                <i class="fas fa-map-marker-alt"></i> Directions
+                            </button>
+                            <button class="cta-btn" onclick="shareShop()">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <section class="shop-nav">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="about">About</button>
+                    <button class="tab-btn" data-tab="products">Products</button>
+                    <button class="tab-btn" data-tab="gallery">Gallery</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                    <button class="tab-btn" data-tab="contact">Contact</button>
+                </div>
+            </section>
+
+            <!-- Tab Content -->
+            <section class="tab-content">
+                <!-- About Tab -->
+                <div class="tab-pane active" id="about">
+                    <div class="about-content">
+                        <h3>About This Business</h3>
+                        <div id="aboutDetails">
+                            <!-- Dynamic content -->
+                        </div>
+                        
+                        <!-- Current Offers -->
+                        <div class="current-offers" id="currentOffers">
+                            <!-- Dynamic offers -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Tab -->
+                <div class="tab-pane" id="products">
+                    <div class="products-section">
+                        <h3>Products & Services</h3>
+                        <div class="products-grid" id="productsGrid">
+                            <!-- Dynamic products -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Tab -->
+                <div class="tab-pane" id="gallery">
+                    <div class="gallery-section">
+                        <h3>Photo Gallery</h3>
+                        <div class="gallery-grid" id="galleryGrid">
+                            <!-- Dynamic gallery -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="tab-pane" id="reviews">
+                    <div class="reviews-section">
+                        <div class="reviews-header">
+                            <h3>Customer Reviews</h3>
+                            <button class="cta-btn" onclick="openReviewModal()">Write Review</button>
+                        </div>
+                        <div class="reviews-list" id="reviewsList">
+                            <!-- Dynamic reviews -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Tab -->
+                <div class="tab-pane" id="contact">
+                    <div class="contact-section">
+                        <h3>Contact Information</h3>
+                        <div class="contact-grid">
+                            <div class="contact-info" id="contactInfo">
+                                <!-- Dynamic contact info -->
+                            </div>
+                            <div class="contact-form">
+                                <h4>Send Message</h4>
+                                <form id="contactForm">
+                                    <input type="text" placeholder="Your Name" required>
+                                    <input type="email" placeholder="Your Email" required>
+                                    <input type="tel" placeholder="Your Phone">
+                                    <textarea placeholder="Your Message" rows="4" required></textarea>
+                                    <button type="submit" class="cta-btn">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Map -->
+                        <div class="map-container" id="mapContainer">
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p>Interactive map will be displayed here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h3>Contact Information</h3>
+            <div id="modalContactInfo">
+                <!-- Dynamic contact info -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reviewModal')">&times;</span>
+            <h3>Write a Review</h3>
+            <form id="reviewForm">
+                <input type="text" placeholder="Your Name" required>
+                <div class="rating-input">
+                    <label>Rating:</label>
+                    <div class="star-rating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+                <textarea placeholder="Write your review..." rows="4" required></textarea>
+                <button type="submit" class="cta-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Areekode Digital Hub</h4>
+                    <p>Connecting our community digitally</p>
+                    <p class="footer-brand">Powered by VoltNexis</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#shops">All Shops</a>
+                    <a href="../admin.html">Business Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="../index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="../shops.html" class="nav-item active">
+            <i class="fas fa-store"></i>
+            <span>Shops</span>
+        </a>
+        <a href="../services.html" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Services</span>
+        </a>
+        <a href="../events.html" class="nav-item">
+            <i class="fas fa-calendar"></i>
+            <span>Events</span>
+        </a>
+        <a href="../admin.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Business</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/database.js"></script>
+    <script src="../js/shop.js"></script>
+</body>
+</html>

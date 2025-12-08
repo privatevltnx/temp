@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areekode Digital Hub - Your Local Community Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Areekode Digital Hub</h1>
+                <span class="brand-tagline">by VoltNexis</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="shops.html" class="nav-link">Shops</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="admin.html" class="nav-link">Business</a>
+            </nav>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to Areekode's Digital Ecosystem</h2>
+                <p>Discover local shops, services, events, and connect with your community</p>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search shops, services, offers...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access -->
+    <main class="main-content">
+        <div class="container">
+            <div class="quick-access">
+                <h3>Quick Access</h3>
+                <div class="access-grid">
+                    <a href="shops.html" class="access-card">
+                        <i class="fas fa-store"></i>
+                        <h4>Local Shops</h4>
+                        <p>Browse all shops in Areekode</p>
+                    </a>
+                    <a href="services.html" class="access-card">
+                        <i class="fas fa-briefcase"></i>
+                        <h4>Services</h4>
+                        <p>Find local service providers</p>
+                    </a>
+                    <a href="events.html" class="access-card">
+                        <i class="fas fa-calendar"></i>
+                        <h4>Events & News</h4>
+                        <p>Stay updated with community</p>
+                    </a>
+                    <a href="admin.html" class="access-card">
+                        <i class="fas fa-user-plus"></i>
+                        <h4>Join as Business</h4>
+                        <p>Get your free shop website</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Featured Offers -->
+            <section class="featured-offers">
+                <h3><i class="fas fa-star"></i> Featured Offers</h3>
+                <div class="offers-grid" id="featuredOffers"></div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="recent-activity">
+                <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                <div class="activity-list" id="activityList"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Areekode Digital Hub</h4>
+                    <p>Connecting our community digitally</p>
+                    <p class="footer-brand">Powered by VoltNexis</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="shops.html">Shops</a>
+                    <a href="services.html">Services</a>
+                    <a href="events.html">Events</a>
+                    <a href="admin.html">Business Login</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> info@areekodehub.com</p>
+                    <p><i class="fas fa-phone"></i> +91 XXXXX XXXXX</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="shops.html" class="nav-item">
+            <i class="fas fa-store"></i>
+            <span>Shops</span>
+        </a>
+        <a href="services.html" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Services</span>
+        </a>
+        <a href="events.html" class="nav-item">
+            <i class="fas fa-calendar"></i>
+            <span>Events</span>
+        </a>
+        <a href="community.html" class="nav-item">
+            <i class="fas fa-users"></i>
+            <span>Community</span>
+        </a>
+        <a href="business.html" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Business</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

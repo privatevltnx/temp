@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Admin Panel - Areekode Digital Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html" style="color: white; text-decoration: none;">Areekode Digital Hub</a></h1>
+                <span class="brand-tagline">by VoltNexis</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link" id="logoutBtn" style="display: none;">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="login-section" id="loginSection">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-header">
+                    <h2>Business Login</h2>
+                    <p>Manage your shop listing and connect with customers</p>
+                </div>
+                
+                <div class="login-options">
+                    <div class="login-option">
+                        <h3><i class="fas fa-user-check"></i> Existing Business</h3>
+                        <p>Already have a listing? Login to manage your shop</p>
+                        <form id="loginForm" class="auth-form">
+                            <input type="email" placeholder="Business Email" required>
+                            <input type="password" placeholder="Password" required>
+                            <button type="submit" class="cta-btn">Login</button>
+                        </form>
+                        <p class="form-link">Forgot password? <a href="#" onclick="showForgotPassword()">Reset here</a></p>
+                    </div>
+                    
+                    <div class="login-option">
+                        <h3><i class="fas fa-store"></i> New Business</h3>
+                        <p>Get your free shop website and join our community</p>
+                        <form id="registerForm" class="auth-form">
+                            <input type="text" placeholder="Business Name" required>
+                            <input type="email" placeholder="Business Email" required>
+                            <input type="tel" placeholder="Phone Number" required>
+                            <select required>
+                                <option value="">Select Category</option>
+                                <option value="bakery">Bakery</option>
+                                <option value="fashion">Fashion</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="services">Services</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="password" placeholder="Create Password" required>
+                            <button type="submit" class="cta-btn">Register Free</button>
+                        </form>
+                        <p class="form-note">Already registered? <a href="#" onclick="switchToLogin()">Login here</a></p>
+                    </div>
+                </div>
+                
+                <div class="benefits-section">
+                    <h3>Why Join Areekode Digital Hub?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <i class="fas fa-globe"></i>
+                            <h4>Free Website</h4>
+                            <p>Get your own mini-website with all essential features</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Local Customers</h4>
+                            <p>Connect with customers in Areekode and nearby areas</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Boost Sales</h4>
+                            <p>Increase visibility and grow your business online</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Mobile Friendly</h4>
+                            <p>Your shop page works perfectly on all devices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Business Dashboard</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-eye"></i>
+                        <div>
+                            <h3 id="viewsCount">0</h3>
+                            <p>Page Views</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <h3 id="reviewsCount">0</h3>
+                            <p>Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3 id="contactsCount">0</h3>
+                            <p>Contacts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="profile">Shop Profile</button>
+                <button class="tab-btn" data-tab="products">Products</button>
+                <button class="tab-btn" data-tab="offers">Offers</button>
+                <button class="tab-btn" data-tab="analytics">Analytics</button>
+                <button class="tab-btn" data-tab="upgrade">Upgrade</button>
+            </div>
+            
+            <div class="dashboard-content">
+                <!-- Shop Profile Tab -->
+                <div class="tab-pane active" id="profile">
+                    <div class="profile-section">
+                        <h3>Shop Information</h3>
+                        <form id="profileForm" class="profile-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Shop Name</label>
+                                    <input type="text" id="shopName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select id="shopCategory" required>
+                                        <option value="bakery">Bakery</option>
+                                        <option value="fashion">Fashion</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="healthcare">Healthcare</option>
+                                        <option value="services">Services</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>Description</label>
+                                    <textarea id="shopDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" id="shopPhone">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="shopEmail">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>Address</label>
+                                    <textarea id="shopAddress" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="cta-btn">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Products Tab -->
+                <div class="tab-pane" id="products">
+                    <div class="products-section">
+                        <div class="section-header">
+                            <h3>Products & Services</h3>
+                            <button class="cta-btn" onclick="openAddProductModal()">Add Product</button>
+                        </div>
+                        <div class="products-list" id="productsList">
+                            <!-- Dynamic products list -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Offers Tab -->
+                <div class="tab-pane" id="offers">
+                    <div class="offers-section">
+                        <div class="section-header">
+                            <h3>Special Offers</h3>
+                            <button class="cta-btn" onclick="openAddOfferModal()">Create Offer</button>
+                        </div>
+                        <div class="offers-list" id="offersList">
+                            <!-- Dynamic offers list -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analytics Tab -->
+                <div class="tab-pane" id="analytics">
+                    <div class="analytics-section">
+                        <h3>Business Analytics</h3>
+                        <div class="analytics-grid">
+                            <div class="analytics-card">
+                                <h4>Monthly Views</h4>
+                                <div class="chart-placeholder">
+                                    <i class="fas fa-chart-line"></i>
+                                    <p>Chart will be displayed here</p>
+                                </div>
+                            </div>
+                            <div class="analytics-card">
+                                <h4>Customer Engagement</h4>
+                                <div class="engagement-stats">
+                                    <div class="stat-item">
+                                        <span>Profile Views</span>
+                                        <strong>245</strong>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span>Contact Clicks</span>
+                                        <strong>67</strong>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span>Direction Requests</span>
+                                        <strong>34</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upgrade Tab -->
+                <div class="tab-pane" id="upgrade">
+                    <div class="upgrade-section">
+                        <h3>Upgrade Your Listing</h3>
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <h4>Basic (Current)</h4>
+                                <div class="price">Free</div>
+                                <ul>
+                                    <li>✓ Basic shop page</li>
+                                    <li>✓ Contact information</li>
+                                    <li>✓ Customer reviews</li>
+                                    <li>✓ Basic analytics</li>
+                                </ul>
+                                <button class="cta-btn" disabled>Current Plan</button>
+                            </div>
+                            
+                            <div class="pricing-card featured">
+                                <div class="featured-badge">Most Popular</div>
+                                <h4>Featured</h4>
+                                <div class="price">₹299<span>/month</span></div>
+                                <ul>
+                                    <li>✓ Everything in Basic</li>
+                                    <li>✓ Featured listing</li>
+                                    <li>✓ Priority in search</li>
+                                    <li>✓ Advanced analytics</li>
+                                    <li>✓ Custom banner</li>
+                                </ul>
+                                <button class="cta-btn">Upgrade Now</button>
+                            </div>
+                            
+                            <div class="pricing-card">
+                                <h4>Premium</h4>
+                                <div class="price">₹599<span>/month</span></div>
+                                <ul>
+                                    <li>✓ Everything in Featured</li>
+                                    <li>✓ Online booking system</li>
+                                    <li>✓ Inventory management</li>
+                                    <li>✓ WhatsApp integration</li>
+                                    <li>✓ Priority support</li>
+                                </ul>
+                                <button class="cta-btn">Upgrade Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Modal -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addProductModal')">&times;</span>
+            <h3>Add New Product</h3>
+            <form id="addProductForm">
+                <input type="text" placeholder="Product Name" required>
+                <input type="number" placeholder="Price (₹)" required>
+                <textarea placeholder="Product Description" rows="3"></textarea>
+                <input type="file" accept="image/*" placeholder="Product Image">
+                <button type="submit" class="cta-btn">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Offer Modal -->
+    <div class="modal" id="addOfferModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addOfferModal')">&times;</span>
+            <h3>Create Special Offer</h3>
+            <form id="addOfferForm">
+                <input type="text" placeholder="Offer Title" required>
+                <textarea placeholder="Offer Description" rows="3" required></textarea>
+                <input type="date" placeholder="Valid Until" required>
+                <button type="submit" class="cta-btn">Create Offer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Areekode Digital Hub</h4>
+                    <p>Empowering local businesses digitally</p>
+                    <p class="footer-brand">Powered by VoltNexis</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Support</a>
+                    <a href="#">Business Guidelines</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Areekode Digital Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Areekode Digital Hub</h1>
+                <span class="brand-tagline">by VoltNexis</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Create Post Section -->
+            <div class="create-post-card">
+                <div class="post-header">
+                    <div class="user-avatar">👤</div>
+                    <input type="text" placeholder="What's happening in Areekode?" onclick="openCreatePostModal()">
+                </div>
+                <div class="post-actions">
+                    <button onclick="openCreatePostModal()" class="action-btn">
+                        <i class="fas fa-image"></i> Photo/Video
+                    </button>
+                    <button onclick="openCreatePostModal()" class="action-btn">
+                        <i class="fas fa-calendar"></i> Event
+                    </button>
+                    <button onclick="openCreatePostModal()" class="action-btn">
+                        <i class="fas fa-poll"></i> Poll
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stories Section -->
+            <div class="stories-section">
+                <h3>Community Stories</h3>
+                <div class="stories-container" id="storiesContainer">
+                    <!-- Dynamic stories -->
+                </div>
+            </div>
+
+            <!-- Posts Feed -->
+            <div class="posts-feed" id="postsFeed">
+                <!-- Dynamic posts -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div class="modal" id="createPostModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Post</h3>
+                <span class="close" onclick="closeModal('createPostModal')">&times;</span>
+            </div>
+            <form id="createPostForm">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div>
+                        <strong id="currentUserName">Anonymous User</strong>
+                        <select id="postPrivacy">
+                            <option value="public">🌍 Public</option>
+                            <option value="friends">👥 Friends</option>
+                            <option value="private">🔒 Only Me</option>
+                        </select>
+                    </div>
+                </div>
+                <textarea id="postContent" placeholder="What's on your mind?" rows="4"></textarea>
+                
+                <div class="media-upload">
+                    <input type="file" id="mediaUpload" accept="image/*,video/*" multiple style="display: none;">
+                    <div class="upload-area" onclick="document.getElementById('mediaUpload').click()">
+                        <i class="fas fa-plus"></i>
+                        <p>Add photos/videos</p>
+                    </div>
+                    <div id="mediaPreview"></div>
+                </div>
+
+                <div class="post-options">
+                    <label><input type="checkbox" id="enableComments" checked> Allow comments</label>
+                    <label><input type="checkbox" id="enableSharing" checked> Allow sharing</label>
+                </div>
+
+                <button type="submit" class="cta-btn">Post</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal" id="userProfileModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('userProfileModal')">&times;</span>
+            <div class="profile-header">
+                <div class="profile-avatar" id="profileAvatar">👤</div>
+                <div class="profile-info">
+                    <h3 id="profileName">User Name</h3>
+                    <p id="profileBio">Bio goes here</p>
+                    <div class="profile-stats">
+                        <span><strong id="profilePosts">0</strong> Posts</span>
+                        <span><strong id="profileFollowers">0</strong> Followers</span>
+                        <span><strong id="profileFollowing">0</strong> Following</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="cta-btn" id="followBtn">Follow</button>
+                <button class="cta-btn" onclick="openMessageModal()">Message</button>
+            </div>
+            <div class="profile-posts" id="profilePosts">
+                <!-- User's posts -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Comments Modal -->
+    <div class="modal" id="commentsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Comments</h3>
+                <span class="close" onclick="closeModal('commentsModal')">&times;</span>
+            </div>
+            <div class="comments-list" id="commentsList">
+                <!-- Dynamic comments -->
+            </div>
+            <div class="comment-input">
+                <input type="text" id="newComment" placeholder="Write a comment...">
+                <button onclick="addComment()" class="cta-btn">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="shops.html" class="nav-item">
+            <i class="fas fa-store"></i>
+            <span>Shops</span>
+        </a>
+        <a href="services.html" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Services</span>
+        </a>
+        <a href="events.html" class="nav-item">
+            <i class="fas fa-calendar"></i>
+            <span>Events</span>
+        </a>
+        <a href="community.html" class="nav-item active">
+            <i class="fas fa-users"></i>
+            <span>Community</span>
+        </a>
+    </nav>
+
+    <script src="js/config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/community.js"></script>
+</body>
+</html>
