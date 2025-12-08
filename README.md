@@ -1,1 +1,7 @@
 # temp
+
+
+
+apps/
+ontesting/
+upload/
