@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Game Hub Replacer",
+  "version": "1.0",
+  "description": "Replace Chrome Dino with a multi-game hub of endless fun!",
+  "permissions": ["scripting", "activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html", "style.css", "games/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

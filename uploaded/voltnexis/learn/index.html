@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>VoltNexis Learn - Free Online Learning Platform</title>
+    <meta name="description" content="Learn programming, web development, and technology skills for free. Join thousands of students on VoltNexis Learn - your gateway to tech education.">
+    <meta name="keywords" content="free online courses, programming, web development, technology, learning platform, VoltNexis">
+    <meta name="author" content="VoltNexis Learn">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="VoltNexis Learn - Free Online Learning Platform">
+    <meta property="og:description" content="Learn programming, web development, and technology skills for free. Join thousands of students on VoltNexis Learn.">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:url" content="https://voltnexislearn.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="VoltNexis Learn">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VoltNexis Learn - Free Online Learning Platform">
+    <meta name="twitter:description" content="Learn programming, web development, and technology skills for free.">
+    <meta name="twitter:image" content="img/logo.png">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@20/build/css/intlTelInput.css" />
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@20/build/js/intlTelInput.min.js"></script>
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <form id="phone-form" class="auth-form">
+                 <img src="img/logo.png" alt="VoltNexis Learn Logo" class="logo">
+
+                <h3>Enter Phone</h3>
+                <div class="iti-container">
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required aria-label="Phone number" />
+                </div>
+                <button type="submit" id="nextBtn">Next</button>
+            </form>
+
+            <form id="signup-form" class="auth-form hidden">
+                <h3>Create Account</h3>
+                <input type="text" id="fname" placeholder="First name" required aria-label="First name" minlength="2" />
+                <input type="text" id="lname" placeholder="Last name" required aria-label="Last name" minlength="2" />
+                <input type="email" id="email" placeholder="example@gmail.com" required aria-label="Email address" />
+                <div class="iti-container">
+                    <input type="tel" id="signup-phone" readonly aria-label="Phone number" />
+                </div>
+                <select id="user-role" required aria-label="User role">
+                    <option value="">What represents you the best?</option>
+                    <option value="student">Student</option>
+                    <option value="professional">Professional</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="password" id="pin" placeholder="4-digit PIN" pattern="\d{4}" maxlength="4" minlength="4" required aria-label="4-digit PIN" />
+                <input type="password" id="confirm-pin" placeholder="Confirm 4-digit PIN" pattern="\d{4}" maxlength="4" minlength="4" required aria-label="Confirm PIN" />
+                <button type="submit">Sign Up</button>
+                <a href="#" id="login-link">Already have an account? Login</a>
+            </form>
+
+            <form id="pin-form" class="auth-form hidden">
+                <h3>Enter PIN</h3>
+                <input type="password" id="login-pin" placeholder="4-digit PIN" pattern="\d{4}" maxlength="4" minlength="4" required aria-label="4-digit PIN" />
+                <button type="submit">Login</button>
+                <a href="#" id="signup-link">Don't have an account? Sign Up</a>
+            </form>
+        </div>
+        <div class="social-link">
+            <a href="uploader/" target="_blank">
+                <img src="img/upload.png" alt="upload" class="telegram-icon">
+                Upload Your Courses  for free
+            </a><br>     
+            <a href="https://t.me/@voltnexislearn" target="_blank">
+                <img src="img/tele.png" alt="Telegram" class="telegram-icon">
+                Join Our Tech Community
+            </a>
+        </div>
+    </div>
+    <script type="module" src="./js/auth.js" defer></script>
+</body>
+</html>

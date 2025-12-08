@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 Offline Game Hub - 6 Endless Mini Games | VoltNexis</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Play 6 endless mini-games offline! Dino Run, Flappy Bird, Snake, Pong, Car Dodge & Block Stack. No internet required. Made by VoltNexis.">
+  <meta name="keywords" content="offline games, mini games, dino game, flappy bird, snake game, pong, browser games, endless games, VoltNexis">
+  <meta name="author" content="VoltNexis">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://voltnexis.github.io/games">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="🚀 Offline Game Hub - 6 Endless Mini Games">
+  <meta property="og:description" content="Play 6 endless mini-games offline! Dino Run, Flappy Bird, Snake, Pong, Car Dodge & Block Stack. No internet required.">
+  <meta property="og:url" content="https://voltnexis.github.io/games">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VoltNexis Games">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🚀 Offline Game Hub - 6 Endless Mini Games">
+  <meta name="twitter:description" content="Play 6 endless mini-games offline! Made by VoltNexis.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/sounds.js"></script>
+</head>
+<body>
+  <div id="hub-screen">
+    <h1>🚀 Offline Game Hub</h1>
+    <button id="scores-btn" onclick="showScores()">🏆 High Scores</button>
+    <div class="grid">
+      <div class="game-card" onclick="loadGame('dino')">🦖 Dino Run</div>
+      <div class="game-card" onclick="loadGame('flappy')">🐦 Flappy</div>
+      <div class="game-card" onclick="loadGame('pong')">🏓 Pong</div>
+      <div class="game-card" onclick="loadGame('snake')">🐍 Snake</div>
+      <div class="game-card" onclick="loadGame('dodge')">🚗 Car Dodge</div>
+      <div class="game-card" onclick="loadGame('stack')">📦 Block Stack</div>
+    </div>
+    <footer class="brand-footer">
+      <p>Made with ❤️ by <strong>VoltNexis</strong></p>
+      <p><a href="https://voltnexis.github.io/games" target="_blank">voltnexis.github.io/games</a></p>
+    </footer>
+  </div>
+
+  <div id="scores-modal" style="display: none;" onclick="closeScores(event)">
+    <div id="scores-popup" onclick="event.stopPropagation()">
+      <h2>🏆 High Scores</h2>
+      <div id="scores-list"></div>
+      <button onclick="closeScores()">Close</button>
+    </div>
+  </div>
+
+  <div id="game-screen" style="display: none;">
+    <button id="back-btn" onclick="backToHub()">← Back to Hub</button>
+    <div id="game-container"></div>
+  </div>
+
+  <script>
+    // High Score System
+    function saveScore(game, score) {
+      let scores = JSON.parse(localStorage.getItem('gameScores') || '{}');
+      if (!scores[game] || score > scores[game]) {
+        scores[game] = score;
+        localStorage.setItem('gameScores', JSON.stringify(scores));
+      }
+    }
+
+    function getHighScore(game) {
+      let scores = JSON.parse(localStorage.getItem('gameScores') || '{}');
+      return scores[game] || 0;
+    }
+
+    function showScores() {
+      let scores = JSON.parse(localStorage.getItem('gameScores') || '{}');
+      let html = '';
+      ['dino', 'flappy', 'pong', 'snake', 'dodge', 'stack'].forEach(game => {
+        let gameName = game.charAt(0).toUpperCase() + game.slice(1);
+        html += `<div class="score-item">${gameName}: ${scores[game] || 0}</div>`;
+      });
+      document.getElementById('scores-list').innerHTML = html;
+      document.getElementById('scores-modal').style.display = 'flex';
+    }
+
+    function closeScores(event) {
+      if (!event || event.target.id === 'scores-modal') {
+        document.getElementById('scores-modal').style.display = 'none';
+      }
+    }
+
+    function loadGame(name) {
+      // Clean up first
+      document.querySelectorAll('.game-script').forEach(s => s.remove());
+      
+      document.getElementById('hub-screen').style.display = 'none';
+      document.getElementById('game-screen').style.display = 'block';
+      
+      fetch(`games/${name}.js`)
+        .then(res => res.text())
+        .then(code => {
+          document.getElementById('game-container').innerHTML = '<canvas id="gameCanvas" width="800" height="600"></canvas>';
+          let script = document.createElement('script');
+          script.className = 'game-script';
+          script.innerHTML = `(function() { ${code} })();`;
+          document.body.appendChild(script);
+        })
+        .catch(err => {
+          console.error('Game not found:', err);
+          backToHub();
+        });
+    }
+
+    function backToHub() {
+      document.getElementById('game-screen').style.display = 'none';
+      document.getElementById('hub-screen').style.display = 'block';
+      document.getElementById('game-container').innerHTML = '';
+      document.querySelectorAll('.game-script').forEach(s => s.remove());
+    }
+  </script>
+  <script>
+    // Make score functions global
+    window.saveScore = saveScore;
+    window.getHighScore = getHighScore;
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Sprite Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Generate Dino Sprite (40x40)
+        function drawDino() {
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(0, 0, 40, 40);
+            ctx.fillStyle = '#2E7D32';
+            ctx.fillRect(5, 5, 30, 30);
+            ctx.fillStyle = '#000';
+            ctx.fillRect(10, 10, 5, 5); // eye
+            ctx.fillRect(25, 10, 5, 5); // eye
+            ctx.fillRect(15, 20, 10, 5); // mouth
+        }
+
+        // Generate Car Sprite (50x80)
+        function drawCar() {
+            ctx.fillStyle = '#2196F3';
+            ctx.fillRect(50, 0, 50, 80);
+            ctx.fillStyle = '#1976D2';
+            ctx.fillRect(55, 10, 40, 60);
+            ctx.fillStyle = '#000';
+            ctx.fillRect(60, 15, 10, 10); // window
+            ctx.fillRect(80, 15, 10, 10); // window
+        }
+
+        // Generate Bird Sprite (20x20)
+        function drawBird() {
+            ctx.fillStyle = '#FFEB3B';
+            ctx.fillRect(120, 0, 20, 20);
+            ctx.fillStyle = '#FFC107';
+            ctx.fillRect(125, 5, 10, 10);
+            ctx.fillStyle = '#000';
+            ctx.fillRect(130, 8, 2, 2); // eye
+        }
+
+        // Generate Block Sprite (200x50)
+        function drawBlock() {
+            ctx.fillStyle = '#FF5722';
+            ctx.fillRect(160, 0, 200, 50);
+            ctx.fillStyle = '#D84315';
+            ctx.fillRect(165, 5, 190, 40);
+            ctx.strokeStyle = '#000';
+            ctx.strokeRect(160, 0, 200, 50);
+        }
+
+        drawDino();
+        drawCar();
+        drawBird();
+        drawBlock();
+
+        // Instructions
+        ctx.fillStyle = '#000';
+        ctx.font = '16px Arial';
+        ctx.fillText('Right-click and save as PNG for sprites', 10, 100);
+        ctx.fillText('Dino: 0,0 40x40 | Car: 50,0 50x80 | Bird: 120,0 20x20 | Block: 160,0 200x50', 10, 120);
+    </script>
+</body>
+</html>
