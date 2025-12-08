@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Process - WebCreator by VoltNexis | Track Your Website</title>
+    <meta name="description" content="Track your website project progress with WebCreator by VoltNexis. See real-time updates on your premium website development.">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <!-- Process Hero -->
+    <section class="process-hero animated-gradient">
+        <div class="container">
+            <h1 class="animate-reveal gradient-text">Track Your Project</h1>
+            <p class="animate-reveal-delay">Enter your Order ID to track your website development progress</p>
+            
+            <!-- Order ID Input -->
+            <div class="order-tracker animate-reveal-delay-2">
+                <div class="tracker-form">
+                    <input type="text" id="order-id-input" placeholder="Enter Order ID (e.g., WC-20241215-001)" class="order-input">
+                    <button onclick="trackOrder()" class="btn btn-primary">Track Order</button>
+                </div>
+                <div id="current-order-display" class="order-badge" style="display: none;">
+                    <span class="order-label">Tracking:</span>
+                    <span id="current-order-id" class="order-id"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content (Hidden by default) -->
+    <div id="project-content" style="display: none;">
+        <!-- Process Timeline -->
+        <section class="process-timeline">
+            <div class="container">
+                <h2 class="section-title">Development Process</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item animate-on-scroll card-hover" data-step="1">
+                        <div class="timeline-marker pending">
+                            <div class="marker-icon">1</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Project Kickoff</h3>
+                                <span class="timeline-status pending">Pending</span>
+                            </div>
+                            <p>Initial consultation, requirements gathering, and project planning</p>
+                            <div class="timeline-details">
+                                <div class="detail-item">
+                                    <strong>Duration:</strong> 1-2 days
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Deliverables:</strong> Project brief, timeline, wireframes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item animate-on-scroll card-hover" data-step="2">
+                        <div class="timeline-marker pending">
+                            <div class="marker-icon">2</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Design Phase</h3>
+                                <span class="timeline-status pending">Pending</span>
+                            </div>
+                            <p>Creating high-fidelity designs, style guide, and design system</p>
+                            <div class="timeline-details">
+                                <div class="detail-item">
+                                    <strong>Duration:</strong> 3-5 days
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Deliverables:</strong> UI designs, style guide, assets
+                                </div>
+                            </div>
+                            <div class="progress-bar" style="display: none;">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-text" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item animate-on-scroll card-hover" data-step="3">
+                        <div class="timeline-marker pending">
+                            <div class="marker-icon">3</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Development</h3>
+                                <span class="timeline-status pending">Pending</span>
+                            </div>
+                            <p>Frontend development, backend integration, and functionality implementation</p>
+                            <div class="timeline-details">
+                                <div class="detail-item">
+                                    <strong>Duration:</strong> 5-7 days
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Deliverables:</strong> Functional website, CMS setup
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item animate-on-scroll card-hover" data-step="4">
+                        <div class="timeline-marker pending">
+                            <div class="marker-icon">4</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Testing & QA</h3>
+                                <span class="timeline-status pending">Pending</span>
+                            </div>
+                            <p>Cross-browser testing, performance optimization, and bug fixes</p>
+                            <div class="timeline-details">
+                                <div class="detail-item">
+                                    <strong>Duration:</strong> 2-3 days
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Deliverables:</strong> Test reports, performance audit
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item animate-on-scroll card-hover" data-step="5">
+                        <div class="timeline-marker pending">
+                            <div class="marker-icon">5</div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Launch & Delivery</h3>
+                                <span class="timeline-status pending">Pending</span>
+                            </div>
+                            <p>Final deployment, training, documentation, and project handover</p>
+                            <div class="timeline-details">
+                                <div class="detail-item">
+                                    <strong>Duration:</strong> 1-2 days
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Deliverables:</strong> Live website, documentation, training
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Details -->
+        <section class="project-details">
+            <div class="container">
+                <div class="details-grid">
+                    <div class="detail-card animate-on-scroll card-hover">
+                        <h3>Project Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Project Type:</span>
+                                <span class="info-value">Website Project</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Start Date:</span>
+                                <span class="info-value" id="start-date">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Expected Delivery:</span>
+                                <span class="info-value" id="delivery-date">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Total Investment:</span>
+                                <span class="info-value">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card animate-on-scroll card-hover">
+                        <h3>Team Members</h3>
+                        <div class="team-list">
+                            <div class="team-member">
+                                <div class="member-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">PM</div>
+                                <div class="member-info">
+                                    <div class="member-name">Sarah Johnson</div>
+                                    <div class="member-role">Project Manager</div>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <div class="member-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">UD</div>
+                                <div class="member-info">
+                                    <div class="member-name">Alex Chen</div>
+                                    <div class="member-role">UI/UX Designer</div>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <div class="member-avatar" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">FD</div>
+                                <div class="member-info">
+                                    <div class="member-name">Mike Rodriguez</div>
+                                    <div class="member-role">Frontend Developer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card animate-on-scroll card-hover">
+                        <h3>Recent Updates</h3>
+                        <div class="updates-list">
+                            <div class="update-item">
+                                <div class="update-time">Latest Update</div>
+                                <div class="update-text">Project tracking will show here</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card animate-on-scroll card-hover">
+                        <h3>Next Steps</h3>
+                        <div class="next-steps">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-text">Project steps will be updated based on current status</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Communication -->
+        <section class="communication">
+            <div class="container">
+                <div class="comm-grid">
+                    <div class="comm-card animate-on-scroll card-hover">
+                        <h3>Need to Discuss Something?</h3>
+                        <p>Our team is here to help. Reach out anytime for updates or questions.</p>
+                        <div class="comm-buttons">
+                            <a href="mailto:projects@voltnexis.com" class="btn btn-primary">Email Team</a>
+                            <a href="tel:+919876543210" class="btn btn-outline">Call Us</a>
+                        </div>
+                    </div>
+                    
+                    <div class="comm-card animate-on-scroll card-hover">
+                        <h3>Project Files</h3>
+                        <p>Access your project assets, designs, and documentation.</p>
+                        <div class="file-list" id="project-files">
+                            <div class="file-item">
+                                <span class="file-icon">📋</span>
+                                <span class="file-name">Files will appear based on project progress</span>
+                                <span class="file-status">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Supabase client
+        const supabase = window.supabase.createClient(
+            'https://mazvgebqfabfbxmhzapr.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1henZnZWJxZmFiZmJ4bWh6YXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1Mjg2MzEsImV4cCI6MjA3MjEwNDYzMX0.ck2GBe7Pj_29pc4H8FTBRCCir4RVeWZyxcmrUOQDAo4'
+        );
+        
+        // Track order function
+        async function trackOrder() {
+            const orderInput = document.getElementById('order-id-input');
+            const orderId = orderInput.value.trim();
+            
+            if (!orderId) {
+                alert('Please enter an Order ID');
+                return;
+            }
+            
+            // Show loading
+            const trackBtn = document.querySelector('.tracker-form button');
+            trackBtn.textContent = 'Loading...';
+            trackBtn.disabled = true;
+            
+            try {
+                // Fetch from Supabase
+                const { data, error } = await supabase
+                    .from('applications')
+                    .select('*')
+                    .eq('order_id', orderId)
+                    .single();
+                
+                if (error || !data) {
+                    alert('Order ID not found. Please check and try again.');
+                    trackBtn.textContent = 'Track Order';
+                    trackBtn.disabled = false;
+                    return;
+                }
+                
+                // Show tracking info
+                document.getElementById('current-order-id').textContent = orderId;
+                document.getElementById('current-order-display').style.display = 'inline-flex';
+                document.querySelector('.tracker-form').style.display = 'none';
+                
+                // Show project content
+                document.getElementById('project-content').style.display = 'block';
+                
+                // Load project data
+                loadProjectData(data);
+                
+            } catch (error) {
+                console.error('Error fetching order:', error);
+                alert('Error loading order data. Please try again.');
+                trackBtn.textContent = 'Track Order';
+                trackBtn.disabled = false;
+            }
+        }
+        
+        // Load project data from Supabase
+        function loadProjectData(data) {
+            // Calculate current step and progress based on status
+            const statusMap = {
+                'pending': { step: 1, progress: 10, status: 'Project Kickoff' },
+                'submitted': { step: 1, progress: 30, status: 'Project Kickoff' },
+                'in_review': { step: 1, progress: 60, status: 'Project Kickoff' },
+                'approved': { step: 1, progress: 100, status: 'Project Kickoff' },
+                'design': { step: 2, progress: 50, status: 'Design Phase' },
+                'design_review': { step: 2, progress: 80, status: 'Design Phase' },
+                'design_approved': { step: 2, progress: 100, status: 'Design Phase' },
+                'development': { step: 3, progress: 40, status: 'Development' },
+                'dev_review': { step: 3, progress: 70, status: 'Development' },
+                'dev_complete': { step: 3, progress: 100, status: 'Development' },
+                'testing': { step: 4, progress: 50, status: 'Testing & QA' },
+                'qa_complete': { step: 4, progress: 100, status: 'Testing & QA' },
+                'launch': { step: 5, progress: 50, status: 'Launch & Delivery' },
+                'completed': { step: 5, progress: 100, status: 'Launch & Delivery' }
+            };
+            
+            const currentStatus = statusMap[data.status] || statusMap['pending'];
+            
+            // Update timeline
+            const steps = document.querySelectorAll('.timeline-item');
+            steps.forEach((step, index) => {
+                const marker = step.querySelector('.timeline-marker');
+                const status = step.querySelector('.timeline-status');
+                const progressBar = step.querySelector('.progress-bar');
+                const progressFill = step.querySelector('.progress-fill');
+                const progressText = step.querySelector('.progress-text');
+                
+                if (index + 1 < currentStatus.step) {
+                    marker.className = 'timeline-marker completed';
+                    marker.innerHTML = '<div class="marker-icon">✓</div>';
+                    status.className = 'timeline-status completed';
+                    status.textContent = 'Completed';
+                } else if (index + 1 === currentStatus.step) {
+                    marker.className = 'timeline-marker active';
+                    marker.innerHTML = `<div class="marker-icon">${index + 1}</div>`;
+                    status.className = 'timeline-status active';
+                    status.textContent = 'In Progress';
+                    
+                    if (progressBar && progressFill && progressText) {
+                        progressBar.style.display = 'block';
+                        progressFill.style.width = currentStatus.progress + '%';
+                        progressText.style.display = 'block';
+                        progressText.textContent = currentStatus.progress + '% Complete';
+                    }
+                } else {
+                    marker.className = 'timeline-marker pending';
+                    marker.innerHTML = `<div class="marker-icon">${index + 1}</div>`;
+                    status.className = 'timeline-status pending';
+                    status.textContent = 'Pending';
+                }
+            });
+            
+            // Update project details
+            updateProjectDetails(data);
+        }
+        
+        // Update project details section
+        function updateProjectDetails(data) {
+            const infoItems = document.querySelectorAll('.info-item');
+            if (infoItems.length >= 4) {
+                infoItems[0].querySelector('.info-value').textContent = formatProjectType(data.project_type);
+                infoItems[1].querySelector('.info-value').textContent = formatDate(data.created_at);
+                infoItems[2].querySelector('.info-value').textContent = calculateDeliveryDate(data.created_at, data.project_type);
+                infoItems[3].querySelector('.info-value').textContent = calculatePrice(data.project_type);
+            }
+            
+            // Update recent updates
+            const updatesList = document.querySelector('.updates-list');
+            if (updatesList && data.status) {
+                const statusMessages = {
+                    'pending': 'Order received and pending review',
+                    'submitted': 'Application submitted successfully',
+                    'in_review': 'Application under review by our team',
+                    'approved': 'Project approved and kickoff meeting scheduled',
+                    'design': 'Design phase in progress - creating wireframes and mockups',
+                    'design_review': 'Design review with client in progress',
+                    'design_approved': 'Design approved, moving to development',
+                    'development': 'Development phase started - building your website',
+                    'dev_review': 'Development review and testing in progress',
+                    'dev_complete': 'Development completed, moving to QA',
+                    'testing': 'Quality assurance and testing in progress',
+                    'qa_complete': 'QA completed, preparing for launch',
+                    'launch': 'Website launch in progress',
+                    'completed': 'Project completed and delivered successfully'
+                };
+                
+                updatesList.innerHTML = `
+                    <div class="update-item">
+                        <div class="update-time">${formatDate(data.updated_at || data.created_at)}</div>
+                        <div class="update-text">${statusMessages[data.status] || 'Project in progress'}</div>
+                    </div>
+                `;
+            }
+            
+            // Update next steps
+            updateNextSteps(data.status);
+            
+            // Update project files
+            updateProjectFiles(data.status, data.project_type, data.order_id);
+        }
+        
+        // Helper functions
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+        
+        function calculateDeliveryDate(startDate, projectType) {
+            const start = new Date(startDate);
+            const daysToAdd = projectType === 'landing' ? 7 : projectType === 'marketing' ? 14 : 21;
+            const delivery = new Date(start.getTime() + daysToAdd * 24 * 60 * 60 * 1000);
+            return formatDate(delivery);
+        }
+        
+        function formatProjectType(type) {
+            const types = {
+                'landing': 'Landing Page',
+                'marketing': 'Marketing Website',
+                'ecommerce': 'E-commerce Store',
+                'webapp': 'Web Application',
+                'portfolio': 'Portfolio Website',
+                'blog': 'Blog Website'
+            };
+            return types[type] || 'Website Project';
+        }
+        
+        function calculatePrice(projectType) {
+            const prices = {
+                'landing': '₹25,000',
+                'marketing': '₹45,000',
+                'ecommerce': '₹85,000',
+                'webapp': '₹1,25,000',
+                'portfolio': '₹35,000',
+                'blog': '₹30,000'
+            };
+            return prices[projectType] || '₹45,000';
+        }
+        
+        function updateNextSteps(status) {
+            const nextStepsContainer = document.querySelector('.next-steps');
+            if (!nextStepsContainer) return;
+            
+            const nextSteps = {
+                'pending': [
+                    'Review your application',
+                    'Schedule kickoff meeting',
+                    'Begin project planning'
+                ],
+                'submitted': [
+                    'Complete application review',
+                    'Schedule kickoff meeting',
+                    'Begin project planning'
+                ],
+                'in_review': [
+                    'Finalize project requirements',
+                    'Schedule kickoff meeting',
+                    'Begin wireframe creation'
+                ],
+                'approved': [
+                    'Conduct kickoff meeting',
+                    'Create initial wireframes',
+                    'Begin design phase'
+                ],
+                'design': [
+                    'Complete design mockups',
+                    'Client review and feedback',
+                    'Finalize design system'
+                ],
+                'design_review': [
+                    'Incorporate client feedback',
+                    'Finalize design approval',
+                    'Prepare for development'
+                ],
+                'design_approved': [
+                    'Set up development environment',
+                    'Begin frontend development',
+                    'Implement design system'
+                ],
+                'development': [
+                    'Complete frontend development',
+                    'Integrate backend functionality',
+                    'Prepare for testing phase'
+                ],
+                'dev_review': [
+                    'Complete development review',
+                    'Fix any identified issues',
+                    'Prepare for QA testing'
+                ],
+                'dev_complete': [
+                    'Begin comprehensive testing',
+                    'Cross-browser compatibility',
+                    'Performance optimization'
+                ],
+                'testing': [
+                    'Complete QA testing',
+                    'Fix any bugs found',
+                    'Prepare for launch'
+                ],
+                'qa_complete': [
+                    'Set up hosting environment',
+                    'Deploy website',
+                    'Final launch preparations'
+                ],
+                'launch': [
+                    'Complete website deployment',
+                    'Final testing on live site',
+                    'Project handover'
+                ],
+                'completed': [
+                    'Project successfully delivered',
+                    'Documentation provided',
+                    'Support period active'
+                ]
+            };
+            
+            const steps = nextSteps[status] || nextSteps['pending'];
+            nextStepsContainer.innerHTML = steps.map((step, index) => `
+                <div class="step-item">
+                    <div class="step-number">${index + 1}</div>
+                    <div class="step-text">${step}</div>
+                </div>
+            `).join('');
+        }
+        
+        function updateProjectFiles(status, projectType, orderId) {
+            const filesContainer = document.getElementById('project-files');
+            if (!filesContainer) return;
+            
+            const availableFiles = {
+                'approved': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '📋', name: 'Requirements Document.pdf', action: 'Download', type: 'requirements' }
+                ],
+                'design': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '📋', name: 'Requirements Document.pdf', action: 'Download', type: 'requirements' },
+                    { icon: '✏️', name: 'Initial Wireframes.pdf', action: 'View', type: 'wireframes' }
+                ],
+                'design_review': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '📋', name: 'Requirements Document.pdf', action: 'Download', type: 'requirements' },
+                    { icon: '✏️', name: 'Wireframes.pdf', action: 'View', type: 'wireframes' },
+                    { icon: '🎨', name: 'Design Mockups.fig', action: 'View', type: 'designs' }
+                ],
+                'design_approved': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '📋', name: 'Requirements Document.pdf', action: 'Download', type: 'requirements' },
+                    { icon: '✏️', name: 'Final Wireframes.pdf', action: 'View', type: 'wireframes' },
+                    { icon: '🎨', name: 'Approved Designs.fig', action: 'View', type: 'designs' },
+                    { icon: '🎯', name: 'Style Guide.pdf', action: 'Download', type: 'styleguide' }
+                ],
+                'development': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '🎨', name: 'Design Files.fig', action: 'View', type: 'designs' },
+                    { icon: '🎯', name: 'Style Guide.pdf', action: 'Download', type: 'styleguide' },
+                    { icon: '💻', name: 'Development Preview', action: 'View', type: 'preview' }
+                ],
+                'dev_complete': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '🎨', name: 'Design Files.fig', action: 'View', type: 'designs' },
+                    { icon: '🎯', name: 'Style Guide.pdf', action: 'Download', type: 'styleguide' },
+                    { icon: '💻', name: 'Development Preview', action: 'View', type: 'preview' },
+                    { icon: '📱', name: 'Mobile Preview', action: 'View', type: 'mobile' }
+                ],
+                'testing': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '🎨', name: 'Design Files.fig', action: 'View', type: 'designs' },
+                    { icon: '💻', name: 'Staging Site', action: 'View', type: 'staging' },
+                    { icon: '📊', name: 'Test Results.pdf', action: 'Download', type: 'testing' }
+                ],
+                'qa_complete': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '🎨', name: 'Design Files.fig', action: 'View', type: 'designs' },
+                    { icon: '💻', name: 'Staging Site', action: 'View', type: 'staging' },
+                    { icon: '📊', name: 'QA Report.pdf', action: 'Download', type: 'qa' },
+                    { icon: '🚀', name: 'Pre-Launch Checklist.pdf', action: 'Download', type: 'checklist' }
+                ],
+                'launch': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '🎨', name: 'Design Files.fig', action: 'View', type: 'designs' },
+                    { icon: '🌐', name: 'Live Website', action: 'Visit', type: 'live' },
+                    { icon: '📚', name: 'User Manual.pdf', action: 'Download', type: 'manual' }
+                ],
+                'completed': [
+                    { icon: '📄', name: 'Project Brief.pdf', action: 'Download', type: 'brief' },
+                    { icon: '🎨', name: 'All Design Files.zip', action: 'Download', type: 'designs' },
+                    { icon: '🌐', name: 'Live Website', action: 'Visit', type: 'live' },
+                    { icon: '📚', name: 'User Manual.pdf', action: 'Download', type: 'manual' },
+                    { icon: '💾', name: 'Source Code.zip', action: 'Download', type: 'source' },
+                    { icon: '📈', name: 'Analytics Setup.pdf', action: 'Download', type: 'analytics' }
+                ]
+            };
+            
+            const files = availableFiles[status] || [];
+            
+            if (files.length === 0) {
+                filesContainer.innerHTML = `
+                    <div class="file-item">
+                        <span class="file-icon">📋</span>
+                        <span class="file-name">Files will be available as project progresses</span>
+                        <span class="file-status">Pending</span>
+                    </div>
+                `;
+                return;
+            }
+            
+            filesContainer.innerHTML = files.map(file => `
+                <div class="file-item">
+                    <span class="file-icon">${file.icon}</span>
+                    <span class="file-name">${file.name}</span>
+                    <a href="#" class="file-download" onclick="handleFileAccess('${file.type}', '${orderId}')">${file.action}</a>
+                </div>
+            `).join('');
+        }
+        
+        function handleFileAccess(fileType, orderId) {
+            const fileUrls = {
+                'brief': '#',
+                'requirements': '#',
+                'wireframes': '#',
+                'designs': '#',
+                'styleguide': '#',
+                'preview': '#',
+                'mobile': '#',
+                'staging': '#',
+                'testing': '#',
+                'qa': '#',
+                'checklist': '#',
+                'live': '#',
+                'manual': '#',
+                'source': '#',
+                'analytics': '#'
+            };
+            
+            if (fileType === 'live') {
+                alert('Live website will be available after launch');
+            } else if (fileType === 'preview' || fileType === 'staging') {
+                alert('Preview link will be shared via email');
+            } else {
+                alert(`${fileType.charAt(0).toUpperCase() + fileType.slice(1)} file will be shared via email`);
+            }
+        }
+        
+        function getOrderId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('order');
+        }
+
+        // Set dates based on current date
+        function setProjectDates() {
+            const startDate = new Date();
+            const deliveryDate = new Date();
+            deliveryDate.setDate(startDate.getDate() + 14);
+
+            document.getElementById('start-date').textContent = startDate.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            document.getElementById('delivery-date').textContent = deliveryDate.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderId = getOrderId();
+            if (orderId) {
+                document.getElementById('order-id-input').value = orderId;
+                trackOrder();
+            }
+        });
+        
+        // Handle Enter key in order input
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderInput = document.getElementById('order-id-input');
+            if (orderInput) {
+                orderInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        trackOrder();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <style>
+        .process-hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .order-tracker {
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tracker-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+
+        .order-input {
+            flex: 1;
+            min-width: 300px;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .order-input:focus {
+            border-color: var(--primary);
+        }
+
+        .order-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .tracker-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .order-input {
+                min-width: 280px;
+            }
+        }
+
+        .order-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .order-id {
+            font-weight: 700;
+            color: var(--primary);
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        .process-timeline {
+            padding: 4rem 0;
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 80px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-marker.completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .timeline-marker.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            animation: pulse-animation 2s infinite;
+        }
+
+        .timeline-marker.pending {
+            background: var(--text-muted);
+        }
+
+        .timeline-content {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .timeline-status.completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .timeline-status.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .timeline-status.pending {
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--text-muted);
+        }
+
+        .timeline-details {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .detail-item {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin: 1rem 0 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .progress-text {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .project-details {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .detail-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .team-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .member-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .member-role {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .updates-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .update-item {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .update-time {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .update-text {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .next-steps {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .step-text {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .communication {
+            padding: 4rem 0;
+        }
+
+        .comm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .comm-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .comm-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .file-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+        }
+
+        .file-icon {
+            font-size: 1.5rem;
+        }
+
+        .file-name {
+            flex: 1;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .file-download {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .file-download:hover {
+            text-decoration: underline;
+        }
+        
+        .file-status {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-marker {
+                width: 40px;
+                height: 40px;
+                font-size: 0.875rem;
+            }
+
+            .timeline-details {
+                grid-template-columns: 1fr;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comm-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comm-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

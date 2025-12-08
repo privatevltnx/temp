@@ -1,0 +1,67 @@
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html" class="logo">WebCreator by VoltNexis</a>
+            <ul class="nav-links">
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="process.html">Process</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="currency-switcher">
+                    <button class="currency-btn active" data-currency="INR">₹</button>
+                    <button class="currency-btn" data-currency="USD">$</button>
+                    <button class="currency-btn" data-currency="EUR">€</button>
+                </div>
+                <a href="apply.html" class="btn btn-primary">Start Application</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<style>
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.currency-switcher {
+    display: flex;
+    background: var(--secondary);
+    border-radius: var(--radius);
+    padding: 0.25rem;
+}
+
+.currency-btn {
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: transparent;
+    border-radius: calc(var(--radius) - 2px);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.currency-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .nav-actions {
+        gap: 0.5rem;
+    }
+    
+    .currency-switcher {
+        display: none;
+    }
+}
+</style>

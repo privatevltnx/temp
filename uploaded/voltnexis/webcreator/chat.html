@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Chat - WebCreator by VoltNexis | Talk to Our Experts</title>
+    <meta name="description" content="Get instant answers from our web development experts. Chat live about your project requirements and get a custom quote.">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <!-- Chat Hero -->
+    <section class="chat-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 6rem 0 4rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent); animation: rotateGlow 15s linear infinite;"></div>
+        <div class="container" style="position: relative; z-index: 2; text-align: center;">
+            <h1 class="animate-reveal" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 4rem; background: linear-gradient(135deg, #ffffff, #f0f9ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Chat with Our Experts</h1>
+            <p class="animate-reveal-delay" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Get instant answers about your project. Our team is online and ready to help.</p>
+            <div class="online-status animate-reveal-delay-2" style="display: inline-flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.15); padding: 12px 24px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <div class="status-indicator" style="width: 12px; height: 12px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);"></div>
+                <span style="font-family: 'Inter', sans-serif; font-weight: 600; color: white;">3 experts online now</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section class="chat-interface">
+        <div class="container">
+            <div class="chat-container" style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 20px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); overflow: hidden;">
+                <div class="chat-header" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 25px; color: white; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent); animation: rotateGlow 8s linear infinite; opacity: 0.5;"></div>
+                    <div class="expert-info" style="position: relative; z-index: 2; display: flex; align-items: center; gap: 15px;">
+                        <div class="expert-avatar" style="width: 60px; height: 60px; border-radius: 50%; background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face'); background-size: cover; background-position: center; border: 3px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);"></div>
+                        <div class="expert-details">
+                            <h3 style="margin: 0; font-size: 1.25rem; font-weight: 600;">Rahul Sharma</h3>
+                            <span class="expert-role" style="opacity: 0.9; font-size: 0.9rem;">Senior Web Developer</span>
+                            <div class="online-indicator" style="display: flex; align-items: center; gap: 8px; margin-top: 5px;">
+                                <div class="pulse-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite;"></div>
+                                <span style="font-size: 0.85rem; opacity: 0.9;">Online now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages" style="padding: 30px; max-height: 400px; overflow-y: auto; background: linear-gradient(135deg, #f8fafc, #ffffff);">
+                    <div class="message expert-message" style="display: flex; gap: 15px; margin-bottom: 20px; animation: slideInLeft 0.5s ease;">
+                        <div class="message-avatar" style="width: 40px; height: 40px; border-radius: 50%; background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face'); background-size: cover; background-position: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);"></div>
+                        <div class="message-content" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 15px 20px; border-radius: 20px 20px 20px 5px; max-width: 70%; position: relative; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);">
+                            <p style="margin: 0; line-height: 1.5;">Hi! I'm Rahul from VoltNexis. I'd love to help you with your website project. What type of website are you looking to build?</p>
+                            <span class="message-time" style="font-size: 0.75rem; opacity: 0.8; margin-top: 8px; display: block;">Just now</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area" style="padding: 25px; background: linear-gradient(135deg, #ffffff, #f8fafc); border-top: 1px solid rgba(99, 102, 241, 0.1);">
+                    <div class="quick-questions" style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <button class="quick-btn" onclick="sendQuickMessage('I need a landing page')" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">Landing Page</button>
+                        <button class="quick-btn" onclick="sendQuickMessage('I want an e-commerce store')" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">E-commerce</button>
+                        <button class="quick-btn" onclick="sendQuickMessage('What are your prices?')" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">Pricing</button>
+                        <button class="quick-btn" onclick="sendQuickMessage('How fast can you deliver?')" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">Timeline</button>
+                    </div>
+                    
+                    <div class="input-container" style="display: flex; gap: 12px; align-items: center;">
+                        <input type="text" id="messageInput" placeholder="Type your message..." style="flex: 1; padding: 15px 20px; border: 2px solid rgba(99, 102, 241, 0.2); border-radius: 25px; font-size: 1rem; background: white; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <button onclick="sendMessage()" class="send-btn" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #8b5cf6); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M18 2L12 18L9 11L2 8L18 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Features -->
+            <div class="chat-features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="feature-item" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); padding: 2.5rem 2rem; border-radius: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(255, 154, 158, 0.3); transition: all 0.4s ease;">
+                    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent); animation: rotateGlow 8s linear infinite;"></div>
+                    <div class="feature-icon" style="position: relative; z-index: 2; width: 80px; height: 80px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; backdrop-filter: blur(10px);">⚡</div>
+                    <h3 style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.5rem; color: white; margin-bottom: 1rem;">Instant Responses</h3>
+                    <p style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">Get answers within minutes, not hours</p>
+                </div>
+                
+                <div class="feature-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 2.5rem 2rem; border-radius: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(168, 237, 234, 0.3); transition: all 0.4s ease;">
+                    <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 180deg, transparent, rgba(255, 255, 255, 0.2), transparent); animation: rotateGlow 10s linear infinite;"></div>
+                    <div class="feature-icon" style="position: relative; z-index: 2; width: 80px; height: 80px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; backdrop-filter: blur(10px);">🎯</div>
+                    <h3 style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.5rem; color: white; margin-bottom: 1rem;">Expert Guidance</h3>
+                    <p style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">Talk directly to our senior developers</p>
+                </div>
+                
+                <div class="feature-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 2.5rem 2rem; border-radius: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(252, 182, 159, 0.3); transition: all 0.4s ease;">
+                    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 90deg, transparent, rgba(255, 255, 255, 0.2), transparent); animation: rotateGlow 12s linear infinite;"></div>
+                    <div class="feature-icon" style="position: relative; z-index: 2; width: 80px; height: 80px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; backdrop-filter: blur(10px);">💰</div>
+                    <h3 style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.5rem; color: white; margin-bottom: 1rem;">Custom Quotes</h3>
+                    <p style="position: relative; z-index: 2; font-family: 'Inter', sans-serif; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">Get personalized pricing for your project</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                input.value = '';
+                
+                // Simulate expert response
+                setTimeout(() => {
+                    const responses = [
+                        "That sounds like a great project! Let me get some details to provide you with an accurate quote.",
+                        "Perfect! I can definitely help you with that. What's your timeline for this project?",
+                        "Excellent choice! Our team has extensive experience with similar projects. What features are most important to you?",
+                        "Great question! Based on what you've told me, I think we can create something amazing for you."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse, 'expert');
+                }, 1000 + Math.random() * 2000);
+            }
+        }
+        
+        function sendQuickMessage(message) {
+            addMessage(message, 'user');
+            
+            setTimeout(() => {
+                let response = '';
+                if (message.includes('landing page')) {
+                    response = "Landing pages are our specialty! They typically start at ₹25,000 and can be delivered in 5-7 days. What's the main goal for your landing page?";
+                } else if (message.includes('e-commerce')) {
+                    response = "E-commerce stores start at ₹85,000 and include payment processing, inventory management, and more. How many products will you have?";
+                } else if (message.includes('prices')) {
+                    response = "Our pricing is transparent: Landing Pages from ₹25K, Marketing Sites from ₹45K, E-commerce from ₹85K. What type of website do you need?";
+                } else if (message.includes('fast')) {
+                    response = "We deliver 4X faster than traditional agencies! Landing pages in 5-7 days, marketing sites in 10-14 days. Need it even faster? We offer rush delivery.";
+                }
+                addMessage(response, 'expert');
+            }, 1500);
+        }
+        
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message animate-on-scroll`;
+            
+            const avatarUrl = sender === 'expert' 
+                ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face'
+                : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar" style="background-image: url('${avatarUrl}'); background-size: cover; background-position: center;"></div>
+                <div class="message-content">
+                    <p>${text}</p>
+                    <span class="message-time">Just now</span>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
+<style>
+.feature-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.chat-container:hover .pay-button:hover::before {
+    opacity: 1;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+}
+
+.quick-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.send-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+}
+
+.send-btn:hover::before {
+    opacity: 1;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+</style>

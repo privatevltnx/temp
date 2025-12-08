@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web to App VoltNexis - Premium Website to Android App Converter</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Transform any website into a professional Android application in minutes. No coding required, free template with native features.">
+    <meta name="keywords" content="website to app, android app converter, webview template, web2app, mobile app development">
+    <meta name="author" content="VoltNexis">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Web to App VoltNexis - Premium Website to Android App Converter">
+    <meta property="og:description" content="Transform any website into a professional Android application in minutes. No coding required, free template with native features.">
+    <meta property="og:url" content="https://ameeennn.github.io/web2app">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://ameeennn.github.io/web2app/logo.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Web to App VoltNexis - Premium Website to Android App Converter">
+    <meta name="twitter:description" content="Transform any website into a professional Android application in minutes. No coding required, free template with native features.">
+    <meta name="twitter:image" content="https://ameeennn.github.io/web2app/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-color: #0d1117;
+            background-image: radial-gradient(at 100% 50%, #293442 0, transparent 50%), radial-gradient(at 0 50%, #1a232f 0, transparent 50%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .card-glow {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+        }
+        .modal {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal.open .modal-content {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0c0e] text-gray-200">
+
+    <div id="notification-modal" class="modal fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70 opacity-0 invisible">
+        <div class="modal-content bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full mx-4 border border-gray-700">
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-indigo-600 rounded-full p-3 inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Heads up!</h3>
+                <p class="text-gray-400 mb-6">Video tutorial coming soon! For now, please follow the detailed guide on this page.</p>
+                <button onclick="closeModal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-[#0a0c0e]/80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="./logo.png" alt="VoltNexis Logo" class="w-8 h-8 rounded-full">
+                <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-500">
+                    VoltNexis
+                </span>
+            </a>
+            <a href="https://voltnexis.github.io" class="px-5 py-2 rounded-full font-medium text-sm transition-transform duration-300 ease-in-out transform hover:scale-105 bg-gray-800 text-gray-200 hover:text-white border border-gray-700 shadow-lg">
+                <i class="fas fa-home mr-2"></i> Main Site
+            </a>
+        </div>
+    </header>
+
+    <section class="hero-bg py-20 md:py-32 text-center text-white">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-400">
+                Turn Your Website Into a Premium Android App
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-400">
+                Transform any website into a professional Android application in minutes. No coding, no hidden fees, just pure power.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="./webview-template.zip" download class="bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white font-semibold py-4 px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 shadow-xl">
+                    <i class="fas fa-download mr-2"></i> Download Template
+                </a>
+                <a href="https://youtube.com/shorts/L3-mZKPgdJU?si=tUxBZqMZHy_g7_Pk" target="_blank" class="bg-gray-800 text-white font-semibold py-4 px-8 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 border border-gray-700">
+                    <i class="fas fa-play-circle mr-2"></i> Watch Tutorial
+                </a>
+            </div>
+            <p class="mt-8 text-sm text-gray-500">File size: ~3MB | Free for personal & commercial use</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#111317]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-500">
+                Features That Set Us Apart
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-glow hover:border-indigo-600">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 mb-4 text-white">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Fully Native Experience</h3>
+                    <p class="text-gray-400">
+                        Convert your website into a true Android app with full native feature support, including back button navigation and splash screens.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-glow hover:border-indigo-600">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 mb-4 text-white">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Advanced File Handling</h3>
+                    <p class="text-gray-400">
+                        Seamlessly upload from camera or gallery and download files directly to the user's device.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-glow hover:border-indigo-600">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 mb-4 text-white">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Secure & Private</h3>
+                    <p class="text-gray-400">
+                        Built-in support for secure sessions, cookies, and local storage to handle user authentication and data safely.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-glow hover:border-indigo-600">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 mb-4 text-white">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Zero Code Required</h3>
+                    <p class="text-gray-400">
+                        Our template provides a complete, pre-configured Android Studio project, so you just need to customize a few settings.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-glow hover:border-indigo-600">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 mb-4 text-white">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Easy Customization</h3>
+                    <p class="text-gray-400">
+                        Simply change the app's name, icon, and URL with a few clicks. No complex configurations.
+                    </p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 card-glow hover:border-indigo-600">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 to-purple-700 mb-4 text-white">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Instant Setup</h3>
+                    <p class="text-gray-400">
+                        Get your project running in minutes. The template is lightweight and requires minimal setup.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-[#0a0c0e]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-500">
+                Complete Setup Guide
+            </h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="flex flex-col md:flex-row items-start md:items-center bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white text-lg font-bold mr-6 mb-4 md:mb-0">
+                        1
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Download & Open</h3>
+                        <p class="text-gray-400">
+                            Download the template from the link above and open the extracted project in Android Studio. Wait for the initial Gradle sync to complete.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-start md:items-center bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white text-lg font-bold mr-6 mb-4 md:mb-0">
+                        2
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Customize Your App</h3>
+                        <p class="text-gray-400">
+                            Change your website URL in <code class="bg-gray-700 text-gray-300 rounded px-1 text-sm">MainActivity.java</code>, app name in <code class="bg-gray-700 text-gray-300 rounded px-1 text-sm">AndroidManifest.xml</code>, and package name in <code class="bg-gray-700 text-gray-300 rounded px-1 text-sm">build.gradle</code>.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-start md:items-center bg-gray-900 rounded-xl p-6 border border-gray-800">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white text-lg font-bold mr-6 mb-4 md:mb-0">
+                        3
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-white">Build & Publish</h3>
+                        <p class="text-gray-400">
+                            Click the "Run" button to test on your device or go to <strong>Build → Build APK</strong> to generate a distributable file. You can then publish it to the Google Play Store.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-center mb-8">
+                    <a href="./setup-guide.pdf" download class="inline-block bg-white text-gray-800 font-semibold py-3 px-6 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-105 border border-gray-300 shadow-md">
+                        <i class="fas fa-file-download mr-2"></i> Download PDF Guide
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">
+                Ready to Get Started?
+            </h2>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                Join thousands of creators who have launched their own apps. It's time to build yours.
+            </p>
+            <a href="./webview-template.zip" download class="inline-block py-5 px-10 rounded-full text-lg font-semibold text-white bg-gradient-to-br from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg">
+                <i class="fas fa-paper-plane mr-2"></i> Download Now
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-gray-900 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>&copy; 2023 VoltNexis. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('notification-modal');
+
+        function openModal() {
+            modal.classList.add('open', 'opacity-100', 'visible');
+            modal.classList.remove('opacity-0', 'invisible');
+        }
+
+        function closeModal() {
+            modal.classList.remove('open', 'opacity-100', 'visible');
+            modal.classList.add('opacity-0', 'invisible');
+        }
+
+        document.getElementById('video-btn').addEventListener('click', openModal);
+    </script>
+</body>
+</html>

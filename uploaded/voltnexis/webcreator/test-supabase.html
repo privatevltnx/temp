@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Test - WebCreator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .success { background: #d4edda; border-color: #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border-color: #f5c6cb; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; background: #6366f1; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #5855eb; }
+        input, textarea { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    
+    <div class="test-section">
+        <h2>Connection Status</h2>
+        <div id="connectionStatus">Testing connection...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Application Submission</h2>
+        <form id="testForm">
+            <input type="text" id="testName" placeholder="Your Name" required>
+            <input type="email" id="testEmail" placeholder="Your Email" required>
+            <textarea id="testMessage" placeholder="Test message" rows="3"></textarea>
+            <button type="submit">Submit Test Application</button>
+        </form>
+        <div id="submitResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>View Applications</h2>
+        <button onclick="loadApplications()">Load Applications</button>
+        <div id="applicationsList"></div>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2';
+
+        // Replace with your actual Supabase URL and key
+        const supabaseUrl = 'https://mazvgebqfabfbxmhzapr.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1henZnZWJxZmFiZmJ4bWh6YXByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1Mjg2MzEsImV4cCI6MjA3MjEwNDYzMX0.ck2GBe7Pj_29pc4H8FTBRCCir4RVeWZyxcmrUOQDAo4';
+        
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // Test connection
+        async function testConnection() {
+            try {
+                const { data, error } = await supabase.from('applications').select('count', { count: 'exact', head: true });
+                if (error) throw error;
+                document.getElementById('connectionStatus').innerHTML = '<div class="success">✅ Supabase connected successfully!</div>';
+            } catch (error) {
+                document.getElementById('connectionStatus').innerHTML = `<div class="error">❌ Connection failed: ${error.message}</div>`;
+            }
+        }
+
+        testConnection();
+
+        // Test form submission
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitResult = document.getElementById('submitResult');
+            submitResult.innerHTML = 'Submitting...';
+            
+            try {
+                const { data, error } = await supabase
+                    .from('applications')
+                    .insert([{
+                        full_name: document.getElementById('testName').value,
+                        email: document.getElementById('testEmail').value,
+                        project_type: 'test',
+                        primary_goal: 'test',
+                        status: 'test'
+                    }])
+                    .select();
+                
+                if (error) throw error;
+                
+                submitResult.innerHTML = `<div class="success">✅ Test application submitted! ID: ${data[0].id}</div>`;
+                document.getElementById('testForm').reset();
+            } catch (error) {
+                submitResult.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+            }
+        });
+
+        // Load applications function
+        window.loadApplications = async () => {
+            const applicationsList = document.getElementById('applicationsList');
+            applicationsList.innerHTML = 'Loading...';
+            
+            try {
+                const { data, error } = await supabase
+                    .from('applications')
+                    .select('*')
+                    .order('created_at', { ascending: false })
+                    .limit(10);
+                
+                if (error) throw error;
+                
+                let html = '<h3>Recent Applications:</h3>';
+                
+                if (!data || data.length === 0) {
+                    html += '<p>No applications found.</p>';
+                } else {
+                    data.forEach((app) => {
+                        html += `
+                            <div style="border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                                <strong>ID:</strong> ${app.id}<br>
+                                <strong>Name:</strong> ${app.full_name || 'N/A'}<br>
+                                <strong>Email:</strong> ${app.email || 'N/A'}<br>
+                                <strong>Type:</strong> ${app.project_type || 'N/A'}<br>
+                                <strong>Status:</strong> ${app.status || 'N/A'}<br>
+                                <strong>Created:</strong> ${app.created_at ? new Date(app.created_at).toLocaleString() : 'N/A'}
+                            </div>
+                        `;
+                    });
+                }
+                
+                applicationsList.innerHTML = html;
+            } catch (error) {
+                applicationsList.innerHTML = `<div class="error">❌ Error loading applications: ${error.message}</div>`;
+            }
+        };
+    </script>
+</body>
+</html>

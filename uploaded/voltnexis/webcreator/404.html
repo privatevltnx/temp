@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - WebCreator by VoltNexis</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Let's get you back on track.">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <section class="error-page">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-visual animate-reveal">
+                    <div class="error-code">404</div>
+                    <div class="error-icon">🚀</div>
+                </div>
+                
+                <div class="error-text animate-reveal-delay">
+                    <h1>This route took a detour</h1>
+                    <p>The page you're looking for seems to have wandered off into the digital void. Don't worry, even the best websites have a few broken links!</p>
+                </div>
+                
+                <div class="error-actions animate-reveal-delay-2">
+                    <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+                    <a href="apply.html" class="btn btn-outline btn-lg">Start Application</a>
+                </div>
+                
+                <div class="helpful-links animate-reveal-delay-3">
+                    <h3>Looking for something specific?</h3>
+                    <div class="links-grid">
+                        <a href="services.html" class="help-link">
+                            <span class="link-icon">🛠️</span>
+                            <span>Our Services</span>
+                        </a>
+                        <a href="pricing.html" class="help-link">
+                            <span class="link-icon">💰</span>
+                            <span>Pricing</span>
+                        </a>
+                        <a href="portfolio.html" class="help-link">
+                            <span class="link-icon">🎨</span>
+                            <span>Portfolio</span>
+                        </a>
+                        <a href="contact.html" class="help-link">
+                            <span class="link-icon">📞</span>
+                            <span>Contact Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+
+<style>
+.error-page {
+    padding: 8rem 0 4rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.error-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-visual {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--primary);
+    opacity: 0.1;
+    line-height: 1;
+}
+
+.error-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateY(-20px); }
+}
+
+.error-text {
+    margin-bottom: 3rem;
+}
+
+.error-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.error-text p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.helpful-links h3 {
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.help-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.help-link:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.link-icon {
+    font-size: 2rem;
+}
+
+.help-link span:last-child {
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .error-code {
+        font-size: 6rem;
+    }
+    
+    .error-icon {
+        font-size: 3rem;
+    }
+    
+    .error-text h1 {
+        font-size: 2rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-actions .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>

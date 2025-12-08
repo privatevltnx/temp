@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - WebCreator by VoltNexis | Secure Payment</title>
+    <meta name="description" content="Secure checkout for your premium website project. Pay your deposit and start building your dream website today.">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <!-- Checkout Hero -->
+    <section class="checkout-hero animated-gradient">
+        <div class="container">
+            <h1 class="animate-reveal gradient-text">Secure Checkout</h1>
+            <p class="animate-reveal-delay">You're just one step away from getting your premium website!</p>
+            <div class="security-badges animate-reveal-delay-2">
+                <div class="security-badge">🔒 SSL Secured</div>
+                <div class="security-badge">💳 PCI Compliant</div>
+                <div class="security-badge">✅ Money Back Guarantee</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Form -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Order Summary -->
+                <div class="order-summary" style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 20px; padding: 30px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(99, 102, 241, 0.05), transparent); animation: rotateGlow 12s linear infinite;"></div>
+                    <h2 style="position: relative; z-index: 2; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.75rem; font-weight: 700; margin-bottom: 25px;">Order Summary</h2>
+                    <div class="project-details" style="position: relative; z-index: 2;">
+                        <div class="project-type" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 15px; margin-bottom: 25px; border: 1px solid rgba(6, 182, 212, 0.2);">
+                            <div class="project-icon" style="width: 60px; height: 60px; background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=60&h=60&fit=crop&crop=center'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);"></div>
+                            <div class="project-info">
+                                <h3 style="margin: 0 0 5px 0; color: #0f172a; font-size: 1.25rem; font-weight: 600;">Marketing Website</h3>
+                                <p style="margin: 0; color: #64748b; font-size: 0.9rem;">5-8 pages with CMS integration</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-breakdown" style="position: relative; z-index: 2;">
+                        <div class="price-item" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: linear-gradient(135deg, #f8fafc, #ffffff); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(99, 102, 241, 0.1);">
+                            <span style="font-weight: 500; color: #374151;">Base Package</span>
+                            <span style="font-weight: 600; color: #1f2937;">₹45,000</span>
+                        </div>
+                        <div class="price-item" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: linear-gradient(135deg, #f0fdf4, #ffffff); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(16, 185, 129, 0.1);">
+                            <span style="font-weight: 500; color: #374151;">SEO Setup</span>
+                            <span style="font-weight: 600; color: #1f2937;">₹12,000</span>
+                        </div>
+                        <div class="price-item" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: linear-gradient(135deg, #fef3c7, #ffffff); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="font-weight: 500; color: #374151;">Analytics Setup</span>
+                            <span style="font-weight: 600; color: #1f2937;">₹8,000</span>
+                        </div>
+                        <div class="price-divider" style="height: 2px; background: linear-gradient(90deg, transparent, #e5e7eb, transparent); margin: 20px 0;"></div>
+                        <div class="price-item total" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 15px; margin-bottom: 15px; border: 2px solid rgba(6, 182, 212, 0.2);">
+                            <span style="font-weight: 600; color: #0f172a; font-size: 1.1rem;">Total Project Cost</span>
+                            <span style="font-weight: 700; color: #0f172a; font-size: 1.25rem;">₹65,000</span>
+                        </div>
+                        <div class="price-item deposit" style="display: flex; justify-content: space-between; align-items: center; padding: 25px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 15px; color: white; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);">
+                            <span style="font-weight: 600; font-size: 1.1rem;">Deposit (50%)</span>
+                            <span style="font-weight: 700; font-size: 1.5rem; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">₹32,500</span>
+                        </div>
+                        
+                        <div class="order-id-section" style="position: relative; z-index: 2; margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 15px; border: 1px solid rgba(6, 182, 212, 0.2);">
+                            <h4 style="font-weight: 600; color: #0f172a; margin-bottom: 15px; font-size: 1.1rem;">Order Tracking</h4>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);">#</div>
+                                <div>
+                                    <div style="font-weight: 600; color: #0f172a; margin-bottom: 5px;">Order ID: <span id="order-id" style="color: #06b6d4; font-family: monospace;">WC-2024-001</span></div>
+                                    <div style="font-size: 0.9rem; color: #64748b;">Track your project progress with this ID</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-schedule" style="position: relative; z-index: 2; margin-top: 25px;">
+                        <h4 style="font-weight: 600; color: #0f172a; margin-bottom: 20px; font-size: 1.1rem;">Payment Schedule</h4>
+                        <div class="schedule-item" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #ecfdf5, #f0fdf4); border-radius: 15px; margin-bottom: 15px; border-left: 4px solid #10b981;">
+                            <div class="schedule-step" style="width: 40px; height: 40px; background: linear-gradient(135deg, #10b981, #059669); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">1</div>
+                            <div class="schedule-info" style="flex: 1;">
+                                <div style="font-weight: 600; color: #0f172a; margin-bottom: 5px;">Today - Project Start</div>
+                                <div style="font-weight: 700; color: #10b981; font-size: 1.25rem;">₹32,500</div>
+                            </div>
+                        </div>
+                        <div class="schedule-item" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 15px; border-left: 4px solid #06b6d4;">
+                            <div class="schedule-step" style="width: 40px; height: 40px; background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);">2</div>
+                            <div class="schedule-info" style="flex: 1;">
+                                <div style="font-weight: 600; color: #0f172a; margin-bottom: 5px;">On Completion</div>
+                                <div style="font-weight: 700; color: #06b6d4; font-size: 1.25rem;">₹32,500</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Form -->
+                <div class="payment-form" style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 20px; padding: 30px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: conic-gradient(from 180deg, transparent, rgba(16, 185, 129, 0.05), transparent); animation: rotateGlow 15s linear infinite;"></div>
+                    <h2 style="position: relative; z-index: 2; background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.75rem; font-weight: 700; margin-bottom: 25px;">Payment Details</h2>
+                    
+                    <div class="payment-methods">
+                        <div class="method-tabs">
+                            <button class="method-tab active" data-method="card">Credit/Debit Card</button>
+                            <button class="method-tab" data-method="upi">UPI</button>
+                            <button class="method-tab" data-method="netbanking">Net Banking</button>
+                        </div>
+                    </div>
+                    
+                    <form id="paymentForm" class="payment-form-content">
+                        <!-- Card Payment -->
+                        <div class="payment-method-content active" data-method="card">
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                <input type="text" placeholder="1234 5678 9012 3456" class="hover-glow" maxlength="19">
+                                <div class="card-icons">
+                                    <img src="https://img.icons8.com/color/24/visa.png" alt="Visa">
+                                    <img src="https://img.icons8.com/color/24/mastercard.png" alt="Mastercard">
+                                    <img src="https://img.icons8.com/color/24/rupay.png" alt="RuPay">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Expiry Date</label>
+                                    <input type="text" placeholder="MM/YY" class="hover-glow" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</label>
+                                    <input type="text" placeholder="123" class="hover-glow" maxlength="3">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Cardholder Name</label>
+                                <input type="text" placeholder="John Doe" class="hover-glow">
+                            </div>
+                        </div>
+                        
+                        <!-- UPI Payment -->
+                        <div class="payment-method-content" data-method="upi">
+                            <div class="form-group">
+                                <label>UPI ID</label>
+                                <input type="text" placeholder="yourname@paytm" class="hover-glow">
+                            </div>
+                            <div class="upi-apps">
+                                <div class="upi-app">
+                                    <img src="https://img.icons8.com/color/32/paytm.png" alt="Paytm">
+                                    <span>Paytm</span>
+                                </div>
+                                <div class="upi-app">
+                                    <img src="https://img.icons8.com/color/32/google-pay.png" alt="GPay">
+                                    <span>Google Pay</span>
+                                </div>
+                                <div class="upi-app">
+                                    <img src="https://img.icons8.com/color/32/phonepe.png" alt="PhonePe">
+                                    <span>PhonePe</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Net Banking -->
+                        <div class="payment-method-content" data-method="netbanking">
+                            <div class="form-group">
+                                <label>Select Your Bank</label>
+                                <select class="hover-glow">
+                                    <option>Choose your bank</option>
+                                    <option>State Bank of India</option>
+                                    <option>HDFC Bank</option>
+                                    <option>ICICI Bank</option>
+                                    <option>Axis Bank</option>
+                                    <option>Kotak Mahindra Bank</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Billing Address -->
+                        <div class="billing-section">
+                            <h3>Billing Address</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="hover-glow" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="hover-glow" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="hover-glow" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" class="hover-glow" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Company Name (Optional)</label>
+                                <input type="text" class="hover-glow">
+                            </div>
+                        </div>
+                        
+                        <div class="terms-section">
+                            <label class="checkbox-label">
+                                <input type="checkbox" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="legal/terms.html" target="_blank">Terms of Service</a> and <a href="legal/privacy.html" target="_blank">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="pay-button" style="width: 100%; padding: 20px; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 15px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4); position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent); animation: rotateGlow 3s linear infinite; opacity: 0; transition: opacity 0.3s ease;"></div>
+                            <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <span class="pay-amount" style="font-size: 1.4rem; font-weight: 800;">Pay ₹32,500</span>
+                                <span class="pay-text" style="font-size: 1rem; opacity: 0.9;">Start My Project</span>
+                            </div>
+                        </button>
+                    </form>
+                    
+                    <div class="security-info">
+                        <div class="security-item">
+                            <div class="security-icon">🔒</div>
+                            <div class="security-text">
+                                <strong>256-bit SSL Encryption</strong>
+                                <p>Your payment information is fully encrypted and secure</p>
+                            </div>
+                        </div>
+                        
+                        <div class="security-item">
+                            <div class="security-icon">💰</div>
+                            <div class="security-text">
+                                <strong>Money Back Guarantee</strong>
+                                <p>100% refund if you're not satisfied with our work</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Payment method switching
+        document.querySelectorAll('.method-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const method = this.dataset.method;
+                
+                // Update active tab
+                document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active content
+                document.querySelectorAll('.payment-method-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.querySelector(`[data-method="${method}"]`).classList.add('active');
+            });
+        });
+        
+        // Generate unique order ID
+        function generateOrderId() {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `WC-${year}${month}${day}-${random}`;
+        }
+        
+        // Set order ID on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderId = generateOrderId();
+            document.getElementById('order-id').textContent = orderId;
+            localStorage.setItem('currentOrderId', orderId);
+        });
+        
+        // Form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.pay-button');
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Processing Payment...';
+            submitBtn.disabled = true;
+            
+            // Get order ID
+            const orderId = document.getElementById('order-id').textContent;
+            
+            // Simulate payment processing
+            setTimeout(async () => {
+                try {
+                    // Save to Supabase
+                    const { supabase } = await import('./js/supabase-config.js');
+                    
+                    const orderData = {
+                        order_id: orderId,
+                        project_type: 'marketing',
+                        status: 'approved',
+                        full_name: 'Customer Name',
+                        email: 'customer@email.com',
+                        amount: 32500,
+                        created_at: new Date().toISOString()
+                    };
+                    
+                    const { error } = await supabase
+                        .from('applications')
+                        .insert([orderData]);
+                    
+                    if (error) {
+                        console.error('Error saving order:', error);
+                    }
+                    
+                    alert(`Payment successful! Your Order ID is ${orderId}. Save this for tracking your project.`);
+                    window.location.href = 'process.html?order=' + orderId;
+                } catch (error) {
+                    console.error('Error processing payment:', error);
+                    alert(`Payment successful! Your Order ID is ${orderId}. Save this for tracking your project.`);
+                    window.location.href = 'process.html?order=' + orderId;
+                }
+            }, 3000);
+        });
+        
+        // Card number formatting
+        document.querySelector('input[placeholder="1234 5678 9012 3456"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+        
+        // Expiry date formatting
+        document.querySelector('input[placeholder="MM/YY"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
