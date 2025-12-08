@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Offer Details - Areekode Official</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.webp">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo.webp">
+  <link rel="apple-touch-icon" href="/assets/logo.webp">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Offer Details - Areekode Official">
+  <meta property="og:description" content="View detailed offer information from Areekode">
+  <meta property="og:image" content="/assets/logo.webp">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Offer Details - Areekode Official">
+  <meta name="twitter:description" content="View detailed offer information from Areekode">
+  <meta name="twitter:image" content="/assets/logo.webp">
+  <style>
+    :root{--bg:#f7fafc;--card:#ffffff;--muted:#6b7280;--accent:#0ea5e9}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:800px;margin:0 auto;padding:20px}
+    .site-header{background:var(--card);padding:15px 20px;margin-bottom:20px;border-radius:12px;display:flex;align-items:center;gap:15px}
+    .logo{height:40px;width:40px;border-radius:50%;object-fit:cover}
+    .site-title{margin:0;font-size:24px;font-weight:700;color:var(--accent)}
+    .back-btn{background:var(--accent);color:#fff;padding:8px 16px;border-radius:999px;text-decoration:none;display:inline-block;margin-bottom:20px}
+    .offer-detail{background:linear-gradient(135deg,rgba(14,165,233,.1),rgba(14,165,233,.05));border:2px solid rgba(14,165,233,.3);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(14,165,233,.15)}
+    .offer-header{background:var(--accent);color:#fff;padding:30px;text-align:center;position:relative}
+    .offer-header::before{content:'🎉';font-size:40px;position:absolute;top:20px;right:30px;opacity:.3}
+    .offer-title{margin:0 0 10px;font-size:28px;font-weight:700}
+    .offer-category{background:rgba(255,255,255,.2);padding:5px 15px;border-radius:20px;display:inline-block;font-size:14px}
+    .offer-body{padding:30px}
+    .offer-description{font-size:18px;line-height:1.6;margin-bottom:25px}
+    .offer-details{display:grid;gap:15px;margin:25px 0}
+    .detail-item{background:#fff;padding:15px;border-radius:8px;border-left:4px solid var(--accent)}
+    .detail-label{font-weight:600;color:var(--accent);margin-bottom:5px}
+    .detail-value{color:#374151}
+    .action-buttons{display:flex;gap:15px;margin-top:30px;flex-wrap:wrap}
+    .btn{padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;text-align:center;flex:1;min-width:150px}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-secondary{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+    .btn-success{background:#10b981;color:#fff}
+    .terms{background:#f9fafb;padding:20px;border-radius:8px;margin-top:25px;font-size:14px;color:var(--muted)}
+    .qr-section{text-align:center;margin:25px 0;padding:20px;background:#fff;border-radius:8px}
+    .qr-placeholder{width:150px;height:150px;background:#f3f4f6;border:2px dashed #d1d5db;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div style="text-align:center;padding:8px;background:#1e40af;font-size:14px">
+    <a href="https://voltnexis.github.io" target="_blank" style="color:#ffffff;text-decoration:none;font-weight:600">This Website Created by VoltNexis</a>
+  </div>
+  <div class="container">
+    <header class="site-header">
+      <img src="/assets/logo.webp" alt="Areekode Official" class="logo">
+      <h1 class="site-title">Areekode Official</h1>
+    </header>
+    
+    <a href="offers.html" class="back-btn">← Back to Offers</a>
+    
+    <div class="offer-detail" id="offerDetail">
+      <!-- Offer details will be loaded here -->
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+    
+    function loadOfferDetail() {
+      const offerId = getUrlParameter('id');
+      const offer = getOfferById(offerId);
+      
+      if (!offer) {
+        document.getElementById('offerDetail').innerHTML = '<div class="offer-body"><h1>Offer not found</h1></div>';
+        return;
+      }
+      
+      document.title = offer.title + ' - Areekode Official';
+      
+      const daysLeft = Math.ceil((new Date(offer.validTill) - new Date()) / (1000 * 60 * 60 * 24));
+      
+      document.getElementById('offerDetail').innerHTML = `
+        <div class="offer-header">
+          <h1 class="offer-title">${offer.title}</h1>
+          <span class="offer-category">${offer.category}</span>
+        </div>
+        
+        <div class="offer-body">
+          <p class="offer-description">${offer.fullDescription}</p>
+          
+          <div class="offer-details">
+            <div class="detail-item">
+              <div class="detail-label">📍 Location</div>
+              <div class="detail-value">${offer.location}</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">📞 Contact</div>
+              <div class="detail-value">${offer.contact}</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">⏰ Valid Until</div>
+              <div class="detail-value">${new Date(offer.validTill).toLocaleDateString()} (${daysLeft} days left)</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">🏷️ Category</div>
+              <div class="detail-value">${offer.category}</div>
+            </div>
+          </div>
+          
+          <div class="qr-section">
+            <div class="qr-placeholder">
+              <span style="color:#9ca3af;">QR Code</span>
+            </div>
+            <p><strong>Show this QR code at the store to claim your offer</strong></p>
+          </div>
+          
+          <div class="action-buttons">
+            <a href="tel:${offer.contact}" class="btn btn-primary">📞 Call Now</a>
+            <a href="#" class="btn btn-secondary" onclick="shareOffer()">📤 Share Offer</a>
+            <a href="#" class="btn btn-success" onclick="saveOffer()">💾 Save Offer</a>
+          </div>
+          
+          <div class="terms">
+            <strong>Terms & Conditions:</strong><br>
+            • Offer valid only at the mentioned location<br>
+            • Cannot be combined with other offers<br>
+            • Show this page to claim the discount<br>
+            • Valid until ${new Date(offer.validTill).toLocaleDateString()}<br>
+            • Management reserves the right to modify terms
+          </div>
+        </div>
+      `;
+    }
+    
+    function shareOffer() {
+      if (navigator.share) {
+        navigator.share({
+          title: document.title,
+          url: window.location.href
+        });
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Offer link copied to clipboard!');
+      }
+    }
+    
+    function saveOffer() {
+      const saved = localStorage.getItem('savedOffers') || '[]';
+      const savedOffers = JSON.parse(saved);
+      const offerId = getUrlParameter('id');
+      
+      if (!savedOffers.includes(offerId)) {
+        savedOffers.push(offerId);
+        localStorage.setItem('savedOffers', JSON.stringify(savedOffers));
+        alert('Offer saved successfully!');
+      } else {
+        alert('Offer already saved!');
+      }
+    }
+    
+    loadOfferDetail();
+  </script>
+</body>
+</html>

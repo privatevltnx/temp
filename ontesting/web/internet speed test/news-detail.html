@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News Detail - Areekode Official</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.webp">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo.webp">
+  <link rel="apple-touch-icon" href="/assets/logo.webp">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="News Detail - Areekode Official">
+  <meta property="og:description" content="Read detailed news from Areekode">
+  <meta property="og:image" content="/assets/logo.webp">
+  <meta property="og:type" content="article">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="News Detail - Areekode Official">
+  <meta name="twitter:description" content="Read detailed news from Areekode">
+  <meta name="twitter:image" content="/assets/logo.webp">
+  <style>
+    :root{--bg:#f7fafc;--card:#ffffff;--muted:#6b7280;--accent:#0ea5e9}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:800px;margin:0 auto;padding:20px}
+    .site-header{background:var(--card);padding:15px 20px;margin-bottom:20px;border-radius:12px;display:flex;align-items:center;gap:15px}
+    .logo{height:40px;width:40px;border-radius:50%;object-fit:cover}
+    .site-title{margin:0;font-size:24px;font-weight:700;color:var(--accent)}
+    .back-btn{background:var(--accent);color:#fff;padding:8px 16px;border-radius:999px;text-decoration:none;display:inline-block;margin-bottom:20px}
+    .article{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(2,6,23,.06)}
+    .article img{width:100%;height:300px;object-fit:cover}
+    .article-body{padding:30px}
+    .article-title{margin:0 0 15px;font-size:28px;font-weight:700;line-height:1.3}
+    .meta{color:var(--muted);font-size:14px;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #e5e7eb}
+    .tags{display:flex;gap:8px;margin:15px 0}
+    .tag{background:#e0f2fe;color:#0369a1;padding:6px 12px;border-radius:6px;font-size:13px}
+    .content{line-height:1.7;font-size:16px;margin:20px 0}
+    .share-section{margin-top:30px;padding-top:20px;border-top:1px solid #e5e7eb}
+    .share-btn{background:#f3f4f6;color:#374151;padding:8px 16px;border-radius:6px;text-decoration:none;margin-right:10px;display:inline-block}
+    .related{margin-top:30px}
+    .related-item{background:#f9fafb;padding:15px;border-radius:8px;margin-bottom:10px}
+    .related-title{font-weight:600;margin-bottom:5px}
+    .related-desc{color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+  <div style="text-align:center;padding:8px;background:#1e40af;font-size:14px">
+    <a href="https://voltnexis.github.io" target="_blank" style="color:#ffffff;text-decoration:none;font-weight:600">This Website Created by VoltNexis</a>
+  </div>
+  <div class="container">
+    <header class="site-header">
+      <img src="/assets/logo.webp" alt="Areekode Official" class="logo">
+      <h1 class="site-title">Areekode Official</h1>
+    </header>
+    
+    <a href="news.html" class="back-btn">← Back to News</a>
+    
+    <article class="article" id="newsArticle">
+      <!-- Article content will be loaded here -->
+    </article>
+    
+    <div class="related">
+      <h3>Related News</h3>
+      <div id="relatedNews">
+        <!-- Related news will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+    
+    function loadNewsDetail() {
+      const newsId = getUrlParameter('id');
+      const news = getNewsById(newsId);
+      
+      if (!news) {
+        document.getElementById('newsArticle').innerHTML = '<div class="article-body"><h1>News not found</h1></div>';
+        return;
+      }
+      
+      document.title = news.title + ' - Areekode Official';
+      
+      document.getElementById('newsArticle').innerHTML = `
+        <img src="${news.image}" alt="${news.title}">
+        <div class="article-body">
+          <h1 class="article-title">${news.title}</h1>
+          <div class="meta">
+            By ${news.author} • ${new Date(news.date).toLocaleDateString()} • 3 min read
+          </div>
+          <div class="tags">
+            ${news.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          <div class="content">
+            <p>${news.content}</p>
+            <p>ഈ വാർത്തയുമായി ബന്ധപ്പെട്ട് കൂടുതൽ വിവരങ്ങൾ ലഭിക്കുന്ന മുറയ്ക്ക് അപ്ഡേറ്റ് ചെയ്യുന്നതാണ്. പ്രാദേശിക വാർത്തകൾക്കായി ഞങ്ങളുടെ പേജ് ഫോളോ ചെയ്യുക.</p>
+          </div>
+          <div class="share-section">
+            <strong>Share this article:</strong><br><br>
+            <a href="#" class="share-btn">Facebook</a>
+            <a href="#" class="share-btn">WhatsApp</a>
+            <a href="#" class="share-btn">Twitter</a>
+          </div>
+        </div>
+      `;
+      
+      // Load related news
+      const relatedNews = siteData.news.filter(n => n.id !== parseInt(newsId)).slice(0, 3);
+      document.getElementById('relatedNews').innerHTML = relatedNews.map(news => `
+        <div class="related-item">
+          <div class="related-title">${news.title}</div>
+          <div class="related-desc">${news.excerpt.substring(0, 100)}...</div>
+          <a href="news-detail.html?id=${news.id}" style="color:var(--accent);text-decoration:none;font-size:14px;">Read more →</a>
+        </div>
+      `).join('');
+    }
+    
+    loadNewsDetail();
+  </script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Areekode Official</title>
+  <meta name="description" content="News, history, trending offers and media from Areekode — mobile friendly and beautifully arranged." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.webp">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo.webp">
+  <link rel="apple-touch-icon" href="/assets/logo.webp">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Areekode Official">
+  <meta property="og:description" content="News, history, trending offers and media from Areekode — mobile friendly and beautifully arranged.">
+  <meta property="og:image" content="/assets/logo.webp">
+  <meta property="og:url" content="https://areekodeofficial-voltnexisstudio.vercel.app">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Areekode Official">
+  <meta name="twitter:description" content="News, history, trending offers and media from Areekode — mobile friendly and beautifully arranged.">
+  <meta name="twitter:image" content="/assets/logo.webp">
+  <style>
+    :root{--bg:#f7fafc;--card:#ffffff;--muted:#6b7280;--accent:#0ea5e9}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+    header{position:relative;overflow:hidden;border-radius:12px}
+    .hero-multi-video-container {
+    position: relative; /* CRITICAL: Sets the reference point for absolute children */
+    height: 400px; /* Adjust the height as needed for this section */
+    overflow: hidden;
+    /* You might want a background color for when videos are loading */
+    background-color: #000; 
+}
+.hero-videos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Lowest layer (the background) */
+    
+    /* Arrange the three videos side-by-side using Flexbox or Grid */
+    display: flex;
+    gap: 5px; /* Optional: Small space between the videos */
+}
+.hero-video-item {
+    flex: 1; /* Makes all three video items take equal width */
+    overflow: hidden;
+}
+.hero-video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video fills its container */
+}
+.multi-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* CRITICAL: Must be higher than the .hero-videos z-index */
+    
+    /* Optional: Add a subtle overlay for contrast over the videos */
+    background-color: rgba(0, 0, 0, 0.4); 
+    color: white; /* Ensure the text is visible */
+
+    /* Centering Content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+    text-align: center;
+    padding: 20px;
+}
+    .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.3)}
+    .hero-overlay{position:relative;z-index:2;padding:64px 24px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;background:rgba(0,0,0,.4)}
+    .hero-title{font-size:clamp(28px,5vw,48px);margin:0 0 12px;font-weight:700;text-shadow:2px 2px 4px rgba(0,0,0,.8)}
+    .hero-sub{margin:0 0 18px;color:rgba(255,255,255,.95);text-shadow:1px 1px 2px rgba(0,0,0,.7)}
+    .btn{background:var(--accent);color:#fff;padding:12px 20px;border-radius:999px;border:0;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+
+    /* grid sections */
+    .grid{display:grid;gap:18px}
+    .three{grid-template-columns:repeat(1,1fr)}
+    @media(min-width:768px){.three{grid-template-columns:repeat(3,1fr)}}
+
+    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(2,6,23,.06)}
+    .card img{width:100%;height:180px;object-fit:cover;display:block}
+    .card-body{padding:16px}
+    .card-title{margin:0;font-size:18px;font-weight:700}
+    .card-desc{margin:8px 0 12px;color:var(--muted);font-size:14px}
+    .muted{color:var(--muted)}
+
+    /* media gallery */
+    .gallery{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
+    @media(min-width:900px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    .media{background:#fff;border-radius:10px;overflow:hidden}
+    .media video, .media img{width:100%;height:220px;object-fit:cover}
+
+    /* offers list */
+    .offers{display:flex;flex-direction:column;gap:12px}
+    @media(min-width:700px){.offers{flex-direction:row}}
+    .offer{flex:1;padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(14,165,233,.06),rgba(14,165,233,.02));border:1px solid rgba(14,165,233,.08)}
+
+    footer{margin-top:28px;padding:28px 12px;text-align:center;color:var(--muted)}
+
+    /* hero videos section */
+    .hero-videos{display:flex;gap:2px;margin:20px 0;box-shadow:0 8px 24px rgba(0,0,0,.15);border-radius:12px;overflow:hidden}
+    .hero-video-item{flex:1;height:500px;position:relative}
+    .hero-video-item video{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-video-item:not(:last-child)::after{content:'';position:absolute;right:-1px;top:0;bottom:0;width:1px;background:rgba(255,255,255,.3);z-index:1}
+
+    /* small helpers */
+    .section-title{font-size:20px;margin:0 0 12px;font-weight:700}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(15,23,42,.06);font-size:13px}
+
+    /* subtle animations */
+    .fade-up{transform:translateY(18px);opacity:0;animation:up .6s forwards}
+    .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+    @keyframes up{to{transform:none;opacity:1}}
+  </style>
+</head>
+<body>
+  <main>
+    <div style="text-align:center;padding:8px;background:#1e40af;font-size:14px">
+    <a href="https://voltnexis.github.io" target="_blank" style="color:#ffffff;text-decoration:none;font-weight:600">This Website Created by VoltNexis</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://voltnexis.github.io" target="_blank" style="color:#ffffff;text-decoration:none;font-weight:600">Visit</a>
+  </div>
+    <div class="container">
+      <!-- HERO 
+      <header class="card" style="height:60vh;min-height:360px;">
+        <video class="hero-video" autoplay muted loop playsinline src="/assets/areekode_hero.mp4"></video>
+        <div class="hero-overlay">
+          <h1 class="hero-title">Areekode Official</h1>
+          <p class="hero-sub">Local news, history, trending offers and a curated media gallery — all in one place. Mobile friendly and fast.</p>
+          <a class="btn" href="#news">Explore Latest</a>
+        </div>
+      </header>-->
+
+      <div class="hero-multi-video-container">
+
+       <div class="multi-video-overlay">
+        <div style="background:rgba(255,255,255,.9);border-radius:50%;padding:1px;margin-bottom:15px;display:inline-block">
+          <img src="/assets/logo.webp" alt="Areekode Official" style="height:60px;width:60px;border-radius:50%;object-fit:cover">
+        </div>
+        <h1 class="hero-title">Areekode Official</h1>
+        <p class="hero-sub">Local news, history, trending offers and a curated media gallery — all in one place. Mobile friendly and fast.</p>
+        <a class="btn" href="#news">Explore Latest</a>
+       </div>
+
+       <div class="hero-videos">
+        <div class="hero-video-item">
+            <video autoplay muted loop playsinline src="/assets/hero1.webm"></video>
+        </div>
+        <div class="hero-video-item">
+            <video autoplay muted loop playsinline src="/assets/hero2.webm"></video>
+        </div>
+        <div class="hero-video-item">
+            <video autoplay muted loop playsinline src="/assets/hero3.webm"></video>
+        </div>
+       </div>
+   </div>
+
+      <!-- HERO VIDEOS 
+      <div class="hero-videos">
+        <div class="hero-video-item">
+          <video autoplay muted loop playsinline src="/assets/hero1.mp4"></video>
+        </div>
+        <div class="hero-video-item">
+          <video autoplay muted loop playsinline src="/assets/hero2.mp4"></video>
+        </div>
+        <div class="hero-video-item">
+          <video autoplay muted loop playsinline src="/assets/hero3.mp4"></video>
+        </div>
+      </div>-->
+
+      <!-- MAIN SECTIONS -->
+      <section id="news" style="margin-top:22px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+          <h2 class="section-title">Latest News</h2>
+          <a href="news.html" class="pill" style="text-decoration:none;color:inherit">View All News</a>
+        </div>
+
+        <div class="grid three">
+          <article class="card fade-up delay-1">
+            <img src="/assets/news1.webp" alt="news 1">
+            <div class="card-body">
+              <h3 class="card-title">ഉംറക്ക് പോകാൻ അറബിയിൽനിന്ന് പണം വാങ്ങി നൽകാമെന്ന്</h3>
+              <p class="card-desc">മഞ്ചേരി: ഉംറക്ക് പോകാൻ അറബിയിൽനിന്ന് പണം വാങ്ങി നൽകാമെന്ന് വിശ്വസിപ്പിച്ച് മൂന്നേമുക്കാൽ പവൻ സ്വർണം തട്ടിയയാൾ പിടിയിൽ</p>
+              <a class="pill" href="news-detail.html?id=1">Read story</a>
+            </div>
+          </article>
+
+          <article class="card fade-up delay-2">
+            <img src="/assets/news2.webp" alt="news 2">
+            <div class="card-body">
+              <h3 class="card-title">1.29 കോടിയുടെ രേഖകളില്ലാത്ത പണം പിടിച്ചു</h3>
+              <p class="card-desc">കാ​റി​ൽ ക​ട​ത്തു​ക​യാ​യി​രു​ന്ന 1.29 കോ​ടി രൂ​പ​യു​ടെ രേ​ഖ​ക​ളി​ല്ലാ​ത്ത പ​ണ​വു​മാ​യി മ​ധ്യ​വ​യ​സ്ക​ൻ അ​രീ​ക്കോ​ട് പൊ​ലീ​സി​ന്റെ പി​ടി​യി​ൽ</p>
+              <a class="pill" href="news-detail.html?id=2">Read story</a>
+            </div>
+          </article>
+
+          <article class="card fade-up delay-3">
+            <img src="/assets/news3.webp" alt="news 3">
+            <div class="card-body">
+              <h3 class="card-title">ജലരാജാവ് ആര്? ഇന്നറിയാം</h3>
+              <p class="card-desc">അ​രീ​ക്കോ​ട്: മൈ​ത്ര​യി​ൽ ന​ട​ക്കു​ന്ന ഏ​ഴാ​മ​ത് ഏ​റ​നാ​ട് ജ​ലോ​ത്സ​വ​ത്തി​നു​ള്ള തോ​ണി​ക​ൾ നീ​റ്റി​ലി​റ​ക്കി.</p>
+              <a class="pill" href="news-detail.html?id=3">Read story</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- HISTORY + OFFERS -->
+      <section style="display:grid;grid-template-columns:1fr;gap:18px;margin-top:26px">
+        <div class="card" style="padding:18px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <h2 class="section-title" style="margin:0">Our History</h2>
+            <a href="history.html" class="pill" style="text-decoration:none;color:inherit">Full History</a>
+          </div>
+          <p class="muted">Areekode has a long history rooted in trade, community festivals and traditional crafts. Browse photos and stories from the archives below.</p>
+          <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+            <img src="/assets/history1.webp" alt="history" style="width:120px;height:80px;object-fit:cover;border-radius:8px">
+            <img src="/assets/history2.webp" alt="history" style="width:120px;height:80px;object-fit:cover;border-radius:8px">
+            <img src="/assets/history3.webp" alt="history" style="width:120px;height:80px;object-fit:cover;border-radius:8px">
+            <img src="/assets/history4.webp" alt="history" style="width:120px;height:80px;object-fit:cover;border-radius:8px">
+          </div>
+        </div>
+
+        <div class="card" style="padding:18px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <h2 class="section-title" style="margin:0">Trending Offers</h2>
+            <a href="offers.html" class="pill" style="text-decoration:none;color:inherit">More Offers</a>
+          </div>
+          <div class="offers" style="margin-top:8px">
+            <div class="offer">
+              <strong>Bakery Delight — 20% off</strong>
+              <p class="muted">Discount on all pastries this weekend. Show this page to claim.</p>
+            </div>
+            <div class="offer">
+              <strong>Textile Sale — Buy 2 Get 1</strong>
+              <p class="muted">Local textile shop running a limited time offer on handloom fabrics.</p>
+            </div>
+            <div class="offer">
+              <strong>Electronics Fair — Free Shipping</strong>
+              <p class="muted">Free delivery within Areekode for selected items during the fair.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEDIA GALLERY -->
+      <section style="margin-top:26px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <h2 class="section-title" style="margin:0">Videos & Photos</h2>
+          <a href="medias.html" class="pill" style="text-decoration:none;color:inherit">View Gallery</a>
+        </div>
+        <p class="muted" style="margin:6px 0 12px">Short clips and highlights from events around Areekode.</p>
+        <div class="gallery">
+          <div class="media card">
+            <video controls src="/assets/video1.mp4"></video>
+            <div style="padding:20px"><strong>Festival Highlights</strong><p class="muted" style="margin:6px 0 0">2:18 • Community festival</p></div>
+          </div>
+          <div class="media card">
+            <img src="/assets/photo1.webp" alt="photo">
+            <div style="padding:10px"><strong>Town Square</strong><p class="muted" style="margin:6px 0 0">A busy afternoon in the square</p></div>
+          </div>
+          <div class="media card">
+            <video controls src="/assets/video2.mp4"></video>
+            <div style="padding:10px"><strong>Market Tour</strong><p class="muted" style="margin:6px 0 0">3:05 • Local vendors</p></div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>© <span id="yr"></span> Areekode Official — Made with ❤️ for the community</p>
+        <p class="muted" style="font-size:13px;margin-top:6px">Built to be mobile friendly — add your images and videos to /assets to populate content.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // small JS helpers — populate year and simple scroll reveal for cards
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded',function(){
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{el.style.animationDelay=(0.08*i)+'s'});
+    });
+  </script>
+</body>
+</html>

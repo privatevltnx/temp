@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trending Offers - Areekode Official</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo.webp">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo.webp">
+  <link rel="apple-touch-icon" href="/assets/logo.webp">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Trending Offers - Areekode Official">
+  <meta property="og:description" content="Discover the best deals and offers in Areekode">
+  <meta property="og:image" content="/assets/logo.webp">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Trending Offers - Areekode Official">
+  <meta name="twitter:description" content="Discover the best deals and offers in Areekode">
+  <meta name="twitter:image" content="/assets/logo.webp">
+  <style>
+    :root{--bg:#f7fafc;--card:#ffffff;--muted:#6b7280;--accent:#0ea5e9}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#0f172a}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+    .site-header{background:var(--card);padding:15px 20px;margin-bottom:20px;border-radius:12px;display:flex;align-items:center;gap:15px}
+    .logo{height:40px;width:40px;border-radius:50%;object-fit:cover}
+    .site-title{margin:0;font-size:24px;font-weight:700;color:var(--accent)}
+    .header{background:var(--card);padding:20px;border-radius:12px;margin-bottom:20px;text-align:center}
+    .back-btn{background:var(--accent);color:#fff;padding:8px 16px;border-radius:999px;text-decoration:none;display:inline-block;margin-bottom:10px}
+    .offer-card{background:linear-gradient(135deg,rgba(14,165,233,.1),rgba(14,165,233,.05));border:1px solid rgba(14,165,233,.2);border-radius:12px;padding:20px;margin-bottom:20px;position:relative;overflow:hidden}
+    .offer-card::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:var(--accent);transform:rotate(45deg) translate(30px,-30px);opacity:.1}
+    .offer-title{margin:0 0 10px;font-size:22px;font-weight:700;color:#0369a1}
+    .offer-desc{margin:0 0 15px;color:var(--muted);line-height:1.5}
+    .offer-meta{display:flex;gap:15px;margin:15px 0;font-size:14px}
+    .offer-meta span{background:#fff;padding:5px 10px;border-radius:4px;border:1px solid #e5e7eb}
+    .valid-till{color:#dc2626;font-weight:600}
+    .view-btn{background:var(--accent);color:#fff;padding:12px 24px;border-radius:6px;text-decoration:none;display:inline-block;font-weight:600}
+    .category-filter{margin-bottom:20px;text-align:center}
+    .filter-btn{background:#fff;border:1px solid #e5e7eb;padding:8px 16px;margin:0 5px;border-radius:6px;cursor:pointer;text-decoration:none;color:#374151}
+    .filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div style="text-align:center;padding:8px;background:#1e40af;font-size:14px">
+    <a href="https://voltnexis.github.io" target="_blank" style="color:#ffffff;text-decoration:none;font-weight:600">This Website Created by VoltNexis</a>
+  </div>
+  <div class="container">
+    <header class="site-header">
+      <img src="/assets/logo.webp" alt="Arreekode Official" class="logo">
+      <h1 class="site-title">Areekode Official</h1>
+    </header>
+    
+    <div class="header">
+      <a href="index.html" class="back-btn">← Back to Home</a>
+      <h1>Trending Offers</h1>
+      <p>Discover the best deals and offers in Arreekode</p>
+    </div>
+    
+    <div class="category-filter">
+      <a href="#" class="filter-btn active" data-category="all">All Offers</a>
+      <a href="#" class="filter-btn" data-category="Food">Food</a>
+      <a href="#" class="filter-btn" data-category="Clothing">Clothing</a>
+    </div>
+    
+    <div id="offersContainer">
+      <!-- Offers will be loaded here -->
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    let currentFilter = 'all';
+    
+    function loadOffers(filter = 'all') {
+      const container = document.getElementById('offersContainer');
+      const filteredOffers = filter === 'all' ? siteData.offers : siteData.offers.filter(offer => offer.category === filter);
+      
+      container.innerHTML = filteredOffers.map(offer => `
+        <div class="offer-card">
+          <h2 class="offer-title">${offer.title}</h2>
+          <p class="offer-desc">${offer.description}</p>
+          <div class="offer-meta">
+            <span>📍 ${offer.location}</span>
+            <span>📞 ${offer.contact}</span>
+            <span class="valid-till">⏰ Valid till ${new Date(offer.validTill).toLocaleDateString()}</span>
+          </div>
+          <a href="offer-detail.html?id=${offer.id}" class="view-btn">View Details</a>
+        </div>
+      `).join('');
+    }
+    
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.category;
+        loadOffers(category);
+      });
+    });
+    
+    loadOffers();
+  </script>
+</body>
+</html>

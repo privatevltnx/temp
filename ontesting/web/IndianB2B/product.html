@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Marketplace</title>
+    <meta name="description" content="Detailed product information and seller details">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        secondary: "#1e40af",
+                        accent: "#f59e0b"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-2xl font-bold text-primary">Marketplace</a>
+                <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 w-64">
+                    <i class="fas fa-search text-gray-500 mr-2"></i>
+                    <input type="text" placeholder="Search products..." class="bg-transparent outline-none w-full">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="p-2 text-gray-600 hover:text-primary">
+                    <i class="fas fa-inbox text-xl"></i>
+                </button>
+                <button class="p-2 text-gray-600 hover:text-primary">
+                    <i class="fas fa-user text-xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Product Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Image Carousel -->
+                <div class="relative">
+                    <div class="carousel">
+                        <img src="https://picsum.photos/600/400?random=1" alt="Product main image" class="w-full rounded-lg" loading="lazy">
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 mt-4">
+                        <img src="https://picsum.photos/150/100?random=2" alt="Product thumbnail 1" class="cursor-pointer rounded border border-gray-200">
+                        <img src="https://picsum.photos/150/100?random=3" alt="Product thumbnail 2" class="cursor-pointer rounded border border-gray-200">
+                        <img src="https://picsum.photos/150/100?random=4" alt="Product thumbnail 3" class="cursor-pointer rounded border border-gray-200">
+                        <img src="https://picsum.photos/150/100?random=5" alt="Product thumbnail 4" class="cursor-pointer rounded border border-gray-200">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800 mb-2">Premium Quality Product</h1>
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl font-bold text-primary">$49.99 - $99.99</span>
+                        <span class="ml-4 text-gray-600">MOQ: 50 units</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <span class="font-medium text-gray-800">Seller:</span>
+                            <span class="ml-2 font-semibold">ABC Trading Co.</span>
+                            <span class="ml-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full flex items-center">
+                                <i class="fas fa-check-circle mr-1"></i> Verified
+                            </span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Singapore • 4.8/5 (128 reviews)</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 mb-6">
+                        <button class="w-full bg-primary hover:bg-secondary text-white font-medium py-3 px-4 rounded-lg transition duration-200">
+                            <i class="fas fa-envelope mr-2"></i> Send Inquiry
+                        </button>
+                        <button class="w-full bg-white hover:bg-gray-100 text-primary font-medium py-3 px-4 border border-primary rounded-lg transition duration-200">
+                            <i class="fas fa-comment-dots mr-2"></i> Chat with Seller
+                        </button>
+                        <button class="w-full bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-4 border border-gray-300 rounded-lg transition duration-200">
+                            <i class="fas fa-phone-alt mr-2"></i> Call Seller (***) ***-4567
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Product Description</h2>
+            <div class="prose max-w-none text-gray-700">
+                <p>This premium quality product is designed for maximum durability and performance. Made with high-grade materials and precision engineering, it offers exceptional value for your business needs.</p>
+                <h3 class="font-semibold mt-4">Specifications:</h3>
+                <ul class="list-disc pl-5">
+                    <li>Material: High-grade stainless steel</li>
+                    <li>Dimensions: 10" x 5" x 3"</li>
+                    <li>Weight: 1.5 lbs</li>
+                    <li>Color options: Silver, Black, Gold</li>
+                    <li>Warranty: 2 years</li>
+                </ul>
+                <h3 class="font-semibold mt-4">Key Features:</h3>
+                <ul class="list-disc pl-5">
+                    <li>Corrosion resistant</li>
+                    <li>Easy to maintain</li>
+                    <li>Ergonomic design</li>
+                    <li>Custom branding available</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seller Information -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Seller Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-2">ABC Trading Co.</h3>
+                    <div class="text-gray-600 space-y-2">
+                        <p><i class="fas fa-id-card mr-2"></i> GST Registered: GST123456789</p>
+                        <p><i class="fas fa-calendar-alt mr-2"></i> Active since: 2015</p>
+                        <p><i class="fas fa-star mr-2"></i> Seller rating: 4.8/5 (320 reviews)</p>
+                        <p><i class="fas fa-boxes mr-2"></i> Products listed: 42</p>
+                    </div>
+                </div>
+                <div class="flex items-end">
+                    <button class="bg-white hover:bg-gray-100 text-primary font-medium py-2 px-4 border border-primary rounded-lg transition duration-200">
+                        View Seller Profile
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800">Customer Reviews</h2>
+                <button class="text-primary font-medium hover:underline">Write a Review</button>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Review 1 -->
+                <div class="border-b border-gray-200 pb-6">
+                    <div class="flex items-center mb-2">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">John D.</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <div class="flex text-yellow-400 mr-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span>2 weeks ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">Excellent product quality and fast shipping. The seller was very responsive to all my questions. Will definitely order again!</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="border-b border-gray-200 pb-6">
+                    <div class="flex items-center mb-2">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Sarah M.</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <div class="flex text-yellow-400 mr-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span>1 month ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">Good product overall, met our expectations. The packaging could be improved but the product itself is solid. Seller communication was prompt.</p>
+                </div>
+            </div>
+            
+            <button class="mt-6 text-primary font-medium hover:underline">Load More Reviews</button>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Marketplace</h3>
+                    <p class="text-gray-400">Connecting buyers and sellers worldwide since 2010.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sellers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Help</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>© 2023 Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inquiry Modal (hidden by default) -->
+    <div id="inquiryModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Send Inquiry</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" id="phone" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Inquiry</label>
+                    <textarea id="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-medium py-2 px-4 rounded-md transition duration-200">
+                    Send Inquiry
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const inquiryModal = document.getElementById('inquiryModal');
+        const closeModal = document.getElementById('closeModal');
+        const inquiryButtons = document.querySelectorAll('button:contains("Send Inquiry")');
+        
+        // Show modal when any inquiry button is clicked
+        inquiryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                inquiryModal.classList.remove('hidden');
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            inquiryModal.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === inquiryModal) {
+                inquiryModal.classList.add('hidden');
+            }
+        });
+        
+        // Navigation handling
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // In a real implementation, this would handle navigation
+                console.log(`Navigating to: ${link.getAttribute('href')}`);
+            });
+        });
+    </script>
+</body>
+</html>

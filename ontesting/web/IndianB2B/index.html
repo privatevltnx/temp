@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndianB2B - Connecting India's Businesses</title>
+    <meta name="description" content="India's trusted B2B marketplace connecting buyers and suppliers">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        secondary: "#1e40af",
+                        accent: "#f59e0b"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Navigation Bar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold text-primary" onclick="event.preventDefault(); window.location.href='index.html'">
+                IndianB2B
+            </a>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 mx-8">
+                <div class="relative w-full">
+                    <input 
+                        type="text" 
+                        placeholder="Search products, suppliers, services" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                    <button class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-secondary transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side Buttons -->
+            <div class="flex items-center space-x-4">
+                <!-- Sign In / Dashboard -->
+                <a href="auth.html" class="text-gray-700 hover:text-primary" onclick="event.preventDefault(); window.location.href='auth.html'">
+                    <span class="hidden md:inline">Sign In</span>
+                    <i class="fas fa-user md:hidden"></i>
+                </a>
+                
+                <!-- Inbox -->
+                <a href="inbox.html" class="text-gray-700 hover:text-primary" onclick="event.preventDefault(); window.location.href='inbox.html'">
+                    <i class="fas fa-inbox"></i>
+                </a>
+                
+                <!-- Language Switcher -->
+                <div class="relative group">
+                    <button class="text-gray-700 hover:text-primary">
+                        <i class="fas fa-globe"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-md py-1 hidden group-hover:block">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">English</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hindi</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Malayalam</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Connecting India's Businesses with Trust</h1>
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <a href="requirement.html" 
+                   class="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
+                   onclick="event.preventDefault(); window.location.href='requirement.html'">
+                    Post Requirement
+                </a>
+                <a href="auth.html?type=seller" 
+                   class="bg-accent text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition"
+                   onclick="event.preventDefault(); window.location.href='auth.html?type=seller'">
+                    Become a Seller
+                </a>
+                <a href="#categories" 
+                   class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition">
+                    Explore Categories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section id="categories" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-10">Browse Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Category 1 -->
+                <a href="category.html?cat=electronics" class="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition" onclick="event.preventDefault(); window.location.href='category.html?cat=electronics'">
+                    <div class="text-4xl mb-3 text-primary">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="font-medium">Electronics</h3>
+                </a>
+                
+                <!-- Category 2 -->
+                <a href="category.html?cat=textiles" class="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition" onclick="event.preventDefault(); window.location.href='category.html?cat=textiles'">
+                    <div class="text-4xl mb-3 text-primary">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="font-medium">Textiles</h3>
+                </a>
+                
+                <!-- Category 3 -->
+                <a href="category.html?cat=machinery" class="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition" onclick="event.preventDefault(); window.location.href='category.html?cat=machinery'">
+                    <div class="text-4xl mb-3 text-primary">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="font-medium">Machinery</h3>
+                </a>
+                
+                <!-- Category 4 -->
+                <a href="category.html?cat=services" class="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition" onclick="event.preventDefault(); window.location.href='category.html?cat=services'">
+                    <div class="text-4xl mb-3 text-primary">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3 class="font-medium">Services</h3>
+                </a>
+                
+                <!-- Category 5 -->
+                <a href="category.html?cat=construction" class="bg-gray-50 p-6 rounded-lg text-center hover:shadow-md transition" onclick="event.preventDefault(); window.location.href='category.html?cat=construction'">
+                    <div class="text-4xl mb-3 text-primary">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3 class="font-medium">Construction</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-10">Featured Products</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://picsum.photos/400/300?random=101" alt="Industrial motor" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium">Industrial Motor 5HP</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Verified</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">Mumbai, Maharashtra</p>
+                        <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition">
+                            View Product
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://picsum.photos/400/300?random=102" alt="Textile fabric" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium">Cotton Fabric Roll</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Verified</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">Surat, Gujarat</p>
+                        <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition">
+                            View Product
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://picsum.photos/400/300?random=103" alt="Construction equipment" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium">Concrete Mixer</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Verified</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">Delhi</p>
+                        <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition">
+                            View Product
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://picsum.photos/400/300?random=104" alt="Electronic components" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium">PCB Components Kit</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Verified</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">Bengaluru, Karnataka</p>
+                        <button class="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-secondary transition">
+                            View Product
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-10">Why Choose IndianB2B?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="text-5xl mb-4 text-primary">✅</div>
+                    <h3 class="text-xl font-medium mb-2">Verified Sellers</h3>
+                    <p class="text-gray-600">All our sellers undergo strict verification to ensure genuine business transactions.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-5xl mb-4 text-primary">📞</div>
+                    <h3 class="text-xl font-medium mb-2">Direct Connect</h3>
+                    <p class="text-gray-600">Communicate directly with suppliers without middlemen for better deals.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-5xl mb-4 text-primary">🔒</div>
+                    <h3 class="text-xl font-medium mb-2">Safe Business Deals</h3>
+                    <p class="text-gray-600">Secure payment options and dispute resolution for worry-free transactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">IndianB2B</h3>
+                    <p class="text-gray-400">India's trusted B2B marketplace connecting buyers and suppliers since 2023.</p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li class="mt-4">
+                            <button class="bg-primary text-white px-4 py-2 rounded hover:bg-secondary transition">
+                                Download App
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 IndianB2B. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation handling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Search functionality
+        const searchForm = document.querySelector('nav form');
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = this.querySelector('input').value.trim();
+                if (query) {
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
