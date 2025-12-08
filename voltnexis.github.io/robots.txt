@@ -1,0 +1,39 @@
+User-agent: *
+Allow: /
+
+# Main Sitemap
+Sitemap: https://voltnexis.github.io/sitemap.xml
+
+# All Subdomain Sitemaps for Google Search Console
+Sitemap: https://voltnexis.github.io/shop/sitemap.xml
+Sitemap: https://voltnexis.github.io/builds/sitemap.xml
+Sitemap: https://voltnexis.github.io/wallpapers/sitemap.xml
+Sitemap: https://voltnexis.github.io/timer/sitemap.xml
+Sitemap: https://voltnexis.github.io/qoutes/sitemap.xml
+Sitemap: https://voltnexis.github.io/tools/sitemap.xml
+Sitemap: https://voltnexis.github.io/tool/sitemap.xml
+Sitemap: https://voltnexis.github.io/webcreator/sitemap.xml
+Sitemap: https://voltnexis.github.io/codexaura/sitemap.xml
+Sitemap: https://voltnexis.github.io/apps/sitemap.xml
+Sitemap: https://voltnexis.github.io/servetracko/sitemap.xml
+Sitemap: https://voltnexis.github.io/watchandearn/sitemap.xml
+Sitemap: https://voltnexis.github.io/fixmitra/sitemap.xml
+Sitemap: https://voltnexis.github.io/provider.fixmitra/sitemap.xml
+Sitemap: https://voltnexis.github.io/web2app/sitemap.xml
+Sitemap: https://voltnexis.github.io/vnsongs/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
