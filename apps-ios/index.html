@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOSDownload by VoltNexis - Premium iOS App Downloads | Free iPhone Apps</title>
+    <meta name="description" content="Download latest iOS apps safely. Free iPhone apps, games, and tools. Premium iOS download platform with direct downloads.">
+    <meta name="keywords" content="iOS Download, Free iOS Apps, Latest iOS, iPhone Apps, Safe iOS Download, iOS Versions, Premium iOS Site, iPhone Games, iPad Apps">
+    <meta name="author" content="VoltNexis">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="iOSDownload by VoltNexis - Premium iOS App Downloads">
+    <meta property="og:description" content="Download latest iOS apps safely. Free iPhone and iPad apps with direct downloads.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://voltnexis.github.io/apps/ios/">
+    <meta property="og:image" content="https://voltnexis.github.io/apps/appstore.webp">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="iOSDownload by VoltNexis">
+    <meta name="twitter:description" content="Premium iOS download platform with safe, direct downloads.">
+    <meta name="twitter:image" content="https://voltnexis.github.io/apps/appstore.webp">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <link rel="canonical" href="https://voltnexis.github.io/apps/ios/">
+    
+    <link rel="stylesheet" href="styles_ios.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="#">
+                    <span class="brand-icon"><i class="fas fa-mobile-alt"></i></span>
+                    <span class="brand-text"><span class="volt">iOS</span><span class="nexis">Download</span></span>
+                </a>
+            </div>
+            <div class="navbar-search">
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search apps..." class="search-box">
+                </div>
+            </div>
+            <div class="navbar-menu">
+                <button class="menu-btn" data-category="all"><i class="fas fa-th"></i> All</button>
+                <button class="menu-btn" data-category="games"><i class="fas fa-gamepad"></i> Games</button>
+                <button class="menu-btn" data-category="social"><i class="fas fa-users"></i> Social</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Carousel slides populated by JS -->
+                </div>
+                <button class="carousel-btn prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Trending Section -->
+        <section class="apps-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">🔥 Trending Now</h2>
+                    <a href="#" class="view-all">See all</a>
+                </div>
+                <div class="horizontal-scroll trending-scroll" id="trendingScroll">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- New Releases Section -->
+        <section class="apps-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">✨ New Releases</h2>
+                    <a href="#" class="view-all">See all</a>
+                </div>
+                <div class="horizontal-scroll new-scroll" id="newScroll">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="filter-section">
+            <div class="section-container">
+                <div class="category-chips">
+                    <button class="chip active" data-filter="all">All Apps</button>
+                    <button class="chip" data-filter="games">Games</button>
+                    <button class="chip" data-filter="social">Social</button>
+                    <button class="chip" data-filter="entertainment">Entertainment</button>
+                    <button class="chip" data-filter="tools">Tools</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Apps Grid -->
+        <section class="grid-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">📱 All Apps</h2>
+                </div>
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="load-more-container">
+                    <button id="loadMoreBtn" class="load-more-btn">
+                        Load More <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>iOSDownload by VoltNexis - Your premium iOS app store</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VoltNexis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script_new.js"></script>
+</body>
+</html>
