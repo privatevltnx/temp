@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">App Details - VoltNexis Apps</title>
+    <meta name="description" content="Download apps on VoltNexis - Your app store">
+    <meta name="keywords" content="apps, games, download, app store">
+    <meta name="author" content="VoltNexis">
+    
+    <link rel="stylesheet" href="styles_new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* App Detail Specific Styles */
+        .app-detail-header {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            padding: 32px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .app-detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .app-header-content {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .app-icon-container {
+            position: relative;
+        }
+
+        .app-icon-large {
+            width: 160px;
+            height: 160px;
+            border-radius: 32px;
+            object-fit: cover;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+            background: var(--surface-bg);
+        }
+
+        .app-title-section h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .developer-link {
+            display: inline-block;
+            font-size: 16px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin-bottom: 16px;
+            transition: opacity 0.3s ease;
+        }
+
+        .developer-link:hover {
+            opacity: 0.8;
+        }
+
+        .app-meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stars-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .stars-display .fa-star {
+            color: #fbbc04;
+        }
+
+        .stars-display .fa-star-half-alt {
+            color: #fbbc04;
+        }
+
+        .stars-display .far.fa-star {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .download-buttons-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn-primary {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .download-btn-primary:hover {
+            background: #1557b8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(31, 115, 230, 0.3);
+        }
+
+        .download-btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .download-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content Sections */
+        .app-content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        /* Screenshots Section */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .screenshot-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        .about-section {
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .about-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+            color: var(--text-primary);
+        }
+
+        .about-section p {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* What's New Section */
+        .whats-new-section {
+            background: linear-gradient(135deg, rgba(31, 115, 230, 0.1) 0%, rgba(66, 133, 244, 0.1) 100%);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .whats-new-section h4 {
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .whats-new-section p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* More From Provider Section */
+        .provider-apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .provider-app-card {
+            background: var(--surface-bg);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .provider-app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .provider-app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin: 0 auto 12px;
+            display: block;
+        }
+
+        .provider-app-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .provider-app-rating {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Modal Styles */
+        .screenshot-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .screenshot-modal.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .screenshot-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .screenshot-modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .screenshot-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .screenshot-modal-close:hover {
+            opacity: 0.7;
+        }
+
+        .screenshot-modal-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+            color: white;
+        }
+
+        .screenshot-modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .screenshot-counter {
+            font-size: 14px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-header-content {
+                grid-template-columns: 120px 1fr;
+                gap: 20px;
+            }
+
+            .app-icon-large {
+                width: 120px;
+                height: 120px;
+                border-radius: 24px;
+            }
+
+            .app-title-section h1 {
+                font-size: 24px;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .provider-apps-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .download-buttons-container {
+                flex-direction: column;
+            }
+
+            .download-btn-primary,
+            .download-btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-detail-header {
+                padding: 24px 0;
+                margin-bottom: 24px;
+            }
+
+            .app-header-content {
+                grid-template-columns: 100px 1fr;
+                gap: 16px;
+            }
+
+            .app-icon-large {
+                width: 100px;
+                height: 100px;
+                border-radius: 20px;
+            }
+
+            .app-title-section h1 {
+                font-size: 20px;
+            }
+
+            .app-meta-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .app-content-section {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 12px;
+            }
+
+            .provider-apps-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index_new.html" class="logo">
+                    <i class="fas fa-arrow-left"></i>
+                    <i class="fas fa-play"></i>
+                    <span>Play Store</span>
+                </a>
+            </div>
+            <div class="nav-center">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search apps, games...">
+                </div>
+            </div>
+            <div class="nav-right">
+                <button class="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- App Detail Header -->
+    <div class="app-detail-header">
+        <div class="app-detail-container">
+            <div class="app-header-content">
+                <div class="app-icon-container">
+                    <img id="appIcon" class="app-icon-large" src="https://via.placeholder.com/160" alt="App Icon">
+                </div>
+                <div class="app-title-section">
+                    <h1 id="appName">Loading...</h1>
+                    <a href="#" id="developerLink" class="developer-link">Developer</a>
+                    
+                    <div class="app-meta-info">
+                        <div class="meta-item">
+                            <span class="stars-display" id="appRating"></span>
+                            <span id="ratingText">Loading...</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-cube"></i>
+                            <span id="appSize">Unknown</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-box"></i>
+                            <span id="appVersion">Unknown</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-apple"></i>
+                            <span id="iosVersion">Unknown</span>
+                        </div>
+                    </div>
+
+                    <div class="download-buttons-container" id="downloadButtonsContainer">
+                        <!-- Generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="app-detail-container">
+            <!-- About Section -->
+            <div class="app-content-section">
+                <h2 class="section-title"><i class="fas fa-info-circle"></i> About this app</h2>
+                <div class="about-section" id="appAbout">
+                    Loading...
+                </div>
+            </div>
+
+            <!-- What's New Section (Optional) -->
+            <div class="app-content-section" id="whatsNewSection" style="display: none;">
+                <h2 class="section-title"><i class="fas fa-sparkles"></i> What's New</h2>
+                <div class="whats-new-section">
+                    <h4>Latest Updates</h4>
+                    <p id="whatsNewContent">Loading...</p>
+                </div>
+            </div>
+
+            <!-- Screenshots Section -->
+            <div class="app-content-section" id="screenshotsSection" style="display: none;">
+                <h2 class="section-title"><i class="fas fa-images"></i> Screenshots</h2>
+                <div class="screenshots-grid" id="screenshotsContainer">
+                    <!-- Generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- More From This Provider Section -->
+            <div class="app-content-section" id="moreFromProviderSection" style="display: none;">
+                <h2 class="section-title"><i class="fas fa-store"></i> More from <span id="providerName">Developer</span></h2>
+                <div class="provider-apps-grid" id="providerAppsContainer">
+                    <!-- Generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 VoltNexis Apps. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Screenshot Modal -->
+    <div id="screenshotModal" class="screenshot-modal">
+        <div class="screenshot-modal-content">
+            <button class="screenshot-modal-close" id="modalClose">&times;</button>
+            <img id="modalImage" class="screenshot-modal-image" src="" alt="Screenshot">
+            <div class="screenshot-modal-nav">
+                <button id="prevScreenshot" title="Previous">&#8249;</button>
+                <span class="screenshot-counter"><span id="currentScreenshot">1</span> / <span id="totalScreenshots">1</span></span>
+                <button id="nextScreenshot" title="Next">&#8250;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script_new.js"></script>
+    <script src="app-detail-new.js"></script>
+</body>
+</html>
